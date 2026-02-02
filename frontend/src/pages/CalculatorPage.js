@@ -4,11 +4,21 @@
  */
 
 import { MainLayout } from '../layouts/MainLayout.js';
-import { getAllCities } from '../data/cityService.js';
+import { getAllCities, getCityBySlug } from '../data/cityService.js';
 import { getHousingTypes, getLifestyleLevels, calculateMonthlyBudget, formatCurrency } from '../logic/budgetCalculator.js';
 
+// Store city data globally for client-side updates
+const citiesData = getAllCities();
+
+// Expose for inline script
+window.TripCost = {
+  getCityBySlug: (slug) => citiesData.find(c => c.slug === slug),
+  calculateMonthlyBudget,
+  formatCurrency
+};
+
 export function CalculatorPage() {
-  const cities = getAllCities();
+  const cities = citiesData;
   const housingTypes = getHousingTypes();
   const lifestyles = getLifestyleLevels();
 
@@ -20,8 +30,8 @@ export function CalculatorPage() {
     `<option value="${h.value}">${h.label}</option>`
   ).join('');
 
-  const lifestyleOptions = lifestyles.map(l => 
-    `<option value="${l.value}">${l.label}</option>`
+  const lifestyleOptions = lifestyles.map((l, i) => 
+    `<option value="${l.value}"${i === 1 ? ' selected' : ''}>${l.label}</option>`
   ).join('');
 
   const defaultCity = cities[0];
