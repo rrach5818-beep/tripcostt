@@ -107,7 +107,34 @@ export function CalculatorPage() {
     </section>
   `;
 
-  return MainLayout(content);
+  // Return with inline script for interactivity
+  return MainLayout(content) + `
+    <script>
+      (function() {
+        function updateCalculation() {
+          const citySlug = document.getElementById('city-select').value;
+          const housing = document.getElementById('housing-select').value;
+          const lifestyle = document.getElementById('lifestyle-select').value;
+
+          const city = window.TripCost.getCityBySlug(citySlug);
+          if (!city) return;
+
+          const budget = window.TripCost.calculateMonthlyBudget(city, { housing, lifestyle });
+          const fmt = window.TripCost.formatCurrency;
+
+          document.getElementById('total-amount').textContent = fmt(budget.total, budget.currencySymbol);
+          document.getElementById('accommodation-cost').textContent = fmt(budget.breakdown.accommodation.total, budget.currencySymbol);
+          document.getElementById('food-cost').textContent = fmt(budget.breakdown.food.total, budget.currencySymbol);
+          document.getElementById('transport-cost').textContent = fmt(budget.breakdown.transport.total, budget.currencySymbol);
+          document.getElementById('coworking-cost').textContent = fmt(budget.breakdown.coworking.total, budget.currencySymbol);
+        }
+
+        document.getElementById('city-select').addEventListener('change', updateCalculation);
+        document.getElementById('housing-select').addEventListener('change', updateCalculation);
+        document.getElementById('lifestyle-select').addEventListener('change', updateCalculation);
+      })();
+    </script>
+  `;
 }
 
 export default CalculatorPage;
