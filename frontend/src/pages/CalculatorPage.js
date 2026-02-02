@@ -1,29 +1,23 @@
 /**
  * CalculatorPage
- * Monthly budget calculator
+ * Monthly budget calculator with interactivity
  */
 
 import { MainLayout } from '../layouts/MainLayout.js';
-import { getAllCities, getCityBySlug } from '../data/cityService.js';
+import { getAllCities } from '../data/cityService.js';
 import { getHousingTypes, getLifestyleLevels, calculateMonthlyBudget, formatCurrency } from '../logic/budgetCalculator.js';
 
-// Store city data globally for client-side updates
-const citiesData = getAllCities();
-
-// Expose for inline script
-window.TripCost = {
-  getCityBySlug: (slug) => citiesData.find(c => c.slug === slug),
-  calculateMonthlyBudget,
-  formatCurrency
-};
-
 export function CalculatorPage() {
-  const cities = citiesData;
+  const cities = getAllCities();
   const housingTypes = getHousingTypes();
   const lifestyles = getLifestyleLevels();
 
   const cityOptions = cities.map(city => 
-    `<option value="${city.slug}">${city.name}, ${city.country}</option>`
+    `<option value="${city.slug}" data-city='${JSON.stringify({
+      slug: city.slug,
+      currencySymbol: city.currencySymbol,
+      costs: city.costs
+    })}'>${city.name}, ${city.country}</option>`
   ).join('');
 
   const housingOptions = housingTypes.map(h => 
@@ -107,34 +101,64 @@ export function CalculatorPage() {
     </section>
   `;
 
-  // Return with inline script for interactivity
-  return MainLayout(content) + `
-    <script>
-      (function() {
-        function updateCalculation() {
-          const citySlug = document.getElementById('city-select').value;
-          const housing = document.getElementById('housing-select').value;
-          const lifestyle = document.getElementById('lifestyle-select').value;
+  return MainLayout(content);
+}
 
-          const city = window.TripCost.getCityBySlug(citySlug);
-          if (!city) return;
+// Setup calculator interactivity after page renders
+export function setupCalculatorInteractivity() {
+  const citySelect = document.getElementById('city-select');
+  const housingSelect = document.getElementById('housing-select');
+  const lifestyleSelect = document.getElementById('lifestyle-select');
 
-          const budget = window.TripCost.calculateMonthlyBudget(city, { housing, lifestyle });
-          const fmt = window.TripCost.formatCurrency;
+  if (!citySelect) return;
 
-          document.getElementById('total-amount').textContent = fmt(budget.total, budget.currencySymbol);
-          document.getElementById('accommodation-cost').textContent = fmt(budget.breakdown.accommodation.total, budget.currencySymbol);
-          document.getElementById('food-cost').textContent = fmt(budget.breakdown.food.total, budget.currencySymbol);
-          document.getElementById('transport-cost').textContent = fmt(budget.breakdown.transport.total, budget.currencySymbol);
-          document.getElementById('coworking-cost').textContent = fmt(budget.breakdown.coworking.total, budget.currencySymbol);
-        }
+  function formatCurrency(amount, symbol = '$') {
+    return `${symbol}${amount.toLocaleString()}`;
+  }
 
-        document.getElementById('city-select').addEventListener('change', updateCalculation);
-        document.getElementById('housing-select').addEventListener('change', updateCalculation);
-        document.getElementById('lifestyle-select').addEventListener('change', updateCalculation);
-      })();
-    </script>
-  `;
+  function calculateBudget(costs, housing, lifestyle) {
+    const daysPerMonth = 30;
+    const dailyAccommodation = costs.accommodation[housing] || costs.accommodation.center;
+    const accommodationTotal = dailyAccommodation * daysPerMonth;
+    const dailyFood = costs.food[lifestyle] || costs.food.standard;
+    const foodTotal = dailyFood * daysPerMonth;
+    const transportTotal = costs.transport;
+    const coworkingTotal = costs.coworking;
+    const subtotal = accommodationTotal + foodTotal + transportTotal + coworkingTotal;
+    const miscellaneous = Math.round(subtotal * 0.1);
+    const total = subtotal + miscellaneous;
+
+    return {
+      total,
+      accommodation: accommodationTotal,
+      food: foodTotal,
+      transport: transportTotal,
+      coworking: coworkingTotal
+    };
+  }
+
+  function updateCalculation() {
+    const selectedOption = citySelect.options[citySelect.selectedIndex];
+    const cityDataStr = selectedOption.getAttribute('data-city');
+    if (!cityDataStr) return;
+
+    const cityData = JSON.parse(cityDataStr);
+    const housing = housingSelect.value;
+    const lifestyle = lifestyleSelect.value;
+
+    const budget = calculateBudget(cityData.costs, housing, lifestyle);
+    const symbol = cityData.currencySymbol;
+
+    document.getElementById('total-amount').textContent = formatCurrency(budget.total, symbol);
+    document.getElementById('accommodation-cost').textContent = formatCurrency(budget.accommodation, symbol);
+    document.getElementById('food-cost').textContent = formatCurrency(budget.food, symbol);
+    document.getElementById('transport-cost').textContent = formatCurrency(budget.transport, symbol);
+    document.getElementById('coworking-cost').textContent = formatCurrency(budget.coworking, symbol);
+  }
+
+  citySelect.addEventListener('change', updateCalculation);
+  housingSelect.addEventListener('change', updateCalculation);
+  lifestyleSelect.addEventListener('change', updateCalculation);
 }
 
 export default CalculatorPage;
