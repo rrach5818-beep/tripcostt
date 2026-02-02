@@ -48,6 +48,11 @@ function render() {
   if (matched) {
     const html = matched.route.component(matched.params);
     currentRoot.innerHTML = html;
+    
+    // Call setup function if defined for this route
+    if (matched.route.setup) {
+      setTimeout(() => matched.route.setup(), 0);
+    }
   } else {
     currentRoot.innerHTML = `
       <div class="container py-20 text-center">
