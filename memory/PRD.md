@@ -1,106 +1,103 @@
 # TripCost Frontend Application PRD
 
 ## Original Problem Statement
-Build a production-grade frontend codebase for TripCost using:
+Build a production-grade TripCost frontend with:
 - Vanilla JavaScript (ES modules) - NO React/JSX
-- CSS only (no Tailwind, no CSS-in-JS)
-- Routing via history.pushState
-- Components return template literal strings
+- Modern SaaS UI design (Stripe/Linear/Vercel inspired)
+- Client-side routing via history.pushState
 - Data-first approach with cityDB as source of truth
+- Legal/SEO pages for trust and compliance
 
 ## Architecture
 
 ### Tech Stack
 - Vite 5.x for bundling and dev server
 - Vanilla JavaScript with ES modules
-- Pure CSS with design tokens
+- Pure CSS with design tokens (indigo/slate palette)
 
 ### File Structure
 ```
 /app/frontend/
-├── index.html                 # Entry HTML with <div id="app">
-├── vite.config.js             # Vite configuration
-├── package.json               # Dependencies and scripts
+├── index.html
+├── vite.config.js
+├── package.json
 └── src/
-    ├── main.js                # App initialization and router setup
+    ├── main.js
     ├── data/
-    │   ├── cityDB.js          # Source of truth - 19 cities
-    │   ├── cityContract.js    # Data validation schema
-    │   └── cityService.js     # Data access layer
+    │   ├── cityDB.js (19 cities)
+    │   ├── cityContract.js
+    │   └── cityService.js
     ├── logic/
-    │   ├── budgetCalculator.js # Monthly budget calculations
-    │   └── scoreCalculator.js  # Nomad score calculations
+    │   ├── budgetCalculator.js
+    │   └── scoreCalculator.js
     ├── styles/
-    │   ├── tokens.css         # CSS variables (colors, spacing, fonts)
-    │   ├── base.css           # Reset and base styles
-    │   ├── layout.css         # Grid, flexbox, spacing utilities
-    │   ├── components.css     # UI component styles
-    │   └── pages.css          # Page-specific styles
+    │   ├── tokens.css (design tokens)
+    │   ├── base.css
+    │   ├── layout.css
+    │   ├── components.css
+    │   └── pages.css
     ├── components/
-    │   ├── ui/                # Button, Card, Badge, Stat
-    │   └── city/              # CityHero, CityStats, CitySimulator, CityFAQ
+    │   ├── ui/ (Button, Card, Badge, Stat)
+    │   └── city/ (CityHero, CityStats, etc.)
     ├── layouts/
-    │   ├── MainLayout.js      # Header + content + footer
-    │   └── AppLayout.js       # Wrapper layout
+    │   ├── MainLayout.js
+    │   └── AppLayout.js
     ├── pages/
-    │   ├── HomePage.js        # Landing with featured cities
-    │   ├── DestinationsPage.js # All 19 cities grid
-    │   ├── CityPage.js        # Individual city details
-    │   ├── CalculatorPage.js  # Interactive budget calculator
-    │   └── NomadPage.js       # Rankings table
+    │   ├── HomePage.js
+    │   ├── DestinationsPage.js
+    │   ├── CityPage.js
+    │   ├── CalculatorPage.js
+    │   ├── NomadPage.js
+    │   ├── AboutPage.js
+    │   ├── LegalPage.js
+    │   ├── PrivacyPage.js
+    │   └── TermsPage.js
     └── router/
-        ├── routes.js          # Route definitions
-        └── index.js           # Router logic with history.pushState
+        ├── routes.js
+        └── index.js
 ```
 
-## Core Requirements
-
-### Routes
-- `/` - Homepage with hero, features, top 6 cities
+## Routes
+- `/` - Homepage with hero, features, how-it-works, city cards
 - `/destinations` - All 19 cities grid
-- `/city/:slug` - City detail page (e.g., /city/new-york)
-- `/calculator` - Budget calculator with interactive updates
+- `/city/:slug` - City detail with KPIs, costs, FAQ
+- `/calculator` - Interactive budget calculator
 - `/nomad` - Digital nomad rankings table
+- `/about` - About TripCost mission
+- `/legal` - Legal notice/disclaimer
+- `/privacy` - Privacy policy
+- `/terms` - Terms of service
 
-### Calculator Features
-- City selection dropdown (19 cities)
-- Housing selection: City Center / Suburb
-- Lifestyle selection: Budget / Standard / Premium
-- Live updates on any selection change
-- Shows: Total budget, Accommodation, Food, Transport, Coworking
+## Design System
+- **Colors**: Indigo primary (#4f46e5), slate neutrals
+- **Typography**: Inter font family
+- **Shadows**: Soft, modern shadows
+- **Gradients**: Primary gradient on hero elements
+- **Style**: Clean SaaS aesthetic (Stripe/Linear inspired)
 
-### City Data
-- 19 cities across 5 continents
-- Costs: accommodation (center/suburb), food (budget/standard/premium), transport, coworking
-- Digital nomad metrics: overallScore, wifiSpeed, coworkingCost, safetyScore
-- Multi-currency support (USD, EUR, GBP, SGD)
-
-## What's Implemented (Feb 2, 2026)
-- ✅ Complete file structure per specification
-- ✅ All 5 routes working with client-side routing
-- ✅ Homepage with hero, features, city cards
-- ✅ Destinations page with 19 cities
-- ✅ City detail pages with hero, stats, cost breakdown, FAQ
-- ✅ Interactive budget calculator with live updates
-- ✅ Nomad rankings table with all cities
-- ✅ 404 page handling
-- ✅ Clean CSS with design tokens
-- ✅ data-testid attributes on all interactive elements
+## What's Implemented (Feb 3, 2026)
+✅ Modern SaaS UI design applied to all pages
+✅ Homepage with hero, trust badges, features, how-it-works, CTA
+✅ Calculator with interactive dropdowns and live updates
+✅ City pages with KPI cards, cost breakdown, FAQ accordion
+✅ Nomad rankings with score bars and category leaders
+✅ Legal pages: About, Legal Notice, Privacy Policy, Terms of Service
+✅ Enhanced footer with legal links and branding
+✅ 19 cities across 5 continents
+✅ Multi-currency support
+✅ All data-testid attributes for testing
 
 ## Testing Results
-- Frontend: 100% pass rate
-- All 11 test cases passed
-- Navigation, calculator interactivity, multi-currency verified
+- Frontend: 100% pass rate (12/12 tests)
+- All pages loading correctly
+- Navigation working across all routes
+- Calculator interactivity verified
 
 ## Backlog / Future Enhancements
-- P1: Add search/filter on destinations page
-- P1: Add sorting options on nomad rankings
-- P2: Add comparison mode (select 2 cities)
-- P2: Dark mode theme
-- P3: Save favorite cities to localStorage
-- P3: Generate shareable budget report URL
-
-## Next Tasks
-1. Add city search/filter functionality
-2. Implement sortable columns on nomad table
-3. Add responsive mobile navigation
+- P1: Search/filter on destinations page
+- P1: Sortable columns on nomad table
+- P2: City comparison mode (select 2-3 cities)
+- P2: Dark mode theme toggle
+- P3: Save favorite cities (localStorage)
+- P3: Shareable budget report URLs
+- P3: Mobile hamburger navigation
