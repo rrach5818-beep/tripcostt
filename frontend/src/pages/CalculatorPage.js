@@ -1,6 +1,6 @@
 /**
  * CalculatorPage
- * Monthly budget calculator with interactivity
+ * Monthly budget calculator with modern SaaS design
  */
 
 import { MainLayout } from '../layouts/MainLayout.js';
@@ -15,6 +15,7 @@ export function CalculatorPage() {
   const cityOptions = cities.map(city => 
     `<option value="${city.slug}" data-city='${JSON.stringify({
       slug: city.slug,
+      name: city.name,
       currencySymbol: city.currencySymbol,
       costs: city.costs
     })}'>${city.name}, ${city.country}</option>`
@@ -32,16 +33,27 @@ export function CalculatorPage() {
   const defaultBudget = calculateMonthlyBudget(defaultCity, { housing: 'center', lifestyle: 'standard' });
 
   const content = `
-    <div class="page-header" data-testid="page-header">
+    <div class="page-header page-header--centered" data-testid="page-header">
       <div class="container">
-        <h1 class="page-header__title">Budget Calculator</h1>
-        <p class="page-header__subtitle">Estimate your monthly costs based on city, housing, and lifestyle</p>
+        <p class="page-header__eyebrow">Budget Tool</p>
+        <h1 class="page-header__title">Monthly Budget Calculator</h1>
+        <p class="page-header__subtitle">
+          Get accurate cost estimates for any city. Customize by location, housing type, and lifestyle to plan your budget.
+        </p>
       </div>
     </div>
 
     <section class="section" data-testid="calculator-section">
       <div class="container">
         <div class="calculator">
+          <div class="calculator__intro text-center mb-10">
+            <h2 style="font-size: var(--font-size-xl); margin-bottom: var(--space-3);">How it works</h2>
+            <p style="color: var(--color-text-secondary); max-width: 600px; margin: 0 auto;">
+              Select your destination, choose your preferred housing location and lifestyle level. 
+              The calculator will estimate your monthly costs including accommodation, food, transport, and coworking.
+            </p>
+          </div>
+
           <div class="calculator__form" data-testid="calculator-form">
             <div class="form-group">
               <label class="form-label" for="city-select">Destination</label>
@@ -67,35 +79,56 @@ export function CalculatorPage() {
             <div class="calculator__total">
               <p class="calculator__total-label">Estimated Monthly Budget</p>
               <p class="calculator__total-value" id="total-amount" data-testid="total-amount">${formatCurrency(defaultBudget.total, defaultBudget.currencySymbol)}</p>
+              <p class="calculator__total-subtext">per month in <span id="city-name">${defaultCity.name}</span></p>
             </div>
 
             <div class="calculator__breakdown" id="breakdown" data-testid="breakdown">
-              <div class="card">
-                <div class="card__body">
-                  <h4>Accommodation</h4>
-                  <p class="stat__value" id="accommodation-cost">${formatCurrency(defaultBudget.breakdown.accommodation.total, defaultBudget.currencySymbol)}</p>
+              <div class="calculator__breakdown-card">
+                <div>
+                  <p class="calculator__breakdown-label">Accommodation</p>
+                  <p style="font-size: var(--font-size-xs); color: var(--color-text-tertiary);">30 days rental</p>
                 </div>
+                <p class="calculator__breakdown-value" id="accommodation-cost">${formatCurrency(defaultBudget.breakdown.accommodation.total, defaultBudget.currencySymbol)}</p>
               </div>
-              <div class="card">
-                <div class="card__body">
-                  <h4>Food & Dining</h4>
-                  <p class="stat__value" id="food-cost">${formatCurrency(defaultBudget.breakdown.food.total, defaultBudget.currencySymbol)}</p>
+              <div class="calculator__breakdown-card">
+                <div>
+                  <p class="calculator__breakdown-label">Food & Dining</p>
+                  <p style="font-size: var(--font-size-xs); color: var(--color-text-tertiary);">Daily meals</p>
                 </div>
+                <p class="calculator__breakdown-value" id="food-cost">${formatCurrency(defaultBudget.breakdown.food.total, defaultBudget.currencySymbol)}</p>
               </div>
-              <div class="card">
-                <div class="card__body">
-                  <h4>Transportation</h4>
-                  <p class="stat__value" id="transport-cost">${formatCurrency(defaultBudget.breakdown.transport.total, defaultBudget.currencySymbol)}</p>
+              <div class="calculator__breakdown-card">
+                <div>
+                  <p class="calculator__breakdown-label">Transportation</p>
+                  <p style="font-size: var(--font-size-xs); color: var(--color-text-tertiary);">Monthly pass</p>
                 </div>
+                <p class="calculator__breakdown-value" id="transport-cost">${formatCurrency(defaultBudget.breakdown.transport.total, defaultBudget.currencySymbol)}</p>
               </div>
-              <div class="card">
-                <div class="card__body">
-                  <h4>Coworking</h4>
-                  <p class="stat__value" id="coworking-cost">${formatCurrency(defaultBudget.breakdown.coworking.total, defaultBudget.currencySymbol)}</p>
+              <div class="calculator__breakdown-card">
+                <div>
+                  <p class="calculator__breakdown-label">Coworking Space</p>
+                  <p style="font-size: var(--font-size-xs); color: var(--color-text-tertiary);">Monthly membership</p>
                 </div>
+                <p class="calculator__breakdown-value" id="coworking-cost">${formatCurrency(defaultBudget.breakdown.coworking.total, defaultBudget.currencySymbol)}</p>
               </div>
             </div>
+
+            <p style="text-align: center; margin-top: var(--space-6); color: var(--color-text-tertiary); font-size: var(--font-size-sm);">
+              * Estimates include a 10% buffer for miscellaneous expenses
+            </p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <div class="section__header text-center">
+          <h2 class="section__title">Need more details?</h2>
+          <p class="section__subtitle" style="margin: 0 auto;">Explore individual city pages for comprehensive cost breakdowns, WiFi speeds, safety scores, and local tips.</p>
+        </div>
+        <div class="text-center mt-8">
+          <a href="/destinations" data-link class="btn btn--primary btn--lg">Browse All Cities</a>
         </div>
       </div>
     </section>
@@ -109,6 +142,7 @@ export function setupCalculatorInteractivity() {
   const citySelect = document.getElementById('city-select');
   const housingSelect = document.getElementById('housing-select');
   const lifestyleSelect = document.getElementById('lifestyle-select');
+  const cityNameEl = document.getElementById('city-name');
 
   if (!citySelect) return;
 
@@ -154,6 +188,10 @@ export function setupCalculatorInteractivity() {
     document.getElementById('food-cost').textContent = formatCurrency(budget.food, symbol);
     document.getElementById('transport-cost').textContent = formatCurrency(budget.transport, symbol);
     document.getElementById('coworking-cost').textContent = formatCurrency(budget.coworking, symbol);
+    
+    if (cityNameEl) {
+      cityNameEl.textContent = cityData.name;
+    }
   }
 
   citySelect.addEventListener('change', updateCalculation);
