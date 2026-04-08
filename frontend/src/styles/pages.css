@@ -37,6 +37,76 @@
   background: var(--color-bg-gradient);
   border-radius: var(--radius-lg);
 }
+/* ===============================
+   WORLD MAP HERO (FOUNDATION)
+   =============================== */
+
+.world-section {
+  position: relative;
+  width: 100%;
+  background: var(--color-bg-gradient-subtle);
+  padding: var(--space-20) 0;
+}
+
+.world-section .container {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-world {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  align-items: center;
+  gap: var(--space-16);
+}
+.hero-world__map--clickable {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  border-radius: var(--radius-2xl);
+  transition: transform var(--transition-base),
+              box-shadow var(--transition-base);
+}
+
+.hero-world__map--clickable:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: var(--shadow-2xl);
+}
+
+/* Overlay subtil pour indiquer l’action */
+.hero-world__map--clickable::after {
+  content: "Explore all destinations →";
+  position: absolute;
+  bottom: var(--space-6);
+  right: var(--space-6);
+  background: rgba(15, 23, 42, 0.75);
+  color: #fff;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  pointer-events: none;
+}
+
+/* TEXT */
+.hero-world__text {
+  max-width: 520px;
+}
+
+/* MAP */
+.hero-world__map {
+  position: relative;
+  width: 100%;
+  height: 460px; /* 🔑 FIX DEFINITIF */
+}
+
+.hero-world__map img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 
 /* Footer - Modern dark style */
 .footer {

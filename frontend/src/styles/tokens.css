@@ -10,6 +10,23 @@
   --color-primary-700: #4338ca;
   --color-primary-800: #3730a3;
   --color-primary-900: #312e81;
+ /* === DATA INTENT COLORS (CRITICAL) === */
+  /* Used for analytics, comparison, simulator feedback */
+
+  --color-data-positive: #16a34a; /* good, affordable, efficient */
+  --color-data-negative: #dc2626; /* expensive, risky */
+  --color-data-neutral: #64748b;  /* average, reference */
+  --color-data-highlight: #2563eb; /* selected city, active filter */
+
+  /* Cost signals */
+  --color-cost-low: #22c55e;
+  --color-cost-medium: #f59e0b;
+  --color-cost-high: #ef4444;
+
+  /* Internet / performance */
+  --color-speed-fast: #0ea5e9;
+  --color-speed-average: #6366f1;
+  --color-speed-slow: #94a3b8;
 
   /* Slate - Neutral grays */
   --color-slate-50: #f8fafc;
@@ -46,6 +63,15 @@
   --color-bg-dark: var(--color-slate-900);
   --color-bg-gradient: linear-gradient(135deg, var(--color-primary-600) 0%, var(--color-primary-800) 100%);
   --color-bg-gradient-subtle: linear-gradient(180deg, var(--color-slate-50) 0%, #ffffff 100%);
+ /* Analytical surfaces */
+  --color-bg-canvas: #ffffff; /* page background */
+  --color-bg-panel: #f8fafc;  /* tables, sections */
+  --color-bg-card: #ffffff;   /* cards */
+  --color-bg-card-muted: #f1f5f9;
+
+  /* Interactive states */
+  --color-bg-hover: #eef2ff;
+  --color-bg-active: #e0e7ff;
 
   /* Text */
   --color-text-primary: var(--color-slate-900);
@@ -53,6 +79,10 @@
   --color-text-tertiary: var(--color-slate-500);
   --color-text-inverse: #ffffff;
   --color-text-link: var(--color-primary-600);
+ /* Data text */
+  --color-text-data: #020617; /* chiffres clés */
+  --color-text-label: #475569; /* labels */
+  --color-text-micro: #64748b; /* hints, meta */
 
   /* Borders */
   --color-border-primary: var(--color-slate-200);
@@ -61,6 +91,11 @@
 
   /* Typography */
   --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+ --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --font-size-kpi: 2rem;
+  --font-size-table: 0.9375rem;
+  --font-size-micro: 0.8125rem;
   
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
@@ -112,15 +147,14 @@
   --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.04);
   --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.08), 0 8px 10px -6px rgb(0 0 0 / 0.04);
   --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.15);
-  --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.04), 0 1px 2px -1px rgb(0 0 0 / 0.04);
-  --shadow-card-hover: 0 10px 40px -10px rgb(0 0 0 / 0.12);
-
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.03);
+  --shadow-card-hover: 0 6px 16px -6px rgb(0 0 0 / 0.12);
   /* Container */
   --container-max-width: 1200px;
   --container-padding: var(--space-6);
 
   /* Transitions */
-  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 100ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 220ms cubic-bezier(0.4, 0, 0.2, 1);
 }
