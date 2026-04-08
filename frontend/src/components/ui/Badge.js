@@ -1,24 +1,34 @@
 /**
  * Badge UI Component
- * Returns HTML string
+ * Modern, semantic, data-driven badge
  */
 
 export function Badge(props = {}) {
   const {
     text = '',
-    variant = 'default',
+    variant = 'default',   // success | warning | error | info | neutral
+    tone = 'soft',         // soft | solid | outline
+    size = 'sm',           // xs | sm | md
     className = '',
     testId = ''
   } = props;
 
-  const classes = ['badge', `badge--${variant}`, className].filter(Boolean).join(' ');
+  // Construction des classes de manière déclarative
+  const classes = [
+    'badge',
+    `badge--${variant}`,
+    `badge--${tone}`,
+    `badge--${size}`,
+    className
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   const testIdAttr = testId ? ` data-testid="${testId}"` : '';
 
-  return `<span class="${classes}"${testIdAttr}>${text}</span>`;
+  return `
+    <span class="${classes}"${testIdAttr}>
+      ${text}
+    </span>
+  `;
 }
-
-export function BadgeList(badges = []) {
-  return badges.map(badge => Badge(badge)).join('');
-}
-
-export default Badge;

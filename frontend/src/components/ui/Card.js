@@ -29,8 +29,24 @@ export function Card(props = {}) {
   }
 
   if (image) {
-    html += `<img src="${image}" alt="${imageAlt || title}" class="card__image" loading="lazy">`;
-  }
+  const optimizedSrc = `${image}&auto=format&fit=crop&w=1200&q=80`;
+
+  html += `
+    <img 
+      src="${optimizedSrc}"
+      srcset="
+        ${image}&auto=format&fit=crop&w=400&q=70 400w,
+        ${image}&auto=format&fit=crop&w=800&q=75 800w,
+        ${image}&auto=format&fit=crop&w=1200&q=80 1200w
+      "
+      sizes="(max-width: 768px) 100vw, 33vw"
+      alt="${imageAlt || `Cost of living in ${title}`}"
+      class="card__image"
+      loading="lazy"
+      decoding="async"
+    >
+  `;
+}
 
   if (title || subtitle) {
     html += '<div class="card__header">';
