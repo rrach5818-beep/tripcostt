@@ -30,17 +30,17 @@ export function MainLayout(content) {
           padding:56px 0 0;font-size:14px;
         }
         .footer__grid {
-          display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
-          gap:40px;padding-bottom:48px;
+          display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;
+          gap:24px;padding-bottom:48px;
           border-bottom:1px solid rgba(255,255,255,0.08);
         }
         .footer__brand-logo {
-          font-size:22px;font-weight:900;color:#fff;letter-spacing:-0.02em;margin-bottom:14px;
+          font-size:22px;font-weight:900;color:#fff;letter-spacing:-0.02em;margin-bottom:12px;
         }
         .footer__brand-logo span { color:#818cf8; }
         .footer__brand p {
           font-size:13px;line-height:1.7;color:rgba(255,255,255,0.45);
-          margin-bottom:16px;max-width:280px;
+          margin-bottom:14px;max-width:260px;
         }
         .footer__brand-badge {
           display:inline-flex;align-items:center;gap:6px;
@@ -49,16 +49,15 @@ export function MainLayout(content) {
           padding:4px 12px;border-radius:999px;
         }
         .footer__brand-badge::before {
-          content:'';width:6px;height:6px;background:#10b981;
-          border-radius:50%;
+          content:'';width:6px;height:6px;background:#10b981;border-radius:50%;
         }
         .footer__section h4 {
           font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
-          color:rgba(255,255,255,0.35);margin-bottom:16px;
+          color:rgba(255,255,255,0.3);margin-bottom:14px;
         }
         .footer__section a {
           display:block;color:rgba(255,255,255,0.55);text-decoration:none;
-          font-size:13px;margin-bottom:9px;transition:color 0.15s;
+          font-size:13px;margin-bottom:7px;transition:color 0.15s;line-height:1.4;
         }
         .footer__section a:hover { color:#fff;text-decoration:none; }
         .footer__bottom {
