@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://tripcost.co/sitemap.xml
+
+# Block irrelevant paths
+Disallow: /src/
+Disallow: /.git/

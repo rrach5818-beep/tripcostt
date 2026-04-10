@@ -8,7 +8,15 @@ import { getCityBySlug, getAllCities } from '../data/cityService.js';
 import { formatCurrency } from '../logic/budgetCalculator.js';
 import { getCityIntro, getCostSectionText, getLifestyleText, getNomadText, getFAQ } from '../data/cityTextTemplates.js';
 import { getCityMetaTitle, getCityMetaDescription } from '../data/citySeoTemplates.js';
+<<<<<<< Updated upstream:src/pages/CityPage.js
 import { setPageMeta, injectSchema } from '../logic/setPageMeta.js';
+=======
+<<<<<<< HEAD
+import { setPageMeta, injectSchema } from '../logic/setPageMeta.js';
+=======
+import { setPageMeta } from '../logic/setPageMeta.js';
+>>>>>>> f5684a6278b64a9f195794048f99a666f88c917b
+>>>>>>> Stashed changes:frontend/src/pages/CityPage.js
 
 export function CityPage(params) {
   const { slug } = params;
@@ -671,6 +679,7 @@ export function CityPage(params) {
     </section>
   `;
 
+<<<<<<< Updated upstream:src/pages/CityPage.js
   const canonicalPath = `/city/${city.slug}`;
 
   setPageMeta({
@@ -711,6 +720,60 @@ export function CityPage(params) {
 
   // ── JSON-LD: FAQPage ───────────────────────────────────
   injectSchema('faq-jsonld', {
+=======
+<<<<<<< HEAD
+  const canonicalPath = `/city/${city.slug}`;
+
+  setPageMeta({
+    title:       metaTitle,
+    description: metaDesc,
+    canonical:   canonicalPath,
+    image:       city.image
+  });
+
+  // ── JSON-LD: BreadcrumbList ────────────────────────────
+  injectSchema('breadcrumb-jsonld', {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home',         item: 'https://tripcost.co/' },
+      { '@type': 'ListItem', position: 2, name: 'Destinations', item: 'https://tripcost.co/destinations' },
+      { '@type': 'ListItem', position: 3, name: city.name,      item: `https://tripcost.co${canonicalPath}` }
+    ]
+  });
+
+  // ── JSON-LD: Place (city entity) ───────────────────────
+  injectSchema('place-jsonld', {
+    '@context': 'https://schema.org',
+    '@type': 'City',
+    name: city.name,
+    containedInPlace: {
+      '@type': 'Country',
+      name: city.country
+    },
+    geo: city.lat && city.lng ? {
+      '@type': 'GeoCoordinates',
+      latitude: city.lat,
+      longitude: city.lng
+    } : undefined,
+    image: city.image,
+    url: `https://tripcost.co${canonicalPath}`
+  });
+
+  // ── JSON-LD: FAQPage ───────────────────────────────────
+  injectSchema('faq-jsonld', {
+=======
+  setPageMeta({ title: metaTitle, description: metaDesc });
+
+  // FAQ JSON-LD schema
+  const existingSchema = document.getElementById('faq-jsonld');
+  if (existingSchema) existingSchema.remove();
+  const faqScript = document.createElement('script');
+  faqScript.type = 'application/ld+json';
+  faqScript.id   = 'faq-jsonld';
+  faqScript.textContent = JSON.stringify({
+>>>>>>> f5684a6278b64a9f195794048f99a666f88c917b
+>>>>>>> Stashed changes:frontend/src/pages/CityPage.js
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
     mainEntity: allFaq.map(item => ({
@@ -719,6 +782,13 @@ export function CityPage(params) {
       acceptedAnswer: { '@type': 'Answer', text: item.a || item.answer }
     }))
   });
+<<<<<<< Updated upstream:src/pages/CityPage.js
+=======
+<<<<<<< HEAD
+=======
+  document.head.appendChild(faqScript);
+>>>>>>> f5684a6278b64a9f195794048f99a666f88c917b
+>>>>>>> Stashed changes:frontend/src/pages/CityPage.js
 
   return MainLayout(content);
 }

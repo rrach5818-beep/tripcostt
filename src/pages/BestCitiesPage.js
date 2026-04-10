@@ -1,7 +1,15 @@
 import { MainLayout } from '../layouts/MainLayout.js';
 import { getCitiesByCountry } from '../data/cityService.js';
 import { calculateCityScore } from '../logic/cityRanking.js';
+<<<<<<< Updated upstream:src/pages/BestCitiesPage.js
 import { setPageMeta, injectSchema } from '../logic/setPageMeta.js';
+=======
+<<<<<<< HEAD
+import { setPageMeta, injectSchema } from '../logic/setPageMeta.js';
+=======
+import { setPageMeta } from '../logic/setPageMeta.js';
+>>>>>>> f5684a6278b64a9f195794048f99a666f88c917b
+>>>>>>> Stashed changes:frontend/src/pages/BestCitiesPage.js
 import { getCountryImage } from '../utils/imageHelper.js';
 import { formatCurrency } from '../logic/budgetCalculator.js';
 
@@ -31,6 +39,10 @@ export function BestCitiesPage(params) {
 
   setPageMeta({
     title: `Best Cities in ${countryName} — Cost of Living ${new Date().getFullYear()}`,
+<<<<<<< Updated upstream:src/pages/BestCitiesPage.js
+=======
+<<<<<<< HEAD
+>>>>>>> Stashed changes:frontend/src/pages/BestCitiesPage.js
     description: `Compare the best cities to live in ${countryName} based on cost of living, safety, WiFi and quality of life. Updated ${new Date().getFullYear()}.`,
     canonical: `/best-cities/${country}/${activeProfile}`
   });
@@ -48,6 +60,12 @@ export function BestCitiesPage(params) {
         { '@type': 'ListItem', position: 3, name: countryName,    item: `https://tripcost.co/best-cities/${country}` }
       ]
     }
+<<<<<<< Updated upstream:src/pages/BestCitiesPage.js
+=======
+=======
+    description: `Compare the best cities to live in ${countryName} based on cost of living, safety, WiFi and quality of life. Updated ${new Date().getFullYear()}.`
+>>>>>>> f5684a6278b64a9f195794048f99a666f88c917b
+>>>>>>> Stashed changes:frontend/src/pages/BestCitiesPage.js
   });
 
   function sc(v) { return v >= 80 ? '#10b981' : v >= 60 ? '#f59e0b' : '#ef4444'; }

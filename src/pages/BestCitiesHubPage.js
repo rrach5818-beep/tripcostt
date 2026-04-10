@@ -1,6 +1,14 @@
 import { MainLayout } from '../layouts/MainLayout.js';
 import { getCountriesWithCities } from '../data/cityService.js';
+<<<<<<< Updated upstream:src/pages/BestCitiesHubPage.js
 import { setPageMeta, injectSchema } from '../logic/setPageMeta.js';
+=======
+<<<<<<< HEAD
+import { setPageMeta, injectSchema } from '../logic/setPageMeta.js';
+=======
+import { setPageMeta } from '../logic/setPageMeta.js';
+>>>>>>> f5684a6278b64a9f195794048f99a666f88c917b
+>>>>>>> Stashed changes:frontend/src/pages/BestCitiesHubPage.js
 import { getCountryImage } from '../utils/imageHelper.js';
 
 export function BestCitiesHubPage() {

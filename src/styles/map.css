@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #world-map {
   height: 520px;
   width: 100%;
@@ -9,4 +10,17 @@
 
 .section--map {
   padding: var(--space-20) 0;
+=======
+#world-map {
+  height: 520px;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+  background: #111;
+}
+
+.section--map {
+  padding: var(--space-20) 0;
+>>>>>>> f5684a6278b64a9f195794048f99a666f88c917b
 }

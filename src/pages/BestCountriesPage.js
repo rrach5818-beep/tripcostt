@@ -1,6 +1,14 @@
 import { MainLayout } from '../layouts/MainLayout.js';
 import { getTopCountriesByProfile, getCountryAggregatedMetrics } from '../data/countryService.js';
+<<<<<<< Updated upstream:src/pages/BestCountriesPage.js
 import { setPageMeta, injectSchema } from '../logic/setPageMeta.js';
+=======
+<<<<<<< HEAD
+import { setPageMeta, injectSchema } from '../logic/setPageMeta.js';
+=======
+import { setPageMeta } from '../logic/setPageMeta.js';
+>>>>>>> f5684a6278b64a9f195794048f99a666f88c917b
+>>>>>>> Stashed changes:frontend/src/pages/BestCountriesPage.js
 import { getCountryRankingImage } from '../utils/imageHelper.js';
 
 export function BestCountriesPage(params = {}) {
@@ -20,6 +28,10 @@ export function BestCountriesPage(params = {}) {
 
   setPageMeta({
     title: `Best Countries for ${activeProfile === 'nomad' ? 'Digital Nomads' : activeProfile.charAt(0).toUpperCase()+activeProfile.slice(1)} — ${new Date().getFullYear()} Rankings`,
+<<<<<<< Updated upstream:src/pages/BestCountriesPage.js
+=======
+<<<<<<< HEAD
+>>>>>>> Stashed changes:frontend/src/pages/BestCountriesPage.js
     description: `Top countries ranked by safety, cost of living, infrastructure and ${activeProfile} lifestyle quality. Updated ${new Date().getFullYear()}.`,
     canonical: `/best-countries/${activeProfile}`
   });
@@ -37,6 +49,12 @@ export function BestCountriesPage(params = {}) {
         { '@type': 'ListItem', position: 3, name: activeProfile,      item: `https://tripcost.co/best-countries/${activeProfile}` }
       ]
     }
+<<<<<<< Updated upstream:src/pages/BestCountriesPage.js
+=======
+=======
+    description: `Top countries ranked by safety, cost of living, infrastructure and ${activeProfile} lifestyle quality. Updated ${new Date().getFullYear()}.`
+>>>>>>> f5684a6278b64a9f195794048f99a666f88c917b
+>>>>>>> Stashed changes:frontend/src/pages/BestCountriesPage.js
   });
 
   function sc(v) { return v >= 80 ? '#10b981' : v >= 60 ? '#f59e0b' : '#ef4444'; }
