@@ -5,14 +5,7 @@
 
 import { MainLayout } from '../layouts/MainLayout.js';
 import { getAllCities } from '../data/cityService.js';
-<<<<<<< Updated upstream:src/pages/NomadPage.js
 import { setPageMeta, injectSchema } from '../logic/setPageMeta.js';
-=======
-<<<<<<< HEAD
-import { setPageMeta, injectSchema } from '../logic/setPageMeta.js';
-=======
->>>>>>> f5684a6278b64a9f195794048f99a666f88c917b
->>>>>>> Stashed changes:frontend/src/pages/NomadPage.js
 import { getMonthlyBudgetEstimate } from '../logic/scoreCalculator.js';
 
 export function NomadPage() {

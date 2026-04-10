@@ -1,14 +1,6 @@
 import { MainLayout } from '../layouts/MainLayout.js';
 import { getCityBySlug } from '../data/cityService.js';
-<<<<<<< Updated upstream:src/pages/CityComparisonPage.js
 import { setPageMeta, injectSchema } from '../logic/setPageMeta.js';
-=======
-<<<<<<< HEAD
-import { setPageMeta, injectSchema } from '../logic/setPageMeta.js';
-=======
-import { setPageMeta } from '../logic/setPageMeta.js';
->>>>>>> f5684a6278b64a9f195794048f99a666f88c917b
->>>>>>> Stashed changes:frontend/src/pages/CityComparisonPage.js
 import { formatCurrency } from '../logic/budgetCalculator.js';
 
 function parseCitiesParam(param) {
@@ -39,10 +31,6 @@ export function CityComparisonPage(params) {
 
   setPageMeta({
     title: `${cityA.name} vs ${cityB.name} — Cost of Living Comparison`,
-<<<<<<< Updated upstream:src/pages/CityComparisonPage.js
-=======
-<<<<<<< HEAD
->>>>>>> Stashed changes:frontend/src/pages/CityComparisonPage.js
     description: `Compare cost of living between ${cityA.name} and ${cityB.name}. Housing, food, transport, safety, WiFi and visa — side by side.`,
     canonical: `/compare/${slugA}-vs-${slugB}`
   });
@@ -60,12 +48,6 @@ export function CityComparisonPage(params) {
         { '@type': 'ListItem', position: 3, name: `${cityA.name} vs ${cityB.name}`, item: `https://tripcost.co/compare/${slugA}-vs-${slugB}` }
       ]
     }
-<<<<<<< Updated upstream:src/pages/CityComparisonPage.js
-=======
-=======
-    description: `Compare cost of living between ${cityA.name} and ${cityB.name}. Housing, food, transport, safety, WiFi and visa — side by side.`
->>>>>>> f5684a6278b64a9f195794048f99a666f88c917b
->>>>>>> Stashed changes:frontend/src/pages/CityComparisonPage.js
   });
 
   function budget(city) {

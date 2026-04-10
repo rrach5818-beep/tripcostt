@@ -1,0 +1,12 @@
+#world-map {
+  height: 520px;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+  background: #111;
+}
+
+.section--map {
+  padding: var(--space-20) 0;
+}

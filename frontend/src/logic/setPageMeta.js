@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * setPageMeta — Full SEO meta management
  * Updates title, description, canonical, OG tags + injects page-level JSON-LD
@@ -79,6 +80,27 @@ export function injectSchema(id, data) {
 }
 
 export default setPageMeta;
+=======
+export function setPageMeta({ title, description }) {
+  // Title
+  if (title) {
+    document.title = title;
+  }
+
+  // Meta description
+  let metaDesc = document.querySelector('meta[name="description"]');
+
+  if (!metaDesc) {
+    metaDesc = document.createElement('meta');
+    metaDesc.setAttribute('name', 'description');
+    document.head.appendChild(metaDesc);
+  }
+
+  if (description) {
+    metaDesc.setAttribute('content', description);
+  }
+}
+>>>>>>> f5684a6278b64a9f195794048f99a666f88c917b
 =======
 export function setPageMeta({ title, description }) {
   // Title

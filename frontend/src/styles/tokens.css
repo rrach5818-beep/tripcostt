@@ -1,0 +1,160 @@
+:root {
+  /* Primary - Modern blue gradient */
+  --color-primary-50: #eef2ff;
+  --color-primary-100: #e0e7ff;
+  --color-primary-200: #c7d2fe;
+  --color-primary-300: #a5b4fc;
+  --color-primary-400: #818cf8;
+  --color-primary-500: #6366f1;
+  --color-primary-600: #4f46e5;
+  --color-primary-700: #4338ca;
+  --color-primary-800: #3730a3;
+  --color-primary-900: #312e81;
+ /* === DATA INTENT COLORS (CRITICAL) === */
+  /* Used for analytics, comparison, simulator feedback */
+
+  --color-data-positive: #16a34a; /* good, affordable, efficient */
+  --color-data-negative: #dc2626; /* expensive, risky */
+  --color-data-neutral: #64748b;  /* average, reference */
+  --color-data-highlight: #2563eb; /* selected city, active filter */
+
+  /* Cost signals */
+  --color-cost-low: #22c55e;
+  --color-cost-medium: #f59e0b;
+  --color-cost-high: #ef4444;
+
+  /* Internet / performance */
+  --color-speed-fast: #0ea5e9;
+  --color-speed-average: #6366f1;
+  --color-speed-slow: #94a3b8;
+
+  /* Slate - Neutral grays */
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+
+  /* Semantic colors */
+  --color-success-50: #ecfdf5;
+  --color-success-100: #d1fae5;
+  --color-success-500: #10b981;
+  --color-success-600: #059669;
+
+  --color-warning-50: #fffbeb;
+  --color-warning-100: #fef3c7;
+  --color-warning-500: #f59e0b;
+  --color-warning-600: #d97706;
+
+  --color-error-50: #fef2f2;
+  --color-error-100: #fee2e2;
+  --color-error-500: #ef4444;
+  --color-error-600: #dc2626;
+
+  /* Backgrounds */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #ffffff;
+  --color-bg-tertiary: var(--color-slate-50);
+  --color-bg-dark: var(--color-slate-900);
+  --color-bg-gradient: linear-gradient(135deg, var(--color-primary-600) 0%, var(--color-primary-800) 100%);
+  --color-bg-gradient-subtle: linear-gradient(180deg, var(--color-slate-50) 0%, #ffffff 100%);
+ /* Analytical surfaces */
+  --color-bg-canvas: #ffffff; /* page background */
+  --color-bg-panel: #f8fafc;  /* tables, sections */
+  --color-bg-card: #ffffff;   /* cards */
+  --color-bg-card-muted: #f1f5f9;
+
+  /* Interactive states */
+  --color-bg-hover: #eef2ff;
+  --color-bg-active: #e0e7ff;
+
+  /* Text */
+  --color-text-primary: var(--color-slate-900);
+  --color-text-secondary: var(--color-slate-600);
+  --color-text-tertiary: var(--color-slate-500);
+  --color-text-inverse: #ffffff;
+  --color-text-link: var(--color-primary-600);
+ /* Data text */
+  --color-text-data: #020617; /* chiffres clés */
+  --color-text-label: #475569; /* labels */
+  --color-text-micro: #64748b; /* hints, meta */
+
+  /* Borders */
+  --color-border-primary: var(--color-slate-200);
+  --color-border-secondary: var(--color-slate-300);
+  --color-border-focus: var(--color-primary-500);
+
+  /* Typography */
+  --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+ --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --font-size-kpi: 2rem;
+  --font-size-table: 0.9375rem;
+  --font-size-micro: 0.8125rem;
+  
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+  --font-size-6xl: 3.75rem;
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-tight: 1.2;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* Border radius */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* Shadows - Modern soft shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.04);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.08), 0 8px 10px -6px rgb(0 0 0 / 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.15);
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.03);
+  --shadow-card-hover: 0 6px 16px -6px rgb(0 0 0 / 0.12);
+  /* Container */
+  --container-max-width: 1200px;
+  --container-padding: var(--space-6);
+
+  /* Transitions */
+  --transition-fast: 100ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 220ms cubic-bezier(0.4, 0, 0.2, 1);
+}
