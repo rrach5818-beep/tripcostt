@@ -30,7 +30,7 @@ export function BestCitiesPage(params) {
     .sort((a,b) => b.score - a.score);
 
   setPageMeta({
-    title: `Best Cities in ${countryName} — Cost of Living ${new Date().getFullYear()}`,
+    title: `Best Cities in ${countryName} -- Cost of Living ${new Date().getFullYear()}`,
     description: `Compare the best cities to live in ${countryName} based on cost of living, safety, WiFi and quality of life. Updated ${new Date().getFullYear()}.`,
     canonical: `/best-cities/${country}/${activeProfile}`
   });
@@ -55,7 +55,7 @@ export function BestCitiesPage(params) {
   const profileBtns = ['solo','family','nomad'].map(p => `
     <a href="/best-cities/${country}/${p}" data-link
        class="bcp-profile-btn${activeProfile===p?' is-active':''}">
-      ${ p==='solo'?'👤 Solo' : p==='family'?'👨‍👩‍👧 Family' : '🌍 Nomad' }
+      ${ p==='solo'?'👤 Solo' : p==='family'?'👨 👩 👧 Family' : '🌍 Nomad' }
     </a>
   `).join('');
 
@@ -75,7 +75,7 @@ export function BestCitiesPage(params) {
           <div class="bcp-card__img-overlay"></div>
           <span class="bcp-card__rank">${rankMark}</span>
           <span class="bcp-card__score-badge" style="background:${scoreColor}">
-            ${city.digitalNomad?.overallScore ?? '—'}/100
+            ${city.digitalNomad?.overallScore ?? '--'}/100
           </span>
         </div>
         <div class="bcp-card__body">
@@ -90,9 +90,9 @@ export function BestCitiesPage(params) {
             </div>
           </div>
           <div class="bcp-card__metrics">
-            <span>🛡 ${city.digitalNomad?.safetyScore ?? '—'}</span>
-            <span>📡 ${city.digitalNomad?.wifiSpeed ?? '—'} Mbps</span>
-            <span>${city.visa?.remoteFriendly ? '✅ Nomad visa' : '⬜ Standard'}</span>
+            <span>🛡 ${city.digitalNomad?.safetyScore ?? '--'}</span>
+            <span>📡 ${city.digitalNomad?.wifiSpeed ?? '--'} Mbps</span>
+            <span>${city.visa?.remoteFriendly ? '✅ Nomad visa' : '  Standard'}</span>
           </div>
         </div>
       </a>
@@ -190,7 +190,7 @@ export function BestCitiesPage(params) {
       <div class="bcp-cta__inner container">
         <h2>Compare cities head to head</h2>
         <p>Use the calculator to simulate real monthly costs for your lifestyle.</p>
-        <a href="/calculator" data-link class="bcp-btn">Open Calculator →</a>
+        <a href="/calculator" data-link class="bcp-btn">Open Calculator -></a>
       </div>
     </section>
   `;

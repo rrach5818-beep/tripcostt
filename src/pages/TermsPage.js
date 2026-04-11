@@ -33,7 +33,7 @@ function legalLayout({ eyebrow, title, subtitle, sections }) {
       .lp-section p:last-child{margin-bottom:0;}
       .lp-section ul{margin:10px 0;padding:0;}
       .lp-section ul li{font-size:14px;color:#4b5563;line-height:1.7;padding:4px 0 4px 18px;position:relative;}
-      .lp-section ul li::before{content:'–';position:absolute;left:0;color:#9ca3af;}
+      .lp-section ul li::before{content:'-';position:absolute;left:0;color:#9ca3af;}
       @media(max-width:768px){.lp-layout{grid-template-columns:1fr;}.lp-toc{position:static;}}
     </style>
     <section class="lp-hero">
@@ -104,7 +104,7 @@ export function TermsPage() {
       {
         id: 'disclaimers',
         title: 'Disclaimer of Warranties',
-        content: `<p>TripCost is provided on an "as is" and "as available" basis. We make no warranties — expressed or implied — including warranties of merchantability or fitness for a particular purpose. We do not warrant that the service will be uninterrupted, error-free or free of harmful components.</p>`
+        content: `<p>TripCost is provided on an "as is" and "as available" basis. We make no warranties -- expressed or implied -- including warranties of merchantability or fitness for a particular purpose. We do not warrant that the service will be uninterrupted, error-free or free of harmful components.</p>`
       },
       {
         id: 'liability',

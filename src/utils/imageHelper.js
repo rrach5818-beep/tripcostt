@@ -1,5 +1,5 @@
 /* ============================================================
-   IMAGE HELPER — STABLE AUTO IMAGES
+   IMAGE HELPER -- STABLE AUTO IMAGES
 ============================================================ */
 
 /* =========================
@@ -37,6 +37,6 @@ export function getCityImage(city) {
 ============================================================ */
 
 export function getCountryRankingImage(countrySlug) {
-  // Seed différente de BestCities
+  // Seed differente de BestCities
   return `https://picsum.photos/seed/ranking-${countrySlug}/1400/900`;
 }

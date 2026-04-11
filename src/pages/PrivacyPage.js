@@ -33,7 +33,7 @@ function legalLayout({ eyebrow, title, subtitle, sections }) {
       .lp-section p:last-child{margin-bottom:0;}
       .lp-section ul{margin:10px 0;padding:0;}
       .lp-section ul li{font-size:14px;color:#4b5563;line-height:1.7;padding:4px 0 4px 18px;position:relative;}
-      .lp-section ul li::before{content:'–';position:absolute;left:0;color:#9ca3af;}
+      .lp-section ul li::before{content:'-';position:absolute;left:0;color:#9ca3af;}
       .lp-section h3{font-size:14px;font-weight:700;color:#374151;margin:16px 0 6px;}
       @media(max-width:768px){.lp-layout{grid-template-columns:1fr;}.lp-toc{position:static;}}
     </style>

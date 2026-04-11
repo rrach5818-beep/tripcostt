@@ -1,5 +1,5 @@
 /**
- * CalculatorPage — Full Redesign V3
+ * CalculatorPage -- Full Redesign V3
  * 2-column sticky layout, live updates, SEO-optimised
  */
 
@@ -28,7 +28,7 @@ export function CalculatorPage() {
   const content = `
 
     <style>
-      /* ── Hero ─────────────────────────── */
+      /* -- Hero --------------------------- */
       .calc-hero {
         background:linear-gradient(135deg,#1e1b4b 0%,#312e81 60%,#0f172a 100%);
         padding:52px 0 44px;position:relative;overflow:hidden;
@@ -53,7 +53,7 @@ export function CalculatorPage() {
       }
       .calc-hero__sub { font-size:15px;color:rgba(255,255,255,0.55);margin:0;max-width:600px; }
 
-      /* ── Main layout ───────────────────── */
+      /* -- Main layout --------------------- */
       .calc-layout {
         display:grid;
         grid-template-columns:380px 1fr;
@@ -62,7 +62,7 @@ export function CalculatorPage() {
         align-items:start;
       }
 
-      /* ── Form panel ───────────────────── */
+      /* -- Form panel --------------------- */
       .calc-form {
         background:#fff;border:1px solid #e5e7eb;border-radius:20px;
         padding:28px;position:sticky;top:80px;
@@ -128,7 +128,7 @@ export function CalculatorPage() {
       .calc-share-btn:hover { border-color:#c7d2fe;color:#4f46e5;background:#eef2ff; }
       .calc-share-btn.copied { border-color:#10b981;color:#065f46;background:#d1fae5; }
 
-      /* ── Results panel ─────────────────── */
+      /* -- Results panel ------------------- */
       .calc-results { display:flex;flex-direction:column;gap:20px; }
 
       /* Cost comparison hero */
@@ -231,7 +231,7 @@ export function CalculatorPage() {
         text-align:center;padding:24px;color:#9ca3af;font-size:13px;
       }
 
-      /* ── Breakdown (redesigned) ────────── */
+      /* -- Breakdown (redesigned) ---------- */
       .calc-breakdown {
         background:#fff;border:1px solid #e5e7eb;border-radius:20px;
         padding:24px;overflow:hidden;
@@ -274,7 +274,7 @@ export function CalculatorPage() {
         white-space:nowrap;min-width:52px;text-align:right;
       }
 
-      /* ── Radar ────────────────────────── */
+      /* -- Radar -------------------------- */
       .calc-radar {
         background:#fff;border:1px solid #e5e7eb;border-radius:20px;padding:24px;
       }
@@ -291,7 +291,7 @@ export function CalculatorPage() {
       .calc-radar__legend-dot { width:10px;height:10px;border-radius:50%; }
       canvas#relocation-radar { display:block;margin:0 auto;max-width:100%; }
 
-      /* ── Projection (upgraded) ─────────── */
+      /* -- Projection (upgraded) ----------- */
       .calc-projection {
         background:#fff;border:1px solid #e5e7eb;border-radius:20px;
         overflow:hidden;
@@ -332,7 +332,7 @@ export function CalculatorPage() {
       .proj-badge--pos { background:#fee2e2;color:#dc2626; }
       .proj-badge--neg { background:#d1fae5;color:#065f46; }
 
-      /* ── Visa (upgraded) ───────────────── */
+      /* -- Visa (upgraded) ----------------- */
       .calc-visa {
         display:grid;grid-template-columns:1fr 1fr;gap:16px;
       }
@@ -395,7 +395,7 @@ export function CalculatorPage() {
       }
       .calc-faq-item.is-open .calc-faq-a { max-height:300px;padding:0 20px 16px; }
 
-      /* ── Responsive ───────────────────── */
+      /* -- Responsive --------------------- */
       @media(max-width:1024px){
         .calc-layout { grid-template-columns:1fr;gap:24px; }
         .calc-form { position:static; }
@@ -416,8 +416,8 @@ export function CalculatorPage() {
         <p class="calc-hero__eyebrow">Free Cost of Living Calculator</p>
         <h1 class="calc-hero">Compare <em>real monthly costs</em><br>in any two cities worldwide.</h1>
         <p class="calc-hero__sub">
-          Housing, food, transport, coworking, visa complexity and tax pressure — all in one comparison.
-          Updated March 2026 · 33 cities · No sign-up required.
+          Housing, food, transport, coworking, visa complexity and tax pressure -- all in one comparison.
+          Updated March 2026   33 cities   No sign-up required.
         </p>
       </div>
     </section>
@@ -476,7 +476,7 @@ export function CalculatorPage() {
               <span>🚀</span>Founder
             </button>
             <button class="calc-profile-btn" data-profile="family">
-              <span>👨‍👩‍👧</span>Family
+              <span>👨 👩 👧</span>Family
             </button>
           </div>
 
@@ -498,25 +498,25 @@ export function CalculatorPage() {
               <img class="calc-city-card__img" id="img-a" src="" alt="" />
               <div class="calc-city-card__body">
                 <div class="calc-city-card__crown">👑</div>
-                <p class="calc-city-card__name" id="name-a">—</p>
-                <p class="calc-city-card__country" id="country-a">—</p>
-                <div class="calc-city-card__cost" id="cost-a">—</div>
+                <p class="calc-city-card__name" id="name-a">--</p>
+                <p class="calc-city-card__country" id="country-a">--</p>
+                <div class="calc-city-card__cost" id="cost-a">--</div>
                 <div class="calc-city-card__cost-label">per month</div>
               </div>
             </div>
 
             <div class="calc-vs">
               <div class="calc-vs__badge">VS</div>
-              <div class="calc-vs__diff" id="vs-diff">—</div>
+              <div class="calc-vs__diff" id="vs-diff">--</div>
             </div>
 
             <div class="calc-city-card" id="card-b">
               <img class="calc-city-card__img" id="img-b" src="" alt="" />
               <div class="calc-city-card__body">
                 <div class="calc-city-card__crown">👑</div>
-                <p class="calc-city-card__name" id="name-b">—</p>
-                <p class="calc-city-card__country" id="country-b">—</p>
-                <div class="calc-city-card__cost" id="cost-b">—</div>
+                <p class="calc-city-card__name" id="name-b">--</p>
+                <p class="calc-city-card__country" id="country-b">--</p>
+                <div class="calc-city-card__cost" id="cost-b">--</div>
                 <div class="calc-city-card__cost-label">per month</div>
               </div>
             </div>
@@ -525,18 +525,18 @@ export function CalculatorPage() {
           <!-- Strategic scores -->
           <div class="calc-scores">
             <div class="calc-score-card" id="score-card-a">
-              <div class="calc-score-card__label">City A — Strategic Score</div>
-              <div class="calc-score-card__city" id="score-city-a">—</div>
-              <div class="calc-score-card__score" id="score-val-a">—</div>
+              <div class="calc-score-card__label">City A -- Strategic Score</div>
+              <div class="calc-score-card__city" id="score-city-a">--</div>
+              <div class="calc-score-card__score" id="score-val-a">--</div>
               <div class="calc-score-card__score-label" id="score-label-a"></div>
               <div class="calc-score-card__bar-wrap">
                 <div class="calc-score-card__bar" id="score-bar-a" style="width:0%"></div>
               </div>
             </div>
             <div class="calc-score-card" id="score-card-b">
-              <div class="calc-score-card__label">City B — Strategic Score</div>
-              <div class="calc-score-card__city" id="score-city-b">—</div>
-              <div class="calc-score-card__score" id="score-val-b">—</div>
+              <div class="calc-score-card__label">City B -- Strategic Score</div>
+              <div class="calc-score-card__city" id="score-city-b">--</div>
+              <div class="calc-score-card__score" id="score-val-b">--</div>
               <div class="calc-score-card__score-label" id="score-label-b"></div>
               <div class="calc-score-card__bar-wrap">
                 <div class="calc-score-card__bar" id="score-bar-b" style="width:0%"></div>
@@ -554,12 +554,12 @@ export function CalculatorPage() {
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
                 </svg>
-                Purchasing Power — Your income vs. local costs
+                Purchasing Power -- Your income vs. local costs
               </div>
               <div class="calc-income__row">
                 <div class="calc-income__city-name">
-                  <span id="income-city-a-name">—</span>
-                  <span id="income-ratio-a">—</span>
+                  <span id="income-city-a-name">--</span>
+                  <span id="income-ratio-a">--</span>
                 </div>
                 <div class="calc-income__bar-wrap">
                   <div class="calc-income__bar" id="income-bar-a" style="width:0%;background:linear-gradient(90deg,#6366f1,#8b5cf6)"></div>
@@ -567,14 +567,14 @@ export function CalculatorPage() {
               </div>
               <div class="calc-income__row">
                 <div class="calc-income__city-name">
-                  <span id="income-city-b-name">—</span>
-                  <span id="income-ratio-b">—</span>
+                  <span id="income-city-b-name">--</span>
+                  <span id="income-ratio-b">--</span>
                 </div>
                 <div class="calc-income__bar-wrap">
                   <div class="calc-income__bar" id="income-bar-b" style="width:0%;background:linear-gradient(90deg,#10b981,#34d399)"></div>
                 </div>
               </div>
-              <div class="calc-income__note" id="income-note">—</div>
+              <div class="calc-income__note" id="income-note">--</div>
             </div>
           </div>
 
@@ -589,44 +589,44 @@ export function CalculatorPage() {
               <div class="calc-breakdown__label">🏠 Housing</div>
               <div class="calc-breakdown__cell">
                 <div class="calc-breakdown__bar-wrap"><div class="calc-breakdown__bar" id="bar-a-acc" style="width:0%;background:linear-gradient(90deg,#6366f1,#8b5cf6)"></div></div>
-                <div class="calc-breakdown__val" id="val-a-acc">—</div>
+                <div class="calc-breakdown__val" id="val-a-acc">--</div>
               </div>
               <div class="calc-breakdown__cell">
                 <div class="calc-breakdown__bar-wrap"><div class="calc-breakdown__bar" id="bar-b-acc" style="width:0%;background:linear-gradient(90deg,#10b981,#34d399)"></div></div>
-                <div class="calc-breakdown__val" id="val-b-acc">—</div>
+                <div class="calc-breakdown__val" id="val-b-acc">--</div>
               </div>
             </div>
             <div class="calc-breakdown__row">
               <div class="calc-breakdown__label">🍽️ Food</div>
               <div class="calc-breakdown__cell">
                 <div class="calc-breakdown__bar-wrap"><div class="calc-breakdown__bar" id="bar-a-food" style="width:0%;background:linear-gradient(90deg,#6366f1,#8b5cf6)"></div></div>
-                <div class="calc-breakdown__val" id="val-a-food">—</div>
+                <div class="calc-breakdown__val" id="val-a-food">--</div>
               </div>
               <div class="calc-breakdown__cell">
                 <div class="calc-breakdown__bar-wrap"><div class="calc-breakdown__bar" id="bar-b-food" style="width:0%;background:linear-gradient(90deg,#10b981,#34d399)"></div></div>
-                <div class="calc-breakdown__val" id="val-b-food">—</div>
+                <div class="calc-breakdown__val" id="val-b-food">--</div>
               </div>
             </div>
             <div class="calc-breakdown__row">
               <div class="calc-breakdown__label">🚇 Transport</div>
               <div class="calc-breakdown__cell">
                 <div class="calc-breakdown__bar-wrap"><div class="calc-breakdown__bar" id="bar-a-tsp" style="width:0%;background:linear-gradient(90deg,#6366f1,#8b5cf6)"></div></div>
-                <div class="calc-breakdown__val" id="val-a-tsp">—</div>
+                <div class="calc-breakdown__val" id="val-a-tsp">--</div>
               </div>
               <div class="calc-breakdown__cell">
                 <div class="calc-breakdown__bar-wrap"><div class="calc-breakdown__bar" id="bar-b-tsp" style="width:0%;background:linear-gradient(90deg,#10b981,#34d399)"></div></div>
-                <div class="calc-breakdown__val" id="val-b-tsp">—</div>
+                <div class="calc-breakdown__val" id="val-b-tsp">--</div>
               </div>
             </div>
             <div class="calc-breakdown__row">
               <div class="calc-breakdown__label">💻 Coworking</div>
               <div class="calc-breakdown__cell">
                 <div class="calc-breakdown__bar-wrap"><div class="calc-breakdown__bar" id="bar-a-cow" style="width:0%;background:linear-gradient(90deg,#6366f1,#8b5cf6)"></div></div>
-                <div class="calc-breakdown__val" id="val-a-cow">—</div>
+                <div class="calc-breakdown__val" id="val-a-cow">--</div>
               </div>
               <div class="calc-breakdown__cell">
                 <div class="calc-breakdown__bar-wrap"><div class="calc-breakdown__bar" id="bar-b-cow" style="width:0%;background:linear-gradient(90deg,#10b981,#34d399)"></div></div>
-                <div class="calc-breakdown__val" id="val-b-cow">—</div>
+                <div class="calc-breakdown__val" id="val-b-cow">--</div>
               </div>
             </div>
           </div>
@@ -634,7 +634,7 @@ export function CalculatorPage() {
           <!-- Radar chart -->
           <div class="calc-radar">
             <div class="calc-radar__header">
-              <div class="calc-radar__title">Relocation Radar — 6 dimensions</div>
+              <div class="calc-radar__title">Relocation Radar -- 6 dimensions</div>
               <div class="calc-radar__legend">
                 <div class="calc-radar__legend-item">
                   <div class="calc-radar__legend-dot" style="background:#6366f1"></div>
@@ -652,7 +652,7 @@ export function CalculatorPage() {
           <!-- Projection table -->
           <div class="calc-projection">
             <div class="calc-projection__titlebar">
-              <div class="calc-projection__title">Cost Projection — Inflation-adjusted</div>
+              <div class="calc-projection__title">Cost Projection -- Inflation-adjusted</div>
               <div class="calc-projection__sub">Annual totals</div>
             </div>
             <table class="calc-projection__table">
@@ -661,7 +661,7 @@ export function CalculatorPage() {
                   <th>Horizon</th>
                   <th id="proj-head-a">City A</th>
                   <th id="proj-head-b">City B</th>
-                  <th>Δ Difference</th>
+                  <th>  Difference</th>
                 </tr>
               </thead>
               <tbody id="proj-body"></tbody>
@@ -672,8 +672,8 @@ export function CalculatorPage() {
           <div class="calc-visa">
             <div class="calc-visa-card">
               <div class="calc-visa-card__head">
-                <div class="calc-visa-card__title">Visa · City A</div>
-                <div class="calc-visa-card__city" id="visa-city-a">—</div>
+                <div class="calc-visa-card__title">Visa   City A</div>
+                <div class="calc-visa-card__city" id="visa-city-a">--</div>
               </div>
               <div class="calc-visa-card__body">
                 <div id="visa-tag-a"></div>
@@ -682,8 +682,8 @@ export function CalculatorPage() {
             </div>
             <div class="calc-visa-card">
               <div class="calc-visa-card__head">
-                <div class="calc-visa-card__title">Visa · City B</div>
-                <div class="calc-visa-card__city" id="visa-city-b">—</div>
+                <div class="calc-visa-card__title">Visa   City B</div>
+                <div class="calc-visa-card__city" id="visa-city-b">--</div>
               </div>
               <div class="calc-visa-card__body">
                 <div id="visa-tag-b"></div>
@@ -703,7 +703,7 @@ export function CalculatorPage() {
         <div class="calc-seo__intro">
           <h2>How to use the Cost of Living Calculator</h2>
           <p>
-            This free tool compares monthly living costs between two cities worldwide — covering housing,
+            This free tool compares monthly living costs between two cities worldwide -- covering housing,
             food, transport, coworking, visa complexity and local tax rates. It's designed for digital nomads,
             remote workers, expats and families planning an international relocation.
           </p>
@@ -713,7 +713,7 @@ export function CalculatorPage() {
             (nomad, founder, family) that weight the scoring differently.
           </p>
           <p>
-            Enter your monthly income to instantly see your purchasing power in both cities — how many months
+            Enter your monthly income to instantly see your purchasing power in both cities -- how many months
             of expenses your salary covers, and which destination gives you the best financial headroom.
           </p>
         </div>
@@ -729,7 +729,7 @@ export function CalculatorPage() {
             <div class="calc-faq-a">
               All figures are manually researched and updated quarterly (last update: March 2026). We cross-reference
               Numbeo, Expatistan, local rental listings and nomad community reports. Costs represent a realistic
-              monthly average — individual expenses will vary based on neighbourhood, habits and lifestyle.
+              monthly average -- individual expenses will vary based on neighbourhood, habits and lifestyle.
             </div>
           </div>
 
@@ -742,7 +742,7 @@ export function CalculatorPage() {
               The Strategic Score combines six factors: cost efficiency relative to your income, safety index,
               visa accessibility, tax friendliness, currency stability, and infrastructure quality (transport,
               healthcare, English proficiency, airport connectivity). The weighting adjusts based on your
-              selected relocation profile — a founder cares more about tax, a family more about safety.
+              selected relocation profile -- a founder cares more about tax, a family more about safety.
             </div>
           </div>
 
@@ -755,7 +755,7 @@ export function CalculatorPage() {
               Among the 33 cities in our database, destinations with dedicated digital nomad or remote work visas
               include: Lisbon (Portugal D8 visa), Bangkok (Thailand LTR visa), Dubai (UAE remote work permit),
               Bali (Indonesia digital nomad visa), Barcelona (Spain digital nomad visa) and Tokyo (Japan
-              digital nomad visa). Visa rules change frequently — always verify on the official government website.
+              digital nomad visa). Visa rules change frequently -- always verify on the official government website.
             </div>
           </div>
 
@@ -766,7 +766,7 @@ export function CalculatorPage() {
             </button>
             <div class="calc-faq-a">
               Purchasing power shows what percentage of your monthly income is consumed by living costs in each city.
-              A ratio of 60% means your living expenses equal 60% of your income — leaving 40% for savings or
+              A ratio of 60% means your living expenses equal 60% of your income -- leaving 40% for savings or
               discretionary spending. A ratio above 100% means that city exceeds your budget at your current income.
             </div>
           </div>
@@ -778,7 +778,7 @@ export function CalculatorPage() {
             </button>
             <div class="calc-faq-a">
               The projection adjusts current monthly costs by each city's historical inflation rate over 1, 3
-              and 5 years. It shows what you can expect to spend annually at each horizon — useful for long-term
+              and 5 years. It shows what you can expect to spend annually at each horizon -- useful for long-term
               relocation planning. Note that inflation rates are estimates and actual future costs may differ.
             </div>
           </div>
@@ -791,12 +791,12 @@ export function CalculatorPage() {
   return MainLayout(content);
 }
 
-/* ─────────────────────────────────────────────────────────
+/* ---------------------------------------------------------
    INTERACTIVITY
-───────────────────────────────────────────────────────── */
+--------------------------------------------------------- */
 export function setupCalculatorInteractivity() {
 
-  /* ── DOM refs ─────────────────────────────────────────── */
+  /* -- DOM refs ------------------------------------------- */
   const selA      = document.getElementById('city-a');
   const selB      = document.getElementById('city-b');
   const selHouse  = document.getElementById('housing');
@@ -807,7 +807,7 @@ export function setupCalculatorInteractivity() {
 
   let activeProfile = 'nomad';
 
-  /* ── Profile buttons ──────────────────────────────────── */
+  /* -- Profile buttons ------------------------------------ */
   document.querySelectorAll('[data-profile]').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('[data-profile]').forEach(b => b.classList.remove('is-active'));
@@ -817,7 +817,7 @@ export function setupCalculatorInteractivity() {
     });
   });
 
-  /* ── FAQ accordion ────────────────────────────────────── */
+  /* -- FAQ accordion -------------------------------------- */
   document.querySelectorAll('.calc-faq-q').forEach(btn => {
     btn.addEventListener('click', () => {
       const item = btn.closest('.calc-faq-item');
@@ -827,7 +827,7 @@ export function setupCalculatorInteractivity() {
     });
   });
 
-  /* ── Share button ─────────────────────────────────────── */
+  /* -- Share button --------------------------------------- */
   shareBtn?.addEventListener('click', () => {
     const url = new URL(window.location.href);
     url.searchParams.set('a', selA.value);
@@ -845,7 +845,7 @@ export function setupCalculatorInteractivity() {
     });
   });
 
-  /* ── Restore from URL params ──────────────────────────── */
+  /* -- Restore from URL params ---------------------------- */
   const p = new URLSearchParams(window.location.search);
   if (p.get('a')) selA.value = p.get('a');
   if (p.get('b')) selB.value = p.get('b');
@@ -858,7 +858,7 @@ export function setupCalculatorInteractivity() {
     });
   }
 
-  /* ── Helpers ──────────────────────────────────────────── */
+  /* -- Helpers -------------------------------------------- */
   function getCity(sel) {
     const raw = sel.options[sel.selectedIndex]?.dataset?.city;
     return raw ? JSON.parse(decodeURIComponent(raw)) : null;
@@ -1014,7 +1014,7 @@ export function setupCalculatorInteractivity() {
     frame();
   }
 
-  /* ── Main update ──────────────────────────────────────── */
+  /* -- Main update ---------------------------------------- */
   async function update() {
     const cA = getCity(selA);
     const cB = getCity(selB);
@@ -1114,9 +1114,9 @@ export function setupCalculatorInteractivity() {
       const pA = Math.round(bA.total * Math.pow(1 + infA/100, yr) * 12);
       const pB = Math.round(bB.total * Math.pow(1 + infB/100, yr) * 12);
       const d  = pA - pB;
-      const badge = d === 0 ? '—'
+      const badge = d === 0 ? '--'
         : `<span class="proj-badge ${d>0?'proj-badge--pos':'proj-badge--neg'}">
-             ${d>0?'▲':'▼'} $${Math.abs(d).toLocaleString()}
+             ${d>0?' ':' '} $${Math.abs(d).toLocaleString()}
            </span>`;
       return `<tr>
         <td>${yr} year${yr>1?'s':''}</td>
@@ -1135,20 +1135,20 @@ export function setupCalculatorInteractivity() {
       const tag  = document.getElementById(`visa-tag-${x}`);
       tag.innerHTML = v
         ? `<span class="calc-visa-card__tag" style="background:${v.remoteFriendly?'#d1fae5':'#f1f5f9'};color:${v.remoteFriendly?'#065f46':'#6b7280'}">
-            ${v.remoteFriendly ? '✅ Nomad Visa Available' : '⬜ Standard Visa'}
+            ${v.remoteFriendly ? '✅ Nomad Visa Available' : '  Standard Visa'}
            </span>`
         : '';
       const rows = document.getElementById(`visa-rows-${x}`);
       rows.innerHTML = v ? `
-        <div class="calc-visa-card__row"><span>Type</span><strong>${v.type || '—'}</strong></div>
-        <div class="calc-visa-card__row"><span>Stay</span><strong>${v.stayDurationMonths || '—'} months</strong></div>
-        <div class="calc-visa-card__row"><span>Processing</span><strong>~${v.processingTimeDays || '—'} days</strong></div>
+        <div class="calc-visa-card__row"><span>Type</span><strong>${v.type || '--'}</strong></div>
+        <div class="calc-visa-card__row"><span>Stay</span><strong>${v.stayDurationMonths || '--'} months</strong></div>
+        <div class="calc-visa-card__row"><span>Processing</span><strong>~${v.processingTimeDays || '--'} days</strong></div>
         <div class="calc-visa-card__row"><span>Min. income</span><strong>${v.minIncomeRequirement > 0 ? '$'+v.minIncomeRequirement+'/mo' : 'None'}</strong></div>
       ` : '<p style="font-size:13px;color:#9ca3af">No visa data available.</p>';
     });
   }
 
-  /* ── Event listeners ──────────────────────────────────── */
+  /* -- Event listeners ------------------------------------ */
   [selA, selB, selHouse, selLife].forEach(el => el?.addEventListener('change', update));
   incomeEl?.addEventListener('input', update);
 

@@ -45,7 +45,7 @@ export const countryDB = [
     },
 
     seo: {
-      metaTitle: 'Living in Portugal – Cost of Living & Quality of Life',
+      metaTitle: 'Living in Portugal - Cost of Living & Quality of Life',
       metaDescription:
         'Explore cost of living, healthcare, safety, and digital nomad opportunities in Portugal.'
     }
@@ -96,7 +96,7 @@ export const countryDB = [
     },
 
     seo: {
-      metaTitle: 'Living in Spain – Cost of Living & Lifestyle Overview',
+      metaTitle: 'Living in Spain - Cost of Living & Lifestyle Overview',
       metaDescription:
         'Discover the best cities and lifestyle insights for living in Spain.'
     }
@@ -147,7 +147,7 @@ export const countryDB = [
     },
 
     seo: {
-      metaTitle: 'Living in France – Cost of Living & Family Guide',
+      metaTitle: 'Living in France - Cost of Living & Family Guide',
       metaDescription:
         'Explore living costs, safety, and lifestyle conditions in France.'
     }
@@ -198,7 +198,7 @@ export const countryDB = [
     },
 
     seo: {
-      metaTitle: 'Living in Germany – Cost of Living & Infrastructure Overview',
+      metaTitle: 'Living in Germany - Cost of Living & Infrastructure Overview',
       metaDescription:
         'Discover safety, healthcare, and digital work conditions in Germany.'
     }
@@ -249,7 +249,7 @@ export const countryDB = [
     },
 
     seo: {
-      metaTitle: 'Living in Italy – Cost of Living & Lifestyle Guide',
+      metaTitle: 'Living in Italy - Cost of Living & Lifestyle Guide',
       metaDescription:
         'Explore lifestyle, safety, and digital nomad options in Italy.'
     }
@@ -296,7 +296,7 @@ export const countryDB = [
   },
 
   seo: {
-    metaTitle: 'Living in the Netherlands – Cost & Quality of Life',
+    metaTitle: 'Living in the Netherlands - Cost & Quality of Life',
     metaDescription: 'Explore safety, infrastructure, and lifestyle in the Netherlands.'
   }
 },
@@ -342,7 +342,7 @@ export const countryDB = [
   },
 
   seo: {
-    metaTitle: 'Living in Switzerland – High Quality of Life',
+    metaTitle: 'Living in Switzerland - High Quality of Life',
     metaDescription: 'Discover cost of living and lifestyle insights in Switzerland.'
   }
 },
@@ -389,7 +389,7 @@ export const countryDB = [
   },
 
   seo: {
-    metaTitle: 'Living in the United States – Cost & Lifestyle',
+    metaTitle: 'Living in the United States - Cost & Lifestyle',
     metaDescription: 'Explore cost of living and lifestyle conditions in the USA.'
   }
 },
@@ -436,7 +436,7 @@ export const countryDB = [
   },
 
   seo: {
-    metaTitle: 'Living in Canada – Cost of Living & Quality of Life',
+    metaTitle: 'Living in Canada - Cost of Living & Quality of Life',
     metaDescription: 'Discover safety, healthcare, and living conditions in Canada.'
   }
 },
@@ -483,7 +483,7 @@ export const countryDB = [
   },
 
   seo: {
-    metaTitle: 'Living in Sweden – Cost of Living & Quality of Life',
+    metaTitle: 'Living in Sweden - Cost of Living & Quality of Life',
     metaDescription: 'Explore safety, healthcare and lifestyle insights in Sweden.'
   }
 },
@@ -530,7 +530,7 @@ export const countryDB = [
   },
 
   seo: {
-    metaTitle: 'Living in Denmark – Lifestyle & Living Costs',
+    metaTitle: 'Living in Denmark - Lifestyle & Living Costs',
     metaDescription: 'Discover cost of living and lifestyle in Denmark.'
   }
 },
@@ -577,7 +577,7 @@ export const countryDB = [
   },
 
   seo: {
-    metaTitle: 'Living in Norway – Quality of Life Overview',
+    metaTitle: 'Living in Norway - Quality of Life Overview',
     metaDescription: 'Explore lifestyle, safety and living costs in Norway.'
   }
 },
@@ -624,7 +624,7 @@ export const countryDB = [
   },
 
   seo: {
-    metaTitle: 'Living in Austria – Cost & Lifestyle Guide',
+    metaTitle: 'Living in Austria - Cost & Lifestyle Guide',
     metaDescription: 'Discover safety, healthcare and quality of life in Austria.'
   }
 },
@@ -671,7 +671,7 @@ export const countryDB = [
   },
 
   seo: {
-    metaTitle: 'Living in Ireland – Cost of Living & Opportunities',
+    metaTitle: 'Living in Ireland - Cost of Living & Opportunities',
     metaDescription: 'Explore lifestyle, tax system and living costs in Ireland.'
   }
 },
@@ -718,7 +718,7 @@ export const countryDB = [
   },
 
   seo: {
-    metaTitle: 'Living in Poland – Affordable European Lifestyle',
+    metaTitle: 'Living in Poland - Affordable European Lifestyle',
     metaDescription: 'Explore cost of living and quality of life in Poland.'
   }
 },
@@ -765,7 +765,7 @@ export const countryDB = [
   },
 
   seo: {
-    metaTitle: 'Living in Japan – Cost & Lifestyle Insights',
+    metaTitle: 'Living in Japan - Cost & Lifestyle Insights',
     metaDescription: 'Explore safety, infrastructure and cost of living in Japan.'
   }
 },
@@ -812,7 +812,7 @@ export const countryDB = [
   },
 
   seo: {
-    metaTitle: 'Living in South Korea – Modern & Connected',
+    metaTitle: 'Living in South Korea - Modern & Connected',
     metaDescription: 'Explore lifestyle, cost and digital infrastructure in South Korea.'
   }
 },
@@ -859,7 +859,7 @@ export const countryDB = [
   },
 
   seo: {
-    metaTitle: 'Living in Thailand – Affordable Nomad Hub',
+    metaTitle: 'Living in Thailand - Affordable Nomad Hub',
     metaDescription: 'Explore cost of living and digital nomad life in Thailand.'
   }
 },
@@ -906,7 +906,7 @@ export const countryDB = [
   },
 
   seo: {
-    metaTitle: 'Living in Malaysia – Affordable Lifestyle',
+    metaTitle: 'Living in Malaysia - Affordable Lifestyle',
     metaDescription: 'Explore cost of living and quality of life in Malaysia.'
   }
 },
@@ -953,7 +953,7 @@ export const countryDB = [
   },
 
   seo: {
-    metaTitle: 'Living in Singapore – Global Hub',
+    metaTitle: 'Living in Singapore - Global Hub',
     metaDescription: 'Explore cost of living and lifestyle in Singapore.'
   }
 },
@@ -1000,7 +1000,7 @@ export const countryDB = [
   },
 
   seo: {
-    metaTitle: 'Living in Mexico – Affordable & Vibrant',
+    metaTitle: 'Living in Mexico - Affordable & Vibrant',
     metaDescription: 'Explore cost of living and lifestyle opportunities in Mexico.'
   }
 },
@@ -1047,7 +1047,7 @@ export const countryDB = [
   },
 
   seo: {
-    metaTitle: 'Living in Brazil – Cost & Lifestyle',
+    metaTitle: 'Living in Brazil - Cost & Lifestyle',
     metaDescription: 'Discover lifestyle and living costs in Brazil.'
   }
 },
@@ -1094,7 +1094,7 @@ export const countryDB = [
   },
 
   seo: {
-    metaTitle: 'Living in Colombia – Affordable & Dynamic',
+    metaTitle: 'Living in Colombia - Affordable & Dynamic',
     metaDescription: 'Explore cost of living and lifestyle in Colombia.'
   }
 },
@@ -1141,7 +1141,7 @@ export const countryDB = [
   },
 
   seo: {
-    metaTitle: 'Living in UAE – Tax Free Lifestyle',
+    metaTitle: 'Living in UAE - Tax Free Lifestyle',
     metaDescription: 'Explore living conditions and tax benefits in the UAE.'
   }
 },
@@ -1188,7 +1188,7 @@ export const countryDB = [
   },
 
   seo: {
-    metaTitle: 'Living in South Africa – Lifestyle Overview',
+    metaTitle: 'Living in South Africa - Lifestyle Overview',
     metaDescription: 'Explore cost of living and lifestyle insights in South Africa.'
   }
 },

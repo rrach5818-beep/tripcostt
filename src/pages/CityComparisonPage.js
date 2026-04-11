@@ -30,8 +30,8 @@ export function CityComparisonPage(params) {
   }
 
   setPageMeta({
-    title: `${cityA.name} vs ${cityB.name} — Cost of Living Comparison`,
-    description: `Compare cost of living between ${cityA.name} and ${cityB.name}. Housing, food, transport, safety, WiFi and visa — side by side.`,
+    title: `${cityA.name} vs ${cityB.name} -- Cost of Living Comparison`,
+    description: `Compare cost of living between ${cityA.name} and ${cityB.name}. Housing, food, transport, safety, WiFi and visa -- side by side.`,
     canonical: `/compare/${slugA}-vs-${slugB}`
   });
 
@@ -97,9 +97,9 @@ export function CityComparisonPage(params) {
           <div class="ccp-col__img-label">${city.name}</div>
         </div>
         <div class="ccp-col__body">
-          <p class="ccp-col__country">${city.country} · ${city.continent}</p>
+          <p class="ccp-col__country">${city.country}   ${city.continent}</p>
           <div class="ccp-col__total" style="color:${color}">$${b.toLocaleString()}<span>/mo</span></div>
-          <p class="ccp-col__total-label">Standard lifestyle · City center</p>
+          <p class="ccp-col__total-label">Standard lifestyle   City center</p>
 
           <div style="margin:20px 0">
             ${row('🏠','Housing', acc)}
@@ -111,30 +111,30 @@ export function CityComparisonPage(params) {
           <div class="ccp-col__metrics">
             <div class="ccp-col__metric">
               <div class="ccp-col__metric-val" style="color:${sc(city.digitalNomad?.overallScore??0)}">
-                ${city.digitalNomad?.overallScore??'—'}
+                ${city.digitalNomad?.overallScore??'--'}
               </div>
               <div class="ccp-col__metric-label">Nomad score</div>
             </div>
             <div class="ccp-col__metric">
               <div class="ccp-col__metric-val" style="color:${sc(city.digitalNomad?.safetyScore??0)}">
-                ${city.digitalNomad?.safetyScore??'—'}
+                ${city.digitalNomad?.safetyScore??'--'}
               </div>
               <div class="ccp-col__metric-label">Safety</div>
             </div>
             <div class="ccp-col__metric">
-              <div class="ccp-col__metric-val">${city.digitalNomad?.wifiSpeed??'—'}</div>
+              <div class="ccp-col__metric-val">${city.digitalNomad?.wifiSpeed??'--'}</div>
               <div class="ccp-col__metric-label">Mbps</div>
             </div>
             <div class="ccp-col__metric">
               <div class="ccp-col__metric-val" style="font-size:16px">
-                ${city.visa?.remoteFriendly ? '✅' : '⬜'}
+                ${city.visa?.remoteFriendly ? '✅' : ' '}
               </div>
               <div class="ccp-col__metric-label">Nomad visa</div>
             </div>
           </div>
 
           <a href="/city/${city.slug}" data-link class="ccp-col__link">
-            Full guide for ${city.name} →
+            Full guide for ${city.name} ->
           </a>
         </div>
       </div>
@@ -218,9 +218,9 @@ export function CityComparisonPage(params) {
     <section class="ccp-cta">
       <div class="ccp-cta__inner container">
         <h2>Want a deeper comparison?</h2>
-        <p>Use the full calculator — add your income, choose your lifestyle and see purchasing power side by side.</p>
+        <p>Use the full calculator -- add your income, choose your lifestyle and see purchasing power side by side.</p>
         <div class="ccp-cta__btns">
-          <a href="/calculator?a=${slugA}&b=${slugB}" data-link class="ccp-btn">Open in Calculator →</a>
+          <a href="/calculator?a=${slugA}&b=${slugB}" data-link class="ccp-btn">Open in Calculator -></a>
           <a href="/destinations" data-link class="ccp-btn-ghost">Browse More Cities</a>
         </div>
       </div>

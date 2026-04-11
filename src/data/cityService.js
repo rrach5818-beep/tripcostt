@@ -80,7 +80,7 @@ function computeNomadScore(city) {
 }
 
 /* ============================================================
-   🔹 TRIPCOST INDEX™
+   🔹 TRIPCOST INDEX 
 ============================================================ */
 
 function computeTripCostIndex(city) {

@@ -1,6 +1,6 @@
-// 🔥 NEW — Country-based ranking weights
+// 🔥 NEW -- Country-based ranking weights
 import { countryDB } from '../data/countryDB.js';
-// 🔥 NEW — Get dynamic weights by country + profile
+// 🔥 NEW -- Get dynamic weights by country + profile
 function getCountryWeights(countrySlug, profile) {
   const country = countryDB.find(c => c.slug === countrySlug);
 
@@ -40,7 +40,7 @@ export function calculateCityScore(city, profile = 'solo') {
   const affordabilityFamily = (suburbScore + foodScore) * 1000;
 
  // ============================================================
-  // 🔥 NEW — CHECK COUNTRY-SPECIFIC WEIGHTS FIRST
+  // 🔥 NEW -- CHECK COUNTRY-SPECIFIC WEIGHTS FIRST
   // ============================================================
 
   const countryWeights = getCountryWeights(city.countrySlug, profile);

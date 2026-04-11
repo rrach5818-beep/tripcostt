@@ -116,7 +116,7 @@ export function MainLayout(content) {
 
         </div>
         <div class="footer__bottom">
-          <p>© ${new Date().getFullYear()} TripCost. All rights reserved. Not financial or legal advice.</p>
+          <p>  ${new Date().getFullYear()} TripCost. All rights reserved. Not financial or legal advice.</p>
         </div>
       </div>
     </footer>

@@ -5,7 +5,7 @@ import { getCountryImage } from '../utils/imageHelper.js';
 
 export function BestCitiesHubPage() {
   setPageMeta({
-    title: 'Best Cities by Country — Cost of Living & Quality of Life',
+    title: 'Best Cities by Country -- Cost of Living & Quality of Life',
     description: 'Discover the best cities to live in by country. Compare cost of living, safety, WiFi and lifestyle across top destinations worldwide.'
   });
 
@@ -32,7 +32,7 @@ export function BestCitiesHubPage() {
           <div class="bch-card__name">${country.name}</div>
         </div>
         <div class="bch-card__body">
-          <span class="bch-card__cta">Explore cities →</span>
+          <span class="bch-card__cta">Explore cities -></span>
         </div>
       </a>
     `;

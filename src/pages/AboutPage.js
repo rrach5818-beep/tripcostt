@@ -1,5 +1,5 @@
 /**
- * AboutPage — Redesigned V2
+ * AboutPage -- Redesigned V2
  * Brand page with mission, stats, features, values
  */
 
@@ -12,7 +12,7 @@ export function AboutPage() {
 
   const content = `
     <style>
-      /* ── Hero ─────────────────────── */
+      /* -- Hero ----------------------- */
       .ab-hero {
         background:linear-gradient(135deg,#1e1b4b 0%,#312e81 55%,#0f172a 100%);
         padding:72px 0 60px;position:relative;overflow:hidden;text-align:center;
@@ -40,7 +40,7 @@ export function AboutPage() {
         max-width:580px;margin:0 auto;
       }
 
-      /* ── Stats strip ──────────────── */
+      /* -- Stats strip ---------------- */
       .ab-stats {
         background:#fff;border-bottom:1px solid #e5e7eb;padding:32px 0;
       }
@@ -58,7 +58,7 @@ export function AboutPage() {
       }
       .ab-stat__label { font-size:12px;color:#9ca3af;font-weight:600;text-transform:uppercase;letter-spacing:1px; }
 
-      /* ── Mission ──────────────────── */
+      /* -- Mission -------------------- */
       .ab-section { padding:64px 0; }
       .ab-section--alt { background:#f9fafb; }
       .ab-section__inner {
@@ -105,7 +105,7 @@ export function AboutPage() {
         padding:5px 14px;border-radius:999px;position:relative;z-index:1;
       }
 
-      /* ── Features grid ────────────── */
+      /* -- Features grid -------------- */
       .ab-features {
         display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:32px;
       }
@@ -122,7 +122,7 @@ export function AboutPage() {
       .ab-feature__title { font-size:14px;font-weight:700;color:#111827;margin-bottom:6px; }
       .ab-feature__desc  { font-size:13px;color:#6b7280;line-height:1.6; }
 
-      /* ── Values ───────────────────── */
+      /* -- Values --------------------- */
       .ab-values {
         display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px;
       }
@@ -134,7 +134,7 @@ export function AboutPage() {
       .ab-value__title { font-size:14px;font-weight:800;color:#111827;margin-bottom:6px; }
       .ab-value__desc  { font-size:13px;color:#6b7280;line-height:1.6; }
 
-      /* ── Data methodology ─────────── */
+      /* -- Data methodology ----------- */
       .ab-data-steps {
         display:flex;flex-direction:column;gap:16px;margin-top:24px;
       }
@@ -151,7 +151,7 @@ export function AboutPage() {
       .ab-data-step__title { font-size:13px;font-weight:700;color:#111827;margin-bottom:3px; }
       .ab-data-step__desc  { font-size:12px;color:#6b7280;line-height:1.6; }
 
-      /* ── CTA ──────────────────────── */
+      /* -- CTA ------------------------ */
       .ab-cta {
         background:linear-gradient(135deg,#1e1b4b,#312e81,#1e1b4b);
         padding:72px 0;text-align:center;position:relative;overflow:hidden;
@@ -238,11 +238,11 @@ export function AboutPage() {
             <p class="ab-text">
               TripCost was built to solve a real problem: when you're considering a relocation,
               cost information is scattered, outdated or buried in forums. We aggregate it,
-              structure it and put it in one place — free, clear and actionable.
+              structure it and put it in one place -- free, clear and actionable.
             </p>
             <p class="ab-text">
               Whether you're a freelancer looking for the cheapest city with fast WiFi,
-              a family planning a permanent move, or a founder optimising for tax efficiency —
+              a family planning a permanent move, or a founder optimising for tax efficiency --
               our tools give you the numbers to make that decision with confidence.
             </p>
             <p class="ab-text">
@@ -252,7 +252,7 @@ export function AboutPage() {
           </div>
           <div class="ab-mission-card">
             <div class="ab-mission-card__quote">
-              Cost of living data should be transparent, updated and free — not locked behind paywalls.
+              Cost of living data should be transparent, updated and free -- not locked behind paywalls.
             </div>
             <div class="ab-mission-card__tag">
               <span style="width:6px;height:6px;background:#34d399;border-radius:50%"></span>
@@ -272,7 +272,7 @@ export function AboutPage() {
           <div class="ab-feature">
             <div class="ab-feature__icon">🏙️</div>
             <div class="ab-feature__title">City Cost Guides</div>
-            <div class="ab-feature__desc">Detailed breakdowns for ${totalCities} destinations — housing, food, transport, coworking and more. Each updated quarterly.</div>
+            <div class="ab-feature__desc">Detailed breakdowns for ${totalCities} destinations -- housing, food, transport, coworking and more. Each updated quarterly.</div>
           </div>
           <div class="ab-feature">
             <div class="ab-feature__icon">🧮</div>
@@ -374,9 +374,9 @@ export function AboutPage() {
     <section class="ab-cta">
       <div class="ab-cta__inner container">
         <h2>Ready to find your city?</h2>
-        <p>Start with the calculator or explore all destinations — it takes 2 minutes.</p>
+        <p>Start with the calculator or explore all destinations -- it takes 2 minutes.</p>
         <div class="ab-cta__btns">
-          <a href="/calculator"   data-link class="ab-btn-primary">Open Calculator →</a>
+          <a href="/calculator"   data-link class="ab-btn-primary">Open Calculator -></a>
           <a href="/destinations" data-link class="ab-btn-ghost">Browse Destinations</a>
         </div>
       </div>
@@ -384,7 +384,7 @@ export function AboutPage() {
   `;
 
   setPageMeta({
-    title: 'About TripCost — Free Cost of Living Intelligence',
+    title: 'About TripCost -- Free Cost of Living Intelligence',
     description: 'TripCost provides free, transparent cost of living data for digital nomads, expats and remote workers. Real data, updated quarterly, no ads.',
     canonical: '/about'
   });

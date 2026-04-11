@@ -1,5 +1,5 @@
 /**
- * NomadPage — Rankings V2
+ * NomadPage -- Rankings V2
  * Podium top 3, sortable live table, category mini-rankings, SEO
  */
 
@@ -27,7 +27,7 @@ export function NomadPage() {
     return v >= hi ? '#10b981' : v >= mid ? '#f59e0b' : '#ef4444';
   }
 
-  /* ── Podium top 3 ─────────────────────────────────────── */
+  /* -- Podium top 3 --------------------------------------- */
   const medals = ['🥇','🥈','🥉'];
   const podiumOrder = [1, 0, 2]; // silver left, gold center, bronze right
 
@@ -54,13 +54,13 @@ export function NomadPage() {
             <span title="Safety">🛡 ${c.digitalNomad.safetyScore}</span>
             <span title="Budget">💰 ~$${budget.toLocaleString()}/mo</span>
           </div>
-          <a href="/city/${c.slug}" data-link class="rk-podium-btn">View City →</a>
+          <a href="/city/${c.slug}" data-link class="rk-podium-btn">View City -></a>
         </div>
       </div>
     `;
   }).join('');
 
-  /* ── Table rows (pre-rendered, filtered client-side) ──── */
+  /* -- Table rows (pre-rendered, filtered client-side) ---- */
   const citiesJson = JSON.stringify(ranked.map(c => ({
     slug: c.slug, name: c.name, country: c.country,
     continent: c.continent, image: c.image,
@@ -73,7 +73,7 @@ export function NomadPage() {
     currency: c.currencySymbol ?? '$'
   })));
 
-  /* ── Category mini-rankings ───────────────────────────── */
+  /* -- Category mini-rankings ----------------------------- */
   function miniRank(title, icon, cities, valFn, unit) {
     return `
       <div class="rk-mini">
@@ -98,7 +98,7 @@ export function NomadPage() {
     `;
   }
 
-  /* ── Popular comparisons ──────────────────────────────── */
+  /* -- Popular comparisons -------------------------------- */
   const comparisons = [
     ['lisbon','bangkok'], ['berlin','prague'], ['tokyo','seoul'],
     ['barcelona','bali'], ['dubai','singapore'], ['chiang-mai','medellin']
@@ -123,7 +123,7 @@ export function NomadPage() {
 
   const content = `
     <style>
-      /* ── Hero ─────────────────────────── */
+      /* -- Hero --------------------------- */
       .rk-hero {
         background:linear-gradient(135deg,#1e1b4b 0%,#312e81 55%,#0f172a 100%);
         padding:60px 0 52px;position:relative;overflow:hidden;
@@ -148,7 +148,7 @@ export function NomadPage() {
       }
       .rk-hero__sub { font-size:15px;color:rgba(255,255,255,0.55);margin:0; }
 
-      /* ── Summary stats ─────────────────── */
+      /* -- Summary stats ------------------- */
       .rk-stats {
         background:#fff;border-bottom:1px solid #e5e7eb;padding:20px 0;
       }
@@ -162,7 +162,7 @@ export function NomadPage() {
       .rk-stat strong { display:block;font-size:22px;font-weight:900;color:#1e1b4b;letter-spacing:-0.02em; }
       .rk-stat span   { font-size:11px;color:#9ca3af;font-weight:600;text-transform:uppercase;letter-spacing:1px; }
 
-      /* ── Podium ────────────────────────── */
+      /* -- Podium -------------------------- */
       .rk-podium-wrap { padding:60px 0 48px;background:#f9fafb; }
       .rk-podium-grid {
         display:grid;grid-template-columns:1fr 1.15fr 1fr;
@@ -212,7 +212,7 @@ export function NomadPage() {
         background:#eef2ff;border-color:#c7d2fe;text-decoration:none;
       }
 
-      /* ── Table section ─────────────────── */
+      /* -- Table section ------------------- */
       .rk-table-wrap { padding:56px 0;background:#fff; }
       .rk-table-top {
         display:flex;align-items:center;justify-content:space-between;
@@ -290,7 +290,7 @@ export function NomadPage() {
       .rk-empty { text-align:center;padding:48px;color:#9ca3af; }
       #rk-count { font-size:12px;color:#9ca3af;margin-top:10px; }
 
-      /* ── Mini rankings ─────────────────── */
+      /* -- Mini rankings ------------------- */
       .rk-categories { padding:56px 0;background:#f9fafb; }
       .rk-categories__grid {
         display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:32px;
@@ -316,7 +316,7 @@ export function NomadPage() {
       .rk-mini__bar { height:100%;border-radius:5px;transition:width 0.4s; }
       .rk-mini__val { font-size:11px;font-weight:700;color:#111827;white-space:nowrap;min-width:44px;text-align:right; }
 
-      /* ── Comparisons ───────────────────── */
+      /* -- Comparisons --------------------- */
       .rk-comparisons { padding:56px 0;background:#fff; }
       .rk-compare-grid {
         display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px;
@@ -338,14 +338,14 @@ export function NomadPage() {
       }
       .rk-compare-card__label span { color:#9ca3af;font-weight:400; }
 
-      /* ── SEO block ─────────────────────── */
+      /* -- SEO block ----------------------- */
       .rk-seo { padding:56px 0;background:#f9fafb;border-top:1px solid #e5e7eb; }
       .rk-seo__inner { max-width:820px;margin:0 auto; }
       .rk-seo__inner h2 { font-size:22px;font-weight:800;color:#111827;margin-bottom:10px; }
       .rk-seo__inner h3 { font-size:16px;font-weight:700;color:#111827;margin:20px 0 6px; }
       .rk-seo__inner p  { font-size:14px;color:#4b5563;line-height:1.8;margin-bottom:10px; }
 
-      /* ── CTA ────────────────────────────── */
+      /* -- CTA ------------------------------ */
       .rk-cta {
         background:linear-gradient(135deg,#1e1b4b,#312e81,#1e1b4b);
         padding:64px 0;text-align:center;position:relative;overflow:hidden;
@@ -373,7 +373,7 @@ export function NomadPage() {
       }
       .rk-btn-secondary:hover { background:rgba(255,255,255,0.18);color:#fff;text-decoration:none; }
 
-      /* ── Responsive ─────────────────────── */
+      /* -- Responsive ----------------------- */
       @media(max-width:960px) {
         .rk-podium-grid { grid-template-columns:1fr 1fr 1fr; }
         .rk-categories__grid { grid-template-columns:1fr 1fr; }
@@ -394,7 +394,7 @@ export function NomadPage() {
         <p class="rk-hero__eyebrow">2026 Rankings</p>
         <h1 class="rk-hero__title">Best Cities for<br><em>Digital Nomads</em></h1>
         <p class="rk-hero__sub">
-          ${ranked.length} cities ranked by nomad score — cost, WiFi, safety, visa &amp; infrastructure combined.
+          ${ranked.length} cities ranked by nomad score -- cost, WiFi, safety, visa &amp; infrastructure combined.
         </p>
       </div>
     </section>
@@ -425,7 +425,7 @@ export function NomadPage() {
         <div class="rk-table-top">
           <div class="rk-table-title">Complete Rankings</div>
           <div class="rk-table-controls">
-            <input type="text" class="rk-search" id="rk-search" placeholder="Search city…" />
+            <input type="text" class="rk-search" id="rk-search" placeholder="Search city..." />
             <button class="rk-filter-chip is-active" data-region="all">All</button>
             <button class="rk-filter-chip" data-region="Europe">🇪🇺 Europe</button>
             <button class="rk-filter-chip" data-region="Asia">🌏 Asia</button>
@@ -440,10 +440,10 @@ export function NomadPage() {
               <tr>
                 <th data-col="rank" style="width:52px">#</th>
                 <th data-col="name">City</th>
-                <th data-col="score" class="is-sorted">Nomad Score <span class="sort-arrow">↓</span></th>
-                <th data-col="wifi">WiFi <span class="sort-arrow">↕</span></th>
-                <th data-col="safety">Safety <span class="sort-arrow">↕</span></th>
-                <th data-col="budget">Budget/mo <span class="sort-arrow">↕</span></th>
+                <th data-col="score" class="is-sorted">Nomad Score <span class="sort-arrow"> </span></th>
+                <th data-col="wifi">WiFi <span class="sort-arrow"> </span></th>
+                <th data-col="safety">Safety <span class="sort-arrow"> </span></th>
+                <th data-col="budget">Budget/mo <span class="sort-arrow"> </span></th>
                 <th data-col="visa">Visa</th>
                 <th></th>
               </tr>
@@ -494,7 +494,7 @@ export function NomadPage() {
         </p>
         <h3>Cost of Living for Remote Workers</h3>
         <p>
-          Affordable destinations like Chiang Mai, Bali and Medellín consistently attract digital nomads
+          Affordable destinations like Chiang Mai, Bali and Medell n consistently attract digital nomads
           with monthly budgets under $1,500. These cities offer strong nomad communities, reliable coworking
           spaces and a high quality of life at a fraction of Western city costs.
         </p>
@@ -507,8 +507,8 @@ export function NomadPage() {
         <h3>Safety & Visa Friendliness</h3>
         <p>
           Safety scores above 80/100 are found in Helsinki, Tokyo, Vienna and Singapore. For visa access,
-          destinations offering dedicated digital nomad visas — including Portugal, Thailand, the UAE and
-          Indonesia — dramatically simplify the legal process for long-term stays.
+          destinations offering dedicated digital nomad visas -- including Portugal, Thailand, the UAE and
+          Indonesia -- dramatically simplify the legal process for long-term stays.
         </p>
       </div>
     </section>
@@ -519,7 +519,7 @@ export function NomadPage() {
         <h2>Ready to compare cities?</h2>
         <p>Use the calculator to simulate your real monthly budget in any two cities.</p>
         <div class="rk-cta__btns">
-          <a href="/calculator" data-link class="rk-btn-primary">Open Calculator →</a>
+          <a href="/calculator" data-link class="rk-btn-primary">Open Calculator -></a>
           <a href="/destinations" data-link class="rk-btn-secondary">Browse Destinations</a>
         </div>
       </div>
@@ -529,8 +529,8 @@ export function NomadPage() {
   `;
 
   setPageMeta({
-    title: 'Best Cities for Digital Nomads 2026 — Rankings & Scores',
-    description: 'Compare 50+ cities ranked by nomad score — cost of living, WiFi speed, safety, visa access and infrastructure combined.',
+    title: 'Best Cities for Digital Nomads 2026 -- Rankings & Scores',
+    description: 'Compare 50+ cities ranked by nomad score -- cost of living, WiFi speed, safety, visa access and infrastructure combined.',
     canonical: '/nomad'
   });
 
@@ -552,9 +552,9 @@ export function NomadPage() {
   return MainLayout(content);
 }
 
-/* ─────────────────────────────────────────────────────────
-   Interactivity — sortable table + live filters
-───────────────────────────────────────────────────────── */
+/* ---------------------------------------------------------
+   Interactivity -- sortable table + live filters
+--------------------------------------------------------- */
 export function setupNomadPageInteractivity() {
   const raw = document.getElementById('rk-data');
   if (!raw) return;
@@ -669,7 +669,7 @@ export function setupNomadPageInteractivity() {
       document.querySelectorAll('.rk-table th').forEach(t => t.classList.remove('is-sorted'));
       th.classList.add('is-sorted');
       const arrow = th.querySelector('.sort-arrow');
-      if (arrow) arrow.textContent = state.dir === 'desc' ? '↓' : '↑';
+      if (arrow) arrow.textContent = state.dir === 'desc' ? ' ' : ' ';
       render();
     });
   });

@@ -9,8 +9,8 @@ export function getCityMetaTitle(city) {
   const country = safe(city.country, '');
 
   return country
-    ? `Cost of Living in ${name}, ${country} – Prices & Budget`
-    : `Cost of Living in ${name} – Prices & Budget`;
+    ? `Cost of Living in ${name}, ${country} - Prices & Budget`
+    : `Cost of Living in ${name} - Prices & Budget`;
 }
 
 export function getCityMetaDescription(city) {

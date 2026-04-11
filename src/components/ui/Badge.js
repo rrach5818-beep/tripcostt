@@ -13,7 +13,7 @@ export function Badge(props = {}) {
     testId = ''
   } = props;
 
-  // Construction des classes de manière déclarative
+  // Construction des classes de maniere declarative
   const classes = [
     'badge',
     `badge--${variant}`,

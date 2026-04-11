@@ -1,5 +1,5 @@
 /**
- * CityPage — Full Redesign V2
+ * CityPage -- Full Redesign V2
  * Full-bleed hero, sticky nav, visual cost bars, image city cards
  */
 
@@ -9,6 +9,7 @@ import { formatCurrency } from '../logic/budgetCalculator.js';
 import { getCityIntro, getCostSectionText, getLifestyleText, getNomadText, getFAQ } from '../data/cityTextTemplates.js';
 import { getCityMetaTitle, getCityMetaDescription } from '../data/citySeoTemplates.js';
 import { setPageMeta, injectSchema } from '../logic/setPageMeta.js';
+import { downloadCityPDF } from '../logic/pdfExport.js';
 
 export function CityPage(params) {
   const { slug } = params;
@@ -25,7 +26,7 @@ export function CityPage(params) {
     `);
   }
 
-  /* ── Data normalisation ───────────────────────────────── */
+  /* -- Data normalisation --------------------------------- */
   const costs      = city.costs ?? {};
   const acc        = costs.accommodation ?? {};
   const food       = costs.food ?? {};
@@ -39,7 +40,7 @@ export function CityPage(params) {
   const monthlyCenter = (acc.center ?? 0) * 30 + (food.standard ?? 0) * 30 + (costs.transport ?? 0) + (costs.coworking ?? 0);
   const monthlySuburb = (acc.suburb ?? 0) * 30 + (food.standard ?? 0) * 30 + (costs.transport ?? 0) + (costs.coworking ?? 0);
 
-  /* ── Texts ────────────────────────────────────────────── */
+  /* -- Texts ---------------------------------------------- */
   const introText     = getCityIntro(city);
   const lifestyleText = getLifestyleText(city);
   const nomadText     = getNomadText(city);
@@ -47,13 +48,13 @@ export function CityPage(params) {
   const metaTitle     = getCityMetaTitle(city);
   const metaDesc      = getCityMetaDescription(city);
 
-  /* ── Similar cities ───────────────────────────────────── */
+  /* -- Similar cities ------------------------------------- */
   const allCities = getAllCities();
   let similar = allCities.filter(c => c.slug !== city.slug && c.country === city.country);
   if (similar.length < 3) similar = allCities.filter(c => c.slug !== city.slug && c.continent === city.continent);
   similar = similar.slice(0, 4);
 
-  /* ── Badges ───────────────────────────────────────────── */
+  /* -- Badges --------------------------------------------- */
   const badges = [];
   if (monthlyCenter < 1000)            badges.push({ text: 'Very Affordable', color: '#065f46', bg: '#d1fae5' });
   else if (monthlyCenter < 1600)       badges.push({ text: 'Affordable',      color: '#065f46', bg: '#d1fae5' });
@@ -67,12 +68,12 @@ export function CityPage(params) {
       padding:4px 12px;border-radius:999px;letter-spacing:0.3px">${b.text}</span>`
   ).join('');
 
-  /* ── Score color helper ───────────────────────────────── */
+  /* -- Score color helper --------------------------------- */
   function sc(v, hi=80, mid=60) {
     return v >= hi ? '#10b981' : v >= mid ? '#f59e0b' : '#ef4444';
   }
 
-  /* ── Cost bars ────────────────────────────────────────── */
+  /* -- Cost bars ------------------------------------------ */
   const maxCost = Math.max(acc.center*30, acc.suburb*30, food.budget*30, food.standard*30, food.premium*30, costs.transport, costs.coworking);
   function bar(val, color='#6366f1') {
     const w = maxCost > 0 ? Math.round((val / maxCost) * 100) : 0;
@@ -90,7 +91,7 @@ export function CityPage(params) {
     </div>`;
   }
 
-  /* ── FAQ html ─────────────────────────────────────────── */
+  /* -- FAQ html ------------------------------------------- */
   const coreFaq = [
     {
       q: `How much does it cost to live in ${city.name}?`,
@@ -102,12 +103,12 @@ export function CityPage(params) {
     },
     {
       q: `How is the internet in ${city.name}?`,
-      a: `Average WiFi speed in ${city.name} is ${nomad.wifiSpeed ?? 'N/A'} Mbps — ${(nomad.wifiSpeed ?? 0) >= 100 ? 'excellent for video calls and remote work' : (nomad.wifiSpeed ?? 0) >= 50 ? 'good for most remote tasks' : 'adequate for basic tasks'}. Coworking spaces offer faster dedicated lines.`
+      a: `Average WiFi speed in ${city.name} is ${nomad.wifiSpeed ?? 'N/A'} Mbps -- ${(nomad.wifiSpeed ?? 0) >= 100 ? 'excellent for video calls and remote work' : (nomad.wifiSpeed ?? 0) >= 50 ? 'good for most remote tasks' : 'adequate for basic tasks'}. Coworking spaces offer faster dedicated lines.`
     },
     {
       q: `Does ${city.name} have a digital nomad visa?`,
       a: visa.remoteFriendly
-        ? `Yes — ${city.name} offers a remote work visa (${visa.type}). Stay up to ${visa.stayDurationMonths} months. Minimum income requirement: ${visa.minIncomeRequirement > 0 ? '$'+visa.minIncomeRequirement+'/mo' : 'none stated'}. Processing: ~${visa.processingTimeDays} days.`
+        ? `Yes -- ${city.name} offers a remote work visa (${visa.type}). Stay up to ${visa.stayDurationMonths} months. Minimum income requirement: ${visa.minIncomeRequirement > 0 ? '$'+visa.minIncomeRequirement+'/mo' : 'none stated'}. Processing: ~${visa.processingTimeDays} days.`
         : `${city.name} does not currently offer a dedicated digital nomad visa. Standard tourist or long-stay visas apply. Always verify with official sources before travelling.`
     },
   ];
@@ -122,7 +123,7 @@ export function CityPage(params) {
     </div>
   `).join('');
 
-  /* ── Similar city cards ───────────────────────────────── */
+  /* -- Similar city cards --------------------------------- */
   const similarHtml = similar.map(c => {
     const m = Math.round((c.costs?.accommodation?.center ?? 0) * 30 + (c.costs?.food?.standard ?? 0) * 30 + (c.costs?.transport ?? 0) + (c.costs?.coworking ?? 0));
     return `
@@ -130,7 +131,7 @@ export function CityPage(params) {
         <div class="cp-sim-card__img">
           <img src="${c.image}" alt="${c.name}" loading="lazy" />
           <div class="cp-sim-card__overlay"></div>
-          <span class="cp-sim-card__score" style="background:${sc(c.digitalNomad?.overallScore ?? 0)}">${c.digitalNomad?.overallScore ?? '—'}</span>
+          <span class="cp-sim-card__score" style="background:${sc(c.digitalNomad?.overallScore ?? 0)}">${c.digitalNomad?.overallScore ?? '--'}</span>
         </div>
         <div class="cp-sim-card__body">
           <strong>${c.name}</strong>
@@ -141,14 +142,14 @@ export function CityPage(params) {
     `;
   }).join('');
 
-  /* ── Compare links ────────────────────────────────────── */
+  /* -- Compare links -------------------------------------- */
   const compareHtml = similar.map(c =>
     `<a href="/compare/${city.slug}-vs-${c.slug}" data-link class="cp-compare-pill">
       ${city.name} vs ${c.name}
     </a>`
   ).join('');
 
-  /* ── Infra scores ─────────────────────────────────────── */
+  /* -- Infra scores --------------------------------------- */
   function infraBar(label, val, max=100) {
     const pct = Math.round((val / max) * 100);
     const color = sc(val, 80, 60);
@@ -164,12 +165,12 @@ export function CityPage(params) {
       </div>`;
   }
 
-  /* ═══════════════════════════════════════════════════════
+  /* -------------------------------------------------------
      PAGE CONTENT
-  ═══════════════════════════════════════════════════════ */
+  ------------------------------------------------------- */
   const content = `
     <style>
-      /* ── Hero ───────────────────────────── */
+      /* -- Hero ----------------------------- */
       .cp-hero {
         position:relative;min-height:480px;display:flex;align-items:flex-end;
         overflow:hidden;
@@ -222,7 +223,7 @@ export function CityPage(params) {
       }
       .cp-btn-secondary:hover { background:rgba(255,255,255,0.2);color:#fff;text-decoration:none; }
 
-      /* ── Sticky nav ─────────────────────── */
+      /* -- Sticky nav ----------------------- */
       .cp-nav {
         position:sticky;top:0;z-index:100;
         background:#fff;border-bottom:1px solid #e5e7eb;
@@ -240,7 +241,7 @@ export function CityPage(params) {
       .cp-nav__link:hover { color:#6366f1;text-decoration:none; }
       .cp-nav__link.is-active { color:#6366f1;border-bottom-color:#6366f1; }
 
-      /* ── Sections ───────────────────────── */
+      /* -- Sections ------------------------- */
       .cp-section { padding:56px 0;border-bottom:1px solid #f1f5f9; }
       .cp-section:last-child { border-bottom:none; }
       .cp-section--alt { background:#f9fafb; }
@@ -253,7 +254,7 @@ export function CityPage(params) {
       }
       .cp-section__lead { font-size:15px;color:#4b5563;line-height:1.8;max-width:700px; }
 
-      /* ── KPI grid ───────────────────────── */
+      /* -- KPI grid ------------------------- */
       .cp-kpis {
         display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px;
       }
@@ -267,7 +268,7 @@ export function CityPage(params) {
       .cp-kpi__val { font-size:24px;font-weight:900;color:#1e1b4b;letter-spacing:-0.02em; }
       .cp-kpi__sub { font-size:11px;color:#9ca3af;margin-top:3px; }
 
-      /* ── Cost breakdown grid ────────────── */
+      /* -- Cost breakdown grid -------------- */
       .cp-costs {
         display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px;
       }
@@ -280,7 +281,7 @@ export function CityPage(params) {
       }
       .cp-cost-card__desc { font-size:12px;color:#9ca3af;margin-bottom:16px;line-height:1.5; }
 
-      /* ── Infrastructure ─────────────────── */
+      /* -- Infrastructure ------------------- */
       .cp-infra {
         display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px;
       }
@@ -292,7 +293,7 @@ export function CityPage(params) {
         color:#9ca3af;margin-bottom:16px;
       }
 
-      /* ── FAQ ────────────────────────────── */
+      /* -- FAQ ------------------------------ */
       .cp-faq-list { display:flex;flex-direction:column;gap:10px;margin-top:28px; }
       .cp-faq-item {
         background:#fff;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;
@@ -312,7 +313,7 @@ export function CityPage(params) {
       }
       .cp-faq-item.is-open .cp-faq-a { max-height:300px;padding:0 20px 18px; }
 
-      /* ── Similar cities ─────────────────── */
+      /* -- Similar cities ------------------- */
       .cp-similar {
         display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px;
       }
@@ -340,7 +341,7 @@ export function CityPage(params) {
       .cp-sim-card__body span { font-size:11px;color:#9ca3af; }
       .cp-sim-card__price { font-size:12px;font-weight:700;color:#6366f1 !important;margin-top:4px !important; }
 
-      /* ── Compare pills ──────────────────── */
+      /* -- Compare pills -------------------- */
       .cp-compare-pills { display:flex;flex-wrap:wrap;gap:8px;margin-top:20px; }
       .cp-compare-pill {
         padding:7px 16px;border:1.5px solid #e5e7eb;border-radius:999px;
@@ -351,7 +352,7 @@ export function CityPage(params) {
         border-color:#c7d2fe;background:#eef2ff;text-decoration:none;
       }
 
-      /* ── Visa card ──────────────────────── */
+      /* -- Visa card ------------------------ */
       .cp-visa {
         background:#fff;border:1px solid #e5e7eb;border-radius:16px;
         overflow:hidden;margin-top:32px;max-width:600px;
@@ -374,7 +375,7 @@ export function CityPage(params) {
       .cp-visa__row-label { color:#6b7280; }
       .cp-visa__row-val { font-weight:700;color:#111827; }
 
-      /* ── CTA ────────────────────────────── */
+      /* -- CTA ------------------------------ */
       .cp-cta {
         background:linear-gradient(135deg,#1e1b4b 0%,#312e81 60%,#1e1b4b 100%);
         padding:72px 0;text-align:center;position:relative;overflow:hidden;
@@ -387,7 +388,7 @@ export function CityPage(params) {
       .cp-cta h2 { font-size:36px;font-weight:800;color:#fff;letter-spacing:-0.025em;margin-bottom:12px; }
       .cp-cta p { font-size:16px;color:rgba(255,255,255,0.6);margin-bottom:32px; }
 
-      /* ── Responsive ─────────────────────── */
+      /* -- Responsive ----------------------- */
       @media(max-width:900px) {
         .cp-kpis  { grid-template-columns:1fr 1fr; }
         .cp-costs { grid-template-columns:1fr; }
@@ -403,7 +404,7 @@ export function CityPage(params) {
       }
     </style>
 
-    <!-- ══ HERO — full bleed image ════════════════════════ -->
+    <!-- -- HERO -- full bleed image ------------------------ -->
     <section class="cp-hero">
       <img class="cp-hero__img" src="${city.image}" alt="Cost of living in ${city.name}" />
       <div class="cp-hero__gradient"></div>
@@ -411,7 +412,7 @@ export function CityPage(params) {
         <div class="container">
           <div class="cp-hero__badges">${badgesHtml}</div>
           <h1 class="cp-hero__title">Cost of Living in ${city.name}</h1>
-          <p class="cp-hero__sub">${city.country} · ${city.continent} · Updated March 2026</p>
+          <p class="cp-hero__sub">${city.country}   ${city.continent}   Updated March 2026</p>
 
           <div class="cp-hero__kpis">
             <div class="cp-hero__kpi">
@@ -420,15 +421,15 @@ export function CityPage(params) {
             </div>
             <div class="cp-hero__kpi">
               <div class="cp-hero__kpi-label">Nomad Score</div>
-              <div class="cp-hero__kpi-val">${nomad.overallScore ?? '—'}/100</div>
+              <div class="cp-hero__kpi-val">${nomad.overallScore ?? '--'}/100</div>
             </div>
             <div class="cp-hero__kpi">
               <div class="cp-hero__kpi-label">Safety Index</div>
-              <div class="cp-hero__kpi-val">${safety.safetyIndex ?? '—'}/100</div>
+              <div class="cp-hero__kpi-val">${safety.safetyIndex ?? '--'}/100</div>
             </div>
             <div class="cp-hero__kpi">
               <div class="cp-hero__kpi-label">WiFi Speed</div>
-              <div class="cp-hero__kpi-val">${nomad.wifiSpeed ?? '—'} Mbps</div>
+              <div class="cp-hero__kpi-val">${nomad.wifiSpeed ?? '--'} Mbps</div>
             </div>
           </div>
 
@@ -437,13 +438,17 @@ export function CityPage(params) {
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
               Calculate my budget
             </a>
-            ${similar[0] ? `<a href="/compare/${city.slug}-vs-${similar[0].slug}" data-link class="cp-btn-secondary">Compare with ${similar[0].name} →</a>` : ''}
+            ${similar[0] ? `<a href="/compare/${city.slug}-vs-${similar[0].slug}" data-link class="cp-btn-secondary">Compare with ${similar[0].name} -></a>` : ''}
+            <button id="btn-pdf-report" class="cp-btn-secondary" style="cursor:pointer">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download PDF Report
+            </button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ══ STICKY NAV ══════════════════════════════════════ -->
+    <!-- -- STICKY NAV -------------------------------------- -->
     <nav class="cp-nav">
       <div class="container">
         <div class="cp-nav__inner">
@@ -459,7 +464,7 @@ export function CityPage(params) {
       </div>
     </nav>
 
-    <!-- ══ OVERVIEW ════════════════════════════════════════ -->
+    <!-- -- OVERVIEW ---------------------------------------- -->
     <section class="cp-section" id="overview">
       <div class="container">
         <p class="cp-section__eyebrow">At a Glance</p>
@@ -495,7 +500,7 @@ export function CityPage(params) {
       </div>
     </section>
 
-    <!-- ══ COSTS ═══════════════════════════════════════════ -->
+    <!-- -- COSTS ------------------------------------------- -->
     <section class="cp-section cp-section--alt" id="costs">
       <div class="container">
         <p class="cp-section__eyebrow">Monthly Expenses</p>
@@ -531,7 +536,7 @@ export function CityPage(params) {
       </div>
     </section>
 
-    <!-- ══ INFRASTRUCTURE ══════════════════════════════════ -->
+    <!-- -- INFRASTRUCTURE ---------------------------------- -->
     <section class="cp-section" id="infrastructure">
       <div class="container">
         <p class="cp-section__eyebrow">City Quality</p>
@@ -553,15 +558,15 @@ export function CityPage(params) {
             <div style="margin-top:20px;padding-top:16px;border-top:1px solid #f1f5f9">
               <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px">
                 <span style="color:#6b7280">Crime Level</span>
-                <strong style="color:#111827">${safety.crimeLevel ?? '—'}</strong>
+                <strong style="color:#111827">${safety.crimeLevel ?? '--'}</strong>
               </div>
               <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px">
                 <span style="color:#6b7280">Currency Stability</span>
-                <strong style="color:#111827">${macro.currencyStability ?? '—'}</strong>
+                <strong style="color:#111827">${macro.currencyStability ?? '--'}</strong>
               </div>
               <div style="display:flex;justify-content:space-between;font-size:12px">
                 <span style="color:#6b7280">Inflation Rate</span>
-                <strong style="color:#111827">${macro.inflationRate ?? '—'}%</strong>
+                <strong style="color:#111827">${macro.inflationRate ?? '--'}%</strong>
               </div>
             </div>
           </div>
@@ -570,31 +575,31 @@ export function CityPage(params) {
       </div>
     </section>
 
-    <!-- ══ VISA & TAX ══════════════════════════════════════ -->
+    <!-- -- VISA & TAX -------------------------------------- -->
     <section class="cp-section cp-section--alt" id="visa">
       <div class="container">
         <p class="cp-section__eyebrow">Legal & Financial</p>
         <h2 class="cp-section__title">Visa & Tax in ${city.name}</h2>
         <p class="cp-section__lead">
           ${visa.remoteFriendly
-            ? `${city.name} offers a dedicated remote work visa — one of the most accessible destinations for digital nomads and expats.`
+            ? `${city.name} offers a dedicated remote work visa -- one of the most accessible destinations for digital nomads and expats.`
             : `${city.name} does not currently offer a dedicated digital nomad visa. Standard tourist or long-stay visas apply.`}
         </p>
         <div class="cp-visa">
           <div class="cp-visa__head">
             <span class="cp-visa__head-title">${visa.type ?? 'Standard Visa'}</span>
             <span class="cp-visa__tag" style="background:${visa.remoteFriendly ? '#d1fae5' : '#f1f5f9'};color:${visa.remoteFriendly ? '#065f46' : '#6b7280'}">
-              ${visa.remoteFriendly ? '✅ Nomad Friendly' : '⬜ Standard'}
+              ${visa.remoteFriendly ? '✅ Nomad Friendly' : '  Standard'}
             </span>
           </div>
           <div class="cp-visa__body">
             <div class="cp-visa__row">
               <span class="cp-visa__row-label">Max stay</span>
-              <span class="cp-visa__row-val">${visa.stayDurationMonths ?? '—'} months</span>
+              <span class="cp-visa__row-val">${visa.stayDurationMonths ?? '--'} months</span>
             </div>
             <div class="cp-visa__row">
               <span class="cp-visa__row-label">Processing time</span>
-              <span class="cp-visa__row-val">~${visa.processingTimeDays ?? '—'} days</span>
+              <span class="cp-visa__row-val">~${visa.processingTimeDays ?? '--'} days</span>
             </div>
             <div class="cp-visa__row">
               <span class="cp-visa__row-label">Min. income required</span>
@@ -602,22 +607,22 @@ export function CityPage(params) {
             </div>
             <div class="cp-visa__row">
               <span class="cp-visa__row-label">Income tax (top rate)</span>
-              <span class="cp-visa__row-val">${tax.personalIncomeTaxTopRate ?? '—'}%</span>
+              <span class="cp-visa__row-val">${tax.personalIncomeTaxTopRate ?? '--'}%</span>
             </div>
             <div class="cp-visa__row">
               <span class="cp-visa__row-label">Corporate tax</span>
-              <span class="cp-visa__row-val">${tax.corporateTax ?? '—'}%</span>
+              <span class="cp-visa__row-val">${tax.corporateTax ?? '--'}%</span>
             </div>
             <div class="cp-visa__row">
               <span class="cp-visa__row-label">Capital gains tax</span>
-              <span class="cp-visa__row-val">${tax.capitalGainsTax ?? '—'}%</span>
+              <span class="cp-visa__row-val">${tax.capitalGainsTax ?? '--'}%</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ══ LIFESTYLE ═══════════════════════════════════════ -->
+    <!-- -- LIFESTYLE --------------------------------------- -->
     <section class="cp-section" id="lifestyle">
       <div class="container">
         <p class="cp-section__eyebrow">Daily Life</p>
@@ -626,7 +631,7 @@ export function CityPage(params) {
       </div>
     </section>
 
-    <!-- ══ FOR NOMADS ══════════════════════════════════════ -->
+    <!-- -- FOR NOMADS -------------------------------------- -->
     <section class="cp-section cp-section--alt" id="nomads">
       <div class="container">
         <p class="cp-section__eyebrow">Remote Work</p>
@@ -635,16 +640,16 @@ export function CityPage(params) {
       </div>
     </section>
 
-    <!-- ══ FAQ ═════════════════════════════════════════════ -->
+    <!-- -- FAQ --------------------------------------------- -->
     <section class="cp-section" id="faq">
       <div class="container">
         <p class="cp-section__eyebrow">Questions</p>
-        <h2 class="cp-section__title">FAQ — Living in ${city.name}</h2>
+        <h2 class="cp-section__title">FAQ -- Living in ${city.name}</h2>
         <div class="cp-faq-list">${faqHtml}</div>
       </div>
     </section>
 
-    <!-- ══ SIMILAR CITIES ══════════════════════════════════ -->
+    <!-- -- SIMILAR CITIES ---------------------------------- -->
     <section class="cp-section cp-section--alt" id="similar">
       <div class="container">
         <p class="cp-section__eyebrow">Explore More</p>
@@ -659,13 +664,13 @@ export function CityPage(params) {
       </div>
     </section>
 
-    <!-- ══ CTA ════════════════════════════════════════════ -->
+    <!-- -- CTA -------------------------------------------- -->
     <section class="cp-cta">
       <div class="cp-cta__inner container">
         <h2>Plan your budget for ${city.name}</h2>
         <p>Get a personalized cost estimate based on your income and lifestyle.</p>
         <a href="/calculator" data-link class="cp-btn-primary" style="display:inline-flex;font-size:15px;padding:13px 28px">
-          Open the Calculator →
+          Open the Calculator ->
         </a>
       </div>
     </section>
@@ -680,7 +685,7 @@ export function CityPage(params) {
     image:       city.image
   });
 
-  // ── JSON-LD: BreadcrumbList ────────────────────────────
+  // -- JSON-LD: BreadcrumbList ----------------------------
   injectSchema('breadcrumb-jsonld', {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -691,7 +696,7 @@ export function CityPage(params) {
     ]
   });
 
-  // ── JSON-LD: Place (city entity) ───────────────────────
+  // -- JSON-LD: Place (city entity) -----------------------
   injectSchema('place-jsonld', {
     '@context': 'https://schema.org',
     '@type': 'City',
@@ -709,7 +714,7 @@ export function CityPage(params) {
     url: `https://tripcost.co${canonicalPath}`
   });
 
-  // ── JSON-LD: FAQPage ───────────────────────────────────
+  // -- JSON-LD: FAQPage -----------------------------------
   injectSchema('faq-jsonld', {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -723,10 +728,33 @@ export function CityPage(params) {
   return MainLayout(content);
 }
 
-/* ─────────────────────────────────────────────────────────
+/* ---------------------------------------------------------
    Interactivity
-───────────────────────────────────────────────────────── */
+--------------------------------------------------------- */
 export function setupCityPageInteractivity() {
+
+  // PDF download button
+  const pdfBtn = document.getElementById('btn-pdf-report');
+  if (pdfBtn) {
+    pdfBtn.addEventListener('click', () => {
+      // Extract slug from current URL
+      const pathParts = window.location.pathname.split('/');
+      const slug = pathParts[pathParts.length - 1];
+      const city = getCityBySlug(slug);
+      if (!city) return;
+
+      pdfBtn.disabled = true;
+      pdfBtn.textContent = 'Generating...';
+
+      downloadCityPDF(city).then(() => {
+        pdfBtn.disabled = false;
+        pdfBtn.innerHTML = `
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download PDF Report
+        `;
+      });
+    });
+  }
 
   // FAQ accordion
   document.querySelectorAll('.cp-faq-item').forEach(item => {

@@ -1,5 +1,5 @@
 /**
- * DestinationsPage — Redesigned V2
+ * DestinationsPage -- Redesigned V2
  * Live filters, rich cards, client-side sort/search
  */
 
@@ -40,10 +40,10 @@ export function DestinationsPage() {
 
   const content = `
     <style>
-      /* ── Page layout ──────────────────── */
+      /* -- Page layout -------------------- */
       .dest-page { background:#f8fafc;min-height:100vh; }
 
-      /* ── Hero strip ───────────────────── */
+      /* -- Hero strip --------------------- */
       .dest-hero {
         background:linear-gradient(135deg,#1e1b4b 0%,#312e81 60%,#1e1b4b 100%);
         padding:56px 0 48px;position:relative;overflow:hidden;
@@ -68,7 +68,7 @@ export function DestinationsPage() {
       }
       .dest-hero__sub { font-size:15px;color:rgba(255,255,255,0.55);margin:0; }
 
-      /* ── Filter bar ───────────────────── */
+      /* -- Filter bar --------------------- */
       .dest-filters {
         background:#fff;border-bottom:1px solid #e5e7eb;
         position:sticky;top:0;z-index:100;
@@ -136,7 +136,7 @@ export function DestinationsPage() {
         background:#f9fafb;cursor:pointer;outline:none;
       }
 
-      /* ── Result info bar ──────────────── */
+      /* -- Result info bar ---------------- */
       .dest-resultbar {
         padding:16px 0 0;
         display:flex;align-items:center;justify-content:space-between;
@@ -146,7 +146,7 @@ export function DestinationsPage() {
       }
       .dest-resultbar__count span { color:#6366f1; }
 
-      /* ── Grid ─────────────────────────── */
+      /* -- Grid --------------------------- */
       .dest-grid {
         display:grid;
         grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
@@ -154,7 +154,7 @@ export function DestinationsPage() {
         padding:20px 0 64px;
       }
 
-      /* ── City card ────────────────────── */
+      /* -- City card ---------------------- */
       .dest-card {
         background:#fff;border:1px solid #e5e7eb;border-radius:18px;
         overflow:hidden;cursor:pointer;
@@ -223,7 +223,7 @@ export function DestinationsPage() {
       .dest-card__visa-tag--yes { background:#d1fae5;color:#065f46; }
       .dest-card__visa-tag--no  { background:#f1f5f9;color:#6b7280; }
 
-      /* ── Empty state ──────────────────── */
+      /* -- Empty state -------------------- */
       .dest-empty {
         grid-column:1/-1;text-align:center;padding:80px 20px;
         color:#9ca3af;
@@ -231,7 +231,7 @@ export function DestinationsPage() {
       .dest-empty__icon { font-size:48px;margin-bottom:16px; }
       .dest-empty h3 { font-size:18px;font-weight:700;color:#374151;margin-bottom:8px; }
 
-      /* ── Responsive ───────────────────── */
+      /* -- Responsive --------------------- */
       @media(max-width:768px){
         .dest-search { display:none; }
         .dest-sort  { display:none; }
@@ -264,7 +264,7 @@ export function DestinationsPage() {
               <span class="dest-filters__label">Profile</span>
               <button class="filter-chip ${activeProfile==='nomad'?'is-active':''}" data-filter="profile" data-val="nomad">🌍 Nomad</button>
               <button class="filter-chip ${activeProfile==='solo'?'is-active':''}"  data-filter="profile" data-val="solo">👤 Solo</button>
-              <button class="filter-chip ${activeProfile==='family'?'is-active':''}" data-filter="profile" data-val="family">👨‍👩‍👧 Family</button>
+              <button class="filter-chip ${activeProfile==='family'?'is-active':''}" data-filter="profile" data-val="family">👨 👩 👧 Family</button>
             </div>
 
             <div class="dest-filters__group">
@@ -280,14 +280,14 @@ export function DestinationsPage() {
               <span class="dest-filters__label">Budget</span>
               <button class="filter-chip is-active" data-filter="budget" data-val="all">All</button>
               <button class="filter-chip" data-filter="budget" data-val="low">Under $1,500</button>
-              <button class="filter-chip" data-filter="budget" data-val="mid">$1,500–$3,000</button>
+              <button class="filter-chip" data-filter="budget" data-val="mid">$1,500-$3,000</button>
               <button class="filter-chip" data-filter="budget" data-val="high">$3,000+</button>
             </div>
 
             <div class="dest-search">
               <div class="dest-search__icon">
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-                <input type="text" id="dest-search-input" placeholder="Search city or country…" />
+                <input type="text" id="dest-search-input" placeholder="Search city or country..." />
               </div>
             </div>
 
@@ -295,9 +295,9 @@ export function DestinationsPage() {
               <span class="dest-filters__label">Sort</span>
               <select id="dest-sort-select">
                 <option value="score">Best Score</option>
-                <option value="price-asc">Price ↑</option>
-                <option value="price-desc">Price ↓</option>
-                <option value="alpha">A → Z</option>
+                <option value="price-asc">Price  </option>
+                <option value="price-desc">Price  </option>
+                <option value="alpha">A -> Z</option>
               </select>
             </div>
 
@@ -321,7 +321,7 @@ export function DestinationsPage() {
   `;
 
   setPageMeta({
-    title: 'Cost of Living by City — 50+ Destinations for Expats & Nomads',
+    title: 'Cost of Living by City -- 50+ Destinations for Expats & Nomads',
     description: 'Browse and filter 50+ cities by region, budget and lifestyle. Compare cost of living, safety, WiFi and visa options worldwide.',
     canonical: '/destinations'
   });
@@ -329,7 +329,7 @@ export function DestinationsPage() {
   injectSchema('page-jsonld', {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'Destinations — Cost of Living by City',
+    name: 'Destinations -- Cost of Living by City',
     url: 'https://tripcost.co/destinations',
     description: 'Browse 50+ cities ranked by cost, safety and nomad score.'
   });
@@ -337,9 +337,9 @@ export function DestinationsPage() {
   return MainLayout(content);
 }
 
-/* ─────────────────────────────────────────────────────────
+/* ---------------------------------------------------------
    Client-side interactivity
-───────────────────────────────────────────────────────── */
+--------------------------------------------------------- */
 export function setupDestinationsInteractivity() {
   const rawData   = document.getElementById('dest-data');
   if (!rawData) return;
@@ -360,7 +360,7 @@ export function setupDestinationsInteractivity() {
   const urlProfile = new URLSearchParams(window.location.search).get('profile');
   if (['solo','family','nomad'].includes(urlProfile)) state.profile = urlProfile;
 
-  // ── Render ──────────────────────────────────────────────
+  // -- Render ----------------------------------------------
   function scoreColor(s) {
     return s >= 85 ? '#10b981' : s >= 70 ? '#f59e0b' : '#6366f1';
   }
@@ -404,7 +404,7 @@ export function setupDestinationsInteractivity() {
               ${c.wifiSpeed} Mbps
             </span>
             <span class="dest-card__visa-tag ${c.visaFriendly ? 'dest-card__visa-tag--yes' : 'dest-card__visa-tag--no'}">
-              ${c.visaFriendly ? '✅ Nomad visa' : '⬜ Standard visa'}
+              ${c.visaFriendly ? '✅ Nomad visa' : '  Standard visa'}
             </span>
           </div>
         </div>
@@ -458,7 +458,7 @@ export function setupDestinationsInteractivity() {
     countEl.textContent = list.length;
   }
 
-  // ── Filter chips ─────────────────────────────────────────
+  // -- Filter chips -----------------------------------------
   document.querySelectorAll('[data-filter]').forEach(btn => {
     btn.addEventListener('click', () => {
       const filter = btn.dataset.filter;
@@ -474,7 +474,7 @@ export function setupDestinationsInteractivity() {
     });
   });
 
-  // ── Search ───────────────────────────────────────────────
+  // -- Search -----------------------------------------------
   const searchInput = document.getElementById('dest-search-input');
   if (searchInput) {
     searchInput.addEventListener('input', e => {
@@ -483,7 +483,7 @@ export function setupDestinationsInteractivity() {
     });
   }
 
-  // ── Sort ─────────────────────────────────────────────────
+  // -- Sort -------------------------------------------------
   const sortSelect = document.getElementById('dest-sort-select');
   if (sortSelect) {
     sortSelect.addEventListener('change', e => {
@@ -492,7 +492,7 @@ export function setupDestinationsInteractivity() {
     });
   }
 
-  // ── SPA links inside grid ────────────────────────────────
+  // -- SPA links inside grid --------------------------------
   grid.addEventListener('click', e => {
     const link = e.target.closest('[data-link]');
     if (link) {

@@ -75,7 +75,7 @@ function legalLayout({ eyebrow, title, subtitle, sections }) {
         padding:4px 0 4px 18px;position:relative;
       }
       .lp-section ul li::before {
-        content:'–';position:absolute;left:0;color:#9ca3af;
+        content:'-';position:absolute;left:0;color:#9ca3af;
       }
       .lp-section h3 {
         font-size:14px;font-weight:700;color:#374151;margin:16px 0 6px;
@@ -125,7 +125,7 @@ export function LegalPage() {
       {
         id: 'disclaimer',
         title: 'Disclaimer',
-        content: `<p>All information on TripCost is provided for general informational purposes. While we strive for accuracy, we make no warranties — express or implied — about the completeness, accuracy or reliability of the data presented.</p>
+        content: `<p>All information on TripCost is provided for general informational purposes. While we strive for accuracy, we make no warranties -- express or implied -- about the completeness, accuracy or reliability of the data presented.</p>
         <p>Any reliance you place on our information is strictly at your own risk. TripCost shall not be liable for any direct, indirect or consequential loss arising from your use of this website.</p>`
       },
       {
@@ -141,7 +141,7 @@ export function LegalPage() {
       {
         id: 'copyright',
         title: 'Copyright',
-        content: `<p>All original content on TripCost — including text, structure and interface design — is the property of TripCost and protected under international copyright law. Unauthorised reproduction or distribution is prohibited. City and country images are sourced from Unsplash under their free licence.</p>`
+        content: `<p>All original content on TripCost -- including text, structure and interface design -- is the property of TripCost and protected under international copyright law. Unauthorised reproduction or distribution is prohibited. City and country images are sourced from Unsplash under their free licence.</p>`
       },
       {
         id: 'modifications',

@@ -1,22 +1,22 @@
 /**
- * setPageMeta — Full SEO meta management
+ * setPageMeta -- Full SEO meta management
  * Updates title, description, canonical, OG tags + injects page-level JSON-LD
  */
 
 const BASE_URL = 'https://tripcost.co';
 
 export function setPageMeta({ title, description, canonical, jsonLd, image }) {
-  // ── Title ──────────────────────────────────────────────
+  // -- Title ----------------------------------------------
   const fullTitle = title
     ? `${title} | TripCost`
-    : 'TripCost — Free Cost of Living Calculator';
+    : 'TripCost -- Free Cost of Living Calculator';
   document.title = fullTitle;
 
-  // ── Meta description ───────────────────────────────────
+  // -- Meta description -----------------------------------
   setMeta('name', 'description', description ||
     'Compare monthly living costs across 50+ cities worldwide. Free tool for expats, remote workers and digital nomads.');
 
-  // ── Canonical ──────────────────────────────────────────
+  // -- Canonical ------------------------------------------
   const canonicalUrl = canonical
     ? `${BASE_URL}${canonical}`
     : `${BASE_URL}${window.location.pathname}`;
@@ -29,19 +29,19 @@ export function setPageMeta({ title, description, canonical, jsonLd, image }) {
   }
   canonicalEl.href = canonicalUrl;
 
-  // ── Open Graph ─────────────────────────────────────────
+  // -- Open Graph -----------------------------------------
   setMeta('property', 'og:title',       fullTitle);
   setMeta('property', 'og:description', description || '');
   setMeta('property', 'og:url',         canonicalUrl);
   setMeta('property', 'og:image',       image || `${BASE_URL}/og-image.png`);
   setMeta('property', 'og:type',        'website');
 
-  // ── Twitter ────────────────────────────────────────────
+  // -- Twitter --------------------------------------------
   setMeta('name', 'twitter:title',       fullTitle);
   setMeta('name', 'twitter:description', description || '');
   setMeta('name', 'twitter:image',       image || `${BASE_URL}/og-image.png`);
 
-  // ── JSON-LD (page-level, injected alongside global ones) ─
+  // -- JSON-LD (page-level, injected alongside global ones) -
   if (jsonLd) {
     removeSchema('page-jsonld');
     const script = document.createElement('script');
@@ -52,7 +52,7 @@ export function setPageMeta({ title, description, canonical, jsonLd, image }) {
   }
 }
 
-// ── Helpers ────────────────────────────────────────────────
+// -- Helpers ------------------------------------------------
 function setMeta(attrName, attrValue, content) {
   let el = document.querySelector(`meta[${attrName}="${attrValue}"]`);
   if (!el) {

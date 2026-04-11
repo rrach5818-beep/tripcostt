@@ -51,7 +51,7 @@ export function getTopCountriesByProfile(profile = 'solo', limit = 30) {
     .slice(0, limit);
 }
 /* ==========================================
-   COUNTRY ↔ CITY RELATION
+   COUNTRY   CITY RELATION
 ========================================== */
 
 export function getCitiesForCountry(countrySlug) {
@@ -82,7 +82,7 @@ export function getCountryAggregatedMetrics(countrySlug) {
   const country = getCountryBySlug(countrySlug);
   const cities = getCitiesForCountry(countrySlug);
 
-  // 🔥 NO CITY DATA → FALLBACK MACRO
+  // 🔥 NO CITY DATA -> FALLBACK MACRO
   if (!cities.length) {
 
     return {

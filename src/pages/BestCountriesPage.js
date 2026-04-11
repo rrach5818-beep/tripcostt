@@ -19,7 +19,7 @@ export function BestCountriesPage(params = {}) {
   }
 
   setPageMeta({
-    title: `Best Countries for ${activeProfile === 'nomad' ? 'Digital Nomads' : activeProfile.charAt(0).toUpperCase()+activeProfile.slice(1)} — ${new Date().getFullYear()} Rankings`,
+    title: `Best Countries for ${activeProfile === 'nomad' ? 'Digital Nomads' : activeProfile.charAt(0).toUpperCase()+activeProfile.slice(1)} -- ${new Date().getFullYear()} Rankings`,
     description: `Top countries ranked by safety, cost of living, infrastructure and ${activeProfile} lifestyle quality. Updated ${new Date().getFullYear()}.`,
     canonical: `/best-countries/${activeProfile}`
   });
@@ -44,7 +44,7 @@ export function BestCountriesPage(params = {}) {
   const profileBtns = ['solo','family','nomad'].map(p => `
     <a href="/best-countries/${p}" data-link
        class="bco-profile-btn${activeProfile===p?' is-active':''}">
-      ${p==='solo'?'👤 Solo':p==='family'?'👨‍👩‍👧 Family':'🌍 Nomad'}
+      ${p==='solo'?'👤 Solo':p==='family'?'👨 👩 👧 Family':'🌍 Nomad'}
     </a>
   `).join('');
 
@@ -75,7 +75,7 @@ export function BestCountriesPage(params = {}) {
             ${agg.avgSafetyScore ? `<span>🛡 ${agg.avgSafetyScore}/100</span>` : ''}
             ${agg.avgMonthlyCost && !agg.isFallback ? `<span>💰 ~$${Number(agg.avgMonthlyCost).toLocaleString()}/mo</span>` : ''}
           </div>
-          <a href="/best-cities/${c.slug}" data-link class="bco-pod__btn">Explore cities →</a>
+          <a href="/best-cities/${c.slug}" data-link class="bco-pod__btn">Explore cities -></a>
         </div>
       </div>
     `;
@@ -217,7 +217,7 @@ export function BestCountriesPage(params = {}) {
     <section class="bco-rest-section">
       <div class="container">
         <p style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#6366f1;margin-bottom:8px">Full ranking</p>
-        <h2 style="font-size:24px;font-weight:800;color:#111827;letter-spacing:-0.02em">Positions 4–${countries.length}</h2>
+        <h2 style="font-size:24px;font-weight:800;color:#111827;letter-spacing:-0.02em">Positions 4-${countries.length}</h2>
         <div class="bco-grid">${restHtml}</div>
       </div>
     </section>
@@ -228,7 +228,7 @@ export function BestCountriesPage(params = {}) {
         <h2>Compare cities in your top country</h2>
         <p>Use the budget calculator to find out what life really costs.</p>
         <div class="bco-cta__btns">
-          <a href="/calculator"   data-link class="bco-btn">Open Calculator →</a>
+          <a href="/calculator"   data-link class="bco-btn">Open Calculator -></a>
           <a href="/destinations" data-link class="bco-btn-ghost">All Destinations</a>
         </div>
       </div>

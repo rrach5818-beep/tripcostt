@@ -1,5 +1,5 @@
 /**
- * HomePage — Redesigned V2
+ * HomePage -- Redesigned V2
  * Cleaner hero, immediate value, stronger CTA flow
  */
 
@@ -11,7 +11,7 @@ export function HomePage() {
   const topCities = getTopNomadCities(6);
   const totalCities = getAllCities().length;
 
-  /* ── City Cards ─────────────────────────────────────────── */
+  /* -- City Cards ------------------------------------------- */
   const citiesHtml = topCities.map((city, i) => {
     const monthly =
       city.costs.accommodation.center * 30 +
@@ -46,7 +46,7 @@ export function HomePage() {
     `;
   }).join('');
 
-  /* ── Stats ───────────────────────────────────────────────── */
+  /* -- Stats ------------------------------------------------- */
   const stats = [
     { value: `${totalCities}+`, label: 'Cities' },
     { value: '12+', label: 'Cost categories' },
@@ -61,7 +61,7 @@ export function HomePage() {
     </div>
   `).join('');
 
-  /* ── How it works ────────────────────────────────────────── */
+  /* -- How it works ------------------------------------------ */
   const steps = [
     {
       num: '01',
@@ -73,7 +73,7 @@ export function HomePage() {
       num: '02',
       icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>`,
       title: 'Set your budget',
-      desc: 'Enter your income and lifestyle preferences — from budget backpacker to comfortable expat.'
+      desc: 'Enter your income and lifestyle preferences -- from budget backpacker to comfortable expat.'
     },
     {
       num: '03',
@@ -92,7 +92,7 @@ export function HomePage() {
     </div>
   `).join('');
 
-  /* ── Profiles ────────────────────────────────────────────── */
+  /* -- Profiles ---------------------------------------------- */
   const profiles = [
     { emoji: '💻', label: 'Remote workers', desc: 'Find your perfect base with fast WiFi and coworking.' },
     { emoji: '✈️', label: 'Expats & families', desc: 'Plan a real relocation with full cost breakdowns.' },
@@ -292,7 +292,7 @@ export function HomePage() {
         .home-cta h2{font-size:30px;}
       }
 
-      /* ── World Map ─────────────────────── */
+      /* -- World Map ----------------------- */
       .home-map { background:#0f0c29;padding:72px 0 0; }
       .home-map__header { margin-bottom:40px; }
       .home-map__header .home-section-header__eyebrow { color:#818cf8; }
@@ -376,7 +376,7 @@ export function HomePage() {
           </h1>
           <p class="home-hero__subtitle">
             Compare monthly living costs across ${totalCities}+ cities worldwide.
-            Housing, food, transport, visa complexity, taxes — all in one place.
+            Housing, food, transport, visa complexity, taxes -- all in one place.
             Built for expats, remote workers and digital nomads.
           </p>
           <div class="home-hero__actions">
@@ -385,7 +385,7 @@ export function HomePage() {
               Calculate my budget
             </a>
             <a href="/destinations" data-link class="home-hero__cta-secondary">
-              Explore destinations →
+              Explore destinations ->
             </a>
           </div>
         </div>
@@ -434,7 +434,7 @@ export function HomePage() {
         <div id="world-map"></div>
         <div class="home-map__legend">
           <span class="home-map__legend-dot" style="background:#10b981"></span> Score 85+
-          <span class="home-map__legend-dot" style="background:#f59e0b;margin-left:12px"></span> Score 70–84
+          <span class="home-map__legend-dot" style="background:#f59e0b;margin-left:12px"></span> Score 70-84
           <span class="home-map__legend-dot" style="background:#6366f1;margin-left:12px"></span> Score &lt;70
         </div>
       </div>
@@ -446,12 +446,12 @@ export function HomePage() {
         <div class="home-section-header">
           <span class="home-section-header__eyebrow">Top picks</span>
           <h2>Best cities for nomads right now</h2>
-          <p>Ranked by overall nomad score — WiFi, safety, cost, and visa access combined.</p>
+          <p>Ranked by overall nomad score -- WiFi, safety, cost, and visa access combined.</p>
         </div>
         <div class="home-cities__grid">${citiesHtml}</div>
         <div style="text-align:center;margin-top:40px">
           <a href="/destinations" data-link class="btn btn--secondary btn--lg">
-            View all ${totalCities} destinations →
+            View all ${totalCities} destinations ->
           </a>
         </div>
       </div>
@@ -461,9 +461,9 @@ export function HomePage() {
     <section class="home-cta">
       <div class="home-cta__inner container">
         <h2>Ready to find your city?</h2>
-        <p>Enter your income and lifestyle — get a full breakdown of what life actually costs in your target destination.</p>
+        <p>Enter your income and lifestyle -- get a full breakdown of what life actually costs in your target destination.</p>
         <a href="/calculator" data-link class="home-hero__cta-primary" style="display:inline-flex;font-size:16px;padding:16px 36px">
-          Start for free — no sign up
+          Start for free -- no sign up
         </a>
       </div>
     </section>
@@ -474,9 +474,9 @@ export function HomePage() {
 
 export default HomePage;
 
-/* ─────────────────────────────────────────────────────────
-   Map initialisation — called by router after page render
-───────────────────────────────────────────────────────── */
+/* ---------------------------------------------------------
+   Map initialisation -- called by router after page render
+--------------------------------------------------------- */
 export function setupHomeMapInteractivity() {
   const el = document.getElementById('world-map');
   if (!el) return;
@@ -492,7 +492,7 @@ export function setupHomeMapInteractivity() {
 
   // Wait for Leaflet JS (already in dependencies via npm)
   import('leaflet').then(({ default: L }) => {
-    // Dark tile layer — CartoDB Dark Matter
+    // Dark tile layer -- CartoDB Dark Matter
     const map = L.map('world-map', {
       center: [20, 15],
       zoom: 2,
@@ -504,12 +504,12 @@ export function setupHomeMapInteractivity() {
     });
 
     L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      attribution: '© OpenStreetMap © CARTO',
+      attribution: '  OpenStreetMap   CARTO',
       subdomains: 'abcd',
       maxZoom: 19,
     }).addTo(map);
 
-    // City data — pulled from cityDB at build time
+    // City data -- pulled from cityDB at build time
     const cities = getAllCities();
 
     cities.forEach(city => {
@@ -559,10 +559,10 @@ export function setupHomeMapInteractivity() {
           </div>
           <div class="map-popup__row">
             <span class="map-popup__label">Visa</span>
-            <span class="map-popup__val" style="font-size:11px">${city.visa?.remoteFriendly ? '✅ Nomad friendly' : '⬜ Standard'}</span>
+            <span class="map-popup__val" style="font-size:11px">${city.visa?.remoteFriendly ? '✅ Nomad friendly' : '  Standard'}</span>
           </div>
           <a class="map-popup__link" href="/city/${city.slug}" data-link>
-            Explore ${city.name} →
+            Explore ${city.name} ->
           </a>
         </div>
       `;
@@ -587,4 +587,4 @@ export function setupHomeMapInteractivity() {
     });
   });
 }
-// (this line intentionally blank — file written below)
+// (this line intentionally blank -- file written below)
