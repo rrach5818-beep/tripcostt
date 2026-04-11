@@ -91,6 +91,35 @@ function initImageFallbacks() {
 }
 
 /* ===========================================================
+   Mobile hamburger menu
+=========================================================== */
+function initMobileMenu() {
+  document.addEventListener('click', (e) => {
+    const toggle = e.target.closest('#nav-toggle');
+    if (!toggle) return;
+
+    const nav = document.getElementById('main-nav');
+    if (!nav) return;
+
+    const isOpen = nav.classList.toggle('is-open');
+    toggle.classList.toggle('is-open', isOpen);
+    toggle.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  // Close menu on nav link click
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.nav__link')) return;
+    const nav = document.getElementById('main-nav');
+    const toggle = document.getElementById('nav-toggle');
+    if (nav) nav.classList.remove('is-open');
+    if (toggle) {
+      toggle.classList.remove('is-open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+
+/* ===========================================================
    App init
 =========================================================== */
 function initApp() {
@@ -102,6 +131,7 @@ function initApp() {
 
   initImageFallbacks();
   initAnalytics();
+  initMobileMenu();
   initRouter(appRoot, routes);
 
   document.addEventListener('click', (e) => {

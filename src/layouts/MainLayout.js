@@ -9,7 +9,12 @@ export function MainLayout(content) {
       <div class="container">
         <div class="header__inner">
           <a href="/" data-link class="header__logo">Trip<span>Cost</span></a>
-          <nav class="nav" data-testid="main-nav">
+          <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+            <span class="nav-toggle__bar"></span>
+            <span class="nav-toggle__bar"></span>
+            <span class="nav-toggle__bar"></span>
+          </button>
+          <nav class="nav" id="main-nav" data-testid="main-nav">
             <a href="/destinations" data-link class="nav__link">Destinations</a>
             <a href="/calculator"   data-link class="nav__link">Calculator</a>
             <a href="/nomad"        data-link class="nav__link">Rankings</a>
