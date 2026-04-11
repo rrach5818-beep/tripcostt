@@ -2,6 +2,7 @@ import { MainLayout } from '../layouts/MainLayout.js';
 import { getTopCountriesByProfile, getCountryAggregatedMetrics } from '../data/countryService.js';
 import { setPageMeta, injectSchema } from '../logic/setPageMeta.js';
 import { getCountryRankingImage } from '../utils/imageHelper.js';
+import { Breadcrumb, BREADCRUMB_CSS } from '../components/ui/Breadcrumb.js';
 
 export function BestCountriesPage(params = {}) {
   const { profile } = params;
@@ -112,8 +113,14 @@ export function BestCountriesPage(params = {}) {
 
   const profileLabel = activeProfile === 'nomad' ? 'Digital Nomads' : activeProfile.charAt(0).toUpperCase()+activeProfile.slice(1);
 
+  const breadcrumb = Breadcrumb([
+    { label: 'Home', href: '/' },
+    { label: 'Best Countries' }
+  ]);
+
   const content = `
     <style>
+      ${BREADCRUMB_CSS}
       .bco-hero{background:linear-gradient(135deg,#1e1b4b 0%,#312e81 55%,#0f172a 100%);padding:60px 0 52px;position:relative;overflow:hidden;}
       .bco-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 70% at 75% 50%,rgba(99,102,241,0.2),transparent 70%);}
       .bco-hero__inner{position:relative;z-index:2;}
@@ -185,6 +192,7 @@ export function BestCountriesPage(params = {}) {
 
     <!-- HERO -->
     <section class="bco-hero">
+      ${breadcrumb}
       <div class="container bco-hero__inner">
         <p class="bco-hero__eyebrow">Country Rankings</p>
         <h1 class="bco-hero__title">Best Countries for<br><em>${profileLabel}</em></h1>

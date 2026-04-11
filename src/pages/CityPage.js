@@ -10,6 +10,7 @@ import { getCityIntro, getCostSectionText, getLifestyleText, getNomadText, getFA
 import { getCityMetaTitle, getCityMetaDescription } from '../data/citySeoTemplates.js';
 import { setPageMeta, injectSchema } from '../logic/setPageMeta.js';
 import { downloadCityPDF } from '../logic/pdfExport.js';
+import { Breadcrumb, BREADCRUMB_CSS } from '../components/ui/Breadcrumb.js';
 
 export function CityPage(params) {
   const { slug } = params;
@@ -168,8 +169,16 @@ export function CityPage(params) {
   /* -------------------------------------------------------
      PAGE CONTENT
   ------------------------------------------------------- */
+  const breadcrumb = Breadcrumb([
+    { label: 'Home', href: '/' },
+    { label: 'Destinations', href: '/destinations' },
+    { label: city.country, href: `/best-cities/${city.country.toLowerCase().replace(/\s+/g, '-')}` },
+    { label: city.name }
+  ]);
+
   const content = `
     <style>
+      ${BREADCRUMB_CSS}
       /* -- Hero ----------------------------- */
       .cp-hero {
         position:relative;min-height:480px;display:flex;align-items:flex-end;
@@ -408,6 +417,7 @@ export function CityPage(params) {
     <section class="cp-hero">
       <img class="cp-hero__img" src="${city.image}" alt="Cost of living in ${city.name}" />
       <div class="cp-hero__gradient"></div>
+      ${breadcrumb}
       <div class="cp-hero__content">
         <div class="container">
           <div class="cp-hero__badges">${badgesHtml}</div>

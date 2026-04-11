@@ -6,6 +6,7 @@
 import { MainLayout } from '../layouts/MainLayout.js';
 import { getAllCities } from '../data/cityService.js';
 import { convertFromUSD } from '../services/currencyService.js';
+import { Breadcrumb, BREADCRUMB_CSS } from '../components/ui/Breadcrumb.js';
 
 export function CalculatorPage() {
 
@@ -25,9 +26,15 @@ export function CalculatorPage() {
     </option>`
   ).join('');
 
+  const breadcrumb = Breadcrumb([
+    { label: 'Home', href: '/' },
+    { label: 'Calculator' }
+  ]);
+
   const content = `
 
     <style>
+      ${BREADCRUMB_CSS}
       /* -- Hero --------------------------- */
       .calc-hero {
         background:linear-gradient(135deg,#1e1b4b 0%,#312e81 60%,#0f172a 100%);
@@ -412,6 +419,7 @@ export function CalculatorPage() {
 
     <!-- HERO -->
     <section class="calc-hero">
+      ${breadcrumb}
       <div class="container calc-hero__inner">
         <p class="calc-hero__eyebrow">Free Cost of Living Calculator</p>
         <h1 class="calc-hero">Compare <em>real monthly costs</em><br>in any two cities worldwide.</h1>

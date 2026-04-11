@@ -2,6 +2,7 @@ import { MainLayout } from '../layouts/MainLayout.js';
 import { getCityBySlug } from '../data/cityService.js';
 import { setPageMeta, injectSchema } from '../logic/setPageMeta.js';
 import { formatCurrency } from '../logic/budgetCalculator.js';
+import { Breadcrumb, BREADCRUMB_CSS } from '../components/ui/Breadcrumb.js';
 
 function parseCitiesParam(param) {
   if (!param) return [];
@@ -141,8 +142,15 @@ export function CityComparisonPage(params) {
     `;
   }
 
+  const breadcrumb = Breadcrumb([
+    { label: 'Home', href: '/' },
+    { label: 'Destinations', href: '/destinations' },
+    { label: `${cityA.name} vs ${cityB.name}` }
+  ]);
+
   const content = `
     <style>
+      ${BREADCRUMB_CSS}
       .ccp-hero{background:linear-gradient(135deg,#1e1b4b 0%,#312e81 55%,#0f172a 100%);padding:56px 0 48px;position:relative;overflow:hidden;}
       .ccp-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 70% at 70% 50%,rgba(99,102,241,0.2),transparent 70%);}
       .ccp-hero__inner{position:relative;z-index:2;text-align:center;}
@@ -189,6 +197,7 @@ export function CityComparisonPage(params) {
 
     <!-- HERO -->
     <section class="ccp-hero">
+      ${breadcrumb}
       <div class="container ccp-hero__inner">
         <p class="ccp-hero__eyebrow">Cost of Living Comparison</p>
         <h1 class="ccp-hero__title">${cityA.name} vs ${cityB.name}</h1>

@@ -7,6 +7,7 @@ import { MainLayout } from '../layouts/MainLayout.js';
 import { getAllCities } from '../data/cityService.js';
 import { setPageMeta, injectSchema } from '../logic/setPageMeta.js';
 import { getMonthlyBudgetEstimate } from '../logic/scoreCalculator.js';
+import { Breadcrumb, BREADCRUMB_CSS } from '../components/ui/Breadcrumb.js';
 
 export function NomadPage() {
 
@@ -121,8 +122,14 @@ export function NomadPage() {
     `;
   }).join('');
 
+  const breadcrumb = Breadcrumb([
+    { label: 'Home', href: '/' },
+    { label: 'Rankings' }
+  ]);
+
   const content = `
     <style>
+      ${BREADCRUMB_CSS}
       /* -- Hero --------------------------- */
       .rk-hero {
         background:linear-gradient(135deg,#1e1b4b 0%,#312e81 55%,#0f172a 100%);
@@ -390,6 +397,7 @@ export function NomadPage() {
 
     <!-- HERO -->
     <section class="rk-hero">
+      ${breadcrumb}
       <div class="container rk-hero__inner">
         <p class="rk-hero__eyebrow">2026 Rankings</p>
         <h1 class="rk-hero__title">Best Cities for<br><em>Digital Nomads</em></h1>

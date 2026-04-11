@@ -7,6 +7,7 @@ import { setPageMeta, injectSchema } from '../logic/setPageMeta.js';
 import { MainLayout } from '../layouts/MainLayout.js';
 import { getAllCities } from '../data/cityService.js';
 import { calculateCityScore } from '../logic/cityRanking.js';
+import { Breadcrumb, BREADCRUMB_CSS } from '../components/ui/Breadcrumb.js';
 
 export function DestinationsPage() {
 
@@ -38,8 +39,14 @@ export function DestinationsPage() {
     lat: c.lat, lng: c.lng
   })));
 
+  const breadcrumb = Breadcrumb([
+    { label: 'Home', href: '/' },
+    { label: 'Destinations' }
+  ]);
+
   const content = `
     <style>
+      ${BREADCRUMB_CSS}
       /* -- Page layout -------------------- */
       .dest-page { background:#f8fafc;min-height:100vh; }
 
@@ -246,6 +253,7 @@ export function DestinationsPage() {
 
       <!-- HERO -->
       <section class="dest-hero">
+        ${breadcrumb}
         <div class="container dest-hero__inner">
           <p class="dest-hero__eyebrow">Global Explorer</p>
           <h1 class="dest-hero__title">Find your <em>next city</em>.</h1>

@@ -1,4 +1,5 @@
 import { MainLayout } from '../layouts/MainLayout.js';
+import { Breadcrumb, BREADCRUMB_CSS } from '../components/ui/Breadcrumb.js';
 import { getCountriesWithCities } from '../data/cityService.js';
 import { setPageMeta, injectSchema } from '../logic/setPageMeta.js';
 import { getCountryImage } from '../utils/imageHelper.js';
@@ -38,8 +39,14 @@ export function BestCitiesHubPage() {
     `;
   }).join('');
 
+  const breadcrumb = Breadcrumb([
+    { label: 'Home', href: '/' },
+    { label: 'Best Cities' }
+  ]);
+
   const content = `
     <style>
+      ${BREADCRUMB_CSS}
       .bch-hero {
         background:linear-gradient(135deg,#1e1b4b 0%,#312e81 55%,#0f172a 100%);
         padding:60px 0 52px;position:relative;overflow:hidden;
@@ -73,6 +80,7 @@ export function BestCitiesHubPage() {
     </style>
 
     <section class="bch-hero">
+      ${breadcrumb}
       <div class="container bch-hero__inner">
         <p class="bch-hero__eyebrow">City Explorer</p>
         <h1 class="bch-hero__title">Best Cities<br>by <em>Country</em></h1>

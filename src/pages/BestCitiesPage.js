@@ -4,6 +4,7 @@ import { calculateCityScore } from '../logic/cityRanking.js';
 import { setPageMeta, injectSchema } from '../logic/setPageMeta.js';
 import { getCountryImage } from '../utils/imageHelper.js';
 import { formatCurrency } from '../logic/budgetCalculator.js';
+import { Breadcrumb, BREADCRUMB_CSS } from '../components/ui/Breadcrumb.js';
 
 export function BestCitiesPage(params) {
   const { country, profile } = params;
@@ -99,8 +100,15 @@ export function BestCitiesPage(params) {
     `;
   }).join('');
 
+  const breadcrumb = Breadcrumb([
+    { label: 'Home', href: '/' },
+    { label: 'Best Cities', href: '/best-cities' },
+    { label: countryName }
+  ]);
+
   const content = `
     <style>
+      ${BREADCRUMB_CSS}
       .bcp-hero{position:relative;min-height:360px;display:flex;align-items:flex-end;overflow:hidden;}
       .bcp-hero__img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
       .bcp-hero__gradient{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.88) 0%,rgba(0,0,0,0.3) 60%);}
@@ -152,6 +160,7 @@ export function BestCitiesPage(params) {
     <section class="bcp-hero">
       <img class="bcp-hero__img" src="${countryImg}" alt="${countryName}" />
       <div class="bcp-hero__gradient"></div>
+      ${breadcrumb}
       <div class="bcp-hero__content">
         <div class="container">
           <p class="bcp-hero__eyebrow">Best Cities</p>
