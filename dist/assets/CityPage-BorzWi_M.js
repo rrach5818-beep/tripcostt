@@ -1,184 +1,84 @@
-/**
- * CityPage -- Full Redesign V2
- * Full-bleed hero, sticky nav, visual cost bars, image city cards
- */
+import{M as j}from"./MainLayout-Dpe6AwD5.js";import{b as Z,a as ee}from"./cityService-Dc1KzdCT.js";import{s as ie,i as $}from"./setPageMeta-Be_Dth_8.js";import{B as te,a as oe}from"./Breadcrumb-CCHdv48W.js";function g(t,o="$"){return`${o}${t.toLocaleString()}`}function f(t,o=""){return t!=null&&t!==""?t:o}function ae(t){const o=f(t.country,"the country"),e=f(t.continent,null);return e?`${o}, ${e}`:o}function se(t){const o=f(t.name,"This city"),e=ae(t);return`
+${o} is a popular destination located in ${e}.
+It attracts digital nomads, expatriates, and travelers who are looking to balance lifestyle, comfort, and cost of living.
 
-import { MainLayout } from '../layouts/MainLayout.js';
-import { getCityBySlug, getAllCities } from '../data/cityService.js';
-import { formatCurrency } from '../logic/budgetCalculator.js';
-import { getCityIntro, getCostSectionText, getLifestyleText, getNomadText, getFAQ } from '../data/cityTextTemplates.js';
-import { getCityMetaTitle, getCityMetaDescription } from '../data/citySeoTemplates.js';
-import { setPageMeta, injectSchema } from '../logic/setPageMeta.js';
+This page provides a detailed overview of the cost of living in ${o}, covering housing, food, transportation, and daily expenses to help you decide whether it fits your budget and lifestyle.
+  `.trim()}function S(t,o){const e=f(t.name,"this city"),a=f(t.country,"the country"),n={accommodation:`
+Housing costs in ${e} can vary significantly depending on location.
+Living in central areas is generally more expensive, while neighborhoods outside the city center tend to offer more affordable rental options.
+    `,food:`
+Food expenses in ${e} range from affordable local meals to higher-end dining experiences.
+Overall, grocery and dining costs remain reasonable compared to other major cities in ${a}.
+    `,transport:`
+Public transportation in ${e} is widely used and generally efficient.
+Monthly transport costs depend on commuting distance and daily travel habits.
+    `,utilities:`
+Utilities and internet services in ${e} are generally reliable.
+Internet quality is suitable for remote work, video calls, and everyday online activities.
+    `,leisure:`
+Leisure and entertainment costs in ${e} vary depending on lifestyle.
+The city offers a wide range of cultural activities, dining options, and entertainment for different budgets.
+    `};return f(n[o],"").trim()}function ne(t){const o=f(t.name,"this city");return`
+Living in ${o} offers a mix of lifestyle, culture, and modern infrastructure.
+Residents benefit from a dynamic urban environment, diverse food options, and convenient transportation.
 
-import { Breadcrumb, BREADCRUMB_CSS } from '../components/ui/Breadcrumb.js';
+The overall quality of life in ${o} makes it an attractive place to live for both locals and foreigners, depending on personal preferences and budget.
+  `.trim()}function re(t){return`
+${f(t.name,"this city")} is considered a viable option for digital nomads and expatriates.
+The city provides reliable internet infrastructure, access to essential services, and a generally safe living environment.
 
-export function CityPage(params) {
-  const { slug } = params;
-  const city = getCityBySlug(slug);
-
-  if (!city) {
-    return MainLayout(`
+While the cost of living may be higher than in some destinations, many remote workers find the stability and quality of life worth the investment.
+  `.trim()}function ce(t){const o=f(t.name,"this city");return[{question:`Is ${o} expensive?`,answer:`${o} is generally considered expensive compared to many cities, but actual costs depend on lifestyle choices and housing location.`},{question:`How much do you need per month to live in ${o}?`,answer:`Monthly expenses in ${o} vary based on accommodation, lifestyle, and personal spending habits. A moderate to high budget is typically required.`},{question:`Is ${o} safe for foreigners?`,answer:`${o} is generally regarded as a safe city, including for foreigners and long-term residents.`},{question:`Is ${o} good for digital nomads?`,answer:`${o} offers good infrastructure and internet connectivity for digital nomads, though cost considerations are important for long-term stays.`}]}function C(t,o=""){return t!=null&&t!==""?t:o}function pe(t){const o=C(t.name,"City"),e=C(t.country,"");return e?`Cost of Living in ${o}, ${e} - Prices & Budget`:`Cost of Living in ${o} - Prices & Budget`}function le(t){return`Detailed cost of living in ${C(t.name,"this city")}. Housing, food, transport, safety, and digital nomad lifestyle to help you plan your budget.`}function ve(t){const{slug:o}=t,e=Z(o);if(!e)return j(`
       <div style="text-align:center;padding:120px 24px">
         <div style="font-size:48px;margin-bottom:16px">🌍</div>
         <h1 style="font-size:28px;font-weight:800;color:#111827;margin-bottom:12px">City not found</h1>
         <p style="color:#6b7280;margin-bottom:32px">We couldn't find a city with that name.</p>
         <a href="/destinations" data-link class="btn btn--primary btn--lg">Browse all destinations</a>
       </div>
-    `);
-  }
-
-  /* -- Data normalisation --------------------------------- */
-  const costs      = city.costs ?? {};
-  const acc        = costs.accommodation ?? {};
-  const food       = costs.food ?? {};
-  const nomad      = city.digitalNomad ?? {};
-  const visa       = city.visa ?? {};
-  const tax        = city.tax ?? {};
-  const infra      = city.infrastructure ?? {};
-  const safety     = city.safety ?? {};
-  const macro      = city.macro ?? {};
-
-  const monthlyCenter = (acc.center ?? 0) * 30 + (food.standard ?? 0) * 30 + (costs.transport ?? 0) + (costs.coworking ?? 0);
-  const monthlySuburb = (acc.suburb ?? 0) * 30 + (food.standard ?? 0) * 30 + (costs.transport ?? 0) + (costs.coworking ?? 0);
-
-  /* -- Texts ---------------------------------------------- */
-  const introText     = getCityIntro(city);
-  const lifestyleText = getLifestyleText(city);
-  const nomadText     = getNomadText(city);
-  const faqItems      = getFAQ(city);
-  const metaTitle     = getCityMetaTitle(city);
-  const metaDesc      = getCityMetaDescription(city);
-
-  /* -- Similar cities ------------------------------------- */
-  const allCities = getAllCities();
-  let similar = allCities.filter(c => c.slug !== city.slug && c.country === city.country);
-  if (similar.length < 3) similar = allCities.filter(c => c.slug !== city.slug && c.continent === city.continent);
-  similar = similar.slice(0, 4);
-
-  /* -- Badges --------------------------------------------- */
-  const badges = [];
-  if (monthlyCenter < 1000)            badges.push({ text: 'Very Affordable', color: '#065f46', bg: '#d1fae5' });
-  else if (monthlyCenter < 1600)       badges.push({ text: 'Affordable',      color: '#065f46', bg: '#d1fae5' });
-  else if (monthlyCenter > 3000)       badges.push({ text: 'High Cost',       color: '#7f1d1d', bg: '#fee2e2' });
-  if (nomad.wifiSpeed >= 100)          badges.push({ text: `${nomad.wifiSpeed} Mbps`,  color: '#1e3a5f', bg: '#dbeafe' });
-  if (visa.remoteFriendly)             badges.push({ text: 'Nomad Visa',      color: '#4c1d95', bg: '#ede9fe' });
-  if ((safety.safetyIndex ?? 0) >= 80) badges.push({ text: 'Very Safe',       color: '#065f46', bg: '#d1fae5' });
-
-  const badgesHtml = badges.slice(0, 3).map(b =>
-    `<span style="background:${b.bg};color:${b.color};font-size:11px;font-weight:700;
-      padding:4px 12px;border-radius:999px;letter-spacing:0.3px">${b.text}</span>`
-  ).join('');
-
-  /* -- Score color helper --------------------------------- */
-  function sc(v, hi=80, mid=60) {
-    return v >= hi ? '#10b981' : v >= mid ? '#f59e0b' : '#ef4444';
-  }
-
-  /* -- Cost bars ------------------------------------------ */
-  const maxCost = Math.max(acc.center*30, acc.suburb*30, food.budget*30, food.standard*30, food.premium*30, costs.transport, costs.coworking);
-  function bar(val, color='#6366f1') {
-    const w = maxCost > 0 ? Math.round((val / maxCost) * 100) : 0;
-    return `<div style="flex:1;height:6px;background:#f1f5f9;border-radius:6px;overflow:hidden">
-      <div style="height:100%;width:${w}%;background:${color};border-radius:6px;transition:width 0.5s"></div>
-    </div>`;
-  }
-  function costRow(label, val, color) {
-    return `<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
-      <span style="font-size:12px;color:#6b7280;width:100px;flex-shrink:0">${label}</span>
-      ${bar(val, color)}
+    `);const a=e.costs??{},n=a.accommodation??{},s=a.food??{},p=e.digitalNomad??{},r=e.visa??{},w=e.tax??{},y=e.infrastructure??{},x=e.safety??{},q=e.macro??{},h=(n.center??0)*30+(s.standard??0)*30+(a.transport??0)+(a.coworking??0),R=(n.suburb??0)*30+(s.standard??0)*30+(a.transport??0)+(a.coworking??0),D=se(e),H=ne(e),N=re(e),P=ce(e),O=pe(e),Q=le(e),z=ee();let l=z.filter(i=>i.slug!==e.slug&&i.country===e.country);l.length<3&&(l=z.filter(i=>i.slug!==e.slug&&i.continent===e.continent)),l=l.slice(0,4);const m=[];h<1e3?m.push({text:"Very Affordable",color:"#065f46",bg:"#d1fae5"}):h<1600?m.push({text:"Affordable",color:"#065f46",bg:"#d1fae5"}):h>3e3&&m.push({text:"High Cost",color:"#7f1d1d",bg:"#fee2e2"}),p.wifiSpeed>=100&&m.push({text:`${p.wifiSpeed} Mbps`,color:"#1e3a5f",bg:"#dbeafe"}),r.remoteFriendly&&m.push({text:"Nomad Visa",color:"#4c1d95",bg:"#ede9fe"}),(x.safetyIndex??0)>=80&&m.push({text:"Very Safe",color:"#065f46",bg:"#d1fae5"});const V=m.slice(0,3).map(i=>`<span style="background:${i.bg};color:${i.color};font-size:11px;font-weight:700;
+      padding:4px 12px;border-radius:999px;letter-spacing:0.3px">${i.text}</span>`).join("");function I(i,c=80,d=60){return i>=c?"#10b981":i>=d?"#f59e0b":"#ef4444"}const T=Math.max(n.center*30,n.suburb*30,s.budget*30,s.standard*30,s.premium*30,a.transport,a.coworking);function G(i,c="#6366f1"){return`<div style="flex:1;height:6px;background:#f1f5f9;border-radius:6px;overflow:hidden">
+      <div style="height:100%;width:${T>0?Math.round(i/T*100):0}%;background:${c};border-radius:6px;transition:width 0.5s"></div>
+    </div>`}function v(i,c,d){return`<div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <span style="font-size:12px;color:#6b7280;width:100px;flex-shrink:0">${i}</span>
+      ${G(c,d)}
       <span style="font-size:13px;font-weight:700;color:#111827;white-space:nowrap;min-width:64px;text-align:right">
-        ${formatCurrency(val, city.currencySymbol)}/mo
+        ${g(c,e.currencySymbol)}/mo
       </span>
-    </div>`;
-  }
-
-  /* -- FAQ html ------------------------------------------- */
-  const coreFaq = [
-    {
-      q: `How much does it cost to live in ${city.name}?`,
-      a: `A standard lifestyle in ${city.name} costs between ${formatCurrency(monthlySuburb, city.currencySymbol)}/month (suburb) and ${formatCurrency(monthlyCenter, city.currencySymbol)}/month (city center), covering accommodation, food, transport and coworking.`
-    },
-    {
-      q: `Is ${city.name} safe for digital nomads?`,
-      a: `${city.name} has a safety index of ${safety.safetyIndex ?? 'N/A'}/100. ${(safety.safetyIndex ?? 0) >= 70 ? 'It is generally considered safe. Normal precautions apply.' : 'Exercise standard urban caution.'}`
-    },
-    {
-      q: `How is the internet in ${city.name}?`,
-      a: `Average WiFi speed in ${city.name} is ${nomad.wifiSpeed ?? 'N/A'} Mbps -- ${(nomad.wifiSpeed ?? 0) >= 100 ? 'excellent for video calls and remote work' : (nomad.wifiSpeed ?? 0) >= 50 ? 'good for most remote tasks' : 'adequate for basic tasks'}. Coworking spaces offer faster dedicated lines.`
-    },
-    {
-      q: `Does ${city.name} have a digital nomad visa?`,
-      a: visa.remoteFriendly
-        ? `Yes -- ${city.name} offers a remote work visa (${visa.type}). Stay up to ${visa.stayDurationMonths} months. Minimum income requirement: ${visa.minIncomeRequirement > 0 ? '$'+visa.minIncomeRequirement+'/mo' : 'none stated'}. Processing: ~${visa.processingTimeDays} days.`
-        : `${city.name} does not currently offer a dedicated digital nomad visa. Standard tourist or long-stay visas apply. Always verify with official sources before travelling.`
-    },
-  ];
-  const allFaq = [...(faqItems || []), ...coreFaq];
-  const faqHtml = allFaq.map((item, i) => `
-    <div class="cp-faq-item${i===0?' is-open':''}">
+    </div>`}const U=[{q:`How much does it cost to live in ${e.name}?`,a:`A standard lifestyle in ${e.name} costs between ${g(R,e.currencySymbol)}/month (suburb) and ${g(h,e.currencySymbol)}/month (city center), covering accommodation, food, transport and coworking.`},{q:`Is ${e.name} safe for digital nomads?`,a:`${e.name} has a safety index of ${x.safetyIndex??"N/A"}/100. ${(x.safetyIndex??0)>=70?"It is generally considered safe. Normal precautions apply.":"Exercise standard urban caution."}`},{q:`How is the internet in ${e.name}?`,a:`Average WiFi speed in ${e.name} is ${p.wifiSpeed??"N/A"} Mbps -- ${(p.wifiSpeed??0)>=100?"excellent for video calls and remote work":(p.wifiSpeed??0)>=50?"good for most remote tasks":"adequate for basic tasks"}. Coworking spaces offer faster dedicated lines.`},{q:`Does ${e.name} have a digital nomad visa?`,a:r.remoteFriendly?`Yes -- ${e.name} offers a remote work visa (${r.type}). Stay up to ${r.stayDurationMonths} months. Minimum income requirement: ${r.minIncomeRequirement>0?"$"+r.minIncomeRequirement+"/mo":"none stated"}. Processing: ~${r.processingTimeDays} days.`:`${e.name} does not currently offer a dedicated digital nomad visa. Standard tourist or long-stay visas apply. Always verify with official sources before travelling.`}],A=[...P||[],...U],W=A.map((i,c)=>`
+    <div class="cp-faq-item${c===0?" is-open":""}">
       <button class="cp-faq-q">
-        <span>${item.q || item.question}</span>
+        <span>${i.q||i.question}</span>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
       </button>
-      <div class="cp-faq-a">${item.a || item.answer}</div>
+      <div class="cp-faq-a">${i.a||i.answer}</div>
     </div>
-  `).join('');
-
-  /* -- Similar city cards --------------------------------- */
-  const similarHtml = similar.map(c => {
-    const m = Math.round((c.costs?.accommodation?.center ?? 0) * 30 + (c.costs?.food?.standard ?? 0) * 30 + (c.costs?.transport ?? 0) + (c.costs?.coworking ?? 0));
-    return `
-      <a href="/city/${c.slug}" data-link class="cp-sim-card">
+  `).join(""),Y=l.map(i=>{var d,_,u,L,M,E,B,F;const c=Math.round((((_=(d=i.costs)==null?void 0:d.accommodation)==null?void 0:_.center)??0)*30+(((L=(u=i.costs)==null?void 0:u.food)==null?void 0:L.standard)??0)*30+(((M=i.costs)==null?void 0:M.transport)??0)+(((E=i.costs)==null?void 0:E.coworking)??0));return`
+      <a href="/city/${i.slug}" data-link class="cp-sim-card">
         <div class="cp-sim-card__img">
-          <img src="${c.image}" alt="${c.name}" loading="lazy" />
+          <img src="${i.image}" alt="${i.name}" loading="lazy" />
           <div class="cp-sim-card__overlay"></div>
-          <span class="cp-sim-card__score" style="background:${sc(c.digitalNomad?.overallScore ?? 0)}">${c.digitalNomad?.overallScore ?? '--'}</span>
+          <span class="cp-sim-card__score" style="background:${I(((B=i.digitalNomad)==null?void 0:B.overallScore)??0)}">${((F=i.digitalNomad)==null?void 0:F.overallScore)??"--"}</span>
         </div>
         <div class="cp-sim-card__body">
-          <strong>${c.name}</strong>
-          <span>${c.country}</span>
-          <span class="cp-sim-card__price">~$${m.toLocaleString()}/mo</span>
+          <strong>${i.name}</strong>
+          <span>${i.country}</span>
+          <span class="cp-sim-card__price">~$${c.toLocaleString()}/mo</span>
         </div>
       </a>
-    `;
-  }).join('');
-
-  /* -- Compare links -------------------------------------- */
-  const compareHtml = similar.map(c =>
-    `<a href="/compare/${city.slug}-vs-${c.slug}" data-link class="cp-compare-pill">
-      ${city.name} vs ${c.name}
-    </a>`
-  ).join('');
-
-  /* -- Infra scores --------------------------------------- */
-  function infraBar(label, val, max=100) {
-    const pct = Math.round((val / max) * 100);
-    const color = sc(val, 80, 60);
-    return `
+    `}).join(""),K=l.map(i=>`<a href="/compare/${e.slug}-vs-${i.slug}" data-link class="cp-compare-pill">
+      ${e.name} vs ${i.name}
+    </a>`).join("");function b(i,c,d=100){const _=Math.round(c/d*100),u=I(c,80,60);return`
       <div style="margin-bottom:14px">
         <div style="display:flex;justify-content:space-between;margin-bottom:5px">
-          <span style="font-size:12px;color:#6b7280;font-weight:500">${label}</span>
-          <span style="font-size:12px;font-weight:700;color:${color}">${val}/100</span>
+          <span style="font-size:12px;color:#6b7280;font-weight:500">${i}</span>
+          <span style="font-size:12px;font-weight:700;color:${u}">${c}/100</span>
         </div>
         <div style="height:6px;background:#f1f5f9;border-radius:6px;overflow:hidden">
-          <div style="height:100%;width:${pct}%;background:${color};border-radius:6px;transition:width 0.5s"></div>
+          <div style="height:100%;width:${_}%;background:${u};border-radius:6px;transition:width 0.5s"></div>
         </div>
-      </div>`;
-  }
-
-  /* -------------------------------------------------------
-     PAGE CONTENT
-  ------------------------------------------------------- */
-  const breadcrumb = Breadcrumb([
-    { label: 'Home', href: '/' },
-    { label: 'Destinations', href: '/destinations' },
-    { label: city.country, href: `/best-cities/${city.country.toLowerCase().replace(/\s+/g, '-')}` },
-    { label: city.name }
-  ]);
-
-  const content = `
+      </div>`}const X=te([{label:"Home",href:"/"},{label:"Destinations",href:"/destinations"},{label:e.country,href:`/best-cities/${e.country.toLowerCase().replace(/\s+/g,"-")}`},{label:e.name}]),J=`
     <style>
-      ${BREADCRUMB_CSS}
+      ${oe}
       /* -- Hero ----------------------------- */
       .cp-hero {
         position:relative;min-height:480px;display:flex;align-items:flex-end;
@@ -415,31 +315,31 @@ export function CityPage(params) {
 
     <!-- -- HERO -- full bleed image ------------------------ -->
     <section class="cp-hero">
-      <img class="cp-hero__img" src="${city.image}" alt="Cost of living in ${city.name}" />
+      <img class="cp-hero__img" src="${e.image}" alt="Cost of living in ${e.name}" />
       <div class="cp-hero__gradient"></div>
-      ${breadcrumb}
+      ${X}
       <div class="cp-hero__content">
         <div class="container">
-          <div class="cp-hero__badges">${badgesHtml}</div>
-          <h1 class="cp-hero__title">Cost of Living in ${city.name}</h1>
-          <p class="cp-hero__sub">${city.country}   ${city.continent}   Updated March 2026</p>
+          <div class="cp-hero__badges">${V}</div>
+          <h1 class="cp-hero__title">Cost of Living in ${e.name}</h1>
+          <p class="cp-hero__sub">${e.country}   ${e.continent}   Updated March 2026</p>
 
           <div class="cp-hero__kpis">
             <div class="cp-hero__kpi">
               <div class="cp-hero__kpi-label">Monthly (center)</div>
-              <div class="cp-hero__kpi-val">${formatCurrency(monthlyCenter, city.currencySymbol)}</div>
+              <div class="cp-hero__kpi-val">${g(h,e.currencySymbol)}</div>
             </div>
             <div class="cp-hero__kpi">
               <div class="cp-hero__kpi-label">Nomad Score</div>
-              <div class="cp-hero__kpi-val">${nomad.overallScore ?? '--'}/100</div>
+              <div class="cp-hero__kpi-val">${p.overallScore??"--"}/100</div>
             </div>
             <div class="cp-hero__kpi">
               <div class="cp-hero__kpi-label">Safety Index</div>
-              <div class="cp-hero__kpi-val">${safety.safetyIndex ?? '--'}/100</div>
+              <div class="cp-hero__kpi-val">${x.safetyIndex??"--"}/100</div>
             </div>
             <div class="cp-hero__kpi">
               <div class="cp-hero__kpi-label">WiFi Speed</div>
-              <div class="cp-hero__kpi-val">${nomad.wifiSpeed ?? '--'} Mbps</div>
+              <div class="cp-hero__kpi-val">${p.wifiSpeed??"--"} Mbps</div>
             </div>
           </div>
 
@@ -448,7 +348,7 @@ export function CityPage(params) {
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
               Calculate my budget
             </a>
-            ${similar[0] ? `<a href="/compare/${city.slug}-vs-${similar[0].slug}" data-link class="cp-btn-secondary">Compare with ${similar[0].name} -></a>` : ''}
+            ${l[0]?`<a href="/compare/${e.slug}-vs-${l[0].slug}" data-link class="cp-btn-secondary">Compare with ${l[0].name} -></a>`:""}
           </div>
         </div>
       </div>
@@ -474,32 +374,32 @@ export function CityPage(params) {
     <section class="cp-section" id="overview">
       <div class="container">
         <p class="cp-section__eyebrow">At a Glance</p>
-        <h2 class="cp-section__title">${city.name} Overview</h2>
-        <p class="cp-section__lead">${introText}</p>
+        <h2 class="cp-section__title">${e.name} Overview</h2>
+        <p class="cp-section__lead">${D}</p>
 
         <div class="cp-kpis">
           <div class="cp-kpi">
             <div class="cp-kpi__icon">🏠</div>
             <div class="cp-kpi__label">City Center rent</div>
-            <div class="cp-kpi__val">${formatCurrency(acc.center * 30, city.currencySymbol)}</div>
+            <div class="cp-kpi__val">${g(n.center*30,e.currencySymbol)}</div>
             <div class="cp-kpi__sub">per month</div>
           </div>
           <div class="cp-kpi">
             <div class="cp-kpi__icon">🍽️</div>
             <div class="cp-kpi__label">Food (standard)</div>
-            <div class="cp-kpi__val">${formatCurrency(food.standard * 30, city.currencySymbol)}</div>
+            <div class="cp-kpi__val">${g(s.standard*30,e.currencySymbol)}</div>
             <div class="cp-kpi__sub">per month</div>
           </div>
           <div class="cp-kpi">
             <div class="cp-kpi__icon">🚇</div>
             <div class="cp-kpi__label">Transport</div>
-            <div class="cp-kpi__val">${formatCurrency(costs.transport, city.currencySymbol)}</div>
+            <div class="cp-kpi__val">${g(a.transport,e.currencySymbol)}</div>
             <div class="cp-kpi__sub">per month</div>
           </div>
           <div class="cp-kpi">
             <div class="cp-kpi__icon">💻</div>
             <div class="cp-kpi__label">Coworking</div>
-            <div class="cp-kpi__val">${formatCurrency(costs.coworking, city.currencySymbol)}</div>
+            <div class="cp-kpi__val">${g(a.coworking,e.currencySymbol)}</div>
             <div class="cp-kpi__sub">per month</div>
           </div>
         </div>
@@ -510,7 +410,7 @@ export function CityPage(params) {
     <section class="cp-section cp-section--alt" id="costs">
       <div class="container">
         <p class="cp-section__eyebrow">Monthly Expenses</p>
-        <h2 class="cp-section__title">Cost Breakdown in ${city.name}</h2>
+        <h2 class="cp-section__title">Cost Breakdown in ${e.name}</h2>
         <p class="cp-section__lead">
           All prices in USD. Bar lengths are relative to the highest cost category.
         </p>
@@ -518,24 +418,24 @@ export function CityPage(params) {
 
           <div class="cp-cost-card">
             <div class="cp-cost-card__title">🏠 Accommodation</div>
-            <div class="cp-cost-card__desc">${getCostSectionText(city, 'accommodation')}</div>
-            ${costRow('City center', acc.center * 30, '#6366f1')}
-            ${costRow('Suburb', acc.suburb * 30, '#8b5cf6')}
+            <div class="cp-cost-card__desc">${S(e,"accommodation")}</div>
+            ${v("City center",n.center*30,"#6366f1")}
+            ${v("Suburb",n.suburb*30,"#8b5cf6")}
           </div>
 
           <div class="cp-cost-card">
             <div class="cp-cost-card__title">🍽️ Food & Dining</div>
-            <div class="cp-cost-card__desc">${getCostSectionText(city, 'food')}</div>
-            ${costRow('Budget', food.budget * 30, '#10b981')}
-            ${costRow('Standard', food.standard * 30, '#059669')}
-            ${costRow('Premium', food.premium * 30, '#047857')}
+            <div class="cp-cost-card__desc">${S(e,"food")}</div>
+            ${v("Budget",s.budget*30,"#10b981")}
+            ${v("Standard",s.standard*30,"#059669")}
+            ${v("Premium",s.premium*30,"#047857")}
           </div>
 
           <div class="cp-cost-card">
             <div class="cp-cost-card__title">🚇 Transport & Work</div>
-            <div class="cp-cost-card__desc">${getCostSectionText(city, 'transport')}</div>
-            ${costRow('Transport', costs.transport, '#f59e0b')}
-            ${costRow('Coworking', costs.coworking, '#d97706')}
+            <div class="cp-cost-card__desc">${S(e,"transport")}</div>
+            ${v("Transport",a.transport,"#f59e0b")}
+            ${v("Coworking",a.coworking,"#d97706")}
           </div>
 
         </div>
@@ -551,28 +451,28 @@ export function CityPage(params) {
 
           <div class="cp-infra-card">
             <div class="cp-infra-card__title">Infrastructure Scores</div>
-            ${infraBar('Public Transport', infra.publicTransportQuality ?? 0)}
-            ${infraBar('Healthcare', infra.healthcareQuality ?? 0)}
-            ${infraBar('English Proficiency', infra.englishProficiency ?? 0)}
-            ${infraBar('Airport Connectivity', infra.airportConnectivity ?? 0)}
+            ${b("Public Transport",y.publicTransportQuality??0)}
+            ${b("Healthcare",y.healthcareQuality??0)}
+            ${b("English Proficiency",y.englishProficiency??0)}
+            ${b("Airport Connectivity",y.airportConnectivity??0)}
           </div>
 
           <div class="cp-infra-card">
             <div class="cp-infra-card__title">Safety & Macro</div>
-            ${infraBar('Safety Index', safety.safetyIndex ?? 0)}
-            ${infraBar('Nomad Score', nomad.overallScore ?? 0)}
+            ${b("Safety Index",x.safetyIndex??0)}
+            ${b("Nomad Score",p.overallScore??0)}
             <div style="margin-top:20px;padding-top:16px;border-top:1px solid #f1f5f9">
               <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px">
                 <span style="color:#6b7280">Crime Level</span>
-                <strong style="color:#111827">${safety.crimeLevel ?? '--'}</strong>
+                <strong style="color:#111827">${x.crimeLevel??"--"}</strong>
               </div>
               <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:8px">
                 <span style="color:#6b7280">Currency Stability</span>
-                <strong style="color:#111827">${macro.currencyStability ?? '--'}</strong>
+                <strong style="color:#111827">${q.currencyStability??"--"}</strong>
               </div>
               <div style="display:flex;justify-content:space-between;font-size:12px">
                 <span style="color:#6b7280">Inflation Rate</span>
-                <strong style="color:#111827">${macro.inflationRate ?? '--'}%</strong>
+                <strong style="color:#111827">${q.inflationRate??"--"}%</strong>
               </div>
             </div>
           </div>
@@ -585,43 +485,41 @@ export function CityPage(params) {
     <section class="cp-section cp-section--alt" id="visa">
       <div class="container">
         <p class="cp-section__eyebrow">Legal & Financial</p>
-        <h2 class="cp-section__title">Visa & Tax in ${city.name}</h2>
+        <h2 class="cp-section__title">Visa & Tax in ${e.name}</h2>
         <p class="cp-section__lead">
-          ${visa.remoteFriendly
-            ? `${city.name} offers a dedicated remote work visa -- one of the most accessible destinations for digital nomads and expats.`
-            : `${city.name} does not currently offer a dedicated digital nomad visa. Standard tourist or long-stay visas apply.`}
+          ${r.remoteFriendly?`${e.name} offers a dedicated remote work visa -- one of the most accessible destinations for digital nomads and expats.`:`${e.name} does not currently offer a dedicated digital nomad visa. Standard tourist or long-stay visas apply.`}
         </p>
         <div class="cp-visa">
           <div class="cp-visa__head">
-            <span class="cp-visa__head-title">${visa.type ?? 'Standard Visa'}</span>
-            <span class="cp-visa__tag" style="background:${visa.remoteFriendly ? '#d1fae5' : '#f1f5f9'};color:${visa.remoteFriendly ? '#065f46' : '#6b7280'}">
-              ${visa.remoteFriendly ? '✅ Nomad Friendly' : '  Standard'}
+            <span class="cp-visa__head-title">${r.type??"Standard Visa"}</span>
+            <span class="cp-visa__tag" style="background:${r.remoteFriendly?"#d1fae5":"#f1f5f9"};color:${r.remoteFriendly?"#065f46":"#6b7280"}">
+              ${r.remoteFriendly?"✅ Nomad Friendly":"  Standard"}
             </span>
           </div>
           <div class="cp-visa__body">
             <div class="cp-visa__row">
               <span class="cp-visa__row-label">Max stay</span>
-              <span class="cp-visa__row-val">${visa.stayDurationMonths ?? '--'} months</span>
+              <span class="cp-visa__row-val">${r.stayDurationMonths??"--"} months</span>
             </div>
             <div class="cp-visa__row">
               <span class="cp-visa__row-label">Processing time</span>
-              <span class="cp-visa__row-val">~${visa.processingTimeDays ?? '--'} days</span>
+              <span class="cp-visa__row-val">~${r.processingTimeDays??"--"} days</span>
             </div>
             <div class="cp-visa__row">
               <span class="cp-visa__row-label">Min. income required</span>
-              <span class="cp-visa__row-val">${visa.minIncomeRequirement > 0 ? '$'+visa.minIncomeRequirement+'/mo' : 'None stated'}</span>
+              <span class="cp-visa__row-val">${r.minIncomeRequirement>0?"$"+r.minIncomeRequirement+"/mo":"None stated"}</span>
             </div>
             <div class="cp-visa__row">
               <span class="cp-visa__row-label">Income tax (top rate)</span>
-              <span class="cp-visa__row-val">${tax.personalIncomeTaxTopRate ?? '--'}%</span>
+              <span class="cp-visa__row-val">${w.personalIncomeTaxTopRate??"--"}%</span>
             </div>
             <div class="cp-visa__row">
               <span class="cp-visa__row-label">Corporate tax</span>
-              <span class="cp-visa__row-val">${tax.corporateTax ?? '--'}%</span>
+              <span class="cp-visa__row-val">${w.corporateTax??"--"}%</span>
             </div>
             <div class="cp-visa__row">
               <span class="cp-visa__row-label">Capital gains tax</span>
-              <span class="cp-visa__row-val">${tax.capitalGainsTax ?? '--'}%</span>
+              <span class="cp-visa__row-val">${w.capitalGainsTax??"--"}%</span>
             </div>
           </div>
         </div>
@@ -632,8 +530,8 @@ export function CityPage(params) {
     <section class="cp-section" id="lifestyle">
       <div class="container">
         <p class="cp-section__eyebrow">Daily Life</p>
-        <h2 class="cp-section__title">Living in ${city.name}</h2>
-        <p class="cp-section__lead">${lifestyleText}</p>
+        <h2 class="cp-section__title">Living in ${e.name}</h2>
+        <p class="cp-section__lead">${H}</p>
       </div>
     </section>
 
@@ -641,8 +539,8 @@ export function CityPage(params) {
     <section class="cp-section cp-section--alt" id="nomads">
       <div class="container">
         <p class="cp-section__eyebrow">Remote Work</p>
-        <h2 class="cp-section__title">Is ${city.name} good for digital nomads?</h2>
-        <p class="cp-section__lead">${nomadText}</p>
+        <h2 class="cp-section__title">Is ${e.name} good for digital nomads?</h2>
+        <p class="cp-section__lead">${N}</p>
       </div>
     </section>
 
@@ -650,8 +548,8 @@ export function CityPage(params) {
     <section class="cp-section" id="faq">
       <div class="container">
         <p class="cp-section__eyebrow">Questions</p>
-        <h2 class="cp-section__title">FAQ -- Living in ${city.name}</h2>
-        <div class="cp-faq-list">${faqHtml}</div>
+        <h2 class="cp-section__title">FAQ -- Living in ${e.name}</h2>
+        <div class="cp-faq-list">${W}</div>
       </div>
     </section>
 
@@ -659,13 +557,13 @@ export function CityPage(params) {
     <section class="cp-section cp-section--alt" id="similar">
       <div class="container">
         <p class="cp-section__eyebrow">Explore More</p>
-        <h2 class="cp-section__title">Cities similar to ${city.name}</h2>
+        <h2 class="cp-section__title">Cities similar to ${e.name}</h2>
         <p class="cp-section__lead">Same region, comparable cost or lifestyle profile.</p>
-        <div class="cp-similar">${similarHtml}</div>
+        <div class="cp-similar">${Y}</div>
 
         <div style="margin-top:32px">
-          <p style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#9ca3af;margin-bottom:12px">Compare ${city.name} with</p>
-          <div class="cp-compare-pills">${compareHtml}</div>
+          <p style="font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#9ca3af;margin-bottom:12px">Compare ${e.name} with</p>
+          <div class="cp-compare-pills">${K}</div>
         </div>
       </div>
     </section>
@@ -682,8 +580,8 @@ export function CityPage(params) {
           <div style="flex-shrink:0;position:relative;z-index:1">
             <div id="ebook-cover" style="width:220px;height:310px;border-radius:12px;overflow:hidden;box-shadow:0 25px 50px rgba(0,0,0,0.4),0 0 0 1px rgba(255,255,255,0.1);transform:perspective(800px) rotateY(-6deg);background:linear-gradient(135deg,#312e81,#6366f1);display:flex;align-items:center;justify-content:center">
               <img
-                src="/images/ebooks/${city.slug}-cover.jpg"
-                alt="${city.name} Complete Digital Nomad Guide - eBook"
+                src="/images/ebooks/${e.slug}-cover.jpg"
+                alt="${e.name} Complete Digital Nomad Guide - eBook"
                 style="width:100%;height:100%;object-fit:cover;display:block"
                 loading="lazy"
               />
@@ -693,8 +591,8 @@ export function CityPage(params) {
           <!-- Text content -->
           <div style="flex:1;position:relative;z-index:1">
             <div style="display:inline-block;padding:4px 12px;background:rgba(250,204,21,0.2);border:1px solid rgba(250,204,21,0.3);border-radius:99px;font-size:10px;font-weight:700;color:#fde68a;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px">NEW - PREMIUM GUIDE</div>
-            <h2 style="font-size:28px;font-weight:900;color:#fff;letter-spacing:-0.03em;line-height:1.2;margin:0 0 12px 0">The Complete ${city.name} Guide for Digital Nomads</h2>
-            <p style="font-size:15px;color:rgba(255,255,255,0.7);line-height:1.6;margin:0 0 8px 0">Everything you need to relocate and thrive in ${city.name} -- cost breakdowns, neighborhoods, coworking spots, visa process, tax optimization, and insider tips from expats already there.</p>
+            <h2 style="font-size:28px;font-weight:900;color:#fff;letter-spacing:-0.03em;line-height:1.2;margin:0 0 12px 0">The Complete ${e.name} Guide for Digital Nomads</h2>
+            <p style="font-size:15px;color:rgba(255,255,255,0.7);line-height:1.6;margin:0 0 8px 0">Everything you need to relocate and thrive in ${e.name} -- cost breakdowns, neighborhoods, coworking spots, visa process, tax optimization, and insider tips from expats already there.</p>
             <ul style="list-style:none;padding:0;margin:0 0 24px 0;display:flex;flex-wrap:wrap;gap:8px">
               <li style="display:flex;align-items:center;gap:5px;font-size:12px;color:rgba(255,255,255,0.6);background:rgba(255,255,255,0.08);padding:5px 12px;border-radius:99px">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#818cf8" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
@@ -713,7 +611,7 @@ export function CityPage(params) {
                 Tax checklists
               </li>
             </ul>
-            <a href="/ebook/${city.slug}" class="cp-btn-primary" style="display:inline-flex;align-items:center;gap:8px;font-size:15px;padding:14px 28px;background:linear-gradient(135deg,#f59e0b,#f97316);border:none;border-radius:12px;color:#fff;font-weight:700;text-decoration:none;box-shadow:0 4px 15px rgba(245,158,11,0.4)">
+            <a href="/ebook/${e.slug}" class="cp-btn-primary" style="display:inline-flex;align-items:center;gap:8px;font-size:15px;padding:14px 28px;background:linear-gradient(135deg,#f59e0b,#f97316);border:none;border-radius:12px;color:#fff;font-weight:700;text-decoration:none;box-shadow:0 4px 15px rgba(245,158,11,0.4)">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
               Get the eBook
             </a>
@@ -725,107 +623,11 @@ export function CityPage(params) {
     <!-- -- CTA -------------------------------------------- -->
     <section class="cp-cta">
       <div class="cp-cta__inner container">
-        <h2>Plan your budget for ${city.name}</h2>
+        <h2>Plan your budget for ${e.name}</h2>
         <p>Get a personalized cost estimate based on your income and lifestyle.</p>
         <a href="/calculator" data-link class="cp-btn-primary" style="display:inline-flex;font-size:15px;padding:13px 28px">
           Open the Calculator ->
         </a>
       </div>
     </section>
-  `;
-
-  const canonicalPath = `/city/${city.slug}`;
-
-  setPageMeta({
-    title:       metaTitle,
-    description: metaDesc,
-    canonical:   canonicalPath,
-    image:       city.image
-  });
-
-  // -- JSON-LD: BreadcrumbList ----------------------------
-  injectSchema('breadcrumb-jsonld', {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home',         item: 'https://www.livingcostatlas.com/' },
-      { '@type': 'ListItem', position: 2, name: 'Destinations', item: 'https://www.livingcostatlas.com/destinations' },
-      { '@type': 'ListItem', position: 3, name: city.name,      item: `https://www.livingcostatlas.com${canonicalPath}` }
-    ]
-  });
-
-  // -- JSON-LD: Place (city entity) -----------------------
-  injectSchema('place-jsonld', {
-    '@context': 'https://schema.org',
-    '@type': 'City',
-    name: city.name,
-    containedInPlace: {
-      '@type': 'Country',
-      name: city.country
-    },
-    geo: city.lat && city.lng ? {
-      '@type': 'GeoCoordinates',
-      latitude: city.lat,
-      longitude: city.lng
-    } : undefined,
-    image: city.image,
-    url: `https://www.livingcostatlas.com${canonicalPath}`
-  });
-
-  // -- JSON-LD: FAQPage -----------------------------------
-  injectSchema('faq-jsonld', {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: allFaq.map(item => ({
-      '@type': 'Question',
-      name: item.q || item.question,
-      acceptedAnswer: { '@type': 'Answer', text: item.a || item.answer }
-    }))
-  });
-
-  return MainLayout(content);
-}
-
-/* ---------------------------------------------------------
-   Interactivity
---------------------------------------------------------- */
-export function setupCityPageInteractivity() {
-
-  // FAQ accordion
-  document.querySelectorAll('.cp-faq-item').forEach(item => {
-    item.querySelector('.cp-faq-q')?.addEventListener('click', () => {
-      const isOpen = item.classList.contains('is-open');
-      document.querySelectorAll('.cp-faq-item').forEach(i => i.classList.remove('is-open'));
-      if (!isOpen) item.classList.add('is-open');
-    });
-  });
-
-  // Sticky nav active section tracking
-  const sections = document.querySelectorAll('[id]');
-  const navLinks  = document.querySelectorAll('.cp-nav__link[data-section]');
-
-  if (navLinks.length && sections.length) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          navLinks.forEach(l => l.classList.remove('is-active'));
-          const active = document.querySelector(`.cp-nav__link[data-section="${entry.target.id}"]`);
-          if (active) active.classList.add('is-active');
-        }
-      });
-    }, { rootMargin: '-50% 0px -40% 0px' });
-
-    sections.forEach(s => observer.observe(s));
-  }
-
-  // Smooth scroll for nav links
-  navLinks.forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const id = link.dataset.section;
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-  });
-}
-
-export default CityPage;
+  `,k=`/city/${e.slug}`;return ie({title:O,description:Q,canonical:k,image:e.image}),$("breadcrumb-jsonld",{"@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:[{"@type":"ListItem",position:1,name:"Home",item:"https://www.livingcostatlas.com/"},{"@type":"ListItem",position:2,name:"Destinations",item:"https://www.livingcostatlas.com/destinations"},{"@type":"ListItem",position:3,name:e.name,item:`https://www.livingcostatlas.com${k}`}]}),$("place-jsonld",{"@context":"https://schema.org","@type":"City",name:e.name,containedInPlace:{"@type":"Country",name:e.country},geo:e.lat&&e.lng?{"@type":"GeoCoordinates",latitude:e.lat,longitude:e.lng}:void 0,image:e.image,url:`https://www.livingcostatlas.com${k}`}),$("faq-jsonld",{"@context":"https://schema.org","@type":"FAQPage",mainEntity:A.map(i=>({"@type":"Question",name:i.q||i.question,acceptedAnswer:{"@type":"Answer",text:i.a||i.answer}}))}),j(J)}function xe(){document.querySelectorAll(".cp-faq-item").forEach(e=>{var a;(a=e.querySelector(".cp-faq-q"))==null||a.addEventListener("click",()=>{const n=e.classList.contains("is-open");document.querySelectorAll(".cp-faq-item").forEach(s=>s.classList.remove("is-open")),n||e.classList.add("is-open")})});const t=document.querySelectorAll("[id]"),o=document.querySelectorAll(".cp-nav__link[data-section]");if(o.length&&t.length){const e=new IntersectionObserver(a=>{a.forEach(n=>{if(n.isIntersecting){o.forEach(p=>p.classList.remove("is-active"));const s=document.querySelector(`.cp-nav__link[data-section="${n.target.id}"]`);s&&s.classList.add("is-active")}})},{rootMargin:"-50% 0px -40% 0px"});t.forEach(a=>e.observe(a))}o.forEach(e=>{e.addEventListener("click",a=>{var s;a.preventDefault();const n=e.dataset.section;(s=document.getElementById(n))==null||s.scrollIntoView({behavior:"smooth",block:"start"})})})}export{ve as CityPage,ve as default,xe as setupCityPageInteractivity};
