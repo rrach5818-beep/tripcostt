@@ -716,7 +716,7 @@ export function CalculatorPage() {
             remote workers, expats and families planning an international relocation.
           </p>
           <p>
-            Unlike generic cost-of-living indexes, TripCost lets you adjust for your actual lifestyle:
+            Unlike generic cost-of-living indexes, Living Cost Atlas lets you adjust for your actual lifestyle:
             city center vs. suburb housing, budget vs. premium spending, and three relocation profiles
             (nomad, founder, family) that weight the scoring differently.
           </p>

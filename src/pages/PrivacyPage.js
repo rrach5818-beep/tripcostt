@@ -65,7 +65,7 @@ export function PrivacyPage() {
       {
         id: 'intro',
         title: 'Introduction',
-        content: `<p>TripCost is committed to protecting your privacy. This policy explains how we handle information when you use our website. We built TripCost with a privacy-first mindset: we collect as little data as possible and never sell it.</p>`
+        content: `<p>Living Cost Atlas is committed to protecting your privacy. This policy explains how we handle information when you use our website. We built Living Cost Atlas with a privacy-first mindset: we collect as little data as possible and never sell it.</p>`
       },
       {
         id: 'what-we-collect',
@@ -77,7 +77,7 @@ export function PrivacyPage() {
             <li>Feedback or suggestions you voluntarily submit</li>
           </ul>
           <h3>Automatically collected</h3>
-          <p>When you visit TripCost, basic analytics data may be collected automatically:</p>
+          <p>When you visit Living Cost Atlas, basic analytics data may be collected automatically:</p>
           <ul>
             <li>Browser type and version</li>
             <li>Pages visited and time on page</li>
@@ -91,16 +91,16 @@ export function PrivacyPage() {
         title: 'How We Use Your Information',
         content: `<p>We use collected data solely to:</p>
           <ul>
-            <li>Understand how people use TripCost and improve the experience</li>
+            <li>Understand how people use Living Cost Atlas and improve the experience</li>
             <li>Identify and fix technical issues</li>
             <li>Respond to your enquiries if you contact us</li>
           </ul>
-          <p>We do not use your data for advertising, profiling or any commercial purpose beyond operating TripCost.</p>`
+          <p>We do not use your data for advertising, profiling or any commercial purpose beyond operating Living Cost Atlas.</p>`
       },
       {
         id: 'cookies',
         title: 'Cookies',
-        content: `<p>TripCost may use minimal cookies for analytics and session management. We do not use third-party advertising cookies. You can control cookie settings through your browser preferences. Disabling cookies will not affect your ability to use TripCost.</p>`
+        content: `<p>Living Cost Atlas may use minimal cookies for analytics and session management. We do not use third-party advertising cookies. You can control cookie settings through your browser preferences. Disabling cookies will not affect your ability to use Living Cost Atlas.</p>`
       },
       {
         id: 'data-sharing',
@@ -127,12 +127,12 @@ export function PrivacyPage() {
       {
         id: 'children',
         title: "Children's Privacy",
-        content: `<p>TripCost is not directed at individuals under 16. We do not knowingly collect data from minors. If you believe a child has submitted personal information, contact us and we will delete it promptly.</p>`
+        content: `<p>Living Cost Atlas is not directed at individuals under 16. We do not knowingly collect data from minors. If you believe a child has submitted personal information, contact us and we will delete it promptly.</p>`
       },
       {
         id: 'changes',
         title: 'Changes to This Policy',
-        content: `<p>We may update this Privacy Policy periodically. Material changes will be reflected by the updated date below. Continued use of TripCost after changes constitutes acceptance of the revised policy.</p>`
+        content: `<p>We may update this Privacy Policy periodically. Material changes will be reflected by the updated date below. Continued use of Living Cost Atlas after changes constitutes acceptance of the revised policy.</p>`
       },
       {
         id: 'contact',

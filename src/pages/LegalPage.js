@@ -115,18 +115,18 @@ export function LegalPage() {
   return MainLayout(legalLayout({
     eyebrow: 'Legal',
     title: 'Legal Notice',
-    subtitle: 'Important information about TripCost and our services.',
+    subtitle: 'Important information about Living Cost Atlas and our services.',
     sections: [
       {
         id: 'service',
         title: 'Service Provider',
-        content: `<p>TripCost is a free online platform providing cost of living information and budget planning tools for digital nomads, remote workers and expats. This website operates for informational purposes only and does not constitute financial, legal or relocation advice.</p>`
+        content: `<p>Living Cost Atlas is a free online platform providing cost of living information and budget planning tools for digital nomads, remote workers and expats. This website operates for informational purposes only and does not constitute financial, legal or relocation advice.</p>`
       },
       {
         id: 'disclaimer',
         title: 'Disclaimer',
-        content: `<p>All information on TripCost is provided for general informational purposes. While we strive for accuracy, we make no warranties -- express or implied -- about the completeness, accuracy or reliability of the data presented.</p>
-        <p>Any reliance you place on our information is strictly at your own risk. TripCost shall not be liable for any direct, indirect or consequential loss arising from your use of this website.</p>`
+        content: `<p>All information on Living Cost Atlas is provided for general informational purposes. While we strive for accuracy, we make no warranties -- express or implied -- about the completeness, accuracy or reliability of the data presented.</p>
+        <p>Any reliance you place on our information is strictly at your own risk. Living Cost Atlas shall not be liable for any direct, indirect or consequential loss arising from your use of this website.</p>`
       },
       {
         id: 'data-sources',
@@ -141,7 +141,7 @@ export function LegalPage() {
       {
         id: 'copyright',
         title: 'Copyright',
-        content: `<p>All original content on TripCost -- including text, structure and interface design -- is the property of TripCost and protected under international copyright law. Unauthorised reproduction or distribution is prohibited. City and country images are sourced from Unsplash under their free licence.</p>`
+        content: `<p>All original content on Living Cost Atlas -- including text, structure and interface design -- is the property of Living Cost Atlas and protected under international copyright law. Unauthorised reproduction or distribution is prohibited. City and country images are sourced from Unsplash under their free licence.</p>`
       },
       {
         id: 'modifications',

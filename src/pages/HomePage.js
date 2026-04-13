@@ -403,7 +403,7 @@ export function HomePage() {
         <div class="home-section-header">
           <span class="home-section-header__eyebrow">Who it's for</span>
           <h2>Built for people who move</h2>
-          <p>Whether you're planning a full relocation or just exploring options, TripCost gives you the numbers to decide with confidence.</p>
+          <p>Whether you're planning a full relocation or just exploring options, Living Cost Atlas gives you the numbers to decide with confidence.</p>
         </div>
         <div class="home-profiles__grid">${profilesHtml}</div>
       </div>

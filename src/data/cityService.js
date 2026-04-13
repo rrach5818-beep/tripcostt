@@ -80,7 +80,7 @@ function computeNomadScore(city) {
 }
 
 /* ============================================================
-   🔹 TRIPCOST INDEX 
+   COST ATLAS INDEX
 ============================================================ */
 
 function computeTripCostIndex(city) {

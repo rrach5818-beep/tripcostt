@@ -3,13 +3,13 @@
  * Updates title, description, canonical, OG tags + injects page-level JSON-LD
  */
 
-const BASE_URL = 'https://tripcost.co';
+const BASE_URL = 'https://www.livingcostatlas.com';
 
 export function setPageMeta({ title, description, canonical, jsonLd, image }) {
   // -- Title ----------------------------------------------
   const fullTitle = title
-    ? `${title} | TripCost`
-    : 'TripCost -- Free Cost of Living Calculator';
+    ? `${title} | Living Cost Atlas`
+    : 'Living Cost Atlas -- Free Cost of Living Calculator';
   document.title = fullTitle;
 
   // -- Meta description -----------------------------------

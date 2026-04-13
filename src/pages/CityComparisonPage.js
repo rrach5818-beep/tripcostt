@@ -40,13 +40,13 @@ export function CityComparisonPage(params) {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
     name: `${cityA.name} vs ${cityB.name} Cost of Living`,
-    url: `https://tripcost.co/compare/${slugA}-vs-${slugB}`,
+    url: `https://www.livingcostatlas.com/compare/${slugA}-vs-${slugB}`,
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home',       item: 'https://tripcost.co/' },
-        { '@type': 'ListItem', position: 2, name: 'Calculator', item: 'https://tripcost.co/calculator' },
-        { '@type': 'ListItem', position: 3, name: `${cityA.name} vs ${cityB.name}`, item: `https://tripcost.co/compare/${slugA}-vs-${slugB}` }
+        { '@type': 'ListItem', position: 1, name: 'Home',       item: 'https://www.livingcostatlas.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Calculator', item: 'https://www.livingcostatlas.com/calculator' },
+        { '@type': 'ListItem', position: 3, name: `${cityA.name} vs ${cityB.name}`, item: `https://www.livingcostatlas.com/compare/${slugA}-vs-${slugB}` }
       ]
     }
   });

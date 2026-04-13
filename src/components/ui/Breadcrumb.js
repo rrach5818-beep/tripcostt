@@ -11,7 +11,7 @@
 
 import { injectSchema } from '../../logic/setPageMeta.js';
 
-const BASE_URL = 'https://tripcost.co';
+const BASE_URL = 'https://www.livingcostatlas.com';
 
 /**
  * Render breadcrumb HTML and inject JSON-LD schema.

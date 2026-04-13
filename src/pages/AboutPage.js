@@ -195,10 +195,10 @@ export function AboutPage() {
     <!-- HERO -->
     <section class="ab-hero">
       <div class="container ab-hero__inner">
-        <p class="ab-hero__eyebrow">About TripCost</p>
+        <p class="ab-hero__eyebrow">About Living Cost Atlas</p>
         <h1 class="ab-hero__title">Real data for people<br>who choose to <em>move differently</em>.</h1>
         <p class="ab-hero__sub">
-          We built TripCost because planning an international move shouldn't require
+          We built Living Cost Atlas because planning an international move shouldn't require
           ten browser tabs and three spreadsheets. One tool, all the data, no guesswork.
         </p>
       </div>
@@ -236,7 +236,7 @@ export function AboutPage() {
             <p class="ab-eyebrow">Our Mission</p>
             <h2 class="ab-title">Transparent cost data for everyone planning a move.</h2>
             <p class="ab-text">
-              TripCost was built to solve a real problem: when you're considering a relocation,
+              Living Cost Atlas was built to solve a real problem: when you're considering a relocation,
               cost information is scattered, outdated or buried in forums. We aggregate it,
               structure it and put it in one place -- free, clear and actionable.
             </p>
@@ -256,7 +256,7 @@ export function AboutPage() {
             </div>
             <div class="ab-mission-card__tag">
               <span style="width:6px;height:6px;background:#34d399;border-radius:50%"></span>
-              TripCost manifesto
+              Living Cost Atlas manifesto
             </div>
           </div>
         </div>
@@ -364,7 +364,7 @@ export function AboutPage() {
           <div class="ab-value">
             <div class="ab-value__icon">🛡️</div>
             <div class="ab-value__title">Privacy Respected</div>
-            <div class="ab-value__desc">No user tracking beyond anonymised analytics. No selling data. No ad profiling. You use TripCost, not the other way around.</div>
+            <div class="ab-value__desc">No user tracking beyond anonymised analytics. No selling data. No ad profiling. You use Living Cost Atlas, not the other way around.</div>
           </div>
         </div>
       </div>
@@ -384,8 +384,8 @@ export function AboutPage() {
   `;
 
   setPageMeta({
-    title: 'About TripCost -- Free Cost of Living Intelligence',
-    description: 'TripCost provides free, transparent cost of living data for digital nomads, expats and remote workers. Real data, updated quarterly, no ads.',
+    title: 'About Living Cost Atlas -- Free Cost of Living Intelligence',
+    description: 'Living Cost Atlas provides free, transparent cost of living data for digital nomads, expats and remote workers. Real data, updated quarterly, no ads.',
     canonical: '/about'
   });
 

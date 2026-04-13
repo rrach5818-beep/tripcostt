@@ -29,13 +29,13 @@ export function BestCountriesPage(params = {}) {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
     name: `Best Countries for ${activeProfile}`,
-    url: `https://tripcost.co/best-countries/${activeProfile}`,
+    url: `https://www.livingcostatlas.com/best-countries/${activeProfile}`,
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home',             item: 'https://tripcost.co/' },
-        { '@type': 'ListItem', position: 2, name: 'Best Countries',   item: 'https://tripcost.co/best-countries' },
-        { '@type': 'ListItem', position: 3, name: activeProfile,      item: `https://tripcost.co/best-countries/${activeProfile}` }
+        { '@type': 'ListItem', position: 1, name: 'Home',             item: 'https://www.livingcostatlas.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Best Countries',   item: 'https://www.livingcostatlas.com/best-countries' },
+        { '@type': 'ListItem', position: 3, name: activeProfile,      item: `https://www.livingcostatlas.com/best-countries/${activeProfile}` }
       ]
     }
   });

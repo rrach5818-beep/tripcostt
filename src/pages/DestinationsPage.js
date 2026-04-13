@@ -338,7 +338,7 @@ export function DestinationsPage() {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
     name: 'Destinations -- Cost of Living by City',
-    url: 'https://tripcost.co/destinations',
+    url: 'https://www.livingcostatlas.com/destinations',
     description: 'Browse 50+ cities ranked by cost, safety and nomad score.'
   });
 

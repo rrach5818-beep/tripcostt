@@ -547,12 +547,12 @@ export function NomadPage() {
     '@type': 'WebPage',
     name: 'Best Cities for Digital Nomads 2026',
     description: 'Complete ranking of 50+ cities for digital nomads based on cost, WiFi, safety and visa access.',
-    url: 'https://tripcost.co/nomad',
+    url: 'https://www.livingcostatlas.com/nomad',
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://tripcost.co/' },
-        { '@type': 'ListItem', position: 2, name: 'Nomad Rankings', item: 'https://tripcost.co/nomad' }
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.livingcostatlas.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Nomad Rankings', item: 'https://www.livingcostatlas.com/nomad' }
       ]
     }
   });

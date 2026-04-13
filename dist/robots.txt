@@ -2,8 +2,15 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://tripcost.co/sitemap.xml
+Sitemap: https://www.livingcostatlas.com/sitemap.xml
 
-# Block irrelevant paths
+# Block sensitive paths
 Disallow: /src/
 Disallow: /.git/
+Disallow: /.env
+Disallow: /.claude/
+Disallow: /node_modules/
+Disallow: /backend/
+Disallow: /scripts/
+Disallow: /tests/
+Disallow: /*.map$

@@ -40,13 +40,13 @@ export function BestCitiesPage(params) {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
     name: `Best Cities in ${countryName}`,
-    url: `https://tripcost.co/best-cities/${country}`,
+    url: `https://www.livingcostatlas.com/best-cities/${country}`,
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home',         item: 'https://tripcost.co/' },
-        { '@type': 'ListItem', position: 2, name: 'Best Cities',  item: 'https://tripcost.co/best-cities' },
-        { '@type': 'ListItem', position: 3, name: countryName,    item: `https://tripcost.co/best-cities/${country}` }
+        { '@type': 'ListItem', position: 1, name: 'Home',         item: 'https://www.livingcostatlas.com/' },
+        { '@type': 'ListItem', position: 2, name: 'Best Cities',  item: 'https://www.livingcostatlas.com/best-cities' },
+        { '@type': 'ListItem', position: 3, name: countryName,    item: `https://www.livingcostatlas.com/best-cities/${country}` }
       ]
     }
   });

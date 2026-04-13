@@ -8,7 +8,7 @@ export function MainLayout(content) {
     <header class="header" data-testid="header">
       <div class="container">
         <div class="header__inner">
-          <a href="/" data-link class="header__logo">Trip<span>Cost</span></a>
+          <a href="/" data-link class="header__logo">Living Cost<span>Atlas</span></a>
           <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
             <span class="nav-toggle__bar"></span>
             <span class="nav-toggle__bar"></span>
@@ -88,7 +88,7 @@ export function MainLayout(content) {
 
           <!-- Brand -->
           <div class="footer__brand">
-            <div class="footer__brand-logo">Trip<span>Cost</span></div>
+            <div class="footer__brand-logo">Living Cost<span>Atlas</span></div>
             <p>Free cost of living intelligence for digital nomads, remote workers and expats. Real data, updated quarterly.</p>
             <span class="footer__brand-badge">Data updated March 2026</span>
           </div>
@@ -113,7 +113,7 @@ export function MainLayout(content) {
           <!-- Company -->
           <div class="footer__section">
             <h4>Company</h4>
-            <a href="/about"        data-link>About TripCost</a>
+            <a href="/about"        data-link>About Living Cost Atlas</a>
             <a href="/privacy"      data-link>Privacy Policy</a>
             <a href="/terms"        data-link>Terms of Service</a>
             <a href="/legal"        data-link>Legal Notice</a>
@@ -121,7 +121,7 @@ export function MainLayout(content) {
 
         </div>
         <div class="footer__bottom">
-          <p>  ${new Date().getFullYear()} TripCost. All rights reserved. Not financial or legal advice.</p>
+          <p>  ${new Date().getFullYear()} Living Cost Atlas. All rights reserved. Not financial or legal advice.</p>
         </div>
       </div>
     </footer>

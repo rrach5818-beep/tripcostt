@@ -59,29 +59,29 @@ export function TermsPage() {
   return MainLayout(legalLayout({
     eyebrow: 'Terms',
     title: 'Terms of Service',
-    subtitle: 'Please read these terms carefully before using TripCost.',
+    subtitle: 'Please read these terms carefully before using Living Cost Atlas.',
     sections: [
       {
         id: 'agreement',
         title: 'Agreement to Terms',
-        content: `<p>By accessing or using TripCost, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, please do not use the website.</p>`
+        content: `<p>By accessing or using Living Cost Atlas, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, please do not use the website.</p>`
       },
       {
         id: 'service',
         title: 'Service Description',
-        content: `<p>TripCost provides cost of living data, budget planning tools and nomad rankings for informational purposes only. Our services include:</p>
+        content: `<p>Living Cost Atlas provides cost of living data, budget planning tools and nomad rankings for informational purposes only. Our services include:</p>
           <ul>
             <li>City cost guides covering housing, food, transport and coworking</li>
             <li>Interactive budget comparison calculator</li>
             <li>Digital nomad rankings and scoring</li>
             <li>Visa and tax information by destination</li>
           </ul>
-          <p>TripCost is free to use. No account or payment is required to access core features.</p>`
+          <p>Living Cost Atlas is free to use. No account or payment is required to access core features.</p>`
       },
       {
         id: 'accuracy',
         title: 'Accuracy of Information',
-        content: `<p>Cost data on TripCost is based on research from multiple sources and represents estimates intended for general guidance. Actual costs may vary significantly based on:</p>
+        content: `<p>Cost data on Living Cost Atlas is based on research from multiple sources and represents estimates intended for general guidance. Actual costs may vary significantly based on:</p>
           <ul>
             <li>Individual lifestyle choices and neighbourhood selection</li>
             <li>Seasonal variations and local market conditions</li>
@@ -93,7 +93,7 @@ export function TermsPage() {
       {
         id: 'licence',
         title: 'Use Licence',
-        content: `<p>You are granted a limited, non-exclusive licence to access and use TripCost for personal, non-commercial purposes. You may not:</p>
+        content: `<p>You are granted a limited, non-exclusive licence to access and use Living Cost Atlas for personal, non-commercial purposes. You may not:</p>
           <ul>
             <li>Systematically copy, scrape or redistribute our data</li>
             <li>Use the service for any unlawful purpose</li>
@@ -104,12 +104,12 @@ export function TermsPage() {
       {
         id: 'disclaimers',
         title: 'Disclaimer of Warranties',
-        content: `<p>TripCost is provided on an "as is" and "as available" basis. We make no warranties -- expressed or implied -- including warranties of merchantability or fitness for a particular purpose. We do not warrant that the service will be uninterrupted, error-free or free of harmful components.</p>`
+        content: `<p>Living Cost Atlas is provided on an "as is" and "as available" basis. We make no warranties -- expressed or implied -- including warranties of merchantability or fitness for a particular purpose. We do not warrant that the service will be uninterrupted, error-free or free of harmful components.</p>`
       },
       {
         id: 'liability',
         title: 'Limitation of Liability',
-        content: `<p>TripCost and its operators shall not be liable for any direct, indirect, incidental or consequential damages arising from your use of the service, including but not limited to financial decisions made based on our data.</p>`
+        content: `<p>Living Cost Atlas and its operators shall not be liable for any direct, indirect, incidental or consequential damages arising from your use of the service, including but not limited to financial decisions made based on our data.</p>`
       },
       {
         id: 'modifications',

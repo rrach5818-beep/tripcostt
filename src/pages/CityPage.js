@@ -700,9 +700,9 @@ export function CityPage(params) {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home',         item: 'https://tripcost.co/' },
-      { '@type': 'ListItem', position: 2, name: 'Destinations', item: 'https://tripcost.co/destinations' },
-      { '@type': 'ListItem', position: 3, name: city.name,      item: `https://tripcost.co${canonicalPath}` }
+      { '@type': 'ListItem', position: 1, name: 'Home',         item: 'https://www.livingcostatlas.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Destinations', item: 'https://www.livingcostatlas.com/destinations' },
+      { '@type': 'ListItem', position: 3, name: city.name,      item: `https://www.livingcostatlas.com${canonicalPath}` }
     ]
   });
 
@@ -721,7 +721,7 @@ export function CityPage(params) {
       longitude: city.lng
     } : undefined,
     image: city.image,
-    url: `https://tripcost.co${canonicalPath}`
+    url: `https://www.livingcostatlas.com${canonicalPath}`
   });
 
   // -- JSON-LD: FAQPage -----------------------------------
