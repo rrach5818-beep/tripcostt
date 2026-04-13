@@ -1,5 +1,11 @@
+/**
+ * SPA Router with async (lazy-loaded) route support
+ * ASCII-only comments (Vite/Vercel constraint)
+ */
+
 let currentRoot = null;
 let currentRoutes = [];
+let isRendering = false;
 
 export function initRouter(root, routes) {
   currentRoot = root;
@@ -41,26 +47,50 @@ function matchRoute(path) {
   return null;
 }
 
-function render() {
+async function render() {
+  // Prevent concurrent renders
+  if (isRendering) return;
+  isRendering = true;
+
   const path = window.location.pathname;
   const matched = matchRoute(path);
 
-  if (matched) {
-    const html = matched.route.component(matched.params);
-    currentRoot.innerHTML = html;
-    
-    // Call setup function if defined for this route
-    if (matched.route.setup) {
-      setTimeout(() => matched.route.setup(), 0);
+  try {
+    if (matched) {
+      // component can be sync or async
+      const html = await matched.route.component(matched.params);
+      currentRoot.innerHTML = html;
+
+      // setup can be sync or async
+      if (matched.route.setup) {
+        setTimeout(async () => {
+          try {
+            await matched.route.setup();
+          } catch (e) {
+            console.error('Setup error:', e);
+          }
+        }, 0);
+      }
+    } else {
+      currentRoot.innerHTML = `
+        <div class="container py-20 text-center">
+          <h1>404 - Page Not Found</h1>
+          <p class="mt-4">The page you're looking for doesn't exist.</p>
+          <a href="/" data-link class="btn btn--primary mt-6">Go Home</a>
+        </div>
+      `;
     }
-  } else {
+  } catch (err) {
+    console.error('Route render error:', err);
     currentRoot.innerHTML = `
       <div class="container py-20 text-center">
-        <h1>404 - Page Not Found</h1>
-        <p class="mt-4">The page you're looking for doesn't exist.</p>
+        <h1>Error loading page</h1>
+        <p class="mt-4">Please try refreshing.</p>
         <a href="/" data-link class="btn btn--primary mt-6">Go Home</a>
       </div>
     `;
+  } finally {
+    isRendering = false;
   }
 }
 

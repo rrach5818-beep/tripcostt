@@ -9,6 +9,15 @@ export default defineConfig({
     allowedHosts: ['frontend-recovery-1.preview.emergentagent.com']
   },
   build: {
-    outDir: 'dist'
+    outDir: 'dist',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Separate heavy vendor libs into their own chunks
+          leaflet: ['leaflet'],
+          pdf: ['html2pdf.js']
+        }
+      }
+    }
   }
 });
