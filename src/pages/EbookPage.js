@@ -9,33 +9,85 @@ import { MainLayout } from '../layouts/MainLayout.js';
 import { getCityBySlug } from '../data/cityService.js';
 
 // eBook catalog -- add new cities here
+// Shared highlights template for generated ebooks
+function defaultHighlights(cityName) {
+  return [
+    'Executive Summary & LCA Index Score',
+    'Detailed Cost Breakdown (housing, food, transport, utilities)',
+    'Monthly Budget Scenarios (3 profiles)',
+    '5 Neighborhood Analyses with rent ranges',
+    `Visa & Tax Guide for ${cityName}`,
+    'City Comparison vs Peer Destinations',
+    'Safety, Quality of Life & Infrastructure Scorecards',
+    'Risk Factors & Economic Outlook 2026',
+  ];
+}
+
 const EBOOKS = {
   lisbon: {
-    city: 'Lisbon',
-    country: 'Portugal',
-    price: 9.99,
-    currency: 'EUR',
-    pages: 28,
+    city: 'Lisbon', country: 'Portugal', price: 9.99, currency: 'EUR', pages: 28,
     pdfPath: '/ebooks/LivingCostAtlas_Lisbon_2026.pdf',
     coverImage: '/images/ebooks/lisbon-cover.png',
     stripeLink: 'https://buy.stripe.com/4gM4gAe7R12xacHbfd3gk00',
-    highlights: [
-      'Executive Summary & LCA Index Score',
-      'Detailed Cost Breakdown (housing, food, transport, utilities)',
-      'Monthly Budget Scenarios (3 profiles)',
-      '5 Neighborhood Analyses with rent ranges',
-      'Digital Nomad Visa (D8) guide & IFICI tax regime',
-      'City Comparison vs Barcelona, Valencia, Berlin, Bangkok',
-      'Safety, Quality of Life & Infrastructure Scorecards',
-      'Risk Factors & Economic Outlook 2026',
-    ],
-    stats: {
-      nomadScore: 81,
-      avgRent: 1800,
-      safety: 85,
-      wifi: 120,
-    }
-  }
+    highlights: defaultHighlights('Lisbon'),
+    stats: { nomadScore: 81, avgRent: 1800, safety: 85, wifi: 120 }
+  },
+  barcelona: {
+    city: 'Barcelona', country: 'Spain', price: 9.99, currency: 'EUR', pages: 22,
+    pdfPath: '/ebooks/LivingCostAtlas_Barcelona_2026.pdf',
+    coverImage: '/images/ebooks/barcelona-cover.png',
+    stripeLink: '',
+    highlights: defaultHighlights('Barcelona'),
+    stats: { nomadScore: 82, avgRent: 1500, safety: 75, wifi: 140 }
+  },
+  bangkok: {
+    city: 'Bangkok', country: 'Thailand', price: 9.99, currency: 'EUR', pages: 22,
+    pdfPath: '/ebooks/LivingCostAtlas_Bangkok_2026.pdf',
+    coverImage: '/images/ebooks/bangkok-cover.png',
+    stripeLink: '',
+    highlights: defaultHighlights('Bangkok'),
+    stats: { nomadScore: 88, avgRent: 750, safety: 65, wifi: 80 }
+  },
+  tokyo: {
+    city: 'Tokyo', country: 'Japan', price: 9.99, currency: 'EUR', pages: 22,
+    pdfPath: '/ebooks/LivingCostAtlas_Tokyo_2026.pdf',
+    coverImage: '/images/ebooks/tokyo-cover.png',
+    stripeLink: '',
+    highlights: defaultHighlights('Tokyo'),
+    stats: { nomadScore: 80, avgRent: 2100, safety: 95, wifi: 150 }
+  },
+  bali: {
+    city: 'Bali', country: 'Indonesia', price: 9.99, currency: 'EUR', pages: 22,
+    pdfPath: '/ebooks/LivingCostAtlas_Bali_2026.pdf',
+    coverImage: '/images/ebooks/bali-cover.png',
+    stripeLink: '',
+    highlights: defaultHighlights('Bali'),
+    stats: { nomadScore: 92, avgRent: 600, safety: 70, wifi: 40 }
+  },
+  berlin: {
+    city: 'Berlin', country: 'Germany', price: 9.99, currency: 'EUR', pages: 22,
+    pdfPath: '/ebooks/LivingCostAtlas_Berlin_2026.pdf',
+    coverImage: '/images/ebooks/berlin-cover.png',
+    stripeLink: '',
+    highlights: defaultHighlights('Berlin'),
+    stats: { nomadScore: 83, avgRent: 1650, safety: 80, wifi: 100 }
+  },
+  dubai: {
+    city: 'Dubai', country: 'UAE', price: 9.99, currency: 'EUR', pages: 22,
+    pdfPath: '/ebooks/LivingCostAtlas_Dubai_2026.pdf',
+    coverImage: '/images/ebooks/dubai-cover.png',
+    stripeLink: '',
+    highlights: defaultHighlights('Dubai'),
+    stats: { nomadScore: 79, avgRent: 2400, safety: 95, wifi: 120 }
+  },
+  paris: {
+    city: 'Paris', country: 'France', price: 9.99, currency: 'EUR', pages: 22,
+    pdfPath: '/ebooks/LivingCostAtlas_Paris_2026.pdf',
+    coverImage: '/images/ebooks/paris-cover.png',
+    stripeLink: '',
+    highlights: defaultHighlights('Paris'),
+    stats: { nomadScore: 78, avgRent: 2100, safety: 70, wifi: 200 }
+  },
 };
 
 export function EbookPage(params) {

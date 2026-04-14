@@ -18,6 +18,7 @@ export function MainLayout(content) {
             <a href="/destinations" data-link class="nav__link">Destinations</a>
             <a href="/calculator"   data-link class="nav__link">Calculator</a>
             <a href="/nomad"        data-link class="nav__link">Rankings</a>
+            <a href="/ebooks"       data-link class="nav__link">eBooks</a>
             <a href="/about"        data-link class="nav__link">About</a>
           </nav>
         </div>
