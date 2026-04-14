@@ -785,7 +785,7 @@ function buildFullHTML() {
     background: #fff;
   }
   .page-content {
-    padding: 10px 40px 40px;
+    padding: 20px 40px 40px;
   }
   h2 { page-break-after: avoid; }
   table { page-break-inside: auto; }
@@ -838,13 +838,16 @@ async function main() {
     path: OUT,
     format: 'A4',
     printBackground: true,
-    margin: { top: '45px', right: '0', bottom: '40px', left: '0' },
+    margin: { top: '80px', right: '0', bottom: '50px', left: '0' },
     displayHeaderFooter: true,
-    headerTemplate: `<div style="width:100%;background:#1e1b4b;padding:8px 40px;display:flex;justify-content:space-between;align-items:center;font-family:Helvetica,Arial,sans-serif">
-      <span style="font-size:7px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:white">LIVING COST ATLAS RELOCATION INTELLIGENCE | CONFIDENTIAL</span>
-      <span style="font-size:7px;font-weight:600;letter-spacing:1px;color:#d4a843">LISBON 2026 -- COST OF LIVING REPORT</span>
+    headerTemplate: `<div style="width:100%;font-family:Helvetica,Arial,sans-serif">
+      <div style="background:#1e1b4b;padding:10px 40px;display:flex;justify-content:space-between;align-items:center">
+        <span style="font-size:7px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:white">LIVING COST ATLAS RELOCATION INTELLIGENCE | CONFIDENTIAL</span>
+        <span style="font-size:7px;font-weight:600;letter-spacing:1px;color:#d4a843">LISBON 2026 -- COST OF LIVING REPORT</span>
+      </div>
+      <div style="height:3px;background:linear-gradient(90deg,#d4a843,#e8c97a)"></div>
     </div>`,
-    footerTemplate: `<div style="width:100%;padding:8px 40px;display:flex;justify-content:space-between;font-family:Helvetica,Arial,sans-serif;border-top:1px solid #e2e8f0">
+    footerTemplate: `<div style="width:100%;padding:10px 40px;display:flex;justify-content:space-between;font-family:Helvetica,Arial,sans-serif;border-top:1px solid #e2e8f0">
       <span style="font-size:7px;color:#9ca3af">&copy; 2026 Living Cost Atlas. All data reflects Q1 2026 market estimates.</span>
       <span style="font-size:7px;color:#9ca3af">-- <span class="pageNumber"></span> --</span>
     </div>`
