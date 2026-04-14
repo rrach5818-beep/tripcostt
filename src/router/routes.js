@@ -30,6 +30,7 @@ const pages = {
   bestCitiesHub:  lazy(() => import('../pages/BestCitiesHubPage.js')),
   bestCities:     lazy(() => import('../pages/BestCitiesPage.js')),
   bestCountries:  lazy(() => import('../pages/BestCountriesPage.js')),
+  ebook:          lazy(() => import('../pages/EbookPage.js')),
 };
 
 /*
@@ -88,4 +89,10 @@ export const routes = [
 
   { path: '/best-countries',          component: async (p) => (await pages.bestCountries.load()).BestCountriesPage(p) },
   { path: '/best-countries/:profile', component: async (p) => (await pages.bestCountries.load()).BestCountriesPage(p) },
+
+  {
+    path: '/ebook/:slug',
+    component: async (p) => (await pages.ebook.load()).EbookPage(p),
+    setup:     async ()  => (await pages.ebook.load()).setupEbookPageInteractivity()
+  },
 ];
