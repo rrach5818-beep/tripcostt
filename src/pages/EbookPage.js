@@ -13,7 +13,7 @@ const EBOOKS = {
   lisbon: {
     city: 'Lisbon',
     country: 'Portugal',
-    price: 29,
+    price: 9.99,
     currency: 'EUR',
     pages: 28,
     pdfPath: '/ebooks/LivingCostAtlas_Lisbon_2026.pdf',
