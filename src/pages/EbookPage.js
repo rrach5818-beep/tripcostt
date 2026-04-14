@@ -18,7 +18,7 @@ const EBOOKS = {
     pages: 28,
     pdfPath: '/ebooks/LivingCostAtlas_Lisbon_2026.pdf',
     coverImage: '/images/ebooks/lisbon-cover.png',
-    stripeLink: 'https://buy.stripe.com/test_4gM4gAe7R12xacHbfd3gk00',
+    stripeLink: 'https://buy.stripe.com/4gM4gAe7R12xacHbfd3gk00',
     highlights: [
       'Executive Summary & LCA Index Score',
       'Detailed Cost Breakdown (housing, food, transport, utilities)',
