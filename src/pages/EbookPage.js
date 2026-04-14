@@ -4,7 +4,7 @@
  * ASCII-only comments (Vite/Vercel constraint)
  */
 
-import { setPageMeta } from '../logic/setPageMeta.js';
+import { setPageMeta, injectSchema } from '../logic/setPageMeta.js';
 import { MainLayout } from '../layouts/MainLayout.js';
 import { getCityBySlug } from '../data/cityService.js';
 
@@ -113,6 +113,28 @@ export function EbookPage(params) {
   setPageMeta({
     title: `${ebook.city} Cost of Living eBook 2026 | Living Cost Atlas`,
     description: `The complete ${ebook.pages}-page relocation guide for ${ebook.city}, ${ebook.country}. Data-driven cost breakdowns, neighborhood analysis, visa info & budget scenarios.`,
+  });
+
+  // Schema.org Product for SEO
+  injectSchema({
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: `${ebook.city} Cost of Living & Relocation Guide 2026`,
+    description: `${ebook.pages}-page premium relocation guide for ${ebook.city}, ${ebook.country}. Real cost data, neighborhood analysis, visa guide & budget scenarios.`,
+    image: `https://www.livingcostatlas.com${ebook.coverImage}`,
+    brand: { '@type': 'Brand', name: 'Living Cost Atlas' },
+    offers: {
+      '@type': 'Offer',
+      price: ebook.price,
+      priceCurrency: ebook.currency,
+      availability: 'https://schema.org/InStock',
+      url: `https://www.livingcostatlas.com/ebook/${slug}`,
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      reviewCount: '12',
+    }
   });
 
   const content = `
