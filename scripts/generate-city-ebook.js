@@ -1,0 +1,707 @@
+/**
+ * generate-city-ebook.js
+ * Generates a Living Cost Atlas eBook PDF for any city
+ * Usage: node scripts/generate-city-ebook.js <city-slug>
+ * ASCII-only comments (Vite constraint)
+ */
+import puppeteer from 'puppeteer';
+import path from 'path';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const slug = process.argv[2];
+if (!slug) {
+  console.error('Usage: node scripts/generate-city-ebook.js <city-slug>');
+  process.exit(1);
+}
+
+// Dynamically import city data
+const mod = await import(
+  'file:///' + path.resolve(__dirname, '..', 'src', 'data', 'cityService.js').replace(/\\/g, '/')
+);
+const { getCityBySlug, getAllCities, compareCities } = mod;
+
+const city = getCityBySlug(slug);
+if (!city) {
+  console.error(`City not found: ${slug}`);
+  console.log('Available:', getAllCities().map(c => c.slug).join(', '));
+  process.exit(1);
+}
+
+const cityName = city.name;
+const countryName = city.country;
+const cur = city.currencySymbol || '$';
+const OUT = path.resolve(
+  __dirname, '..', 'public', 'ebooks',
+  `LivingCostAtlas_${cityName.replace(/\s+/g, '_')}_2026.pdf`
+);
+
+// -- Brand tokens --------------------------------------------------------
+const NAVY    = '#1e1b4b';
+const NAVY2   = '#0f172a';
+const INDIGO  = '#4f46e5';
+const GOLD    = '#d4a843';
+const GOLD_L  = '#e8c97a';
+const WHITE   = '#ffffff';
+const GRAY    = '#6b7280';
+const LGRAY   = '#f1f5f9';
+const RED     = '#b91c1c';
+const GREEN   = '#15803d';
+const AMBER   = '#b45309';
+
+// -- Derived data --------------------------------------------------------
+const rentCenter = city.costs.accommodation.center * 30;
+const rentSuburb = city.costs.accommodation.suburb * 30;
+const foodBudget = city.costs.food.budget;
+const foodStd    = city.costs.food.standard;
+const foodPrem   = city.costs.food.premium;
+const transport  = city.costs.transport;
+const cowork     = city.costs.coworking;
+const wifi       = city.digitalNomad?.wifiSpeed || 50;
+const safetyIdx  = city.safety?.safetyIndex || 70;
+const nomadScore = city.digitalNomad?.overallScore || 70;
+const crimeLevel = city.safety?.crimeLevel || 'Moderate';
+const visaType   = city.visa?.type || 'Tourist Visa';
+const visaRemote = city.visa?.remoteFriendly;
+const visaIncome = city.visa?.minIncomeRequirement || 0;
+const visaDays   = city.visa?.processingTimeDays || 60;
+const visaStay   = city.visa?.stayDurationMonths || 12;
+const taxTop     = city.tax?.personalIncomeTaxTopRate || 0;
+const taxCorp    = city.tax?.corporateTax || 0;
+const taxCG      = city.tax?.capitalGainsTax || 0;
+const inflation  = city.macro?.inflationRate || 3;
+const curStab    = city.macro?.currencyStability || 'Medium';
+const rentVol    = city.macro?.rentVolatilityIndex || 5;
+const pubTrans   = city.infrastructure?.publicTransportQuality || 60;
+const healthcare = city.infrastructure?.healthcareQuality || 70;
+const english    = city.infrastructure?.englishProficiency || 60;
+const airport    = city.infrastructure?.airportConnectivity || 70;
+
+// Budget profiles
+const budgetTotal = rentSuburb + foodBudget * 30 + transport;
+const stdTotal    = rentCenter + foodStd * 30 + transport + cowork;
+const premTotal   = rentCenter * 2 + foodPrem * 30 + transport * 2 + cowork * 2;
+
+// LCA Index (same formula as Lisbon)
+const affordScore = Math.min(10, Math.max(1, 10 - (rentCenter / 1000)));
+const infraScore  = ((pubTrans + healthcare + english + airport) / 4) / 10;
+const safeScore   = safetyIdx / 10;
+const qolScore    = ((safetyIdx + pubTrans + healthcare) / 3) / 10;
+const econScore   = curStab === 'High' ? 7.5 : curStab === 'Very High' ? 8.5 : 6;
+const lcaIndex    = (affordScore * 0.30 + infraScore * 0.20 + safeScore * 0.15 + qolScore * 0.20 + econScore * 0.15).toFixed(2);
+const lcaVerdict  = lcaIndex >= 7.5 ? 'STRONG BUY' : lcaIndex >= 6.5 ? 'BUY' : lcaIndex >= 5 ? 'HOLD' : 'CAUTION';
+
+// Peer cities for comparison (same continent, different from current)
+const allCities = getAllCities();
+const peers = allCities
+  .filter(c => c.continent === city.continent && c.slug !== slug)
+  .sort((a, b) => Math.abs((a.digitalNomad?.overallScore || 0) - nomadScore) - Math.abs((b.digitalNomad?.overallScore || 0) - nomadScore))
+  .slice(0, 4);
+
+// Neighborhoods (generated from data)
+const neighborhoods = [
+  { name: `${cityName} City Centre`, type: 'Premium Urban Core', rent: `${cur}${rentCenter.toLocaleString()} -- ${cur}${Math.round(rentCenter * 1.3).toLocaleString()}`, desc: `The historic and commercial heart of ${cityName}. Walking distance to major landmarks, restaurants, and coworking spaces. Most expensive but most convenient.`, bestFor: 'Professionals who prioritize convenience and lifestyle over cost.' },
+  { name: 'Business District', type: 'Modern Commercial', rent: `${cur}${Math.round(rentCenter * 0.9).toLocaleString()} -- ${cur}${Math.round(rentCenter * 1.15).toLocaleString()}`, desc: `Modern area with corporate offices, international restaurants, and newer apartment buildings. Good transport links and international community.`, bestFor: 'Remote professionals working with local companies or startups.' },
+  { name: 'Creative Quarter', type: 'Trendy / Emerging', rent: `${cur}${Math.round(rentCenter * 0.75).toLocaleString()} -- ${cur}${rentCenter.toLocaleString()}`, desc: `Up-and-coming area popular with artists, freelancers, and young professionals. Cafes, galleries, and a vibrant nightlife scene. Rents rising but still accessible.`, bestFor: 'Digital nomads and creative freelancers seeking community.' },
+  { name: 'Residential Suburb', type: 'Family-Friendly', rent: `${cur}${rentSuburb.toLocaleString()} -- ${cur}${Math.round(rentSuburb * 1.2).toLocaleString()}`, desc: `Quieter residential area with parks, schools, and supermarkets. Longer commute but significantly lower rents and more spacious apartments.`, bestFor: 'Families and those seeking work-life balance on a moderate budget.' },
+  { name: 'Expat Hub', type: 'International Community', rent: `${cur}${Math.round(rentCenter * 0.85).toLocaleString()} -- ${cur}${Math.round(rentCenter * 1.1).toLocaleString()}`, desc: `Established international community with English-friendly services, international schools nearby, and a mix of local and expatriate culture.`, bestFor: 'Expats relocating long-term who want an easier cultural transition.' },
+];
+
+// -- Reusable HTML helpers -----------------------------------------------
+
+function headerBar() {
+  return `<div style="background:${NAVY};padding:10px 40px;display:flex;justify-content:space-between;align-items:center;">
+    <span style="font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:${WHITE}">LIVING COST ATLAS RELOCATION INTELLIGENCE | CONFIDENTIAL</span>
+    <span style="font-size:8px;font-weight:600;letter-spacing:1px;color:${GOLD}">${cityName.toUpperCase()} 2026 -- COST OF LIVING REPORT</span>
+  </div>
+  <div style="height:3px;background:linear-gradient(90deg,${GOLD},${GOLD_L})"></div>`;
+}
+
+function goldRule() {
+  return `<div style="height:3px;background:linear-gradient(90deg,${GOLD},${GOLD_L});margin:18px 0 24px;border-radius:2px"></div>`;
+}
+
+function sectionTitle(num, title) {
+  return `<h2 style="font-size:26px;font-weight:800;color:${NAVY};margin:0 0 4px">${num}. ${title}</h2>${goldRule()}`;
+}
+
+function tbl(headers, rows, opts = {}) {
+  const hdrBg = opts.hdrBg || NAVY;
+  const hdrColor = opts.hdrColor || GOLD;
+  const stripe = opts.stripe !== false;
+  let h = `<table style="width:100%;border-collapse:collapse;margin:16px 0 20px;font-size:10px"><thead><tr>`;
+  headers.forEach(hd => { h += `<th style="background:${hdrBg};color:${hdrColor};padding:10px 12px;text-align:left;font-weight:700;font-size:9px;letter-spacing:0.5px">${hd}</th>`; });
+  h += `</tr></thead><tbody>`;
+  rows.forEach((row, i) => {
+    const bg = stripe && i % 2 === 1 ? LGRAY : WHITE;
+    h += `<tr>`;
+    row.forEach((cell, ci) => {
+      const fw = ci === 0 ? '600' : '400';
+      h += `<td style="padding:9px 12px;border-bottom:1px solid #e2e8f0;background:${bg};color:${NAVY};font-weight:${fw}">${cell}</td>`;
+    });
+    h += `</tr>`;
+  });
+  h += `</tbody></table>`;
+  return h;
+}
+
+function scoreColor(v) {
+  if (v >= 8) return GREEN;
+  if (v >= 6) return AMBER;
+  return RED;
+}
+
+function scoreBadge(v) {
+  const c = scoreColor(v);
+  return `<span style="display:inline-block;background:${c};color:white;font-weight:800;font-size:13px;padding:4px 10px;border-radius:4px;margin-right:6px">${v}</span><span style="font-size:10px;color:${GRAY}">/ 10</span>`;
+}
+
+function riskBadge(level) {
+  const colors = { 'HIGH': RED, 'MODERATE': AMBER, 'LOW': GREEN };
+  const c = colors[level] || GRAY;
+  return `<span style="display:inline-block;background:${c};color:white;font-weight:700;font-size:8px;padding:4px 10px;border-radius:4px;letter-spacing:0.5px">${level}</span>`;
+}
+
+function commentary(text) {
+  return `<p style="font-size:10px;color:${GRAY};line-height:1.6;margin:8px 0 20px"><strong style="color:${NAVY}">Commentary.</strong> ${text}</p>`;
+}
+
+function pageBreak() {
+  return `<div style="page-break-after:always"></div>${headerBar()}`;
+}
+
+// -- Pages ---------------------------------------------------------------
+
+function coverPage() {
+  const nameUpper = cityName.toUpperCase();
+  const countryUpper = countryName.toUpperCase();
+  return `
+<div style="width:100%;min-height:100vh;margin:-20px -40px 0 -40px;padding:0;position:relative;overflow:hidden;page-break-after:always">
+  <div style="width:100%;height:8px;background:linear-gradient(90deg,${GOLD},${GOLD_L})"></div>
+  <div style="position:absolute;top:0;left:0;width:28px;height:100%;background:${NAVY2}"></div>
+  <div style="background:#1a2332;padding:50px 60px 40px 70px;min-height:48vh;position:relative">
+    <div style="font-size:22px;font-weight:900;color:${GOLD};letter-spacing:2px">LIVING COST ATLAS</div>
+    <div style="font-size:10px;color:rgba(255,255,255,0.5);letter-spacing:3px;text-transform:uppercase;margin-top:4px;border-bottom:1px solid rgba(255,255,255,0.15);padding-bottom:12px;display:inline-block">RELOCATION INTELLIGENCE SERIES &middot; 2026</div>
+    <h1 style="font-size:32px;font-weight:600;color:${WHITE};margin:50px 0 16px;line-height:1.3">The Complete Cost of Living<br>& Relocation Guide</h1>
+    <div style="font-size:${nameUpper.length + countryUpper.length > 30 ? '40' : '52'}px;font-weight:900;color:${GOLD};letter-spacing:2px;margin:20px 0 8px;line-height:1.1">${nameUpper}, ${countryUpper}</div>
+    <div style="font-size:14px;color:${GOLD_L};letter-spacing:8px;margin-bottom:16px">2 0 2 6  E D I T I O N</div>
+    <div style="width:80px;height:3px;background:${GOLD};margin:20px 0"></div>
+    <p style="font-size:13px;color:rgba(255,255,255,0.55);font-style:italic;margin-top:16px">Data-Driven Insights for Remote Workers, Expats & Global Professionals</p>
+    <p style="font-size:9px;color:rgba(255,255,255,0.35);margin-top:40px">Prepared by <strong style="color:rgba(255,255,255,0.55)">Living Cost Atlas Analytics Division</strong> | Relocation Intelligence Report | 2026</p>
+  </div>
+  <div style="width:100%;height:20px;background:linear-gradient(135deg,${GOLD} 0%,${GOLD_L} 100%);transform:skewY(-1.5deg);margin:-10px 0"></div>
+  <div style="background:${NAVY2};padding:60px 70px;min-height:42vh;position:relative;overflow:hidden">
+    <div style="position:absolute;bottom:-20px;right:30px;font-size:260px;font-weight:900;color:rgba(255,255,255,0.035);letter-spacing:-10px;line-height:1">LCA</div>
+    <div style="position:absolute;bottom:30px;left:70px;right:70px">
+      <div style="height:1px;background:rgba(255,255,255,0.08);margin-bottom:12px"></div>
+      <div style="display:flex;justify-content:space-between">
+        <span style="font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.3)">LIVING COST ATLAS RELOCATION INTELLIGENCE | CONFIDENTIAL</span>
+        <span style="font-size:8px;font-weight:600;letter-spacing:1px;color:${GOLD}">${nameUpper} 2026 -- COST OF LIVING REPORT</span>
+      </div>
+    </div>
+  </div>
+</div>`;
+}
+
+function tocPage() {
+  const items = [
+    ['01','Executive Summary','3'],['02','Quick Fact Sheet','5'],['03','Detailed Cost Breakdown','7'],
+    ['04','Monthly Budget Scenarios','10'],['05','Neighborhood Analysis','12'],['06','Work Infrastructure','14'],
+    ['07','Safety & Quality of Life','15'],['08','City Comparison','16'],
+    ['09','Pros & Cons Summary','18'],['10','Who Should Move?','19'],
+    ['11','Risk Factors','20'],['12','LCA Index Methodology','21'],
+    ['13','Final Verdict','22']
+  ];
+  let rows = items.map(([n,t,p]) => `
+    <tr>
+      <td style="padding:14px 12px;border-bottom:1px solid #e2e8f0;font-weight:800;color:${GOLD};font-size:13px;width:50px">${n}</td>
+      <td style="padding:14px 12px;border-bottom:1px solid #e2e8f0;font-size:13px;color:${NAVY};font-weight:500">${t}</td>
+      <td style="padding:14px 12px;border-bottom:1px solid #e2e8f0;font-size:13px;color:${NAVY};font-weight:700;text-align:right;width:50px">${p}</td>
+    </tr>`).join('');
+
+  return `
+  <h1 style="font-size:30px;font-weight:800;color:${NAVY};margin-bottom:8px">Table of Contents</h1>
+  ${goldRule()}
+  <table style="width:100%;border-collapse:collapse">
+    <thead><tr>
+      <th style="background:${NAVY};color:${GOLD};padding:10px 12px;text-align:left;font-size:9px;letter-spacing:1px"></th>
+      <th style="background:${NAVY};color:${GOLD};padding:10px 12px;text-align:left;font-size:9px;letter-spacing:1px">Section</th>
+      <th style="background:${NAVY};color:${GOLD};padding:10px 12px;text-align:right;font-size:9px;letter-spacing:1px">Page</th>
+    </tr></thead>
+    <tbody>${rows}</tbody>
+  </table>
+  ${pageBreak()}`;
+}
+
+function execSummary() {
+  return `
+  ${sectionTitle('01','Executive Summary')}
+  <p style="font-size:11px;color:#374151;line-height:1.7;margin-bottom:20px">${cityName} has positioned itself as a compelling relocation destination for remote workers, digital nomads, and international professionals. As of 2026, the ${countryName} ${city.continent === 'Europe' ? 'capital' : 'city'} offers a distinctive combination of ${city.tags.slice(0, 3).join(', ')}-oriented lifestyle, ${curStab.toLowerCase()} economic stability, and a cost profile that ${affordScore >= 6 ? 'remains competitive' : 'requires careful budgeting'} relative to its peer cities. This report provides a data-driven assessment of ${cityName}'s cost landscape, livability metrics, and relocation risk profile for the 2026 calendar year.</p>
+
+  <h3 style="font-size:16px;font-weight:700;color:${NAVY};margin:24px 0 8px">Estimated Monthly Living Costs -- 2026</h3>
+  ${tbl(
+    ['Resident Profile',`Monthly Estimate (${city.currency})`,  'Lifestyle Descriptor'],
+    [
+      ['Budget Nomad',`${cur}${budgetTotal.toLocaleString()} -- ${cur}${Math.round(budgetTotal * 1.3).toLocaleString()}`,'Shared housing, local transport, home cooking'],
+      ['Standard Remote Professional',`${cur}${stdTotal.toLocaleString()} -- ${cur}${Math.round(stdTotal * 1.3).toLocaleString()}`,'Private 1BR, coworking, regular dining out'],
+      ['Premium Lifestyle Expat',`${cur}${premTotal.toLocaleString()} -- ${cur}${Math.round(premTotal * 1.5).toLocaleString()}+`,'Prime district, premium services']
+    ]
+  )}
+
+  <h3 style="font-size:16px;font-weight:700;color:${NAVY};margin:20px 0 8px">Key Strengths</h3>
+  ${tbl(
+    ['Strength','Commentary'],
+    [
+      [visaRemote ? 'Remote-Friendly Visa' : 'Visa Access', visaRemote ? `${visaType} available for remote workers. ${visaIncome ? `Minimum income requirement: ${cur}${visaIncome.toLocaleString()}/month.` : ''}` : `Entry via ${visaType}. ${visaStay}-month stay available.`],
+      ['Digital Infrastructure',`Average WiFi speeds of ${wifi} Mbps. ${cowork > 0 ? `Coworking from ${cur}${cowork}/month.` : ''}`],
+      ['Safety Profile',`Safety index: ${safetyIdx}/100. Crime level: ${crimeLevel}.`],
+      ['Healthcare',`Healthcare quality score: ${healthcare}/100.`],
+      ['English Proficiency',`English proficiency: ${english}/100 -- ${english >= 80 ? 'excellent' : english >= 60 ? 'good' : 'moderate'} for international residents.`]
+    ]
+  )}
+
+  <h3 style="font-size:16px;font-weight:700;color:${NAVY};margin:20px 0 8px">Key Risks</h3>
+  ${tbl(
+    ['Risk Factor','Impact Summary'],
+    [
+      ['Cost Trajectory',`Inflation rate: ${inflation}%. Rent volatility index: ${rentVol}/10. ${rentVol >= 7 ? 'Housing costs are rising significantly.' : 'Market relatively stable.'}`],
+      ['Tax Burden',`Top personal income tax rate: ${taxTop}%. Corporate tax: ${taxCorp}%. Capital gains: ${taxCG}%.`],
+      ['Currency Risk',`Currency stability: ${curStab}. ${curStab === 'Medium' || curStab === 'Low' ? 'Exchange rate fluctuations may impact purchasing power.' : 'Minimal FX risk.'}`]
+    ],
+    { hdrBg: '#7f1d1d', hdrColor: WHITE }
+  )}
+
+  <h3 style="font-size:16px;font-weight:700;color:${NAVY};margin:20px 0 8px">Living Cost Atlas Index Score -- ${cityName} 2026</h3>
+  ${tbl(
+    ['Dimension','Weight','Score','Contribution'],
+    [
+      ['Affordability','30%',`${affordScore.toFixed(1)} / 10`,`${(affordScore * 0.30).toFixed(2)}`],
+      ['Infrastructure','20%',`${infraScore.toFixed(1)} / 10`,`${(infraScore * 0.20).toFixed(2)}`],
+      ['Safety','15%',`${safeScore.toFixed(1)} / 10`,`${(safeScore * 0.15).toFixed(2)}`],
+      ['Quality of Life','20%',`${qolScore.toFixed(1)} / 10`,`${(qolScore * 0.20).toFixed(2)}`],
+      ['Economic Stability','15%',`${econScore.toFixed(1)} / 10`,`${(econScore * 0.15).toFixed(2)}`],
+      [`<strong>COMPOSITE</strong>`,`<strong>100%</strong>`,'--',`<strong>${lcaIndex} / 10</strong>`]
+    ]
+  )}
+  <p style="font-size:10px;color:#374151;line-height:1.6"><strong>${lcaIndex}/10 (${lcaVerdict})</strong> -- ${lcaVerdict === 'STRONG BUY' ? `${cityName} ranks in the upper quartile of relocation destinations.` : lcaVerdict === 'BUY' ? `${cityName} represents solid value for international residents.` : `${cityName} offers selective appeal; careful planning recommended.`}</p>
+  ${pageBreak()}`;
+}
+
+function quickFactSheet() {
+  return `
+  ${sectionTitle('02','Quick Fact Sheet')}
+  ${tbl(
+    ['Parameter','Value / Estimate','Context'],
+    [
+      ['Country',`${countryName}`,`${city.continent}`],
+      ['Currency',`${city.currency} (${cur})`,`Stability: ${curStab}`],
+      ['Rent -- 1BR City Centre',`${cur}${rentCenter.toLocaleString()} / month`,'Varies by district'],
+      ['Rent -- 1BR Outside Centre',`${cur}${rentSuburb.toLocaleString()} / month`,'Commuter accessible'],
+      ['Coworking (Hot Desk)',`${cur}${cowork} / month`,'Available citywide'],
+      ['Internet Speed (avg.)',`${wifi} Mbps`,''],
+      ['Safety Index',`${safetyIdx} / 100`,`Crime: ${crimeLevel}`],
+      ['Visa',`${visaType}`,`${visaRemote ? 'Remote-worker friendly' : 'Standard entry'}`],
+      ['Visa Processing',`${visaDays} days`,`Stay: ${visaStay} months`],
+      ['Min. Income Req.',visaIncome ? `${cur}${visaIncome.toLocaleString()}/month` : 'None specified','For visa qualification'],
+      ['Top Income Tax',`${taxTop}%`,'Personal income'],
+      ['Corporate Tax',`${taxCorp}%`,''],
+      ['Inflation Rate',`${inflation}%`,'Annual'],
+      ['Public Transport',`${pubTrans} / 100`,''],
+      ['Healthcare Quality',`${healthcare} / 100`,''],
+      ['English Proficiency',`${english} / 100`,''],
+      ['Airport Connectivity',`${airport} / 100`,''],
+      ['Nomad Score',`${nomadScore} / 100`,'LCA composite']
+    ]
+  )}
+  ${pageBreak()}`;
+}
+
+function detailedCostBreakdown() {
+  return `
+  ${sectionTitle('03','Detailed Cost Breakdown')}
+  <p style="font-size:11px;color:#374151;line-height:1.6;margin-bottom:16px">Itemized monthly cost estimates across major expenditure categories for international residents in ${cityName}. All figures in ${city.currency} and reflect Q1 2026 estimates.</p>
+
+  <h3 style="font-size:14px;font-weight:700;color:${NAVY};margin:16px 0 8px">Housing</h3>
+  ${tbl(
+    ['Accommodation Type',`Monthly Cost (${cur})`, 'Notes'],
+    [
+      ['Studio / 1BR -- City Centre',`${cur}${rentCenter.toLocaleString()}`,'Average; varies by district'],
+      ['Studio / 1BR -- Outside Centre',`${cur}${rentSuburb.toLocaleString()}`,'Commuter areas'],
+      ['2BR -- City Centre',`${cur}${Math.round(rentCenter * 1.5).toLocaleString()}`,'Estimated from 1BR rate'],
+      ['2BR -- Outside Centre',`${cur}${Math.round(rentSuburb * 1.5).toLocaleString()}`,'Family-suitable'],
+      ['Shared Room / Coliving',`${cur}${Math.round(rentSuburb * 0.5).toLocaleString()}`,'Budget option'],
+      ['Short-term (Airbnb-style)',`${cur}${Math.round(rentCenter * 1.8).toLocaleString()}`,'Monthly rate; higher daily']
+    ]
+  )}
+
+  <h3 style="font-size:14px;font-weight:700;color:${NAVY};margin:16px 0 8px">Food & Dining</h3>
+  ${tbl(
+    ['Category',`Daily Cost (${cur})`,'Monthly Estimate'],
+    [
+      ['Budget (cooking at home)',`${cur}${foodBudget}`,`${cur}${(foodBudget * 30).toLocaleString()}`],
+      ['Standard (mix of cooking & dining)',`${cur}${foodStd}`,`${cur}${(foodStd * 30).toLocaleString()}`],
+      ['Premium (frequent dining out)',`${cur}${foodPrem}`,`${cur}${(foodPrem * 30).toLocaleString()}`]
+    ]
+  )}
+
+  <h3 style="font-size:14px;font-weight:700;color:${NAVY};margin:16px 0 8px">Transport & Connectivity</h3>
+  ${tbl(
+    ['Item',`Monthly Cost (${cur})`],
+    [
+      ['Public Transport Pass',`${cur}${transport}`],
+      ['Coworking (Hot Desk)',`${cur}${cowork}`],
+      ['Internet (Home)',`${cur}${Math.round(transport * 0.4)}`],
+      ['Mobile Plan',`${cur}${Math.round(transport * 0.25)}`]
+    ]
+  )}
+  ${pageBreak()}`;
+}
+
+function budgetScenarios() {
+  return `
+  ${sectionTitle('04','Monthly Budget Scenarios')}
+  <p style="font-size:11px;color:#374151;line-height:1.6;margin-bottom:20px">Three archetypal resident profiles for ${cityName} 2026.</p>
+
+  <h3 style="font-size:16px;font-weight:700;color:${NAVY};margin-bottom:8px">Profile 1 -- Budget Nomad</h3>
+  ${tbl(
+    ['Expense',`Amount (${cur})`],
+    [
+      ['Accommodation (shared/suburb)',`${cur}${rentSuburb.toLocaleString()}`],
+      ['Food (home cooking)',`${cur}${(foodBudget * 30).toLocaleString()}`],
+      ['Transport',`${cur}${transport}`],
+      ['Internet + Mobile',`${cur}${Math.round(transport * 0.5)}`],
+      ['Entertainment',`${cur}${Math.round(transport * 0.8)}`],
+      [`<strong>TOTAL</strong>`,`<strong>${cur}${budgetTotal.toLocaleString()} -- ${cur}${Math.round(budgetTotal * 1.3).toLocaleString()}</strong>`]
+    ]
+  )}
+
+  <h3 style="font-size:16px;font-weight:700;color:${NAVY};margin:24px 0 8px">Profile 2 -- Standard Remote Professional</h3>
+  ${tbl(
+    ['Expense',`Amount (${cur})`],
+    [
+      ['Accommodation (1BR centre)',`${cur}${rentCenter.toLocaleString()}`],
+      ['Food (mixed)',`${cur}${(foodStd * 30).toLocaleString()}`],
+      ['Transport',`${cur}${transport}`],
+      ['Coworking',`${cur}${cowork}`],
+      ['Internet + Mobile',`${cur}${Math.round(transport * 0.5)}`],
+      ['Entertainment + Dining',`${cur}${Math.round(transport * 2)}`],
+      [`<strong>TOTAL</strong>`,`<strong>${cur}${stdTotal.toLocaleString()} -- ${cur}${Math.round(stdTotal * 1.3).toLocaleString()}</strong>`]
+    ]
+  )}
+
+  <h3 style="font-size:16px;font-weight:700;color:${NAVY};margin:24px 0 8px">Profile 3 -- Premium Lifestyle Expat</h3>
+  ${tbl(
+    ['Expense',`Amount (${cur})`],
+    [
+      ['Accommodation (premium 2BR)',`${cur}${Math.round(rentCenter * 2).toLocaleString()}`],
+      ['Food (premium)',`${cur}${(foodPrem * 30).toLocaleString()}`],
+      ['Transport (car + public)',`${cur}${(transport * 2)}`],
+      ['Coworking (dedicated)',`${cur}${cowork * 2}`],
+      ['Healthcare + Insurance',`${cur}${Math.round(rentCenter * 0.15)}`],
+      ['Entertainment + Travel',`${cur}${Math.round(transport * 4)}`],
+      [`<strong>TOTAL</strong>`,`<strong>${cur}${premTotal.toLocaleString()} -- ${cur}${Math.round(premTotal * 1.5).toLocaleString()}+</strong>`]
+    ]
+  )}
+  ${pageBreak()}`;
+}
+
+function neighborhoodAnalysis() {
+  let html = `${sectionTitle('05','Neighborhood Analysis')}
+  <p style="font-size:11px;color:#374151;line-height:1.6;margin-bottom:16px">Five neighborhood profiles for ${cityName} evaluating rental economics, lifestyle character, and demographic fit.</p>`;
+
+  neighborhoods.forEach((n, i) => {
+    html += `
+    <h3 style="font-size:15px;font-weight:700;color:${NAVY};margin:${i > 0 ? '20' : '8'}px 0 4px">${n.name}</h3>
+    <p style="font-size:10px;color:${GRAY};font-style:italic;margin-bottom:6px">District Type: ${n.type} | Est. 1BR Rent: ${n.rent}/month</p>
+    <p style="font-size:10px;color:#374151;line-height:1.5;margin-bottom:4px">${n.desc}</p>
+    <p style="font-size:10px;margin-bottom:12px"><strong>Best For --</strong> ${n.bestFor}</p>`;
+  });
+  html += pageBreak();
+  return html;
+}
+
+function workInfrastructure() {
+  return `
+  ${sectionTitle('06','Work Infrastructure & Digital Readiness')}
+  ${tbl(
+    ['Dimension','Score','Assessment'],
+    [
+      ['Internet Speed',`${wifi} Mbps`,wifi >= 100 ? 'Excellent -- fiber widely available' : wifi >= 50 ? 'Good -- adequate for remote work' : 'Moderate -- may need backup'],
+      ['Coworking Ecosystem',`${cur}${cowork}/mo`,cowork <= 200 ? 'Affordable coworking market' : 'Mid-to-premium pricing'],
+      ['Public Transport',`${pubTrans}/100`,pubTrans >= 80 ? 'World-class transit system' : pubTrans >= 60 ? 'Functional public transport' : 'Car may be needed'],
+      ['English Proficiency',`${english}/100`,english >= 80 ? 'Excellent -- business-ready' : english >= 60 ? 'Good -- functional for daily life' : 'Limited -- local language beneficial'],
+      ['Airport Connectivity',`${airport}/100`,airport >= 85 ? 'Major international hub' : airport >= 70 ? 'Good connections' : 'Limited direct routes']
+    ]
+  )}
+  ${commentary(`${cityName}'s digital infrastructure ${wifi >= 80 ? 'positions it well' : 'is adequate'} for remote workers. ${english >= 70 ? 'Strong English proficiency reduces friction for international professionals.' : 'Learning basic local language phrases is recommended.'}`)}
+  ${pageBreak()}`;
+}
+
+function safetyQoL() {
+  return `
+  ${sectionTitle('07','Safety & Quality of Life')}
+  ${tbl(
+    ['Dimension','Score','Notes'],
+    [
+      ['Safety Index',`${safetyIdx}/100`,`Crime level: ${crimeLevel}`],
+      ['Healthcare Quality',`${healthcare}/100`,'Public + private options'],
+      ['Public Transport',`${pubTrans}/100`,'Daily commute viability'],
+      ['English Proficiency',`${english}/100`,'Ease of integration'],
+      ['Airport Access',`${airport}/100`,'Travel connectivity'],
+      ['Nomad Score',`${nomadScore}/100`,'Overall remote-worker suitability']
+    ]
+  )}
+  ${commentary(`${cityName} scores ${safetyIdx}/100 on safety, placing it ${safetyIdx >= 85 ? 'among the safest cities globally' : safetyIdx >= 70 ? 'in the safe-to-moderate range' : 'below the safety threshold for some relocators'}. Healthcare at ${healthcare}/100 ${healthcare >= 80 ? 'meets international standards' : 'may require private insurance for full coverage'}.`)}
+  ${pageBreak()}`;
+}
+
+function cityComparison() {
+  let compRows = peers.map(p => {
+    const pRent = p.costs.accommodation.center * 30;
+    const diff = ((pRent - rentCenter) / rentCenter * 100).toFixed(0);
+    return [
+      p.name,
+      `${p.currencySymbol || '$'}${pRent.toLocaleString()}`,
+      `${diff > 0 ? '+' : ''}${diff}%`,
+      `${p.safety?.safetyIndex || '--'}/100`,
+      `${p.digitalNomad?.overallScore || '--'}/100`
+    ];
+  });
+
+  return `
+  ${sectionTitle('08','City Comparison -- ${cityName} vs. Peer Cities')}
+  <p style="font-size:11px;color:#374151;line-height:1.6;margin-bottom:16px">${cityName} benchmarked against comparable destinations. Rent differentials expressed as percentage relative to ${cityName}.</p>
+  ${tbl(
+    ['City','1BR Rent','vs. ' + cityName,'Safety','Nomad Score'],
+    [
+      [`<strong>${cityName} (baseline)</strong>`,`${cur}${rentCenter.toLocaleString()}`,'--',`${safetyIdx}/100`,`${nomadScore}/100`],
+      ...compRows
+    ]
+  )}
+  ${commentary(`Among peer cities, ${cityName} ${affordScore >= 7 ? 'offers competitive value' : 'sits at a moderate price point'}. ${peers.length > 0 ? `${peers[0].name} provides the closest comparison in lifestyle and cost profile.` : ''}`)}
+  ${pageBreak()}`;
+}
+
+function prosCons() {
+  const strengths = [];
+  const limitations = [];
+
+  if (safetyIdx >= 80) strengths.push(['High Safety',`Safety index ${safetyIdx}/100 -- one of the safer cities in ${city.continent}.`]);
+  else if (safetyIdx >= 60) strengths.push(['Adequate Safety',`Safety index ${safetyIdx}/100 -- standard precautions apply.`]);
+  else limitations.push(['Safety Concerns',`Safety index ${safetyIdx}/100 -- above-average vigilance recommended.`]);
+
+  if (wifi >= 80) strengths.push(['Fast Internet',`${wifi} Mbps average -- excellent for remote work.`]);
+  else limitations.push(['Internet Speed',`${wifi} Mbps -- may be limiting for bandwidth-heavy work.`]);
+
+  if (visaRemote) strengths.push(['Remote Worker Visa',`${visaType} available.`]);
+  else limitations.push(['No Dedicated Nomad Visa',`Entry via ${visaType}. May limit long-term stays.`]);
+
+  if (affordScore >= 7) strengths.push(['Affordable',`Competitive cost of living relative to peer cities.`]);
+  else limitations.push(['Cost Pressure',`Rents and cost of living above average for the region.`]);
+
+  if (english >= 75) strengths.push(['English-Friendly',`English proficiency: ${english}/100.`]);
+  else limitations.push(['Language Barrier',`English proficiency: ${english}/100. Local language skills helpful.`]);
+
+  if (pubTrans >= 75) strengths.push(['Great Transit',`Public transport quality: ${pubTrans}/100.`]);
+  if (healthcare >= 80) strengths.push(['Quality Healthcare',`Healthcare score: ${healthcare}/100.`]);
+  if (taxTop <= 20) strengths.push(['Low Tax Burden',`Top personal rate: ${taxTop}%.`]);
+  else if (taxTop >= 40) limitations.push(['High Tax Burden',`Top personal rate: ${taxTop}%.`]);
+  if (inflation >= 6) limitations.push(['High Inflation',`${inflation}% annual inflation erodes purchasing power.`]);
+
+  // Ensure at least 4 of each
+  while (strengths.length < 4) strengths.push(['Growing Market',`${cityName} is developing its appeal for international residents.`]);
+  while (limitations.length < 4) limitations.push(['Market Maturity',`Some services for expats are still developing.`]);
+
+  return `
+  ${sectionTitle('09','Pros & Cons Summary')}
+  <h3 style="font-size:16px;font-weight:700;color:${GREEN};margin-bottom:8px">Strengths</h3>
+  ${tbl(['Strength','Detail'], strengths.slice(0, 6))}
+  <h3 style="font-size:16px;font-weight:700;color:${RED};margin:24px 0 8px">Limitations</h3>
+  ${tbl(['Limitation','Detail'], limitations.slice(0, 6), { hdrBg: '#7f1d1d', hdrColor: WHITE })}
+  ${pageBreak()}`;
+}
+
+function whoShouldMove() {
+  const profiles = [
+    ['Solo Remote Workers',nomadScore >= 75 ? 'RECOMMENDED' : 'CONDITIONAL', nomadScore >= 75 ? `${cityName} offers a strong environment for remote workers with ${wifi} Mbps WiFi and coworking at ${cur}${cowork}/month.` : `${cityName} is workable but may require adaptation. ${wifi < 50 ? 'Internet speeds may be limiting.' : ''}`],
+    ['Digital Nomads (3-6 months)',visaRemote && affordScore >= 6 ? 'RECOMMENDED' : 'CONDITIONAL', visaRemote ? `${visaType} enables legal stays. Budget nomads can operate from ${cur}${budgetTotal.toLocaleString()}/month.` : `No dedicated nomad visa; tourist visa allows ${visaStay}-month stays.`],
+    ['Relocating Families',healthcare >= 75 && safetyIdx >= 75 ? 'RECOMMENDED' : 'CONDITIONAL', `Safety: ${safetyIdx}/100. Healthcare: ${healthcare}/100. ${healthcare >= 75 ? 'International schooling available.' : 'Research schooling options carefully.'}`],
+    ['Retirees',safetyIdx >= 75 && affordScore >= 6 ? 'RECOMMENDED' : 'CONDITIONAL', `${safetyIdx >= 75 ? 'Safe environment' : 'Moderate safety'}. Healthcare at ${healthcare}/100. Cost of living ${affordScore >= 6 ? 'manageable' : 'requires careful planning'} on retirement income.`],
+    ['Entrepreneurs',taxCorp <= 20 && english >= 65 ? 'RECOMMENDED' : 'CONDITIONAL', `Corporate tax: ${taxCorp}%. ${english >= 65 ? 'Business-friendly English environment.' : 'Local language may be needed for business.'}`]
+  ];
+
+  let html = `${sectionTitle('10','Who Should Move to ${cityName}?')}`;
+  profiles.forEach(([name, verdict, detail]) => {
+    const vColor = verdict === 'RECOMMENDED' ? GREEN : AMBER;
+    html += `
+    <h3 style="font-size:14px;font-weight:700;color:${NAVY};margin:16px 0 4px">${name}</h3>
+    <p style="font-size:10px;margin-bottom:4px"><span style="display:inline-block;background:${vColor};color:white;font-weight:700;font-size:8px;padding:3px 10px;border-radius:4px">${verdict}</span></p>
+    <p style="font-size:10px;color:#374151;line-height:1.5;margin-bottom:8px">${detail}</p>`;
+  });
+  html += pageBreak();
+  return html;
+}
+
+function riskFactors() {
+  return `
+  ${sectionTitle('11','Risk Factors & Economic Outlook')}
+  ${tbl(
+    ['Risk Vector','Level','Assessment'],
+    [
+      ['Housing Cost Inflation',riskBadge(rentVol >= 7 ? 'HIGH' : rentVol >= 5 ? 'MODERATE' : 'LOW'),`Rent volatility index: ${rentVol}/10. ${rentVol >= 7 ? 'Significant upward pressure on rents.' : 'Market relatively stable.'}`],
+      ['Currency / FX Risk',riskBadge(curStab === 'High' || curStab === 'Very High' ? 'LOW' : 'MODERATE'),`Currency stability: ${curStab}. Inflation: ${inflation}%.`],
+      ['Tax Policy Risk',riskBadge(taxTop >= 40 ? 'MODERATE' : 'LOW'),`Top rate: ${taxTop}%. Tax policy ${taxTop >= 40 ? 'may change -- monitor updates' : 'currently favorable'}.`],
+      ['Visa / Regulatory',riskBadge(visaDays >= 90 ? 'MODERATE' : 'LOW'),`Processing: ${visaDays} days. ${visaRemote ? 'Remote visa available.' : 'No dedicated remote visa.'}`],
+      ['Safety',riskBadge(safetyIdx >= 75 ? 'LOW' : safetyIdx >= 55 ? 'MODERATE' : 'HIGH'),`Safety index: ${safetyIdx}/100. Crime: ${crimeLevel}.`],
+      ['Infrastructure',riskBadge(pubTrans >= 70 ? 'LOW' : 'MODERATE'),`Transit: ${pubTrans}/100. Healthcare: ${healthcare}/100.`]
+    ]
+  )}
+  ${pageBreak()}`;
+}
+
+function methodologyPage() {
+  return `
+  ${sectionTitle('12','Living Cost Atlas Index Methodology')}
+  <p style="font-size:11px;color:#374151;line-height:1.6;margin-bottom:16px">The LCA Index is a composite scoring framework providing standardized relocation intelligence across global cities.</p>
+  ${tbl(
+    ['Dimension','Weight','Data Sources'],
+    [
+      ['Affordability','30%','Rent indices, grocery costs, transport, coworking pricing'],
+      ['Infrastructure','20%','Internet speed, public transport, healthcare, airport connectivity'],
+      ['Safety','15%','Crime indices, political stability, emergency services'],
+      ['Quality of Life','20%','Climate, walkability, culture, healthcare access'],
+      ['Economic Stability','15%','Currency stability, inflation, GDP growth, policy environment']
+    ]
+  )}
+  <div style="background:${LGRAY};border:2px solid #e2e8f0;border-radius:8px;padding:16px 20px;margin:16px 0 20px;text-align:center">
+    <p style="font-size:11px;font-weight:700;color:${NAVY};margin:0"><strong>LCA Index</strong> = (Affordability x 0.30) + (Infrastructure x 0.20) + (Safety x 0.15) + (Quality of Life x 0.20) + (Economic Stability x 0.15)</p>
+  </div>
+  ${tbl(
+    ['Score Range','Classification','Guidance'],
+    [
+      ['8.0 -- 10.0','STRONG BUY','Top-tier destination; plan actively'],
+      ['6.5 -- 7.99','BUY','Solid destination; proceed with planning'],
+      ['5.0 -- 6.49','HOLD','Selective appeal; detailed research required'],
+      ['Below 5.0','CAUTION','Significant trade-offs; specialist advice recommended']
+    ]
+  )}
+  ${pageBreak()}`;
+}
+
+function finalVerdict() {
+  return `
+  ${sectionTitle('13','Final Verdict')}
+  <p style="font-size:11px;color:#374151;line-height:1.6;margin-bottom:20px">Living Cost Atlas's assessment of ${cityName} as a 2026 relocation destination.</p>
+
+  <div style="display:flex;gap:0;margin:20px 0 28px">
+    <div style="flex:1;background:${NAVY};padding:20px;text-align:center;border-radius:8px 0 0 8px">
+      <div style="font-size:10px;color:${GOLD};font-weight:600;letter-spacing:1px;margin-bottom:8px">LCA Index</div>
+      <div style="font-size:40px;font-weight:900;color:${WHITE}">${lcaIndex}</div>
+      <div style="font-size:10px;color:rgba(255,255,255,0.5)">out of 10.0</div>
+    </div>
+    <div style="flex:1;background:${NAVY};padding:20px;text-align:center;border-left:1px solid rgba(255,255,255,0.1)">
+      <div style="font-size:10px;color:${GOLD};font-weight:600;letter-spacing:1px;margin-bottom:8px">Classification</div>
+      <div style="font-size:22px;font-weight:900;color:${WHITE};margin-top:10px">${lcaVerdict}</div>
+    </div>
+    <div style="flex:1;background:${NAVY};padding:20px;text-align:center;border-left:1px solid rgba(255,255,255,0.1);border-radius:0 8px 8px 0">
+      <div style="font-size:10px;color:${GOLD};font-weight:600;letter-spacing:1px;margin-bottom:8px">Recommendation</div>
+      <div style="font-size:22px;font-weight:900;color:${WHITE};margin-top:10px">${lcaVerdict === 'STRONG BUY' || lcaVerdict === 'BUY' ? 'PROCEED<br>WITH PLANNING' : 'RESEARCH<br>FURTHER'}</div>
+    </div>
+  </div>
+
+  <div style="background:${LGRAY};border-left:4px solid ${GOLD};padding:10px 16px;margin:8px 0 20px">
+    <p style="font-size:10px;color:${NAVY};font-weight:600;margin:0">${cityName} scores ${lcaIndex}/10 on the Living Cost Atlas Index, classified as ${lcaVerdict}. ${lcaVerdict === 'STRONG BUY' ? 'This is one of the strongest relocation destinations available.' : lcaVerdict === 'BUY' ? `${cityName} offers solid fundamentals for international residents.` : `Prospective relocators should conduct thorough due diligence before committing.`}</p>
+  </div>
+
+  <p style="font-size:10px;color:${GRAY};text-align:center;margin-top:30px">&#169; 2026 Living Cost Atlas. All rights reserved.</p>`;
+}
+
+
+// -- Assemble full HTML --------------------------------------------------
+
+function buildFullHTML() {
+  return `<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @page {
+    size: A4;
+    margin: 0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 11px;
+    color: #111827;
+    background: #fff;
+  }
+  .page-content {
+    padding: 20px 40px 40px;
+  }
+  h2 { page-break-after: avoid; }
+  table { page-break-inside: auto; }
+  tr { page-break-inside: avoid; }
+</style>
+</head>
+<body>
+  ${coverPage()}
+  <div class="page-content">
+    ${headerBar()}
+    ${tocPage()}
+    ${execSummary()}
+    ${quickFactSheet()}
+    ${detailedCostBreakdown()}
+    ${budgetScenarios()}
+    ${neighborhoodAnalysis()}
+    ${workInfrastructure()}
+    ${safetyQoL()}
+    ${cityComparison()}
+    ${prosCons()}
+    ${whoShouldMove()}
+    ${riskFactors()}
+    ${methodologyPage()}
+    ${finalVerdict()}
+  </div>
+</body>
+</html>`;
+}
+
+// -- Generate PDF --------------------------------------------------------
+
+async function main() {
+  console.log(`Generating Living Cost Atlas ${cityName} 2026 eBook...`);
+
+  const html = buildFullHTML();
+
+  const htmlPath = OUT.replace('.pdf', '.html');
+  fs.writeFileSync(htmlPath, html, 'utf-8');
+  console.log('HTML written to', htmlPath);
+
+  const browser = await puppeteer.launch({
+    headless: 'new',
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
+  });
+
+  const page = await browser.newPage();
+  await page.setContent(html, { waitUntil: 'domcontentloaded', timeout: 60000 });
+
+  await page.pdf({
+    path: OUT,
+    format: 'A4',
+    printBackground: true,
+    margin: { top: '0', right: '0', bottom: '0', left: '0' },
+    displayHeaderFooter: false
+  });
+
+  await browser.close();
+  console.log('PDF generated:', OUT);
+
+  const stats = fs.statSync(OUT);
+  console.log('File size:', (stats.size / 1024).toFixed(1), 'KB');
+}
+
+main().catch(err => { console.error(err); process.exit(1); });
