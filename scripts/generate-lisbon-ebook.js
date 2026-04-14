@@ -30,10 +30,11 @@ const AMBER   = '#b45309';
 // -- Reusable HTML helpers -----------------------------------------------
 
 function headerBar() {
-  return `<div style="background:${NAVY};padding:10px 40px;display:flex;justify-content:space-between;align-items:center;position:running(header)">
+  return `<div style="background:${NAVY};padding:10px 40px;display:flex;justify-content:space-between;align-items:center;">
     <span style="font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:${WHITE}">LIVING COST ATLAS RELOCATION INTELLIGENCE | CONFIDENTIAL</span>
     <span style="font-size:8px;font-weight:600;letter-spacing:1px;color:${GOLD}">LISBON 2026 -- COST OF LIVING REPORT</span>
-  </div>`;
+  </div>
+  <div style="height:3px;background:linear-gradient(90deg,${GOLD},${GOLD_L})"></div>`;
 }
 
 function goldRule() {
@@ -91,7 +92,14 @@ function commentary(text) {
 }
 
 function pageBreak() {
-  return `<div style="page-break-after:always"></div>`;
+  return `<div style="page-break-after:always"></div>${headerBar()}`;
+}
+
+function footerBar(pageNum) {
+  return `<div style="margin:20px 0 0;padding:10px 0 0;border-top:1px solid #e2e8f0;display:flex;justify-content:space-between">
+    <span style="font-size:8px;color:#9ca3af">&copy; 2026 Living Cost Atlas. All data reflects Q1 2026 market estimates.</span>
+    <span style="font-size:8px;color:#9ca3af">-- ${pageNum} --</span>
+  </div>`;
 }
 
 // -- Pages ---------------------------------------------------------------
@@ -795,6 +803,7 @@ function buildFullHTML() {
 <body>
   ${coverPage()}
   <div class="page-content">
+    ${headerBar()}
     ${tocPage()}
     ${execSummary()}
     ${quickFactSheet()}
@@ -832,25 +841,14 @@ async function main() {
   });
 
   const page = await browser.newPage();
-  await page.setContent(html, { waitUntil: 'networkidle0' });
+  await page.setContent(html, { waitUntil: 'domcontentloaded', timeout: 60000 });
 
   await page.pdf({
     path: OUT,
     format: 'A4',
     printBackground: true,
-    margin: { top: '80px', right: '0', bottom: '50px', left: '0' },
-    displayHeaderFooter: true,
-    headerTemplate: `<div style="width:100%;font-family:Helvetica,Arial,sans-serif">
-      <div style="background:#1e1b4b;padding:10px 40px;display:flex;justify-content:space-between;align-items:center">
-        <span style="font-size:7px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:white">LIVING COST ATLAS RELOCATION INTELLIGENCE | CONFIDENTIAL</span>
-        <span style="font-size:7px;font-weight:600;letter-spacing:1px;color:#d4a843">LISBON 2026 -- COST OF LIVING REPORT</span>
-      </div>
-      <div style="height:3px;background:linear-gradient(90deg,#d4a843,#e8c97a)"></div>
-    </div>`,
-    footerTemplate: `<div style="width:100%;padding:10px 40px;display:flex;justify-content:space-between;font-family:Helvetica,Arial,sans-serif;border-top:1px solid #e2e8f0">
-      <span style="font-size:7px;color:#9ca3af">&copy; 2026 Living Cost Atlas. All data reflects Q1 2026 market estimates.</span>
-      <span style="font-size:7px;color:#9ca3af">-- <span class="pageNumber"></span> --</span>
-    </div>`
+    margin: { top: '0', right: '0', bottom: '0', left: '0' },
+    displayHeaderFooter: false
   });
 
   await browser.close();
