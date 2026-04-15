@@ -84,7 +84,7 @@ const EBOOKS = {
     city: 'Paris', country: 'France', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Paris_2026.pdf',
     coverImage: '/images/ebooks/paris-cover.png',
-    stripeLink: '',
+    stripeLink: 'https://buy.stripe.com/6oU5kE0h1bHbbgL8313gk07',
     highlights: defaultHighlights('Paris'),
     stats: { nomadScore: 78, avgRent: 2100, safety: 70, wifi: 200 }
   },
