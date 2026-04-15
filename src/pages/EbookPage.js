@@ -36,7 +36,7 @@ const EBOOKS = {
     city: 'Barcelona', country: 'Spain', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Barcelona_2026.pdf',
     coverImage: '/images/ebooks/barcelona-cover.png',
-    stripeLink: '',
+    stripeLink: 'https://buy.stripe.com/cNieVe4xhbHbbgLcjh3gk01',
     highlights: defaultHighlights('Barcelona'),
     stats: { nomadScore: 82, avgRent: 1500, safety: 75, wifi: 140 }
   },
@@ -44,7 +44,7 @@ const EBOOKS = {
     city: 'Bangkok', country: 'Thailand', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Bangkok_2026.pdf',
     coverImage: '/images/ebooks/bangkok-cover.png',
-    stripeLink: '',
+    stripeLink: 'https://buy.stripe.com/14A7sMgfZ6mRgB55UT3gk02',
     highlights: defaultHighlights('Bangkok'),
     stats: { nomadScore: 88, avgRent: 750, safety: 65, wifi: 80 }
   },
@@ -52,7 +52,7 @@ const EBOOKS = {
     city: 'Tokyo', country: 'Japan', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Tokyo_2026.pdf',
     coverImage: '/images/ebooks/tokyo-cover.png',
-    stripeLink: '',
+    stripeLink: 'https://buy.stripe.com/6oU3cw7Jt9z31Gb4QP3gk03',
     highlights: defaultHighlights('Tokyo'),
     stats: { nomadScore: 80, avgRent: 2100, safety: 95, wifi: 150 }
   },
@@ -60,7 +60,7 @@ const EBOOKS = {
     city: 'Bali', country: 'Indonesia', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Bali_2026.pdf',
     coverImage: '/images/ebooks/bali-cover.png',
-    stripeLink: '',
+    stripeLink: 'https://buy.stripe.com/00wfZiaVF6mR70v2IH3gk04',
     highlights: defaultHighlights('Bali'),
     stats: { nomadScore: 92, avgRent: 600, safety: 70, wifi: 40 }
   },
@@ -68,7 +68,7 @@ const EBOOKS = {
     city: 'Berlin', country: 'Germany', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Berlin_2026.pdf',
     coverImage: '/images/ebooks/berlin-cover.png',
-    stripeLink: '',
+    stripeLink: 'https://buy.stripe.com/fZu8wQ2p912xesXfvt3gk05',
     highlights: defaultHighlights('Berlin'),
     stats: { nomadScore: 83, avgRent: 1650, safety: 80, wifi: 100 }
   },
@@ -76,7 +76,7 @@ const EBOOKS = {
     city: 'Dubai', country: 'UAE', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Dubai_2026.pdf',
     coverImage: '/images/ebooks/dubai-cover.png',
-    stripeLink: '',
+    stripeLink: 'https://buy.stripe.com/6oUcN62p9cLf84z3ML3gk06',
     highlights: defaultHighlights('Dubai'),
     stats: { nomadScore: 79, avgRent: 2400, safety: 95, wifi: 120 }
   },
