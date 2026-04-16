@@ -30,16 +30,22 @@ export function setPageMeta({ title, description, canonical, jsonLd, image }) {
   canonicalEl.href = canonicalUrl;
 
   // -- Open Graph -----------------------------------------
-  setMeta('property', 'og:title',       fullTitle);
-  setMeta('property', 'og:description', description || '');
-  setMeta('property', 'og:url',         canonicalUrl);
-  setMeta('property', 'og:image',       image || `${BASE_URL}/og-image.png`);
-  setMeta('property', 'og:type',        'website');
+  const ogImage = image || `${BASE_URL}/og-image.png`;
+  setMeta('property', 'og:title',        fullTitle);
+  setMeta('property', 'og:description',  description || '');
+  setMeta('property', 'og:url',          canonicalUrl);
+  setMeta('property', 'og:image',        ogImage);
+  setMeta('property', 'og:image:width',  '1200');
+  setMeta('property', 'og:image:height', '630');
+  setMeta('property', 'og:type',         'website');
+  setMeta('property', 'og:site_name',    'Living Cost Atlas');
+  setMeta('property', 'og:locale',       'en_US');
 
   // -- Twitter --------------------------------------------
+  setMeta('name', 'twitter:card',        'summary_large_image');
   setMeta('name', 'twitter:title',       fullTitle);
   setMeta('name', 'twitter:description', description || '');
-  setMeta('name', 'twitter:image',       image || `${BASE_URL}/og-image.png`);
+  setMeta('name', 'twitter:image',       ogImage);
 
   // -- JSON-LD (page-level, injected alongside global ones) -
   if (jsonLd) {

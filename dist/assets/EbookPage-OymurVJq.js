@@ -1,145 +1,4 @@
-/**
- * EbookPage -- Landing page for premium city eBooks
- * Displays cover image, content highlights, and purchase CTA
- * ASCII-only comments (Vite/Vercel constraint)
- */
-
-import { setPageMeta, injectSchema } from '../logic/setPageMeta.js';
-import { MainLayout } from '../layouts/MainLayout.js';
-import { getCityBySlug } from '../data/cityService.js';
-
-// eBook catalog -- add new cities here
-// Shared highlights template for generated ebooks
-function defaultHighlights(cityName) {
-  return [
-    'Executive Summary & LCA Index Score',
-    'Detailed Cost Breakdown (housing, food, transport, utilities)',
-    'Monthly Budget Scenarios (3 profiles)',
-    '5 Neighborhood Analyses with rent ranges',
-    `Visa & Tax Guide for ${cityName}`,
-    'City Comparison vs Peer Destinations',
-    'Safety, Quality of Life & Infrastructure Scorecards',
-    'Risk Factors & Economic Outlook 2026',
-  ];
-}
-
-const EBOOKS = {
-  lisbon: {
-    city: 'Lisbon', country: 'Portugal', price: 9.99, currency: 'EUR', pages: 28,
-    pdfPath: '/ebooks/LivingCostAtlas_Lisbon_2026.pdf',
-    coverImage: '/images/ebooks/lisbon-cover.png',
-    stripeLink: 'https://buy.stripe.com/4gM4gAe7R12xacHbfd3gk00',
-    highlights: defaultHighlights('Lisbon'),
-    stats: { nomadScore: 81, avgRent: 1800, safety: 85, wifi: 120 }
-  },
-  barcelona: {
-    city: 'Barcelona', country: 'Spain', price: 9.99, currency: 'EUR', pages: 22,
-    pdfPath: '/ebooks/LivingCostAtlas_Barcelona_2026.pdf',
-    coverImage: '/images/ebooks/barcelona-cover.png',
-    stripeLink: 'https://buy.stripe.com/cNieVe4xhbHbbgLcjh3gk01',
-    highlights: defaultHighlights('Barcelona'),
-    stats: { nomadScore: 82, avgRent: 1500, safety: 75, wifi: 140 }
-  },
-  bangkok: {
-    city: 'Bangkok', country: 'Thailand', price: 9.99, currency: 'EUR', pages: 22,
-    pdfPath: '/ebooks/LivingCostAtlas_Bangkok_2026.pdf',
-    coverImage: '/images/ebooks/bangkok-cover.png',
-    stripeLink: 'https://buy.stripe.com/14A7sMgfZ6mRgB55UT3gk02',
-    highlights: defaultHighlights('Bangkok'),
-    stats: { nomadScore: 88, avgRent: 750, safety: 65, wifi: 80 }
-  },
-  tokyo: {
-    city: 'Tokyo', country: 'Japan', price: 9.99, currency: 'EUR', pages: 22,
-    pdfPath: '/ebooks/LivingCostAtlas_Tokyo_2026.pdf',
-    coverImage: '/images/ebooks/tokyo-cover.png',
-    stripeLink: 'https://buy.stripe.com/6oU3cw7Jt9z31Gb4QP3gk03',
-    highlights: defaultHighlights('Tokyo'),
-    stats: { nomadScore: 80, avgRent: 2100, safety: 95, wifi: 150 }
-  },
-  bali: {
-    city: 'Bali', country: 'Indonesia', price: 9.99, currency: 'EUR', pages: 22,
-    pdfPath: '/ebooks/LivingCostAtlas_Bali_2026.pdf',
-    coverImage: '/images/ebooks/bali-cover.png',
-    stripeLink: 'https://buy.stripe.com/00wfZiaVF6mR70v2IH3gk04',
-    highlights: defaultHighlights('Bali'),
-    stats: { nomadScore: 92, avgRent: 600, safety: 70, wifi: 40 }
-  },
-  berlin: {
-    city: 'Berlin', country: 'Germany', price: 9.99, currency: 'EUR', pages: 22,
-    pdfPath: '/ebooks/LivingCostAtlas_Berlin_2026.pdf',
-    coverImage: '/images/ebooks/berlin-cover.png',
-    stripeLink: 'https://buy.stripe.com/fZu8wQ2p912xesXfvt3gk05',
-    highlights: defaultHighlights('Berlin'),
-    stats: { nomadScore: 83, avgRent: 1650, safety: 80, wifi: 100 }
-  },
-  dubai: {
-    city: 'Dubai', country: 'UAE', price: 9.99, currency: 'EUR', pages: 22,
-    pdfPath: '/ebooks/LivingCostAtlas_Dubai_2026.pdf',
-    coverImage: '/images/ebooks/dubai-cover.png',
-    stripeLink: 'https://buy.stripe.com/6oUcN62p9cLf84z3ML3gk06',
-    highlights: defaultHighlights('Dubai'),
-    stats: { nomadScore: 79, avgRent: 2400, safety: 95, wifi: 120 }
-  },
-  paris: {
-    city: 'Paris', country: 'France', price: 9.99, currency: 'EUR', pages: 22,
-    pdfPath: '/ebooks/LivingCostAtlas_Paris_2026.pdf',
-    coverImage: '/images/ebooks/paris-cover.png',
-    stripeLink: 'https://buy.stripe.com/6oU5kE0h1bHbbgL8313gk07',
-    highlights: defaultHighlights('Paris'),
-    stats: { nomadScore: 78, avgRent: 2100, safety: 70, wifi: 200 }
-  },
-  'mexico-city': {
-    city: 'Mexico City', country: 'Mexico', price: 9.99, currency: 'EUR', pages: 22,
-    pdfPath: '/ebooks/LivingCostAtlas_Mexico_City_2026.pdf',
-    coverImage: '/images/ebooks/mexico-city-cover.png',
-    stripeLink: '',
-    highlights: defaultHighlights('Mexico City'),
-    stats: { nomadScore: 66, avgRent: 1200, safety: 55, wifi: 100 }
-  },
-  medellin: {
-    city: 'Medellin', country: 'Colombia', price: 9.99, currency: 'EUR', pages: 22,
-    pdfPath: '/ebooks/LivingCostAtlas_Medellin_2026.pdf',
-    coverImage: '/images/ebooks/medellin-cover.png',
-    stripeLink: '',
-    highlights: defaultHighlights('Medellin'),
-    stats: { nomadScore: 64, avgRent: 900, safety: 60, wifi: 100 }
-  },
-  'chiang-mai': {
-    city: 'Chiang Mai', country: 'Thailand', price: 9.99, currency: 'EUR', pages: 22,
-    pdfPath: '/ebooks/LivingCostAtlas_Chiang_Mai_2026.pdf',
-    coverImage: '/images/ebooks/chiang-mai-cover.png',
-    stripeLink: '',
-    highlights: defaultHighlights('Chiang Mai'),
-    stats: { nomadScore: 67, avgRent: 500, safety: 85, wifi: 90 }
-  },
-  amsterdam: {
-    city: 'Amsterdam', country: 'Netherlands', price: 9.99, currency: 'EUR', pages: 22,
-    pdfPath: '/ebooks/LivingCostAtlas_Amsterdam_2026.pdf',
-    coverImage: '/images/ebooks/amsterdam-cover.png',
-    stripeLink: '',
-    highlights: defaultHighlights('Amsterdam'),
-    stats: { nomadScore: 85, avgRent: 2200, safety: 80, wifi: 200 }
-  },
-  prague: {
-    city: 'Prague', country: 'Czech Republic', price: 9.99, currency: 'EUR', pages: 22,
-    pdfPath: '/ebooks/LivingCostAtlas_Prague_2026.pdf',
-    coverImage: '/images/ebooks/prague-cover.png',
-    stripeLink: '',
-    highlights: defaultHighlights('Prague'),
-    stats: { nomadScore: 81, avgRent: 1400, safety: 85, wifi: 180 }
-  },
-};
-
-export function EbookPage(params) {
-  const slug = params.slug;
-  const ebook = EBOOKS[slug];
-
-  if (!ebook) {
-    setPageMeta({
-      title: 'eBook Not Found | Living Cost Atlas',
-      description: 'This eBook is not available.'
-    });
-    return MainLayout(`
+import{s as r,i as l}from"./setPageMeta-BmQKFz2d.js";import{M as n}from"./MainLayout-Du2sJ_sj.js";function t(o){return["Executive Summary & LCA Index Score","Detailed Cost Breakdown (housing, food, transport, utilities)","Monthly Budget Scenarios (3 profiles)","5 Neighborhood Analyses with rent ranges",`Visa & Tax Guide for ${o}`,"City Comparison vs Peer Destinations","Safety, Quality of Life & Infrastructure Scorecards","Risk Factors & Economic Outlook 2026"]}const c={lisbon:{city:"Lisbon",country:"Portugal",price:9.99,currency:"EUR",pages:28,pdfPath:"/ebooks/LivingCostAtlas_Lisbon_2026.pdf",coverImage:"/images/ebooks/lisbon-cover.png",stripeLink:"https://buy.stripe.com/4gM4gAe7R12xacHbfd3gk00",highlights:t("Lisbon"),stats:{nomadScore:81,avgRent:1800,safety:85,wifi:120}},barcelona:{city:"Barcelona",country:"Spain",price:9.99,currency:"EUR",pages:22,pdfPath:"/ebooks/LivingCostAtlas_Barcelona_2026.pdf",coverImage:"/images/ebooks/barcelona-cover.png",stripeLink:"https://buy.stripe.com/cNieVe4xhbHbbgLcjh3gk01",highlights:t("Barcelona"),stats:{nomadScore:82,avgRent:1500,safety:75,wifi:140}},bangkok:{city:"Bangkok",country:"Thailand",price:9.99,currency:"EUR",pages:22,pdfPath:"/ebooks/LivingCostAtlas_Bangkok_2026.pdf",coverImage:"/images/ebooks/bangkok-cover.png",stripeLink:"https://buy.stripe.com/14A7sMgfZ6mRgB55UT3gk02",highlights:t("Bangkok"),stats:{nomadScore:88,avgRent:750,safety:65,wifi:80}},tokyo:{city:"Tokyo",country:"Japan",price:9.99,currency:"EUR",pages:22,pdfPath:"/ebooks/LivingCostAtlas_Tokyo_2026.pdf",coverImage:"/images/ebooks/tokyo-cover.png",stripeLink:"https://buy.stripe.com/6oU3cw7Jt9z31Gb4QP3gk03",highlights:t("Tokyo"),stats:{nomadScore:80,avgRent:2100,safety:95,wifi:150}},bali:{city:"Bali",country:"Indonesia",price:9.99,currency:"EUR",pages:22,pdfPath:"/ebooks/LivingCostAtlas_Bali_2026.pdf",coverImage:"/images/ebooks/bali-cover.png",stripeLink:"https://buy.stripe.com/00wfZiaVF6mR70v2IH3gk04",highlights:t("Bali"),stats:{nomadScore:92,avgRent:600,safety:70,wifi:40}},berlin:{city:"Berlin",country:"Germany",price:9.99,currency:"EUR",pages:22,pdfPath:"/ebooks/LivingCostAtlas_Berlin_2026.pdf",coverImage:"/images/ebooks/berlin-cover.png",stripeLink:"https://buy.stripe.com/fZu8wQ2p912xesXfvt3gk05",highlights:t("Berlin"),stats:{nomadScore:83,avgRent:1650,safety:80,wifi:100}},dubai:{city:"Dubai",country:"UAE",price:9.99,currency:"EUR",pages:22,pdfPath:"/ebooks/LivingCostAtlas_Dubai_2026.pdf",coverImage:"/images/ebooks/dubai-cover.png",stripeLink:"https://buy.stripe.com/6oUcN62p9cLf84z3ML3gk06",highlights:t("Dubai"),stats:{nomadScore:79,avgRent:2400,safety:95,wifi:120}},paris:{city:"Paris",country:"France",price:9.99,currency:"EUR",pages:22,pdfPath:"/ebooks/LivingCostAtlas_Paris_2026.pdf",coverImage:"/images/ebooks/paris-cover.png",stripeLink:"https://buy.stripe.com/6oU5kE0h1bHbbgL8313gk07",highlights:t("Paris"),stats:{nomadScore:78,avgRent:2100,safety:70,wifi:200}},"mexico-city":{city:"Mexico City",country:"Mexico",price:9.99,currency:"EUR",pages:22,pdfPath:"/ebooks/LivingCostAtlas_Mexico_City_2026.pdf",coverImage:"/images/ebooks/mexico-city-cover.png",stripeLink:"",highlights:t("Mexico City"),stats:{nomadScore:66,avgRent:1200,safety:55,wifi:100}},medellin:{city:"Medellin",country:"Colombia",price:9.99,currency:"EUR",pages:22,pdfPath:"/ebooks/LivingCostAtlas_Medellin_2026.pdf",coverImage:"/images/ebooks/medellin-cover.png",stripeLink:"",highlights:t("Medellin"),stats:{nomadScore:64,avgRent:900,safety:60,wifi:100}},"chiang-mai":{city:"Chiang Mai",country:"Thailand",price:9.99,currency:"EUR",pages:22,pdfPath:"/ebooks/LivingCostAtlas_Chiang_Mai_2026.pdf",coverImage:"/images/ebooks/chiang-mai-cover.png",stripeLink:"",highlights:t("Chiang Mai"),stats:{nomadScore:67,avgRent:500,safety:85,wifi:90}},amsterdam:{city:"Amsterdam",country:"Netherlands",price:9.99,currency:"EUR",pages:22,pdfPath:"/ebooks/LivingCostAtlas_Amsterdam_2026.pdf",coverImage:"/images/ebooks/amsterdam-cover.png",stripeLink:"",highlights:t("Amsterdam"),stats:{nomadScore:85,avgRent:2200,safety:80,wifi:200}},prague:{city:"Prague",country:"Czech Republic",price:9.99,currency:"EUR",pages:22,pdfPath:"/ebooks/LivingCostAtlas_Prague_2026.pdf",coverImage:"/images/ebooks/prague-cover.png",stripeLink:"",highlights:t("Prague"),stats:{nomadScore:81,avgRent:1400,safety:85,wifi:180}}};function b(o){const i=o.slug,e=c[i];if(!e)return r({title:"eBook Not Found | Living Cost Atlas",description:"This eBook is not available."}),n(`
       <div style="min-height:60vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px">
         <div>
           <h1 style="font-size:36px;font-weight:800;color:#1e1b4b;margin-bottom:16px">eBook Not Found</h1>
@@ -147,38 +6,7 @@ export function EbookPage(params) {
           <a href="/destinations" data-link style="display:inline-block;padding:14px 32px;background:#4f46e5;color:#fff;border-radius:12px;font-weight:600;text-decoration:none">Browse Destinations</a>
         </div>
       </div>
-    `);
-  }
-
-  setPageMeta({
-    title: `${ebook.city} Cost of Living eBook 2026 | Living Cost Atlas`,
-    description: `The complete ${ebook.pages}-page relocation guide for ${ebook.city}, ${ebook.country}. Data-driven cost breakdowns, neighborhood analysis, visa info & budget scenarios.`,
-    image: `https://www.livingcostatlas.com${ebook.coverImage}`,
-  });
-
-  // Schema.org Product for SEO
-  injectSchema({
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: `${ebook.city} Cost of Living & Relocation Guide 2026`,
-    description: `${ebook.pages}-page premium relocation guide for ${ebook.city}, ${ebook.country}. Real cost data, neighborhood analysis, visa guide & budget scenarios.`,
-    image: `https://www.livingcostatlas.com${ebook.coverImage}`,
-    brand: { '@type': 'Brand', name: 'Living Cost Atlas' },
-    offers: {
-      '@type': 'Offer',
-      price: ebook.price,
-      priceCurrency: ebook.currency,
-      availability: 'https://schema.org/InStock',
-      url: `https://www.livingcostatlas.com/ebook/${slug}`,
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      reviewCount: '12',
-    }
-  });
-
-  const content = `
+    `);r({title:`${e.city} Cost of Living eBook 2026 | Living Cost Atlas`,description:`The complete ${e.pages}-page relocation guide for ${e.city}, ${e.country}. Data-driven cost breakdowns, neighborhood analysis, visa info & budget scenarios.`,image:`https://www.livingcostatlas.com${e.coverImage}`}),l({"@context":"https://schema.org","@type":"Product",name:`${e.city} Cost of Living & Relocation Guide 2026`,description:`${e.pages}-page premium relocation guide for ${e.city}, ${e.country}. Real cost data, neighborhood analysis, visa guide & budget scenarios.`,image:`https://www.livingcostatlas.com${e.coverImage}`,brand:{"@type":"Brand",name:"Living Cost Atlas"},offers:{"@type":"Offer",price:e.price,priceCurrency:e.currency,availability:"https://schema.org/InStock",url:`https://www.livingcostatlas.com/ebook/${i}`},aggregateRating:{"@type":"AggregateRating",ratingValue:"4.8",reviewCount:"12"}});const a=`
     <style>
       /* ---- Hero ---- */
       .eb-hero {
@@ -377,37 +205,37 @@ export function EbookPage(params) {
     <section class="eb-hero">
       <div class="eb-hero__inner">
         <div class="eb-hero__cover">
-          <img src="${ebook.coverImage}" alt="${ebook.city} eBook Cover" width="340" height="483">
+          <img src="${e.coverImage}" alt="${e.city} eBook Cover" width="340" height="483">
         </div>
 
         <div class="eb-hero__text">
           <div class="eb-hero__badge">Premium Relocation Guide - 2026</div>
           <h1 class="eb-hero__title">
-            <em>${ebook.city}</em> Cost of Living &amp; Relocation Guide
+            <em>${e.city}</em> Cost of Living &amp; Relocation Guide
           </h1>
           <p class="eb-hero__sub">
-            ${ebook.pages} pages of data-driven insights for remote workers, expats &amp;
-            global professionals planning a move to ${ebook.city}.
+            ${e.pages} pages of data-driven insights for remote workers, expats &amp;
+            global professionals planning a move to ${e.city}.
           </p>
 
           <div class="eb-hero__meta">
             <div class="eb-meta">
-              <div class="eb-meta__icon">${ebook.pages}</div>
+              <div class="eb-meta__icon">${e.pages}</div>
               <div class="eb-meta__text"><strong>Pages</strong>In-depth data</div>
             </div>
             <div class="eb-meta">
-              <div class="eb-meta__icon">${ebook.stats.nomadScore}</div>
+              <div class="eb-meta__icon">${e.stats.nomadScore}</div>
               <div class="eb-meta__text"><strong>Nomad Score</strong>Out of 100</div>
             </div>
             <div class="eb-meta">
-              <div class="eb-meta__icon">${ebook.stats.safety}</div>
+              <div class="eb-meta__icon">${e.stats.safety}</div>
               <div class="eb-meta__text"><strong>Safety Index</strong>Out of 100</div>
             </div>
           </div>
 
           <div class="eb-hero__actions">
             <div class="eb-price">
-              <div class="eb-price__amount">${ebook.price}<span class="eb-price__currency"> EUR</span></div>
+              <div class="eb-price__amount">${e.price}<span class="eb-price__currency"> EUR</span></div>
             </div>
             <button class="eb-btn-buy" id="ebook-buy-btn">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -438,15 +266,15 @@ export function EbookPage(params) {
       <div class="eb-content__inner">
         <div class="eb-gold-line"></div>
         <h2 class="eb-section-title">What's Inside</h2>
-        <p class="eb-section-sub">${ebook.pages} pages covering everything you need to plan your move to ${ebook.city}</p>
+        <p class="eb-section-sub">${e.pages} pages covering everything you need to plan your move to ${e.city}</p>
 
         <div class="eb-toc">
-          ${ebook.highlights.map((h, i) => `
+          ${e.highlights.map((s,d)=>`
             <div class="eb-toc__item">
-              <div class="eb-toc__num">${String(i + 1).padStart(2, '0')}</div>
-              <div class="eb-toc__text">${h}</div>
+              <div class="eb-toc__num">${String(d+1).padStart(2,"0")}</div>
+              <div class="eb-toc__text">${s}</div>
             </div>
-          `).join('')}
+          `).join("")}
         </div>
 
         <div class="eb-gold-line"></div>
@@ -501,35 +329,13 @@ export function EbookPage(params) {
         <!-- Bottom CTA -->
         <div class="eb-bottom-cta" style="margin-top:72px">
           <h2>Ready to Plan Your Move?</h2>
-          <p>${ebook.pages} pages of actionable data for ${ebook.city}. One purchase, lifetime access.</p>
+          <p>${e.pages} pages of actionable data for ${e.city}. One purchase, lifetime access.</p>
           <button class="eb-btn-buy" id="ebook-buy-btn-bottom" style="position:relative">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Get the eBook - ${ebook.price} EUR
+            Get the eBook - ${e.price} EUR
           </button>
           <p style="font-size:12px;color:rgba(255,255,255,0.35);margin-top:16px;position:relative">Secure payment via Stripe. Instant PDF delivery.</p>
         </div>
       </div>
     </section>
-  `;
-
-  return MainLayout(content);
-}
-
-export function setupEbookPageInteractivity() {
-  const slug = window.location.pathname.replace('/ebook/', '');
-  const ebook = EBOOKS[slug];
-  if (!ebook) return;
-
-  const handleBuy = () => {
-    if (ebook.stripeLink) {
-      window.open(ebook.stripeLink, '_blank');
-    } else {
-      window.open(ebook.pdfPath, '_blank');
-    }
-  };
-
-  const btn1 = document.getElementById('ebook-buy-btn');
-  const btn2 = document.getElementById('ebook-buy-btn-bottom');
-  if (btn1) btn1.addEventListener('click', handleBuy);
-  if (btn2) btn2.addEventListener('click', handleBuy);
-}
+  `;return n(a)}function f(){const o=window.location.pathname.replace("/ebook/",""),i=c[o];if(!i)return;const e=()=>{i.stripeLink?window.open(i.stripeLink,"_blank"):window.open(i.pdfPath,"_blank")},a=document.getElementById("ebook-buy-btn"),s=document.getElementById("ebook-buy-btn-bottom");a&&a.addEventListener("click",e),s&&s.addEventListener("click",e)}export{b as EbookPage,f as setupEbookPageInteractivity};
