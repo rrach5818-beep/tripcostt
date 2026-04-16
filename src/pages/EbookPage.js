@@ -92,7 +92,7 @@ const EBOOKS = {
     city: 'Mexico City', country: 'Mexico', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Mexico_City_2026.pdf',
     coverImage: '/images/ebooks/mexico-city-cover.png',
-    stripeLink: '',
+    stripeLink: 'https://buy.stripe.com/dRm00k4xh9z31Gb8313gk08',
     highlights: defaultHighlights('Mexico City'),
     stats: { nomadScore: 66, avgRent: 1200, safety: 55, wifi: 100 }
   },
@@ -100,7 +100,7 @@ const EBOOKS = {
     city: 'Medellin', country: 'Colombia', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Medellin_2026.pdf',
     coverImage: '/images/ebooks/medellin-cover.png',
-    stripeLink: '',
+    stripeLink: 'https://buy.stripe.com/28E9AU1l5h1vckP2IH3gk09',
     highlights: defaultHighlights('Medellin'),
     stats: { nomadScore: 64, avgRent: 900, safety: 60, wifi: 100 }
   },
@@ -108,7 +108,7 @@ const EBOOKS = {
     city: 'Chiang Mai', country: 'Thailand', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Chiang_Mai_2026.pdf',
     coverImage: '/images/ebooks/chiang-mai-cover.png',
-    stripeLink: '',
+    stripeLink: 'https://buy.stripe.com/dRmdRafbVeTn84zbfd3gk0a',
     highlights: defaultHighlights('Chiang Mai'),
     stats: { nomadScore: 67, avgRent: 500, safety: 85, wifi: 90 }
   },
@@ -116,7 +116,7 @@ const EBOOKS = {
     city: 'Amsterdam', country: 'Netherlands', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Amsterdam_2026.pdf',
     coverImage: '/images/ebooks/amsterdam-cover.png',
-    stripeLink: '',
+    stripeLink: 'https://buy.stripe.com/eVq6oIe7R26B98Dbfd3gk0b',
     highlights: defaultHighlights('Amsterdam'),
     stats: { nomadScore: 85, avgRent: 2200, safety: 80, wifi: 200 }
   },
@@ -124,7 +124,7 @@ const EBOOKS = {
     city: 'Prague', country: 'Czech Republic', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Prague_2026.pdf',
     coverImage: '/images/ebooks/prague-cover.png',
-    stripeLink: '',
+    stripeLink: 'https://buy.stripe.com/4gM6oI7JtfXr70v3ML3gk0c',
     highlights: defaultHighlights('Prague'),
     stats: { nomadScore: 81, avgRent: 1400, safety: 85, wifi: 180 }
   },

@@ -2,7 +2,7 @@
  * NewsletterPopup -- Lead magnet email capture
  * Triggers after 30s or on exit-intent (whichever first)
  * Stores dismissal in localStorage, re-shows after 7 days
- * Submits to FORMSPREE_ENDPOINT (replace with your own)
+ * Submits to Web3Forms (https://web3forms.com)
  * ASCII-only comments (Vite constraint)
  */
 
@@ -12,9 +12,10 @@ const REMIND_DAYS = 7;
 const TRIGGER_DELAY_MS = 30000;
 const FREE_GUIDE_PDF = '/ebooks/LivingCostAtlas_FreeGuide_Top10_2026.pdf';
 
-// Formspree endpoint placeholder -- sign up at https://formspree.io and replace this ID
-// The form will POST email+source and user receives the PDF link immediately
-const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+// Web3Forms endpoint -- replace WEB3FORMS_ACCESS_KEY with the key from
+// https://web3forms.com (create account, create form, copy the access key)
+const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
+const WEB3FORMS_ACCESS_KEY = 'WEB3FORMS_ACCESS_KEY';
 
 function shouldShow() {
   // Already subscribed? never show again
@@ -211,18 +212,26 @@ function showSuccess(overlay, email) {
 }
 
 async function submitEmail(email) {
-  // If endpoint is placeholder, just simulate success (dev mode)
-  if (FORMSPREE_ENDPOINT.includes('YOUR_FORM_ID')) {
-    console.warn('[NewsletterPopup] Formspree endpoint not configured. Simulating success.');
+  // If access key is placeholder, just simulate success (dev mode)
+  if (WEB3FORMS_ACCESS_KEY === 'WEB3FORMS_ACCESS_KEY') {
+    console.warn('[NewsletterPopup] Web3Forms access key not configured. Simulating success.');
     return { ok: true };
   }
   try {
-    const res = await fetch(FORMSPREE_ENDPOINT, {
+    const res = await fetch(WEB3FORMS_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ email, source: 'lca-newsletter-popup' })
+      body: JSON.stringify({
+        access_key: WEB3FORMS_ACCESS_KEY,
+        email,
+        subject: 'New Living Cost Atlas newsletter signup',
+        from_name: 'Living Cost Atlas',
+        source: 'lca-newsletter-popup',
+        botcheck: ''
+      })
     });
-    return { ok: res.ok };
+    const data = await res.json().catch(() => ({}));
+    return { ok: res.ok && data.success !== false, data };
   } catch (err) {
     return { ok: false, error: err.message };
   }
