@@ -5,16 +5,22 @@
 
 import { setPageMeta } from '../logic/setPageMeta.js';
 import { MainLayout } from '../layouts/MainLayout.js';
+import { trackEbookPurchase } from '../logic/analytics.js';
 
 const EBOOKS = {
-  lisbon:    { city: 'Lisbon',    file: 'LivingCostAtlas_Lisbon_2026.pdf' },
-  barcelona: { city: 'Barcelona', file: 'LivingCostAtlas_Barcelona_2026.pdf' },
-  bangkok:   { city: 'Bangkok',   file: 'LivingCostAtlas_Bangkok_2026.pdf' },
-  tokyo:     { city: 'Tokyo',     file: 'LivingCostAtlas_Tokyo_2026.pdf' },
-  bali:      { city: 'Bali',      file: 'LivingCostAtlas_Bali_2026.pdf' },
-  berlin:    { city: 'Berlin',    file: 'LivingCostAtlas_Berlin_2026.pdf' },
-  dubai:     { city: 'Dubai',     file: 'LivingCostAtlas_Dubai_2026.pdf' },
-  paris:     { city: 'Paris',     file: 'LivingCostAtlas_Paris_2026.pdf' },
+  lisbon:        { city: 'Lisbon',      country: 'Portugal',      price: 9.99, currency: 'EUR', file: 'LivingCostAtlas_Lisbon_2026.pdf' },
+  barcelona:     { city: 'Barcelona',   country: 'Spain',         price: 9.99, currency: 'EUR', file: 'LivingCostAtlas_Barcelona_2026.pdf' },
+  bangkok:       { city: 'Bangkok',     country: 'Thailand',      price: 9.99, currency: 'EUR', file: 'LivingCostAtlas_Bangkok_2026.pdf' },
+  tokyo:         { city: 'Tokyo',       country: 'Japan',         price: 9.99, currency: 'EUR', file: 'LivingCostAtlas_Tokyo_2026.pdf' },
+  bali:          { city: 'Bali',        country: 'Indonesia',     price: 9.99, currency: 'EUR', file: 'LivingCostAtlas_Bali_2026.pdf' },
+  berlin:        { city: 'Berlin',      country: 'Germany',       price: 9.99, currency: 'EUR', file: 'LivingCostAtlas_Berlin_2026.pdf' },
+  dubai:         { city: 'Dubai',       country: 'UAE',           price: 9.99, currency: 'EUR', file: 'LivingCostAtlas_Dubai_2026.pdf' },
+  paris:         { city: 'Paris',       country: 'France',        price: 9.99, currency: 'EUR', file: 'LivingCostAtlas_Paris_2026.pdf' },
+  'mexico-city': { city: 'Mexico City', country: 'Mexico',        price: 9.99, currency: 'EUR', file: 'LivingCostAtlas_Mexico_City_2026.pdf' },
+  medellin:      { city: 'Medellin',    country: 'Colombia',      price: 9.99, currency: 'EUR', file: 'LivingCostAtlas_Medellin_2026.pdf' },
+  'chiang-mai':  { city: 'Chiang Mai',  country: 'Thailand',      price: 9.99, currency: 'EUR', file: 'LivingCostAtlas_Chiang_Mai_2026.pdf' },
+  amsterdam:     { city: 'Amsterdam',   country: 'Netherlands',   price: 9.99, currency: 'EUR', file: 'LivingCostAtlas_Amsterdam_2026.pdf' },
+  prague:        { city: 'Prague',      country: 'Czech Republic', price: 9.99, currency: 'EUR', file: 'LivingCostAtlas_Prague_2026.pdf' },
 };
 
 export function EbookSuccessPage(params) {
@@ -36,6 +42,14 @@ export function EbookSuccessPage(params) {
     title: `Download Your ${ebook.city} eBook | Living Cost Atlas`,
     description: `Your ${ebook.city} relocation guide is ready for download.`,
   });
+
+  // GA4 conversion: purchase event (the main conversion we want to track)
+  // Dedupe via sessionStorage so refresh doesn't re-fire the purchase
+  const convKey = `lca_purchase_${slug}`;
+  if (!sessionStorage.getItem(convKey)) {
+    trackEbookPurchase(slug, ebook);
+    sessionStorage.setItem(convKey, String(Date.now()));
+  }
 
   const content = `
     <style>

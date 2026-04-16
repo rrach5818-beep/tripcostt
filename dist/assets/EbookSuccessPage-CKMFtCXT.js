@@ -1,11 +1,11 @@
-import{s as n}from"./setPageMeta-BmQKFz2d.js";import{M as i}from"./MainLayout-Du2sJ_sj.js";const a={lisbon:{city:"Lisbon",file:"LivingCostAtlas_Lisbon_2026.pdf"},barcelona:{city:"Barcelona",file:"LivingCostAtlas_Barcelona_2026.pdf"},bangkok:{city:"Bangkok",file:"LivingCostAtlas_Bangkok_2026.pdf"},tokyo:{city:"Tokyo",file:"LivingCostAtlas_Tokyo_2026.pdf"},bali:{city:"Bali",file:"LivingCostAtlas_Bali_2026.pdf"},berlin:{city:"Berlin",file:"LivingCostAtlas_Berlin_2026.pdf"},dubai:{city:"Dubai",file:"LivingCostAtlas_Dubai_2026.pdf"},paris:{city:"Paris",file:"LivingCostAtlas_Paris_2026.pdf"}};function l(o){const s=o.slug,e=a[s];if(!e)return i(`
+import{s as c}from"./setPageMeta-BmQKFz2d.js";import{M as t}from"./MainLayout-Du2sJ_sj.js";import{c as r}from"./index-CyOZFnaB.js";const a={lisbon:{city:"Lisbon",country:"Portugal",price:9.99,currency:"EUR",file:"LivingCostAtlas_Lisbon_2026.pdf"},barcelona:{city:"Barcelona",country:"Spain",price:9.99,currency:"EUR",file:"LivingCostAtlas_Barcelona_2026.pdf"},bangkok:{city:"Bangkok",country:"Thailand",price:9.99,currency:"EUR",file:"LivingCostAtlas_Bangkok_2026.pdf"},tokyo:{city:"Tokyo",country:"Japan",price:9.99,currency:"EUR",file:"LivingCostAtlas_Tokyo_2026.pdf"},bali:{city:"Bali",country:"Indonesia",price:9.99,currency:"EUR",file:"LivingCostAtlas_Bali_2026.pdf"},berlin:{city:"Berlin",country:"Germany",price:9.99,currency:"EUR",file:"LivingCostAtlas_Berlin_2026.pdf"},dubai:{city:"Dubai",country:"UAE",price:9.99,currency:"EUR",file:"LivingCostAtlas_Dubai_2026.pdf"},paris:{city:"Paris",country:"France",price:9.99,currency:"EUR",file:"LivingCostAtlas_Paris_2026.pdf"},"mexico-city":{city:"Mexico City",country:"Mexico",price:9.99,currency:"EUR",file:"LivingCostAtlas_Mexico_City_2026.pdf"},medellin:{city:"Medellin",country:"Colombia",price:9.99,currency:"EUR",file:"LivingCostAtlas_Medellin_2026.pdf"},"chiang-mai":{city:"Chiang Mai",country:"Thailand",price:9.99,currency:"EUR",file:"LivingCostAtlas_Chiang_Mai_2026.pdf"},amsterdam:{city:"Amsterdam",country:"Netherlands",price:9.99,currency:"EUR",file:"LivingCostAtlas_Amsterdam_2026.pdf"},prague:{city:"Prague",country:"Czech Republic",price:9.99,currency:"EUR",file:"LivingCostAtlas_Prague_2026.pdf"}};function u(s){const i=s.slug,e=a[i];if(!e)return t(`
       <div style="min-height:60vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:40px">
         <div>
           <h1 style="font-size:32px;font-weight:800;color:#1e1b4b">Page Not Found</h1>
           <a href="/ebooks" data-link style="color:#4f46e5;margin-top:16px;display:inline-block">Browse eBooks</a>
         </div>
       </div>
-    `);n({title:`Download Your ${e.city} eBook | Living Cost Atlas`,description:`Your ${e.city} relocation guide is ready for download.`});const t=`
+    `);c({title:`Download Your ${e.city} eBook | Living Cost Atlas`,description:`Your ${e.city} relocation guide is ready for download.`});const o=`lca_purchase_${i}`;sessionStorage.getItem(o)||(r(i,e),sessionStorage.setItem(o,String(Date.now())));const n=`
     <style>
       .success-page {
         min-height:80vh;display:flex;align-items:center;justify-content:center;
@@ -77,9 +77,9 @@ import{s as n}from"./setPageMeta-BmQKFz2d.js";import{M as i}from"./MainLayout-Du
           If you have any issues, contact support@livingcostatlas.com
         </p>
         <div class="success-links">
-          <a href="/city/${s}" data-link>Explore ${e.city}</a>
+          <a href="/city/${i}" data-link>Explore ${e.city}</a>
           <a href="/ebooks" data-link>Browse More Guides</a>
         </div>
       </div>
     </section>
-  `;return i(t)}export{l as EbookSuccessPage};
+  `;return t(n)}export{u as EbookSuccessPage};

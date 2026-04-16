@@ -5,6 +5,7 @@
 
 import { setPageMeta } from '../logic/setPageMeta.js';
 import { MainLayout } from '../layouts/MainLayout.js';
+import { trackEbookCatalogView } from '../logic/analytics.js';
 
 // eBook catalog -- keep in sync with EbookPage.js
 const CATALOG = [
@@ -16,6 +17,11 @@ const CATALOG = [
   { slug: 'berlin', city: 'Berlin', country: 'Germany', price: 9.99, pages: 22, nomadScore: 83, safety: 80 },
   { slug: 'dubai', city: 'Dubai', country: 'UAE', price: 9.99, pages: 22, nomadScore: 79, safety: 95 },
   { slug: 'paris', city: 'Paris', country: 'France', price: 9.99, pages: 22, nomadScore: 78, safety: 70 },
+  { slug: 'mexico-city', city: 'Mexico City', country: 'Mexico', price: 9.99, pages: 22, nomadScore: 66, safety: 55 },
+  { slug: 'medellin', city: 'Medellin', country: 'Colombia', price: 9.99, pages: 22, nomadScore: 64, safety: 60 },
+  { slug: 'chiang-mai', city: 'Chiang Mai', country: 'Thailand', price: 9.99, pages: 22, nomadScore: 67, safety: 85 },
+  { slug: 'amsterdam', city: 'Amsterdam', country: 'Netherlands', price: 9.99, pages: 22, nomadScore: 85, safety: 80 },
+  { slug: 'prague', city: 'Prague', country: 'Czech Republic', price: 9.99, pages: 22, nomadScore: 81, safety: 85 },
 ];
 
 export function EbooksPage() {
@@ -23,6 +29,9 @@ export function EbooksPage() {
     title: 'Premium Relocation eBooks | Living Cost Atlas',
     description: 'Data-driven cost of living & relocation guides for digital nomads, remote workers and expats. 20+ pages of real data per city.',
   });
+
+  // GA4 ecommerce: view_item_list
+  trackEbookCatalogView(CATALOG.map(b => b.slug));
 
   const cards = CATALOG.map(b => `
     <a href="/ebook/${b.slug}" data-link class="eb-card">

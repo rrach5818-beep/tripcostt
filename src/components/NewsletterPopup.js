@@ -6,6 +6,13 @@
  * ASCII-only comments (Vite constraint)
  */
 
+import {
+  trackNewsletterPopupShown,
+  trackNewsletterPopupDismissed,
+  trackNewsletterSignup,
+  trackFreeGuideDownload
+} from '../logic/analytics.js';
+
 const STORAGE_KEY = 'lca_newsletter_seen';
 const SUBSCRIBED_KEY = 'lca_newsletter_subscribed';
 const REMIND_DAYS = 7;
@@ -204,11 +211,14 @@ function showSuccess(overlay, email) {
       <div class="lca-np-check">&#10003;</div>
       <h3>Check your inbox!</h3>
       <p>We sent the PDF to <strong>${email}</strong>. You can also download it right now:</p>
-      <a href="${FREE_GUIDE_PDF}" class="lca-np-dl" download target="_blank" rel="noopener">
+      <a href="${FREE_GUIDE_PDF}" class="lca-np-dl" id="lca-np-dl-btn" download target="_blank" rel="noopener">
         &#11015; Download the PDF
       </a>
     </div>
   `;
+  // Track free guide download click
+  const dlBtn = body.querySelector('#lca-np-dl-btn');
+  if (dlBtn) dlBtn.addEventListener('click', () => trackFreeGuideDownload());
 }
 
 async function submitEmail(email) {
@@ -243,6 +253,7 @@ function attachHandlers(overlay) {
 
   function close() {
     markSeen();
+    trackNewsletterPopupDismissed();
     overlay.style.animation = 'lcaFadeIn .2s ease-out reverse';
     setTimeout(() => overlay.remove(), 180);
     document.removeEventListener('keydown', onEsc);
@@ -278,10 +289,8 @@ function attachHandlers(overlay) {
     const result = await submitEmail(email);
     if (result.ok) {
       markSubscribed(email);
-      // Analytics event
-      if (typeof window.gtag === 'function') {
-        window.gtag('event', 'newsletter_signup', { source: 'popup' });
-      }
+      // Analytics: newsletter_signup + generate_lead (conversion)
+      trackNewsletterSignup('popup');
       showSuccess(overlay, email);
     } else {
       submit.disabled = false;
@@ -300,6 +309,8 @@ function openPopup() {
   const overlay = buildModal();
   document.body.appendChild(overlay);
   attachHandlers(overlay);
+  // Analytics: popup impression
+  trackNewsletterPopupShown();
   // Focus the email field after animation
   setTimeout(() => overlay.querySelector('#lca-np-email')?.focus(), 400);
 }

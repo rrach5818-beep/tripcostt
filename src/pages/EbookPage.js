@@ -7,6 +7,7 @@
 import { setPageMeta, injectSchema } from '../logic/setPageMeta.js';
 import { MainLayout } from '../layouts/MainLayout.js';
 import { getCityBySlug } from '../data/cityService.js';
+import { trackEbookView, trackEbookBuyClick } from '../logic/analytics.js';
 
 // eBook catalog -- add new cities here
 // Shared highlights template for generated ebooks
@@ -155,6 +156,9 @@ export function EbookPage(params) {
     description: `The complete ${ebook.pages}-page relocation guide for ${ebook.city}, ${ebook.country}. Data-driven cost breakdowns, neighborhood analysis, visa info & budget scenarios.`,
     image: `https://www.livingcostatlas.com${ebook.coverImage}`,
   });
+
+  // GA4 ecommerce: view_item
+  trackEbookView(slug, ebook);
 
   // Schema.org Product for SEO
   injectSchema({
@@ -521,6 +525,8 @@ export function setupEbookPageInteractivity() {
   if (!ebook) return;
 
   const handleBuy = () => {
+    // GA4 ecommerce: select_item + begin_checkout
+    trackEbookBuyClick(slug, ebook);
     if (ebook.stripeLink) {
       window.open(ebook.stripeLink, '_blank');
     } else {

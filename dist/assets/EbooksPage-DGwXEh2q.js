@@ -1,4 +1,4 @@
-import{s as o}from"./setPageMeta-BmQKFz2d.js";import{M as r}from"./MainLayout-Du2sJ_sj.js";const i=[{slug:"lisbon",city:"Lisbon",country:"Portugal",price:9.99,pages:28,nomadScore:81,safety:85},{slug:"barcelona",city:"Barcelona",country:"Spain",price:9.99,pages:22,nomadScore:82,safety:75},{slug:"bangkok",city:"Bangkok",country:"Thailand",price:9.99,pages:22,nomadScore:88,safety:65},{slug:"tokyo",city:"Tokyo",country:"Japan",price:9.99,pages:22,nomadScore:80,safety:95},{slug:"bali",city:"Bali",country:"Indonesia",price:9.99,pages:22,nomadScore:92,safety:70},{slug:"berlin",city:"Berlin",country:"Germany",price:9.99,pages:22,nomadScore:83,safety:80},{slug:"dubai",city:"Dubai",country:"UAE",price:9.99,pages:22,nomadScore:79,safety:95},{slug:"paris",city:"Paris",country:"France",price:9.99,pages:22,nomadScore:78,safety:70}];function c(){o({title:"Premium Relocation eBooks | Living Cost Atlas",description:"Data-driven cost of living & relocation guides for digital nomads, remote workers and expats. 20+ pages of real data per city."});const a=`
+import{s as r}from"./setPageMeta-BmQKFz2d.js";import{M as i}from"./MainLayout-Du2sJ_sj.js";import{b as t}from"./index-CyOZFnaB.js";const a=[{slug:"lisbon",city:"Lisbon",country:"Portugal",price:9.99,pages:28,nomadScore:81,safety:85},{slug:"barcelona",city:"Barcelona",country:"Spain",price:9.99,pages:22,nomadScore:82,safety:75},{slug:"bangkok",city:"Bangkok",country:"Thailand",price:9.99,pages:22,nomadScore:88,safety:65},{slug:"tokyo",city:"Tokyo",country:"Japan",price:9.99,pages:22,nomadScore:80,safety:95},{slug:"bali",city:"Bali",country:"Indonesia",price:9.99,pages:22,nomadScore:92,safety:70},{slug:"berlin",city:"Berlin",country:"Germany",price:9.99,pages:22,nomadScore:83,safety:80},{slug:"dubai",city:"Dubai",country:"UAE",price:9.99,pages:22,nomadScore:79,safety:95},{slug:"paris",city:"Paris",country:"France",price:9.99,pages:22,nomadScore:78,safety:70},{slug:"mexico-city",city:"Mexico City",country:"Mexico",price:9.99,pages:22,nomadScore:66,safety:55},{slug:"medellin",city:"Medellin",country:"Colombia",price:9.99,pages:22,nomadScore:64,safety:60},{slug:"chiang-mai",city:"Chiang Mai",country:"Thailand",price:9.99,pages:22,nomadScore:67,safety:85},{slug:"amsterdam",city:"Amsterdam",country:"Netherlands",price:9.99,pages:22,nomadScore:85,safety:80},{slug:"prague",city:"Prague",country:"Czech Republic",price:9.99,pages:22,nomadScore:81,safety:85}];function p(){r({title:"Premium Relocation eBooks | Living Cost Atlas",description:"Data-driven cost of living & relocation guides for digital nomads, remote workers and expats. 20+ pages of real data per city."}),t(a.map(e=>e.slug));const o=`
     <style>
       .eb-hero {
         background:linear-gradient(160deg,#0f172a 0%,#1e1b4b 40%,#312e81 100%);
@@ -94,7 +94,7 @@ import{s as o}from"./setPageMeta-BmQKFz2d.js";import{M as r}from"./MainLayout-Du
     <section class="eb-grid-section">
       <div class="eb-grid-inner">
         <div class="eb-grid">
-          ${i.map(e=>`
+          ${a.map(e=>`
     <a href="/ebook/${e.slug}" data-link class="eb-card">
       <div class="eb-card__cover">
         <img src="/images/ebooks/${e.slug}-cover.png" alt="${e.city} eBook Cover" width="200" height="283" loading="lazy">
@@ -116,4 +116,4 @@ import{s as o}from"./setPageMeta-BmQKFz2d.js";import{M as r}from"./MainLayout-Du
         </div>
       </div>
     </section>
-  `;return r(a)}export{c as EbooksPage};
+  `;return i(o)}export{p as EbooksPage};
