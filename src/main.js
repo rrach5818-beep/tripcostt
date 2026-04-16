@@ -5,6 +5,7 @@ import './styles/components.css';
 import './styles/pages.css';
 import { initRouter } from './router/index.js';
 import { routes }    from './router/routes.js';
+import { initNewsletterPopup } from './components/NewsletterPopup.js';
 import 'leaflet/dist/leaflet.css';
 
 /* ===========================================================
@@ -133,6 +134,7 @@ function initApp() {
   initAnalytics();
   initMobileMenu();
   initRouter(appRoot, routes);
+  initNewsletterPopup();
 
   document.addEventListener('click', (e) => {
     const link = e.target.closest('a[data-link]');
