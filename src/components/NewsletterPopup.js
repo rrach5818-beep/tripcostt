@@ -166,9 +166,9 @@ function buildModal() {
     <div class="lca-np-modal">
       <button class="lca-np-close" aria-label="Close">&times;</button>
       <div class="lca-np-hero">
-        <div class="lca-np-badge">&#127873; FREE DOWNLOAD</div>
-        <h2 class="lca-np-title" id="lca-np-title">Top 10 Cities for Digital Nomads 2026</h2>
-        <p class="lca-np-sub">Get our curated preview guide -- rankings, monthly budgets, and WiFi data for 10 top destinations. Instant PDF.</p>
+        <div class="lca-np-badge">ANNUAL REPORT</div>
+        <h2 class="lca-np-title" id="lca-np-title">Digital Nomad Cities Report 2026</h2>
+        <p class="lca-np-sub">Our annual ranking of the 10 most attractive destinations for remote workers -- assessed across cost, infrastructure, safety, and quality-of-life.</p>
       </div>
       <div class="lca-np-body" id="lca-np-body">
         <div class="lca-np-perks">

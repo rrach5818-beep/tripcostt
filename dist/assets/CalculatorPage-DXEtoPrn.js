@@ -1,4 +1,4 @@
-import{M as W}from"./MainLayout-Du2sJ_sj.js";import{a as D}from"./cityService-Dc1KzdCT.js";import{B as Q,a as Y}from"./Breadcrumb-C87PeGFq.js";import"./setPageMeta-BmQKFz2d.js";function Z(){const y=D(),$=y.map(p=>`<option value="${p.slug}" data-city="${encodeURIComponent(JSON.stringify(p))}">
+import{M as W}from"./MainLayout-CBxf94lM.js";import{a as D}from"./cityService-Dc1KzdCT.js";import{B as Q,a as Y}from"./Breadcrumb-C87PeGFq.js";import"./setPageMeta-BmQKFz2d.js";function Z(){const y=D(),$=y.map(p=>`<option value="${p.slug}" data-city="${encodeURIComponent(JSON.stringify(p))}">
       ${p.name}, ${p.country}
     </option>`).join(""),M=y.map((p,k)=>`<option value="${p.slug}" data-city="${encodeURIComponent(JSON.stringify(p))}" ${k===5?"selected":""}>
       ${p.name}, ${p.country}

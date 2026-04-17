@@ -31,6 +31,12 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://www.livingcostatlas.com/resources</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.livingcostatlas.com/best-cities</loc>
     <lastmod>2026-04-11</lastmod>
     <changefreq>weekly</changefreq>

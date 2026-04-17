@@ -19,6 +19,7 @@ export function MainLayout(content) {
             <a href="/calculator"   data-link class="nav__link">Calculator</a>
             <a href="/nomad"        data-link class="nav__link">Rankings</a>
             <a href="/ebooks"       data-link class="nav__link">eBooks</a>
+            <a href="/resources"    data-link class="nav__link">Resources</a>
             <a href="/about"        data-link class="nav__link">About</a>
           </nav>
         </div>
@@ -109,6 +110,7 @@ export function MainLayout(content) {
             <a href="/calculator"   data-link>Budget Calculator</a>
             <a href="/nomad"        data-link>Nomad Rankings</a>
             <a href="/calculator"   data-link>City Comparison</a>
+            <a href="/resources"    data-link>Research &amp; Resources</a>
           </div>
 
           <!-- Company -->

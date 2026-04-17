@@ -1,4 +1,4 @@
-import{M as v}from"./MainLayout-Du2sJ_sj.js";import{d as I}from"./cityService-Dc1KzdCT.js";import{c as N}from"./cityRanking-Bc9to1fF.js";import{s as F,i as j}from"./setPageMeta-BmQKFz2d.js";import{g as M}from"./imageHelper-BIpBZy2g.js";import{B as R,a as P}from"./Breadcrumb-C87PeGFq.js";import"./countryDB-CrDm3Fkl.js";function U(u){const{country:a,profile:n}=u,i=["solo","family","nomad"].includes(n)?n:"solo",s=I(a);if(!s.length)return v(`
+import{M as v}from"./MainLayout-CBxf94lM.js";import{d as I}from"./cityService-Dc1KzdCT.js";import{c as N}from"./cityRanking-Bc9to1fF.js";import{s as F,i as j}from"./setPageMeta-BmQKFz2d.js";import{g as M}from"./imageHelper-BIpBZy2g.js";import{B as R,a as P}from"./Breadcrumb-C87PeGFq.js";import"./countryDB-CrDm3Fkl.js";function U(u){const{country:a,profile:n}=u,i=["solo","family","nomad"].includes(n)?n:"solo",s=I(a);if(!s.length)return v(`
       <div style="text-align:center;padding:120px 24px">
         <div style="font-size:48px;margin-bottom:16px">🌍</div>
         <h1 style="font-size:28px;font-weight:800;color:#111827;margin-bottom:12px">No cities found</h1>

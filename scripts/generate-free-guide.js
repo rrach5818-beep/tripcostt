@@ -1,7 +1,8 @@
 /**
  * generate-free-guide.js
- * Generates the FREE lead magnet PDF:
- * "Top 10 Cities for Digital Nomads 2026 -- Free Preview"
+ * Generates the editorial annual report PDF:
+ * "Digital Nomad Cities Report 2026"
+ * Published by Living Cost Atlas Research
  * Usage: node scripts/generate-free-guide.js
  * ASCII-only comments (Vite constraint)
  */
@@ -67,25 +68,26 @@ function coverPage() {
     <div class="stripe"></div>
     <div class="watermark">LCA</div>
     <div class="cover-inner">
-      <div class="kicker">LIVING COST ATLAS &middot; FREE PREVIEW</div>
-      <h1 class="cover-title">Top 10 Cities for<br/>Digital Nomads</h1>
+      <div class="kicker">LIVING COST ATLAS RESEARCH &middot; ANNUAL REPORT</div>
+      <h1 class="cover-title">Digital Nomad<br/>Cities Report</h1>
       <div class="cover-year">2026 Edition</div>
       <div class="cover-sub">
-        A curated preview of the 10 best destinations<br/>
-        for remote workers, ranked by data.
+        An annual ranking of the most attractive destinations<br/>
+        for remote workers, based on cost, infrastructure,<br/>
+        and quality-of-life indicators.
       </div>
       <div class="cover-footer">
         <div class="cover-footer-item">
           <div class="cf-num">10</div>
-          <div class="cf-lbl">Cities Ranked</div>
+          <div class="cf-lbl">Cities Analyzed</div>
         </div>
         <div class="cover-footer-item">
-          <div class="cf-num">100%</div>
-          <div class="cf-lbl">Free</div>
+          <div class="cf-num">22</div>
+          <div class="cf-lbl">Indicators</div>
         </div>
         <div class="cover-footer-item">
           <div class="cf-num">2026</div>
-          <div class="cf-lbl">Data</div>
+          <div class="cf-lbl">Data Vintage</div>
         </div>
       </div>
     </div>
@@ -95,7 +97,7 @@ function coverPage() {
 function headerBar(pageLabel) {
   return `
     <div class="hdr-bar">
-      <div class="hdr-left">LIVING COST ATLAS &middot; TOP 10 FREE PREVIEW</div>
+      <div class="hdr-left">LIVING COST ATLAS RESEARCH &middot; DIGITAL NOMAD CITIES REPORT 2026</div>
       <div class="hdr-right">${pageLabel}</div>
     </div>`;
 }
@@ -103,13 +105,15 @@ function headerBar(pageLabel) {
 function introPage() {
   return `
   <section class="page">
-    ${headerBar('Introduction')}
+    ${headerBar('Methodology')}
     <div class="content-wrap">
-      <div class="section-eyebrow">WELCOME</div>
-      <h2 class="section-title">How to use this guide</h2>
+      <div class="section-eyebrow">ABOUT THIS REPORT</div>
+      <h2 class="section-title">Methodology &amp; scope</h2>
       <p class="lead">
-        This free preview ranks the 10 most attractive cities for digital
-        nomads in 2026, based on data from our full Living Cost Atlas database.
+        This report ranks 10 globally significant destinations for remote
+        workers using a composite score across four dimensions. The
+        underlying dataset covers 50 cities tracked quarterly by Living
+        Cost Atlas Research.
       </p>
       <div class="info-grid">
         <div class="info-card">
@@ -134,11 +138,12 @@ function introPage() {
         </div>
       </div>
       <div class="callout">
-        <div class="callout-title">&#128073; Want deeper data?</div>
+        <div class="callout-title">Deeper city-level analysis</div>
         <div class="callout-body">
-          Each city has a dedicated 22-page Living Cost Atlas eBook with
-          neighborhood analysis, visa and tax guides, 3 budget profiles,
-          risk factors, and peer city comparisons. Find them at
+          Each city covered in this report also has a dedicated 22-page
+          Living Cost Atlas dossier with neighborhood analysis, visa and
+          tax guides, three budget profiles, risk factors, and peer city
+          comparisons. Available at
           <strong>livingcostatlas.com/ebooks</strong>.
         </div>
       </div>
@@ -186,11 +191,11 @@ function rankingPage1() {
   const cards = cities.slice(0, 5).map((c, i) => cityCard(c, i + 1)).join('');
   return `
   <section class="page">
-    ${headerBar('Top 1-5')}
+    ${headerBar('Ranking 1-5')}
     <div class="content-wrap">
-      <div class="section-eyebrow">THE RANKING</div>
-      <h2 class="section-title">Top 5 Cities for Digital Nomads 2026</h2>
-      <p class="lead">Ranked by overall Nomad Score -- the higher, the better.</p>
+      <div class="section-eyebrow">RESULTS &middot; TIER 1</div>
+      <h2 class="section-title">Leading destinations</h2>
+      <p class="lead">Cities ranked 1 to 5 by composite Nomad Score.</p>
       <div class="cards-list">${cards}</div>
     </div>
   </section>`;
@@ -200,11 +205,11 @@ function rankingPage2() {
   const cards = cities.slice(5, 10).map((c, i) => cityCard(c, i + 6)).join('');
   return `
   <section class="page">
-    ${headerBar('Top 6-10')}
+    ${headerBar('Ranking 6-10')}
     <div class="content-wrap">
-      <div class="section-eyebrow">THE RANKING</div>
-      <h2 class="section-title">Cities 6 to 10</h2>
-      <p class="lead">Strong secondary picks with excellent value or unique advantages.</p>
+      <div class="section-eyebrow">RESULTS &middot; TIER 2</div>
+      <h2 class="section-title">Strong secondary markets</h2>
+      <p class="lead">Cities ranked 6 to 10 -- notable value or distinct strategic advantages.</p>
       <div class="cards-list">${cards}</div>
     </div>
   </section>`;
@@ -223,11 +228,11 @@ function comparisonTable() {
   `).join('');
   return `
   <section class="page">
-    ${headerBar('Comparison')}
+    ${headerBar('Summary Table')}
     <div class="content-wrap">
-      <div class="section-eyebrow">AT A GLANCE</div>
-      <h2 class="section-title">All 10 Cities Compared</h2>
-      <p class="lead">Quick-scan comparison of the full ranking.</p>
+      <div class="section-eyebrow">SUMMARY</div>
+      <h2 class="section-title">Comparative overview</h2>
+      <p class="lead">Consolidated view of the ten cities covered in this report.</p>
       <table class="compare-table">
         <thead>
           <tr>
@@ -242,12 +247,12 @@ function comparisonTable() {
         <tbody>${rows}</tbody>
       </table>
       <div class="callout callout-gold">
-        <div class="callout-title">Methodology note</div>
+        <div class="callout-title">Methodology</div>
         <div class="callout-body">
-          Nomad Score combines affordability (30%), infrastructure (20%),
+          The Nomad Score combines affordability (30%), infrastructure (20%),
           safety (15%), quality of life (20%), and economic stability (15%).
-          Monthly budget assumes rent in the center, standard restaurant
-          food, daily transport, and a coworking subscription.
+          Monthly budget assumes rent in the city center, standard restaurant
+          meals, daily transport, and a coworking subscription.
         </div>
       </div>
     </div>
@@ -257,13 +262,14 @@ function comparisonTable() {
 function ctaPage() {
   return `
   <section class="page">
-    ${headerBar('Next Step')}
+    ${headerBar('Further Research')}
     <div class="content-wrap cta-wrap">
-      <div class="cta-badge">&#127873; OFFER</div>
-      <h2 class="cta-title">Ready for the full picture?</h2>
+      <div class="cta-badge">FURTHER READING</div>
+      <h2 class="cta-title">City-level dossiers</h2>
       <p class="cta-sub">
-        Each city has a dedicated 22-page in-depth eBook covering neighborhoods,
-        visas, taxes, detailed budgets, risk factors, and more.
+        Each destination covered in this report is available as a dedicated
+        22-page dossier covering neighborhoods, visas, taxes, detailed
+        budgets, and risk factors.
       </p>
       <div class="cta-grid">
         <div class="cta-item">
@@ -279,15 +285,15 @@ function ctaPage() {
           <div class="cta-lbl">Neighborhoods analyzed</div>
         </div>
         <div class="cta-item">
-          <div class="cta-num">&euro;9.99</div>
-          <div class="cta-lbl">Single payment</div>
+          <div class="cta-num">50+</div>
+          <div class="cta-lbl">Data indicators</div>
         </div>
       </div>
       <div class="cta-url">
         livingcostatlas.com/ebooks
       </div>
       <div class="cta-foot">
-        Thank you for downloading this free preview. Stay nomadic!
+        Published by Living Cost Atlas Research &middot; 2026 Edition
       </div>
     </div>
   </section>`;
@@ -298,7 +304,7 @@ const html = `
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>Living Cost Atlas -- Top 10 Digital Nomad Cities 2026 (Free Preview)</title>
+<title>Digital Nomad Cities Report 2026 -- Living Cost Atlas Research</title>
 <style>
   @page { size: A4; margin: 0; }
   * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }

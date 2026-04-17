@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node scripts/generate-free-guide.js)",
+      "Bash(npm run *)"
+    ]
+  }
+}
