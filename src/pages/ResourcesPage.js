@@ -397,8 +397,10 @@ export function ResourcesPage() {
               body: JSON.stringify({
                 access_key: WEB3FORMS_ACCESS_KEY,
                 email,
+                name: email,
                 subject: 'LCA -- 2027 report notify-me signup',
                 from_name: 'Living Cost Atlas Research',
+                message: `New notify-me signup for the 2027 edition.\nEmail: ${email}\nSource: /resources notify-me block`,
                 source: 'lca-resources-notify',
                 botcheck: ''
               })

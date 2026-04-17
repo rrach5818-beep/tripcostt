@@ -234,8 +234,10 @@ async function submitEmail(email) {
       body: JSON.stringify({
         access_key: WEB3FORMS_ACCESS_KEY,
         email,
+        name: email,
         subject: 'New Living Cost Atlas newsletter signup',
         from_name: 'Living Cost Atlas',
+        message: `New newsletter signup from popup.\nEmail: ${email}\nSource: popup (free guide lead magnet)`,
         source: 'lca-newsletter-popup',
         botcheck: ''
       })
