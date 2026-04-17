@@ -1,4 +1,4 @@
-import{s,i as t}from"./setPageMeta-BmQKFz2d.js";import{M as i}from"./MainLayout-CBxf94lM.js";import{d as o}from"./index-DxacdfsZ.js";const r="/ebooks/LivingCostAtlas_FreeGuide_Top10_2026.pdf";function p(){s({title:"Research & Resources | Living Cost Atlas",description:"The Digital Nomad Cities Report 2026 and other research tools published by Living Cost Atlas. Data-driven insights for remote workers and expats.",image:"https://www.livingcostatlas.com/og-image.png"}),t({"@context":"https://schema.org","@type":"Report",name:"Digital Nomad Cities Report 2026",datePublished:"2026-04-01",inLanguage:"en",publisher:{"@type":"Organization",name:"Living Cost Atlas",url:"https://www.livingcostatlas.com"},about:"Annual ranking of the most attractive cities for digital nomads and remote workers",url:"https://www.livingcostatlas.com/resources"});const a=`
+import{s as p,i as c}from"./setPageMeta-BmQKFz2d.js";import{M as f}from"./MainLayout-CBxf94lM.js";import{d as g,e as m}from"./index-njFlTo8l.js";const s="/ebooks/LivingCostAtlas_FreeGuide_Top10_2026.pdf";function b(){p({title:"Research & Resources | Living Cost Atlas",description:"The Digital Nomad Cities Report 2026 and other research tools published by Living Cost Atlas. Data-driven insights for remote workers and expats.",image:"https://www.livingcostatlas.com/og-image.png"}),c({"@context":"https://schema.org","@type":"Report",name:"Digital Nomad Cities Report 2026",datePublished:"2026-04-01",inLanguage:"en",publisher:{"@type":"Organization",name:"Living Cost Atlas",url:"https://www.livingcostatlas.com"},about:"Annual ranking of the most attractive cities for digital nomads and remote workers",url:"https://www.livingcostatlas.com/resources"});const a=`
     <style>
       .res-hero {
         background:#fafbfc;padding:72px 0 56px;border-bottom:1px solid #e5e7eb;
@@ -29,9 +29,40 @@ import{s,i as t}from"./setPageMeta-BmQKFz2d.js";import{M as i}from"./MainLayout-
       }
       .res-featured__cover {
         position:relative;aspect-ratio:600/850;border-radius:6px;overflow:hidden;
-        box-shadow:0 20px 40px rgba(15,23,42,0.15),0 0 0 1px rgba(15,23,42,0.06);
+        box-shadow:0 20px 40px rgba(15,23,42,0.18),0 0 0 1px rgba(15,23,42,0.08);
+        background:linear-gradient(165deg,#0f172a 0%,#1e1b4b 55%,#312e81 100%);
+        color:#fff;padding:22px 20px;display:flex;flex-direction:column;
+        font-family:Georgia,'Times New Roman',serif;
       }
-      .res-featured__cover img { width:100%;height:100%;display:block;object-fit:cover; }
+      .res-featured__cover::after {
+        content:'';position:absolute;left:20px;right:20px;top:60px;height:2px;
+        background:linear-gradient(90deg,#d4a843,transparent);
+      }
+      .rfc-kicker {
+        font-family:system-ui,-apple-system,sans-serif;
+        font-size:8px;font-weight:800;letter-spacing:2px;color:#d4a843;
+        text-transform:uppercase;margin-bottom:4px;
+      }
+      .rfc-brand {
+        font-family:system-ui,-apple-system,sans-serif;
+        font-size:10px;font-weight:700;letter-spacing:1.5px;color:#cbd5e1;
+        text-transform:uppercase;
+      }
+      .rfc-title {
+        font-size:19px;font-weight:700;line-height:1.2;margin:auto 0 6px;
+        letter-spacing:-0.01em;
+      }
+      .rfc-year {
+        font-family:system-ui,-apple-system,sans-serif;
+        font-size:22px;font-weight:900;color:#d4a843;letter-spacing:1px;
+        margin-bottom:14px;
+      }
+      .rfc-foot {
+        font-family:system-ui,-apple-system,sans-serif;
+        font-size:8px;font-weight:600;letter-spacing:1.2px;color:#94a3b8;
+        text-transform:uppercase;border-top:1px solid rgba(255,255,255,0.12);
+        padding-top:10px;line-height:1.5;
+      }
       .res-featured__body h2 {
         font-size:28px;font-weight:800;color:#0f172a;margin:10px 0 8px;
         letter-spacing:-0.02em;line-height:1.2;
@@ -108,11 +139,50 @@ import{s,i as t}from"./setPageMeta-BmQKFz2d.js";import{M as i}from"./MainLayout-
       }
       .res-about p:last-child { margin:0; }
 
+      /* Notify-me block (next edition) */
+      .res-notify {
+        margin-top:32px;padding:32px;background:#fff;border:1px solid #e5e7eb;
+        border-radius:12px;display:grid;grid-template-columns:1.2fr 1fr;gap:32px;
+        align-items:center;
+      }
+      .res-notify__eyebrow {
+        font-size:11px;font-weight:700;letter-spacing:1.8px;color:#6366f1;
+        text-transform:uppercase;margin-bottom:8px;
+      }
+      .res-notify__text h3 {
+        font-size:18px;font-weight:700;color:#0f172a;margin:0 0 6px;
+        letter-spacing:-0.01em;line-height:1.3;
+      }
+      .res-notify__text p {
+        font-size:13.5px;color:#64748b;margin:0;line-height:1.55;
+      }
+      .res-notify__form { display:flex;flex-wrap:wrap;gap:8px; }
+      .res-notify__input {
+        flex:1;min-width:0;padding:11px 14px;border:1px solid #e2e8f0;
+        border-radius:8px;font-size:14px;font-family:inherit;color:#0f172a;
+        outline:none;transition:border-color 0.15s;
+      }
+      .res-notify__input:focus {
+        border-color:#6366f1;box-shadow:0 0 0 3px rgba(99,102,241,0.12);
+      }
+      .res-notify__btn {
+        padding:11px 18px;border:none;border-radius:8px;font-size:13.5px;
+        font-weight:600;background:#0f172a;color:#fff;cursor:pointer;
+        font-family:inherit;transition:background 0.15s;
+      }
+      .res-notify__btn:hover { background:#1e293b; }
+      .res-notify__btn:disabled { opacity:0.6;cursor:not-allowed; }
+      .res-notify__msg {
+        width:100%;font-size:12.5px;color:#059669;min-height:0;
+      }
+      .res-notify__msg.is-error { color:#b91c1c; }
+
       @media (max-width:720px) {
         .res-featured { grid-template-columns:1fr;padding:28px;gap:24px;text-align:center; }
         .res-featured__cover { max-width:180px;margin:0 auto; }
         .res-featured__meta { justify-content:center; }
         .res-featured__actions { justify-content:center; }
+        .res-notify { grid-template-columns:1fr;gap:20px; }
       }
     </style>
 
@@ -131,8 +201,12 @@ import{s,i as t}from"./setPageMeta-BmQKFz2d.js";import{M as i}from"./MainLayout-
 
       <!-- Featured Report -->
       <article class="res-featured">
-        <div class="res-featured__cover">
-          <img src="/images/ebooks/lisbon-cover.png" alt="Digital Nomad Cities Report 2026 cover" width="200" height="283" loading="eager">
+        <div class="res-featured__cover" aria-label="Digital Nomad Cities Report 2026 cover">
+          <div class="rfc-brand">Living Cost Atlas</div>
+          <div class="rfc-kicker">Research &middot; Annual Report</div>
+          <div class="rfc-title">Digital Nomad<br>Cities Report</div>
+          <div class="rfc-year">2026</div>
+          <div class="rfc-foot">10 Cities &middot; 22 Indicators<br>Published April 2026</div>
         </div>
         <div class="res-featured__body">
           <div class="res-eyebrow" style="margin-bottom:4px">Annual Report &middot; 6 pages</div>
@@ -151,11 +225,11 @@ import{s,i as t}from"./setPageMeta-BmQKFz2d.js";import{M as i}from"./MainLayout-
             quality-of-life.
           </p>
           <div class="res-featured__actions">
-            <a href="${r}" class="res-btn" id="res-download-btn" download target="_blank" rel="noopener">
+            <a href="${s}" class="res-btn" id="res-download-btn" download target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
               Download PDF
             </a>
-            <a href="${r}" class="res-btn res-btn--ghost" target="_blank" rel="noopener">
+            <a href="${s}" class="res-btn res-btn--ghost" target="_blank" rel="noopener">
               View in browser
             </a>
           </div>
@@ -220,11 +294,27 @@ import{s,i as t}from"./setPageMeta-BmQKFz2d.js";import{M as i}from"./MainLayout-
           estimates.
         </p>
         <p>
-          Reports published here are free to read, share, and cite. For
-          methodology questions, please contact
-          <a href="mailto:research@livingcostatlas.com" style="color:#0f172a;text-decoration:underline">research@livingcostatlas.com</a>.
+          Reports published here are free to read, share, and cite.
         </p>
       </section>
 
+      <!-- Discreet notify-me capture for next edition -->
+      <section class="res-notify">
+        <div class="res-notify__text">
+          <div class="res-notify__eyebrow">Upcoming &middot; 2027 Edition</div>
+          <h3>Be notified when the next report is published</h3>
+          <p>A short note once a year when a new edition is released. No other emails.</p>
+        </div>
+        <form class="res-notify__form" id="res-notify-form" novalidate>
+          <input
+            type="email" name="email" id="res-notify-email"
+            class="res-notify__input" placeholder="your@email.com"
+            required autocomplete="email"
+          />
+          <button type="submit" class="res-notify__btn">Notify me</button>
+          <div class="res-notify__msg" id="res-notify-msg" role="status"></div>
+        </form>
+      </section>
+
     </div>
-  `;return setTimeout(()=>{const e=document.getElementById("res-download-btn");e&&e.addEventListener("click",()=>{o()})},0),i(a)}export{p as ResourcesPage,p as default};
+  `;return setTimeout(()=>{const r=document.getElementById("res-download-btn");r&&r.addEventListener("click",()=>{g()});const e=document.getElementById("res-notify-form"),o=document.getElementById("res-notify-email"),t=document.getElementById("res-notify-msg"),i=e?e.querySelector(".res-notify__btn"):null;e&&e.addEventListener("submit",async n=>{n.preventDefault();const d=(o.value||"").trim(),l=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;if(t.classList.remove("is-error"),t.textContent="",!l.test(d)){t.classList.add("is-error"),t.textContent="Please enter a valid email address.";return}i.disabled=!0,i.textContent="Sending...",m("resources-notify"),e.innerHTML='<div class="res-notify__msg" style="color:#059669;font-weight:600">Thanks. We will email you when the 2027 edition is out.</div>'})},0),f(a)}export{b as ResourcesPage,b as default};
