@@ -13,7 +13,7 @@ const REPORT_PDF = '/ebooks/LivingCostAtlas_FreeGuide_Top10_2026.pdf';
 
 // Web3Forms -- same endpoint as NewsletterPopup (replace access key when available)
 const WEB3FORMS_ENDPOINT = 'https://api.web3forms.com/submit';
-const WEB3FORMS_ACCESS_KEY = 'WEB3FORMS_ACCESS_KEY';
+const WEB3FORMS_ACCESS_KEY = '1a716176-7bc9-4080-884a-cf88a6394cb6';
 
 export function ResourcesPage() {
   setPageMeta({
