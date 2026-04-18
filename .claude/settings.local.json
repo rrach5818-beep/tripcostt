@@ -3,7 +3,8 @@
     "allow": [
       "Bash(node scripts/generate-free-guide.js)",
       "Bash(npm run *)",
-      "Bash(curl -s -X POST https://api.web3forms.com/submit -H \"Content-Type: application/json\" -H \"Accept: application/json\" -d \"{\\\\\"access_key\\\\\":\\\\\"1a716176-7bc9-4080-884a-cf88a6394cb6\\\\\",\\\\\"email\\\\\":\\\\\"test@example.com\\\\\",\\\\\"subject\\\\\":\\\\\"Test LCA\\\\\",\\\\\"from_name\\\\\":\\\\\"LCA Test\\\\\",\\\\\"message\\\\\":\\\\\"Test submission\\\\\"}\")"
+      "Bash(curl -s -X POST https://api.web3forms.com/submit -H \"Content-Type: application/json\" -H \"Accept: application/json\" -d \"{\\\\\"access_key\\\\\":\\\\\"1a716176-7bc9-4080-884a-cf88a6394cb6\\\\\",\\\\\"email\\\\\":\\\\\"test@example.com\\\\\",\\\\\"subject\\\\\":\\\\\"Test LCA\\\\\",\\\\\"from_name\\\\\":\\\\\"LCA Test\\\\\",\\\\\"message\\\\\":\\\\\"Test submission\\\\\"}\")",
+      "Bash(node -e ' *)"
     ]
   }
 }

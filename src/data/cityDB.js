@@ -382,7 +382,7 @@ export const cityDB = [
   continent: "North America",
   currency: "MXN",
   currencySymbol: "$",
-  image: "https://images.unsplash.com/photo-1512813382947-0e4a6d6c6c66?w=1600",
+  image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Sobrevuelos_CDMX_HJ2A4913_%2825514321687%29_%28cropped%29.jpg/1600px-Sobrevuelos_CDMX_HJ2A4913_%2825514321687%29_%28cropped%29.jpg",
   description: "Massive metropolis with rich culture and strong affordability.",
   costs: {
     accommodation: { center: 70, suburb: 45 },
@@ -805,7 +805,7 @@ export const cityDB = [
   continent: "Europe",
   currency: "CZK",
   currencySymbol: "K ",
-  image: "https://images.unsplash.com/photo-1562624475-96c2b5e7be9b?w=1600",
+  image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Prague_%286365119737%29.jpg/1600px-Prague_%286365119737%29.jpg",
   description: "Fairytale European capital with strong affordability.",
   costs: {
     accommodation: { center: 90, suburb: 55 },
@@ -1388,7 +1388,7 @@ export const cityDB = [
   continent: "Europe",
   currency: "NOK",
   currencySymbol: "kr",
-  image: "https://images.unsplash.com/photo-1601581975053-7c199b3c3344?w=1600",
+  image: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Nationaltheatret_evening.jpg/1600px-Nationaltheatret_evening.jpg",
   description: "Modern city surrounded by nature with high living standards.",
   costs: {
     accommodation: { center: 165, suburb: 120 },
@@ -1706,7 +1706,7 @@ export const cityDB = [
   continent: "Africa",
   currency: "GHS",
   currencySymbol: " ",
-  image: "https://images.unsplash.com/photo-1580661869408-55ab23f2c6c3?w=1600",
+  image: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Acca.jpg/1600px-Acca.jpg",
   description: "West African capital with growing entrepreneurial scene.",
   costs: {
     accommodation: { center: 60, suburb: 40 },
@@ -2064,7 +2064,7 @@ export const cityDB = [
   continent: "South America",
   currency: "COP",
   currencySymbol: "COP$",
-  image: "https://images.unsplash.com/photo-1590516878787-73584f29eca3?w=1600",
+  image: "https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Bogota%2C_Colombia_%2836668708290%29.jpg/1600px-Bogota%2C_Colombia_%2836668708290%29.jpg",
   description: "Colombia's capital reborn -- thriving nomad scene, great coffee and modern infrastructure.",
   costs: {
     accommodation: { center: 45, suburb: 28 },
