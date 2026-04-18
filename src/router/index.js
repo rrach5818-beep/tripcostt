@@ -60,6 +60,14 @@ async function render() {
       // component can be sync or async
       const html = await matched.route.component(matched.params);
       currentRoot.innerHTML = html;
+      // Successful render -- clear any previous self-heal flag so future
+      // chunk errors can also self-heal.
+      clearReloadFlag();
+      // Emit a custom event so analytics (and others) can react to SPA navs
+      // without relying on popstate (which only fires on back/forward).
+      window.dispatchEvent(new CustomEvent('lca:route-rendered', {
+        detail: { path }
+      }));
 
       // setup can be sync or async
       if (matched.route.setup) {
@@ -82,6 +90,25 @@ async function render() {
     }
   } catch (err) {
     console.error('Route render error:', err);
+
+    // Chunk load failure -- usually means a new version was deployed while the
+    // tab was open, so old chunk hashes no longer exist. Force a hard reload
+    // so the browser fetches the new index.html with the current chunk names.
+    const msg = (err && err.message) || '';
+    const name = (err && err.name) || '';
+    const isChunkError =
+      name === 'ChunkLoadError' ||
+      /Failed to fetch dynamically imported module/i.test(msg) ||
+      /Loading chunk [^\s]+ failed/i.test(msg) ||
+      /Importing a module script failed/i.test(msg) ||
+      /error loading dynamically imported module/i.test(msg);
+
+    if (isChunkError && !sessionStorage.getItem('lca_reload_attempted')) {
+      sessionStorage.setItem('lca_reload_attempted', String(Date.now()));
+      window.location.reload();
+      return;
+    }
+
     currentRoot.innerHTML = `
       <div class="container py-20 text-center">
         <h1>Error loading page</h1>
@@ -92,6 +119,12 @@ async function render() {
   } finally {
     isRendering = false;
   }
+}
+
+// Reset reload flag once a render succeeds so future chunk errors can
+// also self-heal (not just the first one).
+function clearReloadFlag() {
+  try { sessionStorage.removeItem('lca_reload_attempted'); } catch (_) {}
 }
 
 export default { initRouter, navigate };

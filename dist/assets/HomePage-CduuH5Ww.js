@@ -1,4 +1,4 @@
-import{_ as f}from"./index-CvNFZR1a.js";import{M as b}from"./MainLayout-CBxf94lM.js";import{g as x,a as m}from"./cityService-Dc1KzdCT.js";function w(){const n=x(6),t=m().length,i=n.map((e,p)=>{const l=e.costs.accommodation.center*30+e.costs.food.standard*30+e.costs.transport+e.costs.coworking,g=e.digitalNomad.overallScore>=85?"#10b981":e.digitalNomad.overallScore>=70?"#f59e0b":"#6366f1";return`
+import{_ as f}from"./index-DL-FbTpN.js";import{M as b}from"./MainLayout-CBxf94lM.js";import{g as x,a as m}from"./cityService-Dc1KzdCT.js";function y(){const a=x(6),t=m().length,r=a.map((e,p)=>{const l=e.costs.accommodation.center*30+e.costs.food.standard*30+e.costs.transport+e.costs.coworking,g=e.digitalNomad.overallScore>=85?"#10b981":e.digitalNomad.overallScore>=70?"#f59e0b":"#6366f1";return`
       <a href="/city/${e.slug}" data-link class="home-city-card" style="animation-delay:${p*80}ms">
         <div class="home-city-card__img-wrap">
           <img src="${e.image}" alt="${e.name}" loading="lazy" />
@@ -23,7 +23,7 @@ import{_ as f}from"./index-CvNFZR1a.js";import{M as b}from"./MainLayout-CBxf94lM
       <strong>${e.value}</strong>
       <span>${e.label}</span>
     </div>
-  `).join(""),r=[{num:"01",icon:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>',title:"Choose your cities",desc:"Browse 33+ destinations across Europe, Asia, Americas and the Middle East."},{num:"02",icon:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>',title:"Set your budget",desc:"Enter your income and lifestyle preferences -- from budget backpacker to comfortable expat."},{num:"03",icon:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>',title:"Get your report",desc:"See real purchasing power, visa info, tax pressure and quality-of-life scores side by side."}].map(e=>`
+  `).join(""),n=[{num:"01",icon:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>',title:"Choose your cities",desc:"Browse 33+ destinations across Europe, Asia, Americas and the Middle East."},{num:"02",icon:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>',title:"Set your budget",desc:"Enter your income and lifestyle preferences -- from budget backpacker to comfortable expat."},{num:"03",icon:'<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>',title:"Get your report",desc:"See real purchasing power, visa info, tax pressure and quality-of-life scores side by side."}].map(e=>`
     <div class="home-step">
       <div class="home-step__num">${e.num}</div>
       <div class="home-step__icon">${e.icon}</div>
@@ -346,7 +346,7 @@ import{_ as f}from"./index-CvNFZR1a.js";import{M as b}from"./MainLayout-CBxf94lM
           <h2>Three steps to your answer</h2>
           <p>No sign-up. No credit card. Just real data and smart comparisons.</p>
         </div>
-        <div class="home-steps">${r}</div>
+        <div class="home-steps">${n}</div>
       </div>
     </section>
 
@@ -377,7 +377,7 @@ import{_ as f}from"./index-CvNFZR1a.js";import{M as b}from"./MainLayout-CBxf94lM
           <h2>Best cities for nomads right now</h2>
           <p>Ranked by overall nomad score -- WiFi, safety, cost, and visa access combined.</p>
         </div>
-        <div class="home-cities__grid">${i}</div>
+        <div class="home-cities__grid">${r}</div>
         <div style="text-align:center;margin-top:40px">
           <a href="/destinations" data-link class="btn btn--secondary btn--lg">
             View all ${t} destinations ->
@@ -396,16 +396,16 @@ import{_ as f}from"./index-CvNFZR1a.js";import{M as b}from"./MainLayout-CBxf94lM
         </a>
       </div>
     </section>
-  `;return b(s)}function y(){const n=document.getElementById("world-map");if(n){if(!document.getElementById("leaflet-css")){const t=document.createElement("link");t.id="leaflet-css",t.rel="stylesheet",t.href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css",document.head.appendChild(t)}f(async()=>{const{default:t}=await import("./leaflet-DoEXxWUO.js").then(i=>i.l);return{default:t}},[]).then(({default:t})=>{const i=t.map("world-map",{center:[20,15],zoom:2,minZoom:2,maxZoom:6,zoomControl:!0,attributionControl:!0,scrollWheelZoom:!1});t.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",{attribution:"  OpenStreetMap   CARTO",subdomains:"abcd",maxZoom:19}).addTo(i),m().forEach(o=>{var p,l;if(!o.lat||!o.lng)return;const a=((p=o.digitalNomad)==null?void 0:p.overallScore)??70,r=a>=85?"#10b981":a>=70?"#f59e0b":"#6366f1",c=Math.round(o.costs.accommodation.center*30+o.costs.food.standard*30+o.costs.transport+o.costs.coworking),d=t.divIcon({className:"",iconSize:[20,20],iconAnchor:[10,10],popupAnchor:[0,-14],html:`
+  `;return b(s)}function w(){const a=document.getElementById("world-map");if(a){if(a._leaflet_id!=null){try{delete a._leaflet_id}catch{a._leaflet_id=null}a.innerHTML=""}if(!document.getElementById("leaflet-css")){const t=document.createElement("link");t.id="leaflet-css",t.rel="stylesheet",t.href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css",document.head.appendChild(t)}f(async()=>{const{default:t}=await import("./leaflet-DoEXxWUO.js").then(r=>r.l);return{default:t}},[]).then(({default:t})=>{const r=t.map("world-map",{center:[20,15],zoom:2,minZoom:2,maxZoom:6,zoomControl:!0,attributionControl:!0,scrollWheelZoom:!1});t.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",{attribution:"  OpenStreetMap   CARTO",subdomains:"abcd",maxZoom:19}).addTo(r),m().forEach(o=>{var p,l;if(!o.lat||!o.lng)return;const i=((p=o.digitalNomad)==null?void 0:p.overallScore)??70,n=i>=85?"#10b981":i>=70?"#f59e0b":"#6366f1",c=Math.round(o.costs.accommodation.center*30+o.costs.food.standard*30+o.costs.transport+o.costs.coworking),d=t.divIcon({className:"",iconSize:[20,20],iconAnchor:[10,10],popupAnchor:[0,-14],html:`
           <div style="
             width:16px;height:16px;border-radius:50%;
-            background:${r};
+            background:${n};
             border:2px solid rgba(255,255,255,0.8);
-            box-shadow:0 0 0 4px ${r}44, 0 2px 8px rgba(0,0,0,0.4);
+            box-shadow:0 0 0 4px ${n}44, 0 2px 8px rgba(0,0,0,0.4);
             cursor:pointer;
             transition:transform 0.15s;
           "></div>
-        `}),s=t.marker([o.lat,o.lng],{icon:d}).addTo(i),e=`
+        `}),s=t.marker([o.lat,o.lng],{icon:d}).addTo(r),e=`
         <div class="map-popup">
           <img class="map-popup__img" src="${o.image}" alt="${o.name}" loading="lazy" />
           <div class="map-popup__city">${o.name}</div>
@@ -416,7 +416,7 @@ import{_ as f}from"./index-CvNFZR1a.js";import{M as b}from"./MainLayout-CBxf94lM
           </div>
           <div class="map-popup__row">
             <span class="map-popup__label">Nomad score</span>
-            <span class="map-popup__score" style="background:${r}">${a}/100</span>
+            <span class="map-popup__score" style="background:${n}">${i}/100</span>
           </div>
           <div class="map-popup__row">
             <span class="map-popup__label">Visa</span>
@@ -426,4 +426,4 @@ import{_ as f}from"./index-CvNFZR1a.js";import{M as b}from"./MainLayout-CBxf94lM
             Explore ${o.name} ->
           </a>
         </div>
-      `;s.bindPopup(e,{maxWidth:220,className:"map-popup-container"}),s.on("mouseover",function(){this.openPopup()})}),n.addEventListener("click",o=>{const a=o.target.closest("[data-link]");a&&(o.preventDefault(),window.history.pushState({},"",a.getAttribute("href")),window.dispatchEvent(new PopStateEvent("popstate")))})})}}export{w as HomePage,w as default,y as setupHomeMapInteractivity};
+      `;s.bindPopup(e,{maxWidth:220,className:"map-popup-container"}),s.on("mouseover",function(){this.openPopup()})}),a.addEventListener("click",o=>{const i=o.target.closest("[data-link]");i&&(o.preventDefault(),window.history.pushState({},"",i.getAttribute("href")),window.dispatchEvent(new PopStateEvent("popstate")))})})}}export{y as HomePage,y as default,w as setupHomeMapInteractivity};

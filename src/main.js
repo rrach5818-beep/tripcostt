@@ -3,7 +3,7 @@ import './styles/base.css';
 import './styles/layout.css';
 import './styles/components.css';
 import './styles/pages.css';
-import { initRouter } from './router/index.js';
+import { initRouter, navigate } from './router/index.js';
 import { routes }    from './router/routes.js';
 import { initNewsletterPopup } from './components/NewsletterPopup.js';
 import 'leaflet/dist/leaflet.css';
@@ -30,9 +30,13 @@ function initAnalytics() {
   // Track initial load
   trackPageView(window.location.pathname);
 
-  // Track every SPA navigation
+  // Track every SPA navigation (popstate = back/forward, lca:route-rendered = programmatic navigate)
   window.addEventListener('popstate', () => {
     setTimeout(() => trackPageView(window.location.pathname), 100);
+  });
+  window.addEventListener('lca:route-rendered', (e) => {
+    const p = (e && e.detail && e.detail.path) || window.location.pathname;
+    setTimeout(() => trackPageView(p), 100);
   });
 
   // Key interaction tracking via event delegation
@@ -137,13 +141,28 @@ function initApp() {
   initNewsletterPopup();
 
   document.addEventListener('click', (e) => {
+    // Ignore modified clicks (new tab / new window / download)
+    if (e.defaultPrevented) return;
+    if (e.button !== 0) return;
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
     const link = e.target.closest('a[data-link]');
-    if (link) {
-      e.preventDefault();
-      const path = link.getAttribute('href');
-      window.history.pushState({}, '', path);
-      window.dispatchEvent(new PopStateEvent('popstate'));
+    if (!link) return;
+    if (link.target && link.target !== '' && link.target !== '_self') return;
+
+    const path = link.getAttribute('href');
+    if (!path) return;
+    // External links or anchors -- let the browser handle
+    if (/^(?:[a-z]+:)?\/\//i.test(path)) return;
+    if (path.startsWith('mailto:') || path.startsWith('tel:')) return;
+
+    e.preventDefault();
+    // Same URL click (e.g. logo while already on home) -- scroll to top
+    if (path === window.location.pathname + window.location.search) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
     }
+    navigate(path);
   });
 }
 

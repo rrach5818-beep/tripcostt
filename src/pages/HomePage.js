@@ -481,6 +481,14 @@ export function setupHomeMapInteractivity() {
   const el = document.getElementById('world-map');
   if (!el) return;
 
+  // Guard: if Leaflet already initialized this container (SPA re-render),
+  // reset its internal id so L.map() does not throw
+  // "Map container is already initialized".
+  if (el._leaflet_id != null) {
+    try { delete el._leaflet_id; } catch (_) { el._leaflet_id = null; }
+    el.innerHTML = '';
+  }
+
   // Load Leaflet CSS dynamically if not already present
   if (!document.getElementById('leaflet-css')) {
     const link = document.createElement('link');
