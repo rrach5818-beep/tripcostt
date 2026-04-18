@@ -8,7 +8,20 @@ export function MainLayout(content) {
     <header class="header" data-testid="header">
       <div class="container">
         <div class="header__inner">
-          <a href="/" data-link class="header__logo">Living Cost<span>Atlas</span></a>
+          <a href="/" data-link class="header__logo" aria-label="Living Cost Atlas home">
+            <svg class="header__logo-mark" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+              <circle cx="20" cy="20" r="19" fill="none" stroke="#312e81" stroke-width="1.3"/>
+              <path d="M20 4 L22.5 20 L20 20 Z" fill="#312e81"/>
+              <path d="M20 4 L17.5 20 L20 20 Z" fill="#4f46e5"/>
+              <path d="M20 36 L22.5 20 L20 20 Z" fill="#312e81" opacity="0.5"/>
+              <path d="M20 36 L17.5 20 L20 20 Z" fill="#4f46e5" opacity="0.35"/>
+              <rect x="22" y="17" width="3" height="3" fill="#312e81" rx="0.3"/>
+              <rect x="26.5" y="14" width="3" height="6" fill="#312e81" rx="0.3"/>
+              <rect x="31" y="10" width="3" height="10" fill="#312e81" rx="0.3"/>
+              <circle cx="20" cy="20" r="2" fill="#ffffff" stroke="#312e81" stroke-width="0.8"/>
+            </svg>
+            <span class="header__logo-text">Living Cost<span>Atlas</span></span>
+          </a>
           <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
             <span class="nav-toggle__bar"></span>
             <span class="nav-toggle__bar"></span>
@@ -90,7 +103,19 @@ export function MainLayout(content) {
 
           <!-- Brand -->
           <div class="footer__brand">
-            <div class="footer__brand-logo">Living Cost<span>Atlas</span></div>
+            <div class="footer__brand-logo">
+              <svg viewBox="0 0 40 40" width="28" height="28" aria-hidden="true" style="vertical-align:-6px;margin-right:8px;">
+                <circle cx="20" cy="20" r="19" fill="none" stroke="#a5b4fc" stroke-width="1.3"/>
+                <path d="M20 4 L22.5 20 L20 20 Z" fill="#c7d2fe"/>
+                <path d="M20 4 L17.5 20 L20 20 Z" fill="#818cf8"/>
+                <path d="M20 36 L22.5 20 L20 20 Z" fill="#c7d2fe" opacity="0.5"/>
+                <path d="M20 36 L17.5 20 L20 20 Z" fill="#818cf8" opacity="0.35"/>
+                <rect x="22" y="17" width="3" height="3" fill="#c7d2fe" rx="0.3"/>
+                <rect x="26.5" y="14" width="3" height="6" fill="#c7d2fe" rx="0.3"/>
+                <rect x="31" y="10" width="3" height="10" fill="#c7d2fe" rx="0.3"/>
+                <circle cx="20" cy="20" r="2" fill="#0f0c29" stroke="#c7d2fe" stroke-width="0.8"/>
+              </svg>Living Cost<span>Atlas</span>
+            </div>
             <p>Free cost of living intelligence for digital nomads, remote workers and expats. Real data, updated quarterly.</p>
             <span class="footer__brand-badge">Data updated March 2026</span>
           </div>

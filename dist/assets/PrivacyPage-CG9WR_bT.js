@@ -1,4 +1,4 @@
-import{M as s}from"./MainLayout-CBxf94lM.js";function r({eyebrow:e,title:i,subtitle:n,sections:o}){const a=o.map(t=>`<a href="#${t.id}" class="lp-toc__link">${t.title}</a>`).join(""),l=o.map(t=>`
+import{M as s}from"./MainLayout-BVTdBj1H.js";function r({eyebrow:e,title:i,subtitle:n,sections:o}){const a=o.map(t=>`<a href="#${t.id}" class="lp-toc__link">${t.title}</a>`).join(""),l=o.map(t=>`
     <div class="lp-section" id="${t.id}">
       <h2 class="lp-section__title">${t.title}</h2>
       ${t.content}

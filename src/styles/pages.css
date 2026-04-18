@@ -25,17 +25,17 @@
   gap: var(--space-2);
 }
 
-.header__logo span { 
-  color: var(--color-primary-600); 
+.header__logo-text {
+  color: var(--color-text-primary);
+}
+.header__logo-text span {
+  color: var(--color-primary-600);
 }
 
-.header__logo::before {
-  content: "";
-  display: inline-block;
-  width: 32px;
-  height: 32px;
-  background: var(--color-bg-gradient);
-  border-radius: var(--radius-lg);
+.header__logo-mark {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
 }
 /* ===============================
    WORLD MAP HERO (FOUNDATION)

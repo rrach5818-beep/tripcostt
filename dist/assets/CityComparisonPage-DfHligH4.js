@@ -1,4 +1,4 @@
-import{M as H}from"./MainLayout-CBxf94lM.js";import{b as O}from"./cityService-qV0spH9F.js";import{s as D,i as T}from"./setPageMeta-BmQKFz2d.js";import{B as U,a as V}from"./Breadcrumb-C87PeGFq.js";function q(p){if(!p)return[];const d=p.split("-vs-");return d.length!==2?[]:d}function X(p){const{cities:d}=p,[i,c]=q(d),e=O(i),o=O(c);if(!e||!o)return H(`
+import{M as H}from"./MainLayout-BVTdBj1H.js";import{b as O}from"./cityService-qV0spH9F.js";import{s as D,i as T}from"./setPageMeta-BmQKFz2d.js";import{B as U,a as V}from"./Breadcrumb-C87PeGFq.js";function q(p){if(!p)return[];const d=p.split("-vs-");return d.length!==2?[]:d}function X(p){const{cities:d}=p,[i,c]=q(d),e=O(i),o=O(c);if(!e||!o)return H(`
       <div style="text-align:center;padding:120px 24px">
         <div style="font-size:48px;margin-bottom:16px">🔍</div>
         <h1 style="font-size:28px;font-weight:800;color:#111827;margin-bottom:12px">Cities not found</h1>
