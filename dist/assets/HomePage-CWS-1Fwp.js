@@ -1,4 +1,4 @@
-import{_ as f}from"./index-BmDrPeHc.js";import{M as b}from"./MainLayout-CBxf94lM.js";import{g as x,a as m}from"./cityService-DInqR9v8.js";function y(){const a=x(6),t=m().length,r=a.map((e,p)=>{const l=e.costs.accommodation.center*30+e.costs.food.standard*30+e.costs.transport+e.costs.coworking,g=e.digitalNomad.overallScore>=85?"#10b981":e.digitalNomad.overallScore>=70?"#f59e0b":"#6366f1";return`
+import{_ as f}from"./index-DHxkErcD.js";import{M as b}from"./MainLayout-CBxf94lM.js";import{g as x,a as m}from"./cityService-qV0spH9F.js";function y(){const a=x(6),t=m().length,r=a.map((e,p)=>{const l=e.costs.accommodation.center*30+e.costs.food.standard*30+e.costs.transport+e.costs.coworking,g=e.digitalNomad.overallScore>=85?"#10b981":e.digitalNomad.overallScore>=70?"#f59e0b":"#6366f1";return`
       <a href="/city/${e.slug}" data-link class="home-city-card" style="animation-delay:${p*80}ms">
         <div class="home-city-card__img-wrap">
           <img src="${e.image}" alt="${e.name}" loading="lazy" />

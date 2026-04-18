@@ -1,4 +1,4 @@
-import{s as t}from"./setPageMeta-BmQKFz2d.js";import{M as i}from"./MainLayout-CBxf94lM.js";import{a as s}from"./cityService-DInqR9v8.js";function d(){const a=s().length,e=`
+import{s as t}from"./setPageMeta-BmQKFz2d.js";import{M as i}from"./MainLayout-CBxf94lM.js";import{a as s}from"./cityService-qV0spH9F.js";function d(){const a=s().length,e=`
     <style>
       /* -- Hero ----------------------- */
       .ab-hero {
