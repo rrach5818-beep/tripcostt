@@ -24,6 +24,13 @@ const mod = await import(
 );
 const { getCityBySlug, getAllCities, compareCities } = mod;
 
+// Hand-authored per-city intelligence (real neighborhoods, peer cities, exec summary, etc.)
+const intelMod = await import(
+  'file:///' + path.resolve(__dirname, 'data', 'cityIntel.js').replace(/\\/g, '/')
+);
+const CITY_INTEL = intelMod.CITY_INTEL || {};
+const intel = CITY_INTEL[slug] || null;
+
 const city = getCityBySlug(slug);
 if (!city) {
   console.error(`City not found: ${slug}`);
@@ -94,21 +101,49 @@ const econScore   = curStab === 'High' ? 7.5 : curStab === 'Very High' ? 8.5 : 6
 const lcaIndex    = (affordScore * 0.30 + infraScore * 0.20 + safeScore * 0.15 + qolScore * 0.20 + econScore * 0.15).toFixed(2);
 const lcaVerdict  = lcaIndex >= 7.5 ? 'STRONG BUY' : lcaIndex >= 6.5 ? 'BUY' : lcaIndex >= 5 ? 'HOLD' : 'CAUTION';
 
-// Peer cities for comparison (same continent, different from current)
+// Peer cities for comparison: prefer hand-authored peerCities from cityIntel,
+// falling back to same-continent top-nomad-score neighbours.
 const allCities = getAllCities();
-const peers = allCities
-  .filter(c => c.continent === city.continent && c.slug !== slug)
-  .sort((a, b) => Math.abs((a.digitalNomad?.overallScore || 0) - nomadScore) - Math.abs((b.digitalNomad?.overallScore || 0) - nomadScore))
-  .slice(0, 4);
+let peers;
+if (intel && Array.isArray(intel.peerCities) && intel.peerCities.length) {
+  peers = intel.peerCities
+    .map(p => {
+      const c = getCityBySlug(p.slug);
+      if (c) c.__peerRationale = p.rationale;
+      return c;
+    })
+    .filter(Boolean);
+}
+if (!peers || peers.length === 0) {
+  peers = allCities
+    .filter(c => c.continent === city.continent && c.slug !== slug)
+    .sort((a, b) => Math.abs((a.digitalNomad?.overallScore || 0) - nomadScore) - Math.abs((b.digitalNomad?.overallScore || 0) - nomadScore))
+    .slice(0, 4);
+}
 
-// Neighborhoods (generated from data)
-const neighborhoods = [
-  { name: `${cityName} City Centre`, type: 'Premium Urban Core', rent: `${cur}${rentCenter.toLocaleString()} -- ${cur}${Math.round(rentCenter * 1.3).toLocaleString()}`, desc: `The historic and commercial heart of ${cityName}. Walking distance to major landmarks, restaurants, and coworking spaces. Most expensive but most convenient.`, bestFor: 'Professionals who prioritize convenience and lifestyle over cost.' },
-  { name: 'Business District', type: 'Modern Commercial', rent: `${cur}${Math.round(rentCenter * 0.9).toLocaleString()} -- ${cur}${Math.round(rentCenter * 1.15).toLocaleString()}`, desc: `Modern area with corporate offices, international restaurants, and newer apartment buildings. Good transport links and international community.`, bestFor: 'Remote professionals working with local companies or startups.' },
-  { name: 'Creative Quarter', type: 'Trendy / Emerging', rent: `${cur}${Math.round(rentCenter * 0.75).toLocaleString()} -- ${cur}${rentCenter.toLocaleString()}`, desc: `Up-and-coming area popular with artists, freelancers, and young professionals. Cafes, galleries, and a vibrant nightlife scene. Rents rising but still accessible.`, bestFor: 'Digital nomads and creative freelancers seeking community.' },
-  { name: 'Residential Suburb', type: 'Family-Friendly', rent: `${cur}${rentSuburb.toLocaleString()} -- ${cur}${Math.round(rentSuburb * 1.2).toLocaleString()}`, desc: `Quieter residential area with parks, schools, and supermarkets. Longer commute but significantly lower rents and more spacious apartments.`, bestFor: 'Families and those seeking work-life balance on a moderate budget.' },
-  { name: 'Expat Hub', type: 'International Community', rent: `${cur}${Math.round(rentCenter * 0.85).toLocaleString()} -- ${cur}${Math.round(rentCenter * 1.1).toLocaleString()}`, desc: `Established international community with English-friendly services, international schools nearby, and a mix of local and expatriate culture.`, bestFor: 'Expats relocating long-term who want an easier cultural transition.' },
-];
+// Neighborhoods: hand-authored when available, generic fallback otherwise.
+let neighborhoods;
+if (intel && Array.isArray(intel.neighborhoods) && intel.neighborhoods.length) {
+  neighborhoods = intel.neighborhoods.map(n => {
+    const low = Math.round(rentCenter * n.rentRatio * 0.9);
+    const high = Math.round(rentCenter * n.rentRatio * 1.15);
+    return {
+      name: n.name,
+      type: n.character,
+      rent: `${cur}${low.toLocaleString()} -- ${cur}${high.toLocaleString()}`,
+      desc: n.oneLineDesc,
+      bestFor: n.bestFor
+    };
+  });
+} else {
+  neighborhoods = [
+    { name: `${cityName} City Centre`, type: 'Premium Urban Core', rent: `${cur}${rentCenter.toLocaleString()} -- ${cur}${Math.round(rentCenter * 1.3).toLocaleString()}`, desc: `The historic and commercial heart of ${cityName}. Walking distance to major landmarks, restaurants, and coworking spaces. Most expensive but most convenient.`, bestFor: 'Professionals who prioritize convenience and lifestyle over cost.' },
+    { name: 'Business District', type: 'Modern Commercial', rent: `${cur}${Math.round(rentCenter * 0.9).toLocaleString()} -- ${cur}${Math.round(rentCenter * 1.15).toLocaleString()}`, desc: `Modern area with corporate offices, international restaurants, and newer apartment buildings.`, bestFor: 'Remote professionals working with local companies or startups.' },
+    { name: 'Creative Quarter', type: 'Trendy / Emerging', rent: `${cur}${Math.round(rentCenter * 0.75).toLocaleString()} -- ${cur}${rentCenter.toLocaleString()}`, desc: `Up-and-coming area popular with artists, freelancers, and young professionals.`, bestFor: 'Digital nomads and creative freelancers seeking community.' },
+    { name: 'Residential Suburb', type: 'Family-Friendly', rent: `${cur}${rentSuburb.toLocaleString()} -- ${cur}${Math.round(rentSuburb * 1.2).toLocaleString()}`, desc: `Quieter residential area with parks, schools, and supermarkets.`, bestFor: 'Families and those seeking work-life balance on a moderate budget.' },
+    { name: 'Expat Hub', type: 'International Community', rent: `${cur}${Math.round(rentCenter * 0.85).toLocaleString()} -- ${cur}${Math.round(rentCenter * 1.1).toLocaleString()}`, desc: `Established international community with English-friendly services.`, bestFor: 'Expats relocating long-term who want an easier cultural transition.' },
+  ];
+}
 
 // -- Reusable HTML helpers -----------------------------------------------
 
@@ -237,9 +272,14 @@ function tocPage() {
 }
 
 function execSummary() {
+  const openerHtml = (intel && Array.isArray(intel.execSummary) && intel.execSummary.length)
+    ? intel.execSummary
+        .map(p => `<p style="font-size:11px;color:#374151;line-height:1.7;margin-bottom:14px">${p}</p>`)
+        .join('')
+    : `<p style="font-size:11px;color:#374151;line-height:1.7;margin-bottom:20px">${cityName} has positioned itself as a compelling relocation destination for remote workers, digital nomads, and international professionals. As of 2026, the ${countryName} ${city.continent === 'Europe' ? 'capital' : 'city'} offers a distinctive combination of ${city.tags.slice(0, 3).join(', ')}-oriented lifestyle, ${curStab.toLowerCase()} economic stability, and a cost profile that ${affordScore >= 6 ? 'remains competitive' : 'requires careful budgeting'} relative to its peer cities.</p>`;
   return `
   ${sectionTitle('01','Executive Summary')}
-  <p style="font-size:11px;color:#374151;line-height:1.7;margin-bottom:20px">${cityName} has positioned itself as a compelling relocation destination for remote workers, digital nomads, and international professionals. As of 2026, the ${countryName} ${city.continent === 'Europe' ? 'capital' : 'city'} offers a distinctive combination of ${city.tags.slice(0, 3).join(', ')}-oriented lifestyle, ${curStab.toLowerCase()} economic stability, and a cost profile that ${affordScore >= 6 ? 'remains competitive' : 'requires careful budgeting'} relative to its peer cities. This report provides a data-driven assessment of ${cityName}'s cost landscape, livability metrics, and relocation risk profile for the 2026 calendar year.</p>
+  ${openerHtml}
 
   <h3 style="font-size:16px;font-weight:700;color:${NAVY};margin:24px 0 8px">Estimated Monthly Living Costs -- 2026</h3>
   ${tbl(
@@ -346,6 +386,7 @@ function detailedCostBreakdown() {
       ['Premium (frequent dining out)',`${cur}${foodPrem}`,`${cur}${(foodPrem * 30).toLocaleString()}`]
     ]
   )}
+  ${intel && intel.cuisineNotes ? `<p style="font-size:10px;color:#374151;line-height:1.6;margin:10px 0 0;font-style:italic">${intel.cuisineNotes}</p>` : ''}
 
   <h3 style="font-size:14px;font-weight:700;color:${NAVY};margin:16px 0 8px">Transport & Connectivity</h3>
   ${tbl(
@@ -472,8 +513,9 @@ function cityComparison() {
   });
 
   return `
-  ${sectionTitle('08','City Comparison -- ${cityName} vs. Peer Cities')}
-  <p style="font-size:11px;color:#374151;line-height:1.6;margin-bottom:16px">${cityName} benchmarked against comparable destinations. Rent differentials expressed as percentage relative to ${cityName}.</p>
+  ${sectionTitle('08',`City Comparison -- ${cityName} vs. Peer Cities`)}
+  <p style="font-size:11px;color:#374151;line-height:1.6;margin-bottom:16px">${cityName} benchmarked against regionally appropriate peers. Rent differentials are expressed as percentage relative to ${cityName}.</p>
+  ${peers.some(p => p.__peerRationale) ? `<ul style="font-size:10px;color:#374151;line-height:1.55;margin:0 0 14px 18px">${peers.filter(p => p.__peerRationale).map(p => `<li style="margin-bottom:3px"><strong>${p.name}</strong> -- ${p.__peerRationale}</li>`).join('')}</ul>` : ''}
   ${tbl(
     ['City','1BR Rent','vs. ' + cityName,'Safety','Nomad Score'],
     [
@@ -486,6 +528,18 @@ function cityComparison() {
 }
 
 function prosCons() {
+  // Hand-authored pros/cons when available
+  if (intel && intel.prosCons && Array.isArray(intel.prosCons.pros) && Array.isArray(intel.prosCons.cons)) {
+    const prosRows = intel.prosCons.pros.map(([k, v]) => [k, v]);
+    const consRows = intel.prosCons.cons.map(([k, v]) => [k, v]);
+    return `
+    ${sectionTitle('09','Pros & Cons Summary')}
+    <h3 style="font-size:16px;font-weight:700;color:${GREEN};margin-bottom:8px">Strengths</h3>
+    ${tbl(['Strength','Detail'], prosRows)}
+    <h3 style="font-size:16px;font-weight:700;color:${RED};margin:24px 0 8px">Limitations</h3>
+    ${tbl(['Limitation','Detail'], consRows, { hdrBg: '#7f1d1d', hdrColor: WHITE })}
+    ${pageBreak()}`;
+  }
   const strengths = [];
   const limitations = [];
 
@@ -525,6 +579,32 @@ function prosCons() {
 }
 
 function whoShouldMove() {
+  // Hand-authored profiles + culture intro when available
+  if (intel && intel.whoShouldMove) {
+    const labels = {
+      remoteWorker: 'Solo Remote Workers',
+      digitalNomad: 'Digital Nomads (3-6 months)',
+      family: 'Relocating Families',
+      retiree: 'Retirees',
+      entrepreneur: 'Entrepreneurs'
+    };
+    let html = `${sectionTitle('10',`Who Should Move to ${cityName}?`)}`;
+    if (intel.cultureNotes) {
+      html += `<p style="font-size:11px;color:#374151;line-height:1.65;margin-bottom:16px">${intel.cultureNotes}</p>`;
+    }
+    Object.entries(labels).forEach(([key, name]) => {
+      const prof = intel.whoShouldMove[key];
+      if (!prof) return;
+      const verdict = prof.verdict || 'CONDITIONAL';
+      const vColor = verdict === 'RECOMMENDED' ? GREEN : verdict === 'NOT RECOMMENDED' ? RED : AMBER;
+      html += `
+      <h3 style="font-size:14px;font-weight:700;color:${NAVY};margin:16px 0 4px">${name}</h3>
+      <p style="font-size:10px;margin-bottom:4px"><span style="display:inline-block;background:${vColor};color:white;font-weight:700;font-size:8px;padding:3px 10px;border-radius:4px">${verdict}</span></p>
+      <p style="font-size:10px;color:#374151;line-height:1.5;margin-bottom:8px">${prof.detail}</p>`;
+    });
+    html += pageBreak();
+    return html;
+  }
   const profiles = [
     ['Solo Remote Workers',nomadScore >= 75 ? 'RECOMMENDED' : 'CONDITIONAL', nomadScore >= 75 ? `${cityName} offers a strong environment for remote workers with ${wifi} Mbps WiFi and coworking at ${cur}${cowork}/month.` : `${cityName} is workable but may require adaptation. ${wifi < 50 ? 'Internet speeds may be limiting.' : ''}`],
     ['Digital Nomads (3-6 months)',visaRemote && affordScore >= 6 ? 'RECOMMENDED' : 'CONDITIONAL', visaRemote ? `${visaType} enables legal stays. Budget nomads can operate from ${cur}${budgetTotal.toLocaleString()}/month.` : `No dedicated nomad visa; tourist visa allows ${visaStay}-month stays.`],
@@ -533,7 +613,7 @@ function whoShouldMove() {
     ['Entrepreneurs',taxCorp <= 20 && english >= 65 ? 'RECOMMENDED' : 'CONDITIONAL', `Corporate tax: ${taxCorp}%. ${english >= 65 ? 'Business-friendly English environment.' : 'Local language may be needed for business.'}`]
   ];
 
-  let html = `${sectionTitle('10','Who Should Move to ${cityName}?')}`;
+  let html = `${sectionTitle('10',`Who Should Move to ${cityName}?`)}`;
   profiles.forEach(([name, verdict, detail]) => {
     const vColor = verdict === 'RECOMMENDED' ? GREEN : AMBER;
     html += `
@@ -546,6 +626,14 @@ function whoShouldMove() {
 }
 
 function riskFactors() {
+  // Hand-authored risks when available
+  if (intel && Array.isArray(intel.risks) && intel.risks.length) {
+    const rows = intel.risks.map(r => [r.vector, riskBadge(r.level), r.assessment]);
+    return `
+    ${sectionTitle('11','Risk Factors & Economic Outlook')}
+    ${tbl(['Risk Vector','Level','Assessment'], rows)}
+    ${pageBreak()}`;
+  }
   return `
   ${sectionTitle('11','Risk Factors & Economic Outlook')}
   ${tbl(
