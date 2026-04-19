@@ -482,19 +482,31 @@ function workInfrastructure() {
 }
 
 function safetyQoL() {
+  const qol = intel && intel.qolScores ? intel.qolScores : null;
+  const baseRows = [
+    ['Safety Index',`${safetyIdx}/100`,`Crime level: ${crimeLevel}`],
+    ['Healthcare Quality',`${healthcare}/100`,'Public + private options'],
+    ['Public Transport',`${pubTrans}/100`,'Daily commute viability'],
+    ['English Proficiency',`${english}/100`,'Ease of integration'],
+    ['Airport Access',`${airport}/100`,'Travel connectivity'],
+    ['Nomad Score',`${nomadScore}/100`,'Overall remote-worker suitability']
+  ];
+  const qolRows = qol ? [
+    ['Climate',`${qol.climate.score}/10`, qol.climate.note],
+    ['Walkability',`${qol.walkability.score}/10`, qol.walkability.note],
+    ['Healthcare',`${qol.healthcare.score}/10`, qol.healthcare.note],
+    ['Safety (Lived)',`${qol.safety.score}/10`, qol.safety.note],
+    ['Culture & Arts',`${qol.culture.score}/10`, qol.culture.note],
+    ['Air Quality',`${qol.air_quality.score}/10`, qol.air_quality.note],
+    ['Green Space',`${qol.green_space.score}/10`, qol.green_space.note]
+  ] : null;
   return `
   ${sectionTitle('07','Safety & Quality of Life')}
-  ${tbl(
-    ['Dimension','Score','Notes'],
-    [
-      ['Safety Index',`${safetyIdx}/100`,`Crime level: ${crimeLevel}`],
-      ['Healthcare Quality',`${healthcare}/100`,'Public + private options'],
-      ['Public Transport',`${pubTrans}/100`,'Daily commute viability'],
-      ['English Proficiency',`${english}/100`,'Ease of integration'],
-      ['Airport Access',`${airport}/100`,'Travel connectivity'],
-      ['Nomad Score',`${nomadScore}/100`,'Overall remote-worker suitability']
-    ]
-  )}
+  ${tbl(['Dimension','Score','Notes'], baseRows)}
+  ${qolRows ? `
+    <h3 style="font-size:13px;font-weight:700;color:${NAVY};margin:22px 0 8px;border-bottom:2px solid ${GOLD};padding-bottom:4px">Seven-Dimension Lived Quality Scorecard</h3>
+    ${tbl(['Dimension','Score','Notes'], qolRows)}
+  ` : ''}
   ${commentary(`${cityName} scores ${safetyIdx}/100 on safety, placing it ${safetyIdx >= 85 ? 'among the safest cities globally' : safetyIdx >= 70 ? 'in the safe-to-moderate range' : 'below the safety threshold for some relocators'}. Healthcare at ${healthcare}/100 ${healthcare >= 80 ? 'meets international standards' : 'may require private insurance for full coverage'}.`)}
   ${pageBreak()}`;
 }
@@ -703,6 +715,22 @@ function finalVerdict() {
   <div style="background:${LGRAY};border-left:4px solid ${GOLD};padding:10px 16px;margin:8px 0 20px">
     <p style="font-size:10px;color:${NAVY};font-weight:600;margin:0">${cityName} scores ${lcaIndex}/10 on the Living Cost Atlas Index, classified as ${lcaVerdict}. ${lcaVerdict === 'STRONG BUY' ? 'This is one of the strongest relocation destinations available.' : lcaVerdict === 'BUY' ? `${cityName} offers solid fundamentals for international residents.` : `Prospective relocators should conduct thorough due diligence before committing.`}</p>
   </div>
+
+  ${intel && intel.verdictParagraphs ? `
+    <h3 style="font-size:13px;font-weight:700;color:${NAVY};margin:22px 0 8px;border-bottom:2px solid ${GOLD};padding-bottom:4px">Verdict for Digital Nomads</h3>
+    <p style="font-size:11px;color:#374151;line-height:1.65;margin-bottom:14px">${intel.verdictParagraphs.nomads || ''}</p>
+    <h3 style="font-size:13px;font-weight:700;color:${NAVY};margin:18px 0 8px;border-bottom:2px solid ${GOLD};padding-bottom:4px">Verdict for Families</h3>
+    <p style="font-size:11px;color:#374151;line-height:1.65;margin-bottom:14px">${intel.verdictParagraphs.families || ''}</p>
+    <h3 style="font-size:13px;font-weight:700;color:${NAVY};margin:18px 0 8px;border-bottom:2px solid ${GOLD};padding-bottom:4px">Verdict for Founders &amp; Entrepreneurs</h3>
+    <p style="font-size:11px;color:#374151;line-height:1.65;margin-bottom:14px">${intel.verdictParagraphs.founders || ''}</p>
+  ` : ''}
+
+  ${intel && intel.closingStatement ? `
+    <div style="background:${NAVY};color:${WHITE};padding:16px 20px;margin:20px 0;border-radius:8px;border-left:4px solid ${GOLD}">
+      <div style="font-size:10px;color:${GOLD};font-weight:700;letter-spacing:1.5px;margin-bottom:6px">CLOSING STATEMENT</div>
+      <p style="font-size:11px;line-height:1.65;margin:0">${intel.closingStatement}</p>
+    </div>
+  ` : ''}
 
   <p style="font-size:10px;color:${GRAY};text-align:center;margin-top:30px">&#169; 2026 Living Cost Atlas. All rights reserved.</p>`;
 }

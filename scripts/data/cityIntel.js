@@ -42,10 +42,12 @@ export const CITY_INTEL = {
     cuisineNotes: 'Bangkok\'s food stack is the cheapest lever in any nomad budget: a 50-80 THB street meal (roughly USD 1.50-2.50) holds its own against most cities\' home-cooked equivalents, which means the "Budget" profile here is about eating out, not cooking in -- the reverse of Paris or Amsterdam. Grocery prices on imported goods (cheese, wine, Western cereals) are punitive; locals and long-term expats default to Makro, Tops, or Villa Market depending on tier. Expect to spend dramatically less on food while eating dramatically more often out.',
     cultureNotes: 'Bangkok operates on long days and late evenings: office hours skew 9-to-6+, and social life pushes well past midnight. The city is polite, hierarchical, and transactional with foreigners -- "farang pricing" is a real phenomenon in tourist zones, and fluent basic Thai meaningfully changes how the city treats you after month six. Buddhism and monarchy shape the calendar; several long holiday clusters (Songkran in April, New Year) empty the city and reshape logistics.',
     risks: [
-      { vector: 'Air Quality (PM2.5)', level: 'HIGH', assessment: 'Bangkok routinely hits AQI 150-250 during Jan-Mar burning season. Budget USD 30-60/month for air purifiers per room; sensitive individuals should plan seasonal exits.' },
-      { vector: 'Political / Regulatory', level: 'MODERATE', assessment: 'Thailand has a history of political cycles that occasionally affect visa rules, banking access, and property ownership pathways for foreigners.' },
-      { vector: 'Flooding (seasonal)', level: 'MODERATE', assessment: 'Low-lying districts flood during peak monsoon (Sep-Oct). Favour higher ground or upper-floor condos; check building history before signing.' },
-      { vector: 'Currency (THB weakness)', level: 'LOW', assessment: 'THB has softened vs USD since 2022, which favours incoming expats but erodes baht-denominated salaries for locally employed professionals.' }
+      { vector: 'Air Quality (PM2.5)', level: 'HIGH', assessment: 'Bangkok routinely hits AQI 150-250 during Jan-Mar burning season. Budget USD 30-60/month for air purifiers per room; sensitive individuals should plan seasonal exits to Chiang Rai, Koh Samui, or out of country.' },
+      { vector: 'Political / Regulatory', level: 'MODERATE', assessment: 'Thailand has a history of political cycles that occasionally affect visa rules, banking access, and property ownership pathways for foreigners. DTV holders should keep a secondary plan.' },
+      { vector: 'Flooding (seasonal)', level: 'MODERATE', assessment: 'Low-lying districts (Sukhumvit sois 31-71, On Nut, Bang Na) flood during peak monsoon (Sep-Oct). Favour higher ground or upper-floor condos; check building history before signing.' },
+      { vector: 'Currency (THB weakness)', level: 'LOW', assessment: 'THB has softened vs USD since 2022, which favours incoming expats but erodes baht-denominated salaries for locally employed professionals.' },
+      { vector: 'Scams (Farang Pricing)', level: 'MODERATE', assessment: 'Tuk-tuks, street vendors, and airport taxis frequently quote 2-5x inflated prices. Use Grab, Bolt, or MRT/BTS; refuse any "meter broken" claim. Tourist-zone bar scams (gem shops, jet-ski damage) remain active.' },
+      { vector: 'Dengue / Tropical Health', level: 'LOW', assessment: 'Dengue cases rise during monsoon. Window screens, DEET, and standing-water awareness mitigate risk. Rabies vaccination advisable if near stray dogs/monkeys.' }
     ],
     whoShouldMove: {
       remoteWorker:  { verdict: 'RECOMMENDED', detail: 'DTV visa, 120 Mbps fibre, dense coworking (The Hive, Justco, WeWork), and Sukhumvit English signage make Bangkok one of the lowest-friction remote-work hubs globally.' },
@@ -56,18 +58,40 @@ export const CITY_INTEL = {
     },
     prosCons: {
       pros: [
-        ['DTV Visa (5-year)', 'Thailand\'s Destination Thailand Visa is the most generous remote-worker visa in Asia as of 2026.'],
-        ['Street-Food Economics', 'Eating out three meals a day can cost less than cooking at home in most Western cities.'],
-        ['Private Healthcare', 'Bumrungrad and Samitivej are JCI-accredited with costs 40-60% below US rates.'],
-        ['Airport Connectivity', 'Suvarnabhumi offers 90+ direct international destinations -- best hub in mainland SE Asia.'],
-        ['Coworking Density', 'The Hive, Justco, WeWork, and Spaces operate 40+ sites citywide.']
+        ['DTV Visa (5-year)', 'Thailand\'s Destination Thailand Visa is the most generous remote-worker visa in Asia as of 2026, with multi-entry status and a THB 500k proof-of-funds bar.'],
+        ['Street-Food Economics', 'Eating out three meals a day can cost less than cooking at home in most Western cities -- 50-80 THB buys a full pad kaprao with rice and egg.'],
+        ['Private Healthcare', 'Bumrungrad and Samitivej are JCI-accredited with costs 40-60% below US rates; expat health insurance runs USD 80-200/month.'],
+        ['Airport Connectivity', 'Suvarnabhumi offers 90+ direct international destinations -- the best hub in mainland SE Asia for multi-city lifestyles.'],
+        ['Coworking Density', 'The Hive, Justco, WeWork, Spaces, and Beacon Place operate 40+ sites citywide; hot desks run USD 150-280/month, dedicated USD 280-450.'],
+        ['Condo Inventory Depth', 'Hundreds of newly-built BTS-adjacent condos turn over monthly; negotiation power on 12-month leases is real, especially in non-peak seasons.'],
+        ['Mature Expat Infrastructure', 'English-language banking (SCB Easy, Kasikorn, Bangkok Bank FX accounts), international schools, and established legal/immigration consultancies remove most friction.'],
+        ['Weekend Escape Optionality', 'Koh Samui, Koh Chang, Hua Hin, Chiang Mai, and Hanoi are all 1-1.5h flights; Bangkok is a base, not a cage.']
       ],
       cons: [
-        ['PM2.5 Burning Season', 'Jan-Mar air quality regularly hits hazardous levels; not optional for asthmatics.'],
-        ['Traffic Gridlock', 'Surface traffic is punishing; life effectively revolves around BTS/MRT proximity.'],
-        ['Ownership Restrictions', 'Foreigners cannot own land; condo ownership is capped at 49% per building.'],
-        ['Farang Pricing', 'Dual-price tag culture persists in tourist zones and some service sectors.']
+        ['PM2.5 Burning Season', 'Jan-Mar air quality regularly hits AQI 150-250; asthmatics, children, and pregnant women face meaningful health exposure without purifiers.'],
+        ['Traffic Gridlock', 'Surface traffic is punishing; life effectively revolves around BTS/MRT proximity and a 500m walk to a station becomes a housing criterion.'],
+        ['Ownership Restrictions', 'Foreigners cannot own land; condo ownership is capped at 49% per building and requires proof of offshore FX transfer.'],
+        ['Farang Pricing', 'Dual-price tag culture persists in tourist zones, temple entries, and some service sectors; fluent basic Thai is the main counter.'],
+        ['Banking Friction', 'Opening a local Thai bank account as a non-resident is inconsistent; some branches accept DTV holders, others require work permits. Plan on 2-3 branch visits.'],
+        ['Noise / Street Dogs', 'Soi-level noise (mopeds, construction, karaoke) is persistent; ground- and second-floor units are meaningfully louder than high-floor condos.'],
+        ['Heat Index (Apr-May)', 'Hot season peaks at 38-42C with humidity; without a full-building AC plan, the apartment becomes unworkable for daytime focus.'],
+        ['Regulatory Noise', 'Occasional crackdowns on cannabis, alcohol hours, beach access, and foreign-run businesses introduce short-term disruptions expats must learn to absorb.']
       ]
+    },
+    verdictParagraphs: {
+      nomads: 'For the self-employed remote worker earning in USD/EUR/SGD, Bangkok in 2026 is a near-unbeatable combination: DTV visa runway of up to 5 years, a 1BR Sukhumvit condo under USD 850/month, 300 Mbps fibre for under USD 25, and a coworking ecosystem with 40+ options. The total standard-profile cost base lands between USD 1,800 and USD 2,800 all-in -- a fraction of any US, UK, or Western European tier-1 city. The main friction is PM2.5: plan a 6-week exit window in Feb-Mar and the math works.',
+      families: 'Families get a more nuanced answer. International schooling at NIST, Bangkok Patana, or Shrewsbury is world-class but expensive (USD 20-35k/year per child), and air quality is non-negotiable for kids with respiratory sensitivity. Phrom Phong and outer Sukhumvit offer the best combination of schools, parks, and medical proximity. Nanny and domestic-help economics are exceptional (USD 400-600/month full-time), which reshapes what "standard" looks like for dual-income families.',
+      founders: 'Entrepreneurs face the 51% Thai-ownership rule on most entity structures, which pushes serious founders toward BOI promotion schemes, holding-company arrangements, or offshore (Singapore, Delaware) incorporation with Thai operations. For product-led SaaS or content businesses this is manageable; for regulated or capital-intensive plays, the friction compounds. The upside: world-class talent at SEA-median prices and genuine regional reach into Vietnam, Indonesia, and the Philippines.'
+    },
+    closingStatement: 'Bangkok in 2026 is the highest-leverage Southeast Asian base for a USD-earning remote professional: the cost-to-quality ratio rewards those who optimise around BTS access, treat PM2.5 as a seasonal constraint rather than a blocker, and invest the first 30 days in banking, SIM, and coworking membership setup. STRONG BUY for DTV-eligible nomads; CONDITIONAL BUY for families and THB-salaried workers.',
+    qolScores: {
+      climate:     { score: 6.5, note: 'Tropical; hot season (Apr-May) is punishing, rainy season (Jun-Oct) manageable, cool season (Nov-Feb) excellent.' },
+      walkability: { score: 5.0, note: 'BTS/MRT corridors are walkable; most of the city requires motorbike, Grab, or taxi between clusters.' },
+      healthcare:  { score: 9.0, note: 'World-class private (Bumrungrad, Samitivej, Bangkok Hospital) at 40-60% below US pricing; public system strained for non-residents.' },
+      safety:      { score: 7.5, note: 'Low violent-crime rates; petty scams in tourist zones; road safety (moped density) is the real risk metric.' },
+      culture:     { score: 9.0, note: 'Deep temple / arts / food culture; night markets, Chatuchak, and a cinema + music scene that rivals Singapore at a third of the price.' },
+      air_quality: { score: 4.0, note: 'Jan-Mar burning season pulls AQI into 150-250 range; rest of year is breathable. Purifiers non-optional for sensitive residents.' },
+      green_space: { score: 6.0, note: 'Lumpini, Benjakitti, and Benjasiri parks offer genuine green relief; overall tree canopy is limited outside those clusters.' }
     }
   },
 
@@ -96,7 +120,9 @@ export const CITY_INTEL = {
       { vector: 'Seismic Activity', level: 'HIGH', assessment: 'CDMX sits on a former lakebed; 2017 and 1985 earthquakes caused significant damage. Verify building age and soil-zone classification before signing any lease.' },
       { vector: 'Altitude Adjustment', level: 'MODERATE', assessment: '2,240m elevation affects sleep, cardio, and alcohol tolerance for the first 2-6 weeks. Plan a softer schedule for month one.' },
       { vector: 'Security (Neighbourhood-Specific)', level: 'MODERATE', assessment: 'Central/south zones (Polanco/Condesa/Roma/Coyoacan) are low-incident; north and outer-east zones are materially higher-risk for expats.' },
-      { vector: 'Tax Residency Trigger', level: 'MODERATE', assessment: '183-day rule applies; Mexican tax residents face worldwide income taxation. Structure carefully with a Mexican CPA before committing to a long stay.' }
+      { vector: 'Tax Residency Trigger', level: 'MODERATE', assessment: '183-day rule applies; Mexican tax residents face worldwide income taxation. Structure carefully with a Mexican CPA before committing to a long stay.' },
+      { vector: 'Water Quality', level: 'MODERATE', assessment: 'Tap water is not potable; all drinking/cooking water must be bottled or filtered. Garrafones (20L jugs) run MXN 50-80 and delivery to apartments is standard.' },
+      { vector: 'Taxi / Airport Scams', level: 'LOW', assessment: 'Street taxis and some MEX airport operators overcharge foreigners. Use Uber, Didi, or authorised-taxi desks at MEX Terminal 1/2 (pay inside the terminal, not curbside).' }
     ],
     whoShouldMove: {
       remoteWorker:  { verdict: 'RECOMMENDED', detail: 'US-compatible time zones, strong fibre, excellent coworking (Publico, WeWork, Selina), and a creative-professional community that is unmatched in LATAM.' },
@@ -111,14 +137,36 @@ export const CITY_INTEL = {
         ['Cultural Depth', 'World-class museums (Soumaya, MUAC, Antropologia), theatre, and a top-5 global food scene.'],
         ['Perpetual-Spring Climate', '18-25C most of the year at 2,240m elevation -- no AC required in most housing.'],
         ['Excellent Value on Food', 'Market-to-Michelin range with markets that rival any in the Americas on quality and price.'],
-        ['Creative Community', 'Dense artist, designer, and founder population in Roma/Condesa.']
+        ['Creative Community', 'Dense artist, designer, and founder population in Roma/Condesa.'],
+        ['Domestic Help Economics', 'Full-time housekeeper/nanny runs USD 400-700/month; reshapes dual-income family economics dramatically.'],
+        ['Airport Connectivity', 'MEX and NLU cover most of North America with direct flights; 4-5h to NYC/LA and 2-3h to most US hubs.'],
+        ['Temporary Resident Pathway', 'USD ~2,600/month income proof unlocks a 4-year residency visa -- well-trodden and straightforward for remote earners.']
       ],
       cons: [
         ['Seismic Risk', 'Real earthquake risk concentrated in soft-soil zones -- due diligence on building required.'],
         ['Neighbourhood Dependency', 'Lived experience varies more by district than almost any peer city; the wrong zone ruins the relocation.'],
         ['Tourist-Local Tension', 'Post-2020 gentrification has created visible resentment in Condesa/Roma; long-term residents encounter it.'],
-        ['Tax Residency Trap', '183-day rule is easy to trip for long-stay nomads who haven\'t structured their affairs.']
+        ['Tax Residency Trap', '183-day rule is easy to trip for long-stay nomads who haven\'t structured their affairs.'],
+        ['Tap Water Not Potable', 'All drinking/cooking water must be bottled or filtered -- minor but constant logistical tax.'],
+        ['Spanish Required', 'English tapers fast outside Condesa/Roma/Polanco; Spanish is genuinely necessary for daily friction reduction.'],
+        ['Traffic Congestion', 'Surface traffic is brutal in working hours; Metro/cycling or neighbourhood containment reshape life.'],
+        ['Bureaucratic Friction', 'Banking, utilities, and visa renewals frequently require in-person visits and Spanish-speaking intermediaries.']
       ]
+    },
+    verdictParagraphs: {
+      nomads: 'For US-compatible remote workers, Mexico City is one of the top-3 global destinations in 2026. A Condesa or Roma Norte 1BR runs USD 1,100-1,800, coworking spaces like Publico and WeWork are plentiful, and the 4-year Temporary Resident visa on ~USD 2,600/month income proof is the most nomad-friendly major visa in the Americas. Standard all-in budget lands USD 2,200-3,400 -- dramatically below any US tier-1 city for markedly richer cultural depth.',
+      families: 'Families need to think carefully about zone selection. Polanco and Del Valle offer the best combination of schools, green space, and safety; ASF, Greengates, and Edron deliver world-class bilingual education at USD 15-25k per child. Altitude acclimation is real for kids under 10, and neighbourhood containment (avoiding north/outer-east zones) is more important than in most peer cities.',
+      founders: 'LATAM tech increasingly centres in CDMX, and the Mexican SAPI corporate structure is genuinely founder-friendly. USMCA nexus and proximity to US time zones/investors are real strategic advantages. The constraint: bureaucratic friction and Spanish-language dependency make the first 90 days heavier than in peers. Mexican CPA and immigration counsel should be hired before day one, not after.'
+    },
+    closingStatement: 'Mexico City in 2026 is the best-positioned LATAM relocation hub for US-compatible remote workers willing to learn Spanish and select neighbourhood carefully. STRONG BUY for nomads/entrepreneurs; CONDITIONAL BUY for families (school cost + altitude) and retirees (altitude + healthcare complexity).',
+    qolScores: {
+      climate:     { score: 9.0, note: 'Perpetual spring at 2,240m; 18-25C year-round, dry Nov-May, rainy Jun-Oct. No AC required in most housing.' },
+      walkability: { score: 7.5, note: 'Condesa/Roma/Polanco are highly walkable; Metro + Metrobus cover the central spine; car largely unnecessary in core zones.' },
+      healthcare:  { score: 7.5, note: 'World-class private hospitals (ABC, Angeles, Medica Sur) at 40-60% below US pricing; public IMSS system is strained and not expat-oriented.' },
+      safety:      { score: 6.5, note: 'Central/south zones (Polanco/Condesa/Roma/Coyoacan) are low-incident; outer zones materially higher-risk. Uber over street taxis is standard hygiene.' },
+      culture:     { score: 9.5, note: 'Arguably the deepest cultural capital in the Americas: museums, theatre, gastronomy, music, and a creative-class density that rivals NYC or Berlin.' },
+      air_quality: { score: 5.0, note: 'AQI 80-150 is typical; dust season (Feb-Apr) and thermal inversions push air quality down intermittently. Not Bangkok-bad but not clean.' },
+      green_space: { score: 7.0, note: 'Bosque de Chapultepec is one of the largest urban parks in the Americas; Parque Mexico, Parque Lincoln, and canal walks give genuine green relief.' }
     }
   },
 
@@ -147,7 +195,9 @@ export const CITY_INTEL = {
       { vector: 'Summer Heat (Jun-Sep)', level: 'HIGH', assessment: 'Daily highs routinely exceed 45C; outdoor life effectively stops. Factor AC costs (AED 800-2000/month) and plan summer exits if possible.' },
       { vector: 'Schooling Cost Bomb', level: 'HIGH', assessment: 'International school fees run AED 50,000-100,000+ per child per year. The tax saving evaporates fast for families with 2+ children not on an employer education package.' },
       { vector: 'Alcohol Licensing', level: 'LOW', assessment: 'Personal alcohol licence needed for home purchase; public intoxication and zero-tolerance DUI carry real legal consequences.' },
-      { vector: 'Visa Tied to Sponsor/Income', level: 'MODERATE', assessment: 'Most visa categories (employment, Virtual Working, Golden) are tied to income floors or sponsorship continuity; lose the job/income, clock starts on exit.' }
+      { vector: 'Visa Tied to Sponsor/Income', level: 'MODERATE', assessment: 'Most visa categories (employment, Virtual Working, Golden) are tied to income floors or sponsorship continuity; lose the job/income, clock starts on exit.' },
+      { vector: 'Real Estate Cycle Exposure', level: 'MODERATE', assessment: 'Dubai property is cyclical: strong 2022-2025 rally; new-build oversupply risk looms in 2026-2027. Favour rental over purchase until pricing clarity returns.' },
+      { vector: 'Social Conduct Laws', level: 'LOW', assessment: 'Cohabitation was legalised in 2020 but Ramadan daytime conduct, public displays of affection, and online-speech laws still apply. Read the rules once; most expats adjust without issue.' }
     ],
     whoShouldMove: {
       remoteWorker:  { verdict: 'RECOMMENDED', detail: 'Zero income tax, Virtual Working Programme visa, world-class fibre, English-everywhere business environment. Few peers on pure tax-plus-infrastructure basis.' },
@@ -162,14 +212,36 @@ export const CITY_INTEL = {
         ['English-Everywhere', 'Roughly 90% English proficiency in professional life; Arabic not required.'],
         ['Safety + Rule-of-Law', 'Consistently ranks among the safest large cities globally.'],
         ['Logistics Hub', 'DXB/DWC give 8-hour reach to two-thirds of the world\'s population.'],
-        ['Premium Healthcare', 'Private healthcare is world-class (Cleveland Clinic Abu Dhabi, Mediclinic network).']
+        ['Premium Healthcare', 'Private healthcare is world-class (Cleveland Clinic Abu Dhabi, Mediclinic network).'],
+        ['Free-Zone Company Structures', 'DMCC, IFZA, DIFC give 100% foreign ownership, zero corp tax under AED 375k, and Golden Visa pathway.'],
+        ['Golden Visa Pathway', '10-year renewable residency for investors, specialists, entrepreneurs; no sponsor dependency once granted.'],
+        ['Infrastructure Density', 'Metro, tram, ride-hail (Careem), fibre, and delivery networks all operate at tier-1 global-city standard.']
       ],
       cons: [
         ['High Lifestyle Cost', 'Rent + schooling + alcohol + car stack a premium cost base that neutralises tax for mid-income households.'],
         ['Extreme Summers', 'Jun-Sep is genuinely oppressive; many expats plan 6-12 week summer exits.'],
         ['Car-Dependent', 'Metro covers main corridors but most errands require a car; expect AED 2,000-4,000/month for lease + fuel + parking.'],
-        ['Visa Tied to Income/Sponsor', 'Most residency pathways are conditional; loss of income starts an exit clock.']
+        ['Visa Tied to Income/Sponsor', 'Most residency pathways are conditional; loss of income starts an exit clock.'],
+        ['Alcohol Friction', 'Licensed-only retail, home-licence bureaucracy, zero-tolerance DUI -- manageable but a lifestyle tax.'],
+        ['Grocery Costs (Western Diet)', 'Imported Western staples at Spinneys/Waitrose run 30-60% above origin markets; LuLu/Carrefour mitigate but don\'t fix.'],
+        ['Social Ephemerality', 'Expat turnover is high; long-term friendships are harder to build than in more-rooted peer cities.'],
+        ['Property Cycle Exposure', 'Dubai real estate is cyclical; 2026-2027 new-build delivery wave may pressure rents and values.']
       ]
+    },
+    verdictParagraphs: {
+      nomads: 'For high-earning remote workers (USD 100k+) in tax-unfriendly home jurisdictions, Dubai is near-unbeatable in 2026. The Virtual Working Programme visa (5-year, USD 5k/month income floor), zero personal income tax, world-class fibre, and 90%+ English make it frictionless operationally. Standard budget lands USD 4,000-6,500/month -- but the tax saving on USD 150k+ income more than pays for it. Below USD 100k the math breaks; below USD 60k Dubai becomes actively expensive.',
+      families: 'Families face the schooling cost bomb as the single biggest variable. Two children at British/American schools runs AED 100,000-200,000/year (USD 27k-54k), which can neutralise the entire tax advantage for mid-income households without an employer relocation package. Safety, healthcare, and infrastructure are genuinely excellent; the math works best when an employer education package exists or the school selection lands on mid-tier international (AED 40-60k) rather than tier-1 brand schools.',
+      founders: 'Dubai is one of the most founder-friendly jurisdictions globally: DMCC, IFZA, DIFC, and ADGM free zones offer 100% foreign ownership, zero corporate tax under AED 375k, and direct Golden Visa pathways. Banking is more friction than the marketing suggests (expect 2-3 months and multiple branch visits to open a business account). For scaled regional plays or lifestyle brands with global customers, the setup is close to optimal; for B2B SaaS targeting US markets, Delaware + Dubai residency is often the cleaner stack.'
+    },
+    closingStatement: 'Dubai in 2026 is the premier tax-optimisation destination for high-earning remote workers and founders willing to pay premium lifestyle costs. STRONG BUY for singles/couples earning USD 100k+; CONDITIONAL BUY for families (school cost decides); CAUTION for budget nomads -- Dubai is not the place to arrive under-capitalised.',
+    qolScores: {
+      climate:     { score: 4.0, note: 'Oct-Apr is genuinely excellent (18-28C); May-Sep is brutal (35-48C with 60-90% humidity). Plan half-year residency for many lifestyles.' },
+      walkability: { score: 5.5, note: 'Marina, JBR, Downtown, and City Walk are walkable clusters; between them, taxi/metro/car is required. Post-2023 cycling infrastructure has improved modestly.' },
+      healthcare:  { score: 9.0, note: 'Private healthcare is world-class (Cleveland Clinic, Mediclinic, Aster). Mandatory health insurance covers essentials; top-tier plans run AED 6k-20k/year per adult.' },
+      safety:      { score: 9.5, note: 'Among the safest large cities globally; violent and property crime are genuinely low. Road-safety (aggressive driving on Sheikh Zayed Road) is the one real risk.' },
+      culture:     { score: 7.0, note: 'Museum of the Future, Al Fahidi historic district, Dubai Opera, Alserkal arts district. Genuine depth has grown sharply post-2020; still behind true cultural capitals.' },
+      air_quality: { score: 6.0, note: 'Sand and dust events push AQI 100-180 sporadically; otherwise moderate. Mostly a nuisance, not a health exposure issue for healthy adults.' },
+      green_space: { score: 5.5, note: 'Dubai Marina promenade, Al Barsha Pond, Mushrif, and the Creek Park give pockets of green; density is low by European standards, high by GCC standards.' }
     }
   },
 
@@ -198,7 +270,9 @@ export const CITY_INTEL = {
       { vector: 'Housing Scarcity', level: 'HIGH', assessment: 'Finding a private long-term rental typically takes 4-12 weeks with real competition; many newcomers spend 3-6 months in serviced or short-let before securing stable housing.' },
       { vector: '30% Ruling Taper', level: 'MODERATE', assessment: 'The expat tax ruling is being reduced (30%/20%/10% over 5 years structure). Tax-net-of-ruling calculations based on old assumptions no longer hold.' },
       { vector: 'Climate (Damp + Dark)', level: 'MODERATE', assessment: 'Nov-Feb daylight averages under 8 hours with high cloud cover. SAD is a documented issue; light therapy and winter exits are common.' },
-      { vector: 'Bike Theft + Damp Housing', level: 'LOW', assessment: 'Bike theft is near-universal at the 1-2-year mark; older canal-house stock has damp/heating issues that surprise newcomers from drier climates.' }
+      { vector: 'Bike Theft + Damp Housing', level: 'LOW', assessment: 'Bike theft is near-universal at the 1-2-year mark; older canal-house stock has damp/heating issues that surprise newcomers from drier climates.' },
+      { vector: 'Energy Costs', level: 'MODERATE', assessment: 'Post-2022 energy price shock has softened but EUR 150-350/month for gas+electric is typical for 70-100m2 stock; heat-pump conversion is accelerating but uneven.' },
+      { vector: 'Overtourism Backlash', level: 'LOW', assessment: 'City has restricted short-lets, capped cruise ship visits, and is tightening rules on tourist-visible business. Long-term residents are largely insulated but policy direction is restrictive.' }
     ],
     whoShouldMove: {
       remoteWorker:  { verdict: 'RECOMMENDED', detail: 'Near-native English environment, EUR 100+ Mbps fibre, excellent coworking (TQ, B.Amsterdam, Spaces). The DAFT route suits US founders; employer sponsorship handles the rest.' },
@@ -213,14 +287,36 @@ export const CITY_INTEL = {
         ['Cycling Infrastructure', 'World-class bike network makes a car actively unnecessary in most of the city.'],
         ['DAFT Visa', 'EUR 4,500 capital requirement is the cheapest legitimate Schengen founder route.'],
         ['Schiphol Connectivity', 'One of Europe\'s top-3 airports; 300+ direct destinations.'],
-        ['Strong Public Healthcare', 'Mandatory insurance (~EUR 150/month) gives access to excellent public system.']
+        ['Strong Public Healthcare', 'Mandatory insurance (~EUR 150/month) gives access to excellent public system.'],
+        ['Walkable + Human-Scale', 'Canal-ring geography rewards walking and cycling over transit; compact, safe, and culturally dense.'],
+        ['Tech + Startup Ecosystem', 'Booking.com, Adyen, Philips, Picnic and a dense startup cluster make Amsterdam a real tech hub.'],
+        ['International Schools Depth', 'AICS (public international), British School of Amsterdam, International School of Amsterdam -- multiple strong options.']
       ],
       cons: [
         ['Housing Market Dysfunction', 'Supply-constrained, regulated, and hostile to short-term corporate rentals; first 3-6 months are often the hardest.'],
         ['30% Ruling Tapering', 'Historical expat tax break is being progressively reduced; factor the new rules, not old ones.'],
         ['Dark Winters', 'Nov-Feb daylight and cloud cover are a real wellbeing factor.'],
-        ['High Per-Meal Dining Cost', 'Restaurants are a premium spend compared to Southern European peers.']
+        ['High Per-Meal Dining Cost', 'Restaurants are a premium spend compared to Southern European peers.'],
+        ['High Tax Bracket', 'Top marginal PIT of 49.5% applies quickly; effective tax hit is real even with ruling applied.'],
+        ['Damp / Older Housing', 'Pre-war canal stock has damp, heating, and noise issues; post-2000 builds in Oost/Zuidas are the comfort-first option.'],
+        ['Banking Bureaucracy', 'Dutch banks (ABN, ING, Rabo) can be slow to open accounts for non-EU residents without BSN; DAFT applicants face extra friction.'],
+        ['Social Depth vs Breadth', 'Large expat community but genuine Dutch integration is a multi-year project; the first year feels transactional for many.']
       ]
+    },
+    verdictParagraphs: {
+      nomads: 'Amsterdam is not a digital-nomad city in the low-cost sense -- no DNV, 90/180 Schengen limits, and short-let housing rules make rotation difficult. For self-employed US citizens, the DAFT visa (EUR 4,500 capital requirement) is the cheapest legitimate Schengen founder entry and unlocks legal long-stay. For employed remote workers on sponsored visas, the tax-after-ruling math must be re-run under the 30/20/10 tapered regime that now applies.',
+      families: 'Families do well here once housing is secured: bike-safe streets, excellent international schools (AICS, ISA, BSA), strong public healthcare, and a genuinely child-friendly cultural norm. The single biggest friction is 3BR+ housing stock; Oud-Zuid and Oost have the best inventory but prices run EUR 3,500-5,500/month for family-size apartments, and waitlists at top schools start 12-18 months ahead.',
+      founders: 'For founders with US citizenship, DAFT is a genuine asset: Schengen residency, Dutch BV structure, and a mature startup ecosystem (TQ, Rockstart, Startupbootcamp). For EU founders, the standard freelance or BV path is straightforward but tax rates are high. Amsterdam rewards B2B SaaS and deep-tech over cost-sensitive consumer plays; the cost base is real but the quality of the ecosystem is worth it for the right business.'
+    },
+    closingStatement: 'Amsterdam in 2026 is the best-infrastructured, most English-friendly city in continental Europe -- and its most housing-constrained. BUY for remote workers and founders who can navigate housing and tax; CONDITIONAL BUY for families (school waitlists + housing stock); CAUTION for budget nomads -- this is not a cost-optimisation city.',
+    qolScores: {
+      climate:     { score: 5.5, note: 'Temperate-oceanic: mild summers (18-24C), damp autumns, dark winters (Dec daylight under 8h). Spring (Apr-May) is the sweet spot.' },
+      walkability: { score: 9.5, note: 'Canal-ring geography is one of the most walkable/cyclable in the world. Tram + bike covers 95% of needs; car is a liability in central districts.' },
+      healthcare:  { score: 8.5, note: 'Mandatory private-insured public system is genuinely excellent. GP-gated access can frustrate newcomers used to direct-specialist models.' },
+      safety:      { score: 8.5, note: 'Low violent-crime rates; bike theft and occasional tourist-zone pickpocketing are the main vectors. Women-solo safety is excellent by European standards.' },
+      culture:     { score: 9.0, note: 'Rijksmuseum, Van Gogh, Stedelijk, Concertgebouw, and a live-music scene that punches far above city size. Genuine cultural depth.' },
+      air_quality: { score: 7.5, note: 'Generally good; occasional NOx issues along major corridors. No PM2.5 problems typical of warmer-climate peers.' },
+      green_space: { score: 8.0, note: 'Vondelpark, Westerpark, Oosterpark, Amsterdamse Bos (urban forest). Per-capita green space is high for a dense European capital.' }
     }
   },
 
@@ -249,7 +345,9 @@ export const CITY_INTEL = {
       { vector: 'Visa Overstay / Enforcement', level: 'MODERATE', assessment: 'Indonesia has periodically tightened enforcement on visa misuse (B211 used for de-facto work). The new DNV (Second Home / E33G) is the safer long-stay path.' },
       { vector: 'Traffic + Infrastructure Strain', level: 'HIGH', assessment: 'Canggu-Seminyak rush hour can hit 90+ minutes for 10km. Scooter is default transport and the single largest safety/injury vector on the island.' },
       { vector: 'Scooter Accidents', level: 'HIGH', assessment: 'Scooter injuries are the #1 medical issue for visiting nomads. BPJS + a robust international policy (evacuation cover included) are non-negotiable.' },
-      { vector: 'Rainy Season (Nov-Mar)', level: 'LOW', assessment: 'Significant rainfall and humidity; some coworking/outdoor setups are limited. Not a deal-breaker but schedule accordingly.' }
+      { vector: 'Rainy Season (Nov-Mar)', level: 'LOW', assessment: 'Significant rainfall and humidity; some coworking/outdoor setups are limited. Not a deal-breaker but schedule accordingly.' },
+      { vector: 'Tourism Tax + Regulation Drift', level: 'MODERATE', assessment: 'Bali Tourism Tax (IDR 150k) introduced 2024; further restrictions on nomad-visible business (signage, illegal villas, moped licences) are likely in 2026-2027.' },
+      { vector: 'Healthcare Complexity', level: 'MODERATE', assessment: 'BIMC and Siloam cover routine care; anything complex (cancer, cardiac surgery) realistically means medical evacuation to Singapore or KL. International insurance with evac cover is essential.' }
     ],
     whoShouldMove: {
       remoteWorker:  { verdict: 'CONDITIONAL', detail: 'Great 3-6 month base; quality of life erodes past year one for most. Canggu/Ubud coworking is mature, but expect lifestyle fatigue and scene saturation.' },
@@ -264,14 +362,36 @@ export const CITY_INTEL = {
         ['Tropical Climate', 'Year-round 25-32C; no winter wardrobe required.'],
         ['Second-Home / DNV Visa', 'Genuine 5-10 year legal long-stay pathway with foreign-income tax exemption.'],
         ['Cost of Living (outside Canggu)', 'Ubud, Sanur, Amed deliver strong value vs any Western peer.'],
-        ['Wellness Infrastructure', 'World-class yoga, surf, and wellness offering -- unmatched at this price point.']
+        ['Wellness Infrastructure', 'World-class yoga, surf, and wellness offering -- unmatched at this price point.'],
+        ['Villa Housing Culture', 'Private villa with pool at USD 800-1,800/month (Ubud/Sanur/Uluwatu) is genuinely not matched anywhere else at the price.'],
+        ['Coworking Depth', 'Dojo, Outpost, Tropical Nomad (Canggu), Hubud (Ubud), and 10+ smaller spaces -- community-focused, not just desks.'],
+        ['Short-Flight Escapes', 'Singapore (2.5h), KL (3h), Bangkok (4h), and domestic Indonesian islands for weekend rotation.']
       ],
       cons: [
         ['Scooter Injury Rate', 'Single most common medical issue for visiting nomads; insurance non-negotiable.'],
         ['Over-Tourism in Canggu/Seminyak', 'Traffic, waste, and infrastructure strain are visibly worsening year-on-year.'],
         ['Long-Haul Flight Cost', 'USD/EUR 800-1500 to most Western home bases; friction for visits home.'],
-        ['Limited Complex Healthcare', 'Serious procedures usually mean evacuation to Singapore or KL.']
+        ['Limited Complex Healthcare', 'Serious procedures usually mean evacuation to Singapore or KL.'],
+        ['Power + Internet Reliability', 'Rolling outages and fibre disruptions occur; a 4G backup and UPS are standard kit.'],
+        ['Plastic + Water Pollution', 'Monsoon pushes plastic onto west-coast beaches (Dec-Feb); water quality varies sharply by zone.'],
+        ['Regulatory Volatility', 'Permit crackdowns, moped-licence enforcement drives, and tourist-visible business restrictions all surface intermittently.'],
+        ['Lifestyle Fatigue Past 12 Months', 'Scene-saturation, community rotation, and infrastructure erosion drive most full-year residents off-island by year 2.']
       ]
+    },
+    verdictParagraphs: {
+      nomads: 'Bali in 2026 remains the highest-density nomad base in Asia, but it works best as a 2-6 month rotation rather than a year-round base. Canggu for scene, Ubud for quiet, Sanur for family/long-stay, Uluwatu for surf. Standard budget lands USD 1,800-2,800/month in Canggu (villa, coworking, eating out), dropping 25-35% in Ubud or Sanur. The DNV (E33G) with its foreign-income tax exemption legitimises long-stay for those who qualify on deposit/income.',
+      families: 'For families, Sanur and Ubud work markedly better than Canggu. Green School (Ubud) and Sanur Independent are internationally respected; fees are mid-tier international (USD 10-20k/child). The main friction is medical -- complex conditions require evacuation planning, and a serious international policy with medevac is essential. Bali works best for families with 6 months to 2 years of timeline, less well for multi-year relocation.',
+      founders: 'Bali is excellent for content/creator/lifestyle/course-selling businesses with global customers. It is weaker for anyone needing Indonesian legal entities, payment rails, or serious banking infrastructure. PT PMA setup is doable but requires local counsel, and Indonesian banking as a foreigner is non-trivial. Most successful founders on the island run offshore (Singapore, Delaware) entities with Bali as residence, not business base.'
+    },
+    closingStatement: 'Bali in 2026 is the mature Asian nomad capital -- unmatched on lifestyle-cost ratio, pressured on infrastructure and sustainability. BUY for 2-6 month rotations; CONDITIONAL BUY for full-year residents who manage zone selection carefully; CAUTION for anyone who needs serious medical infrastructure or complex local business operations.',
+    qolScores: {
+      climate:     { score: 7.5, note: 'Tropical: dry season (Apr-Oct) excellent, rainy season (Nov-Mar) humid with afternoon downpours. No winter; no AC-required inland highlands (Ubud).' },
+      walkability: { score: 3.5, note: 'Bali is a scooter island. Canggu/Ubud cores are walkable in zones; between zones, private transport is mandatory. Bike lanes are essentially absent.' },
+      healthcare:  { score: 5.5, note: 'BIMC, Siloam, and Kasih Ibu cover routine primary/urgent care competently. Complex cardiac, oncology, or neurosurgery realistically means Singapore/KL evacuation.' },
+      safety:      { score: 7.5, note: 'Violent crime is low; the real risk vector is scooter accidents (#1 medical issue for visiting nomads). Petty theft and scams present but manageable.' },
+      culture:     { score: 8.5, note: 'Deep Balinese Hindu ceremony integrated into daily life; temple festivals, gamelan, traditional dance. Rice-terrace and coastal-craft traditions remain alive.' },
+      air_quality: { score: 7.0, note: 'Generally clean; crop-burning and volcanic activity occasionally push AQI into 100-150 range. Canggu street-level traffic fumes are the most common issue.' },
+      green_space: { score: 9.0, note: 'Rice paddies, jungle, beaches, and Mount Batur all within 90 minutes of Canggu. Near-unmatched natural-environment access at the price point.' }
     }
   },
 
@@ -300,7 +420,9 @@ export const CITY_INTEL = {
       { vector: 'Anti-Tourism Sentiment', level: 'MODERATE', assessment: 'Graffiti, demonstrations, and local political pressure target short-term rentals and tourist-heavy behaviour. Long-term leases and local integration largely neutralise this.' },
       { vector: 'Short-Term-Rental Crackdown', level: 'HIGH', assessment: 'Barcelona is phasing out all tourist short-term rental licences by 2028. Short-stay housing options will shrink materially; lock in long-term leases.' },
       { vector: 'Petty Crime (Tourist Zones)', level: 'MODERATE', assessment: 'Pickpocketing on Las Ramblas, Metro L3, and the beach is endemic. Non-tourist zones are low-incident.' },
-      { vector: 'Beketov DNV Tax Treatment', level: 'MODERATE', assessment: 'DNV holders face a flat 24% tax up to EUR 600k/year on Spanish-source income; consult a Spanish tax adviser before committing.' }
+      { vector: 'DNV Tax Treatment', level: 'MODERATE', assessment: 'DNV holders face a flat 24% tax up to EUR 600k/year on Spanish-source income; consult a Spanish tax adviser before committing.' },
+      { vector: 'Catalan Political Cycle', level: 'LOW', assessment: 'Independence movement cycles and Catalan/Spain relations can produce periodic disruption (demonstrations, strikes). Low-impact for expats but a feature of civic life.' },
+      { vector: 'August Shutdown', level: 'LOW', assessment: 'Many local businesses, schools, and service providers close for 2-4 weeks in August. Plan renewals, tax filings, and major setup outside this window.' }
     ],
     whoShouldMove: {
       remoteWorker:  { verdict: 'RECOMMENDED', detail: 'DNV is one of the better EU remote-worker visas. Strong fibre, mature coworking (OneCoWork, Cloudworks, WeWork), and Mediterranean work rhythm.' },
@@ -311,18 +433,40 @@ export const CITY_INTEL = {
     },
     prosCons: {
       pros: [
-        ['Digital Nomad Visa', 'Well-defined DNV path with workable income floor.'],
-        ['Climate + Beach', 'Mediterranean climate plus genuine urban beach access (Barceloneta, Bogatell).'],
+        ['Digital Nomad Visa', 'Well-defined DNV path with workable income floor (EUR 2,650/month).'],
+        ['Climate + Beach', 'Mediterranean climate plus genuine urban beach access (Barceloneta, Bogatell, Bogatell-Mar Bella).'],
         ['Tech Cluster (Poblenou)', 'The 22@ district anchors a real tech economy, not just a nomad layer.'],
-        ['European Connectivity', 'BCN airport plus high-speed rail to Madrid, Paris, Lyon, and beyond.'],
-        ['Menu-del-Dia Economics', 'Lunch economics that make the Standard budget genuinely comfortable.']
+        ['European Connectivity', 'BCN airport plus high-speed rail to Madrid (2.5h), Paris (6.5h), Lyon, and beyond.'],
+        ['Menu-del-Dia Economics', 'Lunch economics (EUR 12-18 for 3 courses + wine) that make the Standard budget genuinely comfortable.'],
+        ['Walkable Urbanism', 'Cerda grid + superblock program make central Barcelona one of the most walkable large cities in Europe.'],
+        ['Healthcare System', 'Strong public (CatSalut) system plus excellent private (Quiron, Teknon); expats favour private for speed.'],
+        ['Cultural Capital', 'MACBA, MNAC, Fundacio Miro, Picasso Museum + live music and festival scene (Primavera, Sonar).']
       ],
       cons: [
         ['STR Licensing Clampdown', 'Short-term rental inventory is shrinking by regulation; plan for long-term leases.'],
         ['Tourist-Local Tension', 'Anti-tourism politics is now mainstream; long-term residency posture matters.'],
         ['DNV 24% Flat Tax', 'Simpler than general Spanish tax but not a tax-haven rate.'],
-        ['Pickpocket Density', 'Tourist zones are genuinely active for petty crime.']
+        ['Pickpocket Density', 'Tourist zones are genuinely active for petty crime.'],
+        ['Bureaucratic Friction', 'NIE, empadronamiento, social-security, and DNV paperwork typically span 2-4 months total.'],
+        ['Housing Lead Times', 'Central 2BR leases often require 2-3 months search with real competition; gestors often needed.'],
+        ['Noise (Summer)', 'Catalan/Spanish evening rhythm + summer tourist density make ground-floor and tourist-zone living loud.'],
+        ['Catalan/Spanish Duality', 'Civic life in Catalan, business often in Spanish; both matter over time.']
       ]
+    },
+    verdictParagraphs: {
+      nomads: 'Barcelona in 2026 is the strongest Spanish nomad option and one of the top-3 Mediterranean cities for remote workers. The DNV (EUR 2,650/month income floor, 24% flat tax on Spanish-source income up to EUR 600k) is well-defined and well-trodden. Standard budget lands EUR 2,200-3,200/month; compared to Lisbon, prices are comparable but the tech cluster is deeper. Long-term leases through Idealista with a local gestor are the single most important move in month one.',
+      families: 'Families benefit from excellent international schools (BSB, ASB, Kensington School, American School), pedestrian-friendly streets, strong public healthcare, and genuine urban beach access. The main friction is 3BR+ housing: EUR 2,800-4,500/month for 100-130m2 in Eixample/Gracia/Sant Gervasi, with 2-3 months of search lead time typical. International school waitlists start 12+ months ahead for popular entry years.',
+      founders: 'Poblenou/22@ gives Barcelona genuine tech-ecosystem depth: Glovo, Typeform, TravelPerk, Kantox, and a dense layer of EU-facing SaaS startups. The Spanish Startup Law (2022) improved the tax treatment of carried interest and stock options meaningfully. Spanish bureaucracy (social security, VAT compliance) remains the operational headwind; a bilingual gestor is close to mandatory for the first year.'
+    },
+    closingStatement: 'Barcelona in 2026 rewards remote workers who settle in properly: DNV-qualified, long-term leased, Spanish-learning, non-tourist-posture. STRONG BUY for 1-3 year relocations; CONDITIONAL BUY for short-stay nomads (who will increasingly be treated as part of the tourism problem); RECOMMENDED for families who solve housing early.',
+    qolScores: {
+      climate:     { score: 8.5, note: 'Mediterranean: mild winters (10-16C), warm summers (25-30C), low rainfall. Summer humidity + tourist density are the main drawbacks.' },
+      walkability: { score: 9.0, note: 'Cerda grid + ongoing superblock program make central Barcelona one of the most walkable large European cities. Metro + bus covers the rest.' },
+      healthcare:  { score: 8.5, note: 'Strong public (CatSalut) + excellent private (Quiron, Teknon, Hospital Clinic). Private insurance at EUR 50-120/month is the expat default.' },
+      safety:      { score: 7.5, note: 'Low violent crime; pickpocketing in tourist zones (Las Ramblas, Metro L3, Barceloneta) is genuinely endemic. Non-tourist zones are low-incident.' },
+      culture:     { score: 9.5, note: 'Gaudi, Picasso, Miro, MACBA, Primavera Sound, Sonar, Mercat del Born -- arguably the densest cultural offering in the Mediterranean.' },
+      air_quality: { score: 6.5, note: 'Generally moderate; traffic-corridor NOx and occasional Saharan dust events push AQI 80-140 periodically.' },
+      green_space: { score: 7.5, note: 'Ciutadella, Montjuic, Parc del Laberint, and beach proximity (10-20 min by bike) offer strong outdoor access. Dense urban core limits tree canopy.' }
     }
   },
 
@@ -366,14 +510,36 @@ export const CITY_INTEL = {
         ['Freiberufler + Chancenkarte', 'Two genuinely accessible non-EU pathways into the German labour market.'],
         ['Public Transit', 'BVG network (U-Bahn, S-Bahn, tram, bus) is dense and reliable.'],
         ['Cultural Density', '180+ museums, world-class music/club scene, and deep cinema culture.'],
-        ['Grocery Economics', 'Aldi/Lidl make home cooking genuinely cheap for Western Europe.']
+        ['Grocery Economics', 'Aldi/Lidl make home cooking genuinely cheap for Western Europe.'],
+        ['Startup Ecosystem', 'N26, Zalando, Delivery Hero, HelloFresh, Wooga -- a genuine unicorn cluster with deep VC infrastructure.'],
+        ['Creative + Tolerant Norms', 'Deep queer-friendly culture, club scene (Berghain, Tresor, Watergate), and genuine cosmopolitanism.'],
+        ['Healthcare + Public Insurance', 'Public statutory insurance (~14.6% of income) covers world-class care; private option exists for higher earners.']
       ],
       cons: [
         ['Anmeldung Bottleneck', 'Residential registration queue delays everything downstream (bank, lease, tax).'],
         ['Housing Search Friction', 'Scarcity, German-language paperwork, and competitive applications.'],
         ['Bureaucratic Heaviness', 'More forms, more in-person appointments, and more analog process than any Western European peer.'],
-        ['Winter Darkness', 'Genuine wellness factor for sun-dependent newcomers.']
+        ['Winter Darkness', 'Genuine wellness factor for sun-dependent newcomers.'],
+        ['High Tax Wedge', 'Income tax + solidarity + church tax + social contributions routinely exceed 45% for mid-high earners.'],
+        ['Language Friction (Official)', 'Most administrative interactions happen in German; English works socially but not at Burgeramt or Finanzamt.'],
+        ['Cash-Culture Lag', 'Many smaller businesses still cash-only or German-card-only; international cards less universally accepted than peers.'],
+        ['Freiberufler Tax Complexity', 'Freelance filings are intricate; Steuerberater is effectively mandatory at EUR 1,500-3,000/year.']
       ]
+    },
+    verdictParagraphs: {
+      nomads: 'Berlin is not a short-stay nomad city -- Schengen 90/180 limits and Anmeldung rules make sub-6-month circuits actively painful. For 1-3 year stays, though, the Freiberufler visa (for freelancers in recognised professions) and the post-2024 Chancenkarte create real entry paths for non-EU remote workers. Standard budget lands EUR 1,800-2,800/month including a 1BR in Kreuzberg or Neukolln -- 30-40% below Amsterdam, 40-55% below Paris for equivalent space. Coworking (Mindspace, Factory, betahaus, Ahoy!) is mature and community-led.',
+      families: 'Families get excellent public healthcare, strong bilingual/international schools (Berlin International, BBIS, Kreuzberg Community, JFK), and genuinely child-friendly public space and transit. The housing market is the main constraint -- 3BR+ in Prenzlauer Berg or Charlottenburg requires 2-3 months of search and often Schufa + German-paperwork readiness. Kita (daycare) access is strong but registration is months ahead.',
+      founders: 'Berlin is Europe\'s second-largest startup ecosystem (after London) and the continent\'s deepest consumer-tech and B2B SaaS cluster outside the UK. GmbH is founder-standard; early hiring in Berlin is relatively accessible because of the international talent pool. The operational overhead is real: German employment law is strict, HR/payroll requires proper Steuerberater + Rechtsanwalt, and the cash cycle on admin can surprise first-time EU founders.'
+    },
+    closingStatement: 'Berlin in 2026 remains Western Europe\'s best creative-and-tech value for 1-3 year relocations; not a nomad city, not a cost-optimisation city, but a genuine infrastructure + cultural-depth + ecosystem play. BUY for remote workers and founders willing to navigate Anmeldung and German paperwork; CONDITIONAL BUY for families (housing + school lead-times); CAUTION for anyone expecting Southern-European ease of bureaucracy.',
+    qolScores: {
+      climate:     { score: 5.0, note: 'Continental: cold winters (-3 to 4C), mild summers (20-28C), grey Nov-Feb. Spring and early autumn are excellent; winter daylight can drop to 8h.' },
+      walkability: { score: 8.5, note: 'Central districts (Mitte, Kreuzberg, Prenzlauer Berg) are walkable + cyclable; excellent U/S-Bahn network fills the rest. Car genuinely unnecessary.' },
+      healthcare:  { score: 8.5, note: 'Public statutory + private system is excellent. GP-gated access can frustrate US-pattern expats; Charite is world-class for complex cases.' },
+      safety:      { score: 8.0, note: 'Low violent crime; petty theft in tourist zones and at main Bahnhofs. Late-night zones (Warschauer, Gorlitzer) have drug-scene presence but low expat impact.' },
+      culture:     { score: 9.5, note: '180+ museums, Berliner Philharmoniker, Staatsoper, Deutsche Oper, world-leading club scene (Berghain, Watergate, Tresor), and a cinema culture that rivals any European capital.' },
+      air_quality: { score: 7.5, note: 'Generally good; traffic-corridor NOx is moderate. Winter inversions occasionally push PM readings up.' },
+      green_space: { score: 8.5, note: 'Tiergarten, Tempelhofer Feld (former airport), Volkspark Friedrichshain, plus Spree/Wannsee water access. Per-capita green space is exceptional for a capital.' }
     }
   },
 
@@ -402,7 +568,9 @@ export const CITY_INTEL = {
       { vector: 'Burning Season PM2.5', level: 'HIGH', assessment: 'Feb-Apr air quality routinely exceeds AQI 200 and often 300+. N95 masks and whole-home HEPA filtration are standard among long-termers; many plan seasonal exits.' },
       { vector: 'Limited Specialist Healthcare', level: 'MODERATE', assessment: 'General private healthcare (Bangkok Hospital Chiang Mai, Chiang Mai Ram) is excellent; serious/specialist cases often route to Bangkok.' },
       { vector: 'Scooter Accident Risk', level: 'MODERATE', assessment: 'Scooter is default transport; accident rate is lower than Bali but still material. Helmet + insurance discipline matters.' },
-      { vector: 'Seasonal Flooding', level: 'LOW', assessment: 'Peak monsoon (Sep-Oct) occasionally floods riverside and low-lying districts; historically manageable.' }
+      { vector: 'Seasonal Flooding', level: 'LOW', assessment: 'Peak monsoon (Sep-Oct) occasionally floods riverside and low-lying districts; historically manageable.' },
+      { vector: 'Airport Connectivity', level: 'MODERATE', assessment: 'CNX is mostly regional; long-haul almost always requires a Bangkok transfer adding 3-5h and a second-leg fare. Plan travel assuming BKK as hub.' },
+      { vector: 'Community Saturation', level: 'LOW', assessment: 'The compact nomad scene means faces repeat at 3 coworking spaces; positive for community depth, mildly claustrophobic for some.' }
     ],
     whoShouldMove: {
       remoteWorker:  { verdict: 'RECOMMENDED', detail: 'Best cost-to-infrastructure ratio in Asia outside Vietnam. DTV visa, 200 Mbps fibre, and a dense nomad community that rotates regularly.' },
@@ -417,14 +585,36 @@ export const CITY_INTEL = {
         ['DTV Visa Eligibility', 'The 5-year DTV applies here identically to Bangkok.'],
         ['Nomad Community Maturity', 'Original SE-Asia nomad hub; the community logistics are well-worn.'],
         ['Temple + Nature Access', 'Doi Suthep, surrounding mountains, and temple culture all within 30 minutes.'],
-        ['Slower Pace vs Bangkok', 'Genuine quality-of-life advantage for longer stays.']
+        ['Slower Pace vs Bangkok', 'Genuine quality-of-life advantage for longer stays.'],
+        ['Coworking Density', 'Punspace, CAMP, Yellow, Alt_Chiang Mai + dozens of cafe-desks -- concentration in Nimman is SEA-leading per capita.'],
+        ['Cafe Economy', 'Ristr8to, Graph Cafe, Akha Ama -- third-wave coffee scene is genuinely world-class at THB 80-140 per drink.'],
+        ['Long-Stay Logistics', 'Monthly serviced condos, landlord-friendly 6-12 month leases, and scooter rental all operate at nomad-native prices.']
       ],
       cons: [
         ['Burning Season', 'Feb-Apr PM2.5 is a genuine health hazard, not a nuisance.'],
         ['Limited Specialist Healthcare', 'Complex cases route to Bangkok.'],
         ['Airport Connectivity', 'Mostly regional; international usually via Bangkok.'],
-        ['Community Turnover', 'High rotation means personal relationships recycle every 3-6 months.']
+        ['Community Turnover', 'High rotation means personal relationships recycle every 3-6 months.'],
+        ['Thin Fine-Dining Scene', 'Excellent at the street/casual tier; weak at the high-end compared to Bangkok or even HCMC.'],
+        ['Nighttime Scene Limited', 'Old City + Nimman have bars but the city quiets by midnight; nightlife depth is thin.'],
+        ['Scooter Traffic Mix', 'Scooter + truck mix on arterial roads (Huay Kaew, Canal Road) creates genuine injury risk for new riders.'],
+        ['Healthcare Depth', 'Sprains, fevers, minor surgery handled locally; anything neuro/oncology/cardiac routes to Bangkok.']
       ]
+    },
+    verdictParagraphs: {
+      nomads: 'Chiang Mai in 2026 is the highest cost-to-quality SE Asian base for nomads willing to handle the burning-season exit. A Nimman 1BR studio runs USD 450-650, coworking is USD 110-170, and fibre pushes 200+ Mbps. DTV makes 5-year stays workable. Standard budget lands USD 1,200-1,900/month -- among the lowest globally for this level of nomad infrastructure. Plan 6-10 weeks out in Feb-Apr (Koh Samui, Bali, Japan, Da Nang are favourites) and the math is near-unbeatable.',
+      families: 'Families do reasonably well at Prem Tinsulanonda, Lanna International, or Panyaden (bilingual Thai-English). Hang Dong\'s housing estates give 3BR/pool options at a third of Bangkok prices. The burning-season constraint is serious for children with respiratory sensitivity; medical evacuation to Bangkok for complex cases is 1h by plane. Works best for families with 1-3 year horizon or strong seasonal-rotation appetite.',
+      founders: 'Chiang Mai is strong for solo/small-team founders in content, SaaS, e-commerce with global customers. Weaker for anyone needing local Thai hiring or complex company structures (BOI and PMA pathways exist but counsel is thinner than Bangkok). Most successful founders run offshore (Delaware, Singapore) entities with Chiang Mai as residence. Banking as a foreigner is easier than Bali but harder than Bangkok.'
+    },
+    closingStatement: 'Chiang Mai in 2026 is the most cost-efficient mature nomad base in Asia for anyone who treats burning season as a seasonal constraint rather than a blocker. STRONG BUY for cost-conscious DTV-eligible nomads; CONDITIONAL BUY for families and anyone with respiratory sensitivities; RECOMMENDED for retirees (O-A visa + low cost + strong community).',
+    qolScores: {
+      climate:     { score: 6.0, note: 'Cool season (Nov-Feb) is genuinely excellent (18-28C, low humidity). Hot season (Mar-May) peaks 35-40C. Burning season overlaps with hot season -- the combined Feb-Apr window is the main QoL hit.' },
+      walkability: { score: 6.0, note: 'Old City is highly walkable; Nimman is walkable in core blocks. Between zones, scooter or songthaew (red-truck shared taxi) is the norm.' },
+      healthcare:  { score: 7.5, note: 'Bangkok Hospital Chiang Mai, Chiang Mai Ram, Lanna Hospital cover routine-to-moderate care excellently. Serious/specialist cases route to Bangkok (1h flight).' },
+      safety:      { score: 8.0, note: 'Violent crime is genuinely rare; main risks are scooter accidents and occasional tourist-targeted scams. Chiang Mai consistently ranks safer than Bangkok.' },
+      culture:     { score: 8.5, note: 'Over 300 Buddhist temples, Lanna traditional culture, Yee Peng lantern festival, and a creator/artisan community (leather, ceramics, woodwork) that remains alive.' },
+      air_quality: { score: 3.5, note: 'Feb-Apr: AQI 200-400+ routinely (among the worst sustained air windows in Asia). May-Jan: AQI 30-80, genuinely excellent. The split scores average low but the reality is bimodal.' },
+      green_space: { score: 7.5, note: 'Doi Suthep-Pui National Park within 20 minutes; surrounding mountains, rice terraces, and waterfalls accessible daily. Urban green is thinner inside the city proper.' }
     }
   },
 
@@ -453,7 +643,9 @@ export const CITY_INTEL = {
       { vector: 'Targeted Petty/Violent Crime', level: 'MODERATE', assessment: 'Drugging-and-robbery incidents (targeting foreign men via dating apps) are a documented issue. Situational awareness, Uber over street taxis, and no open drinks with new acquaintances.' },
       { vector: 'Altitude + Weather', level: 'LOW', assessment: '1,500m elevation is mild for most; afternoon rain is routine year-round. Less of a factor than Bogota\'s 2,640m.' },
       { vector: 'Spanish-Only Services', level: 'MODERATE', assessment: 'Outside Poblado, English service is thin. Spanish basics are not optional for real integration.' },
-      { vector: 'Political / Security Volatility', level: 'LOW', assessment: 'Colombia\'s broader political cycle has occasional ripple effects; Medellin is generally stable but not entirely insulated.' }
+      { vector: 'Political / Security Volatility', level: 'LOW', assessment: 'Colombia\'s broader political cycle has occasional ripple effects; Medellin is generally stable but not entirely insulated.' },
+      { vector: 'Tourist-Zone Drug Solicitation', level: 'MODERATE', assessment: 'Parque Lleras evening street-level drug solicitation is constant; sex tourism and related criminality have driven periodic police crackdowns. Avoiding the immediate park is standard expat hygiene.' },
+      { vector: 'Underbanking + Cash Pulls', level: 'LOW', assessment: 'Local banking for foreigners can be slow; ATM skimming is real. Use bank-branch ATMs, Bancolombia/BBVA, and expect COP-denominated card fees abroad.' }
     ],
     whoShouldMove: {
       remoteWorker:  { verdict: 'RECOMMENDED', detail: 'DNV + US-compatible time zones + perpetual-spring climate make Medellin one of the best remote-work climates in the Americas.' },
@@ -465,17 +657,39 @@ export const CITY_INTEL = {
     prosCons: {
       pros: [
         ['Perpetual-Spring Climate', '18-24C year-round at 1,500m -- the "City of Eternal Spring" is not marketing.'],
-        ['Digital Nomad Visa', 'Colombia DNV is straightforward and affordable.'],
+        ['Digital Nomad Visa', 'Colombia DNV is straightforward and affordable (USD 250-350 fees + income proof).'],
         ['US Time-Zone Overlap', 'CT overlap makes it a genuine US-employer relocation.'],
-        ['Cost of Living (outside Poblado)', 'Laureles/Envigado remain strong value vs any US city.'],
-        ['Nomad Community Density', 'Deepest nomad scene in LATAM outside CDMX.']
+        ['Cost of Living (outside Poblado)', 'Laureles/Envigado remain strong value vs any US city (COP 2.0-3.5M for modern 1BR).'],
+        ['Nomad Community Density', 'Deepest nomad scene in LATAM outside CDMX.'],
+        ['Metro System', 'Medellin has the only metro system in Colombia (+ the Metrocable gondolas); transit is genuinely good by LATAM standards.'],
+        ['Healthcare Quality + Price', 'EPS Sura, Colsanitas cover world-class private care at USD 80-150/month premium; hospitals rank top-10 in LATAM.'],
+        ['Direct US Flights', 'Medellin MDE has direct flights to Miami, NYC, Atlanta, Ft Lauderdale -- rare for a non-capital LATAM city.']
       ],
       cons: [
         ['Targeted-Crime Pattern', 'Drugging-robbery incidents are a documented and ongoing issue for expat men.'],
         ['Poblado Cost Inflation', 'The default expat zone has priced up sharply; moving to Laureles is increasingly the move.'],
         ['Spanish-Only Outside Bubble', 'English service tapers hard outside Poblado.'],
-        ['Local-Expat Tension', 'Post-2020 gentrification has created visible resentment in some zones.']
+        ['Local-Expat Tension', 'Post-2020 gentrification has created visible resentment in some zones.'],
+        ['Afternoon Rain Routine', 'Rainy-season afternoons can be punishing; winter wardrobe not needed but waterproofs are.'],
+        ['Sex-Tourism Perception', 'Medellin\'s persistent reputation affects how locals perceive foreign men -- integration requires active counter-signalling.'],
+        ['Altitude + UV', '1,500m means UV is genuinely strong; sunscreen is not optional even on cloudy days.'],
+        ['Limited Fine-Dining Depth', 'Catching up fast but still thinner than CDMX, Lima, or Bogota for high-end gastronomy.']
       ]
+    },
+    verdictParagraphs: {
+      nomads: 'Medellin in 2026 is the best-infrastructured LATAM nomad city outside CDMX: perpetual-spring climate, US-compatible CT time zone, direct flights to major US hubs, and a DNV that is straightforward and affordable. Laureles has overtaken Poblado as the smart long-term nomad zone -- same quality of life, 25-35% cheaper rent, less tourist-zone friction. Standard budget lands USD 1,500-2,400/month. Spanish is non-negotiable past month 2.',
+      families: 'Families do well in Envigado, Laureles, and parts of El Poblado (El Tesoro, Los Balsos). The Columbus School, TCS, and Montessori options cover international schooling at USD 8-15k/child -- a fraction of Bogota\'s top-tier. Safety varies sharply by zone; family-oriented expats concentrate south (Envigado/Sabaneta) where the demographic is dominantly local middle-class. Healthcare via Sura EPS is genuinely excellent for the price.',
+      founders: 'Medellin has a real emerging tech scene (Ruta N innovation district, Rappi origin, growing fintech cluster). Low operating costs, US-time-zone advantage, and a English-competent local talent layer make it viable for remote-first startups. Colombian banking and tax setup for foreigners is the main friction -- a bilingual accountant and lawyer in month one are standard. For lifestyle/content businesses, the city works exceptionally.'
+    },
+    closingStatement: 'Medellin in 2026 is the strongest nomad-and-founder value in Latin America for Spanish-learning professionals who pick Laureles or Envigado over Poblado. BUY for DNV-eligible remote workers; CONDITIONAL BUY for short-stay English-only nomads and solo men who ignore the targeted-crime pattern; RECOMMENDED for families and retirees who solve zone selection.',
+    qolScores: {
+      climate:     { score: 9.5, note: 'Perpetual spring: 18-24C year-round at 1,500m. Almost no temperature swing; afternoon rain routine (especially Apr-May, Oct-Nov). "City of Eternal Spring" earns the name.' },
+      walkability: { score: 7.0, note: 'Laureles is grid-planned and highly walkable; El Poblado has steeper hills but dense cafe clusters. Metro + Metrocable + taxis cover rest. Car largely optional.' },
+      healthcare:  { score: 8.0, note: 'EPS Sura and Colsanitas cover world-class private care at USD 80-150/month; hospitals (Pablo Tobon Uribe, Clinica Las Americas) rank top-10 in LATAM.' },
+      safety:      { score: 6.5, note: 'Central/south zones (Poblado/Laureles/Envigado) are low-incident for ordinary crime; targeted-crime pattern (drugging/robbery of foreign men via apps) is the documented outlier risk.' },
+      culture:     { score: 7.5, note: 'Paisa culture is warm, family-centred, and proud; music (reggaeton origin), museums (MAMM, Museo de Antioquia), and genuine food-and-art growth in Provenza and Ciudad del Rio.' },
+      air_quality: { score: 6.0, note: 'Valley geography + inversion layers push AQI into 80-140 range in dry periods (Jan-Mar); otherwise moderate. Not Bangkok-bad but not clean.' },
+      green_space: { score: 7.0, note: 'Parque Arvi (cable-car accessible), Jardin Botanico, Cerro Nutibara, and surrounding mountains provide real access. Dense urban core limits street-level canopy.' }
     }
   },
 
@@ -504,7 +718,9 @@ export const CITY_INTEL = {
       { vector: 'Housing Search + Garant Requirement', level: 'HIGH', assessment: 'Most landlords require a French-resident guarantor or Garantme/Visale insurance plus 3x-rent income; first-month flat hunts often fail without a relocation agent.' },
       { vector: 'Administrative Density', level: 'HIGH', assessment: 'Prefecture appointments, CAF, Securite Sociale, and Ameli set-up routinely consume 3-6 months. French-language forms are standard.' },
       { vector: 'High Tax Burden', level: 'MODERATE', assessment: 'Top marginal income tax plus social contributions push effective rates above 50% at many brackets; Talent Passport holders get some simplification, not a tax break.' },
-      { vector: 'Strikes + Service Disruption', level: 'LOW', assessment: 'National strike cycles affect rail, metro, and occasionally air travel. Rarely disruptive to daily life, but factor into travel planning.' }
+      { vector: 'Strikes + Service Disruption', level: 'LOW', assessment: 'National strike cycles affect rail, metro, and occasionally air travel. Rarely disruptive to daily life, but factor into travel planning.' },
+      { vector: 'Pickpocketing (Tourist Zones)', level: 'MODERATE', assessment: 'Metro 1, 4, 9; Trocadero, Gare du Nord, Louvre, Sacre-Coeur are active pickpocket zones. Non-tourist residential districts are low-incident.' },
+      { vector: 'Energy + Heating Costs', level: 'MODERATE', assessment: 'Electric/gas bills in 40-80m2 Haussmannian stock can run EUR 150-350/month in winter; older buildings often have poor insulation.' }
     ],
     whoShouldMove: {
       remoteWorker:  { verdict: 'CONDITIONAL', detail: 'Excellent infrastructure and culture; weak visa options for independent remote workers (no DNV). Salaried Talent Passport holders fare best.' },
@@ -519,14 +735,36 @@ export const CITY_INTEL = {
         ['Transit Excellence', 'Metro + RER + Grand Paris Express expansion -- world-class and expanding.'],
         ['Middle-Market Dining', 'Lunch formules, boulangeries, and bistros make everyday eating exceptional value.'],
         ['Talent Passport Route', 'A well-defined non-EU skilled-worker/entrepreneur pathway.'],
-        ['Global Connectivity', 'CDG + Gare du Nord/Lyon give full European + global reach.']
+        ['Global Connectivity', 'CDG + Gare du Nord/Lyon give full European + global reach.'],
+        ['Public Healthcare', 'PUMA/Ameli system is excellent and inexpensive once residency is secured; mutuelle top-up covers the rest.'],
+        ['Station F + Tech Scene', 'World\'s largest startup campus; real VC capital and founder ecosystem layered into French industrial base.'],
+        ['Walkability + Public Space', 'Central arrondissements are human-scale, tree-lined, and deeply pedestrian-friendly.']
       ],
       cons: [
         ['Housing Market Punishing', 'Garant/dossier/language barriers are real and stack.'],
         ['Bureaucracy Density', 'Prefecture, Securite Sociale, CAF -- each takes weeks to months.'],
         ['High Effective Tax', 'Combined income-plus-social rates at 50%+ for many brackets.'],
-        ['Winter Greyness', 'Nov-Feb light is genuinely poor; SAD affects a meaningful fraction of new arrivals.']
+        ['Winter Greyness', 'Nov-Feb light is genuinely poor; SAD affects a meaningful fraction of new arrivals.'],
+        ['French-Language Gatekeeping', 'Administrative/professional life runs on French; English-only living hits a ceiling at month 6.'],
+        ['Dog Ownership + Pavements', 'Famously under-enforced dog fouling; the everyday pavement reality is worse than peer cities.'],
+        ['No Dedicated DNV', 'Independent remote workers are forced into Visiteur or Talent Passport routes -- neither ideal for nomads.'],
+        ['Cost of Entertaining', 'Dinner-out costs and wine-bar economics run EUR 60-120 per person quickly in central arrondissements.']
       ]
+    },
+    verdictParagraphs: {
+      nomads: 'Paris in 2026 is not a natural nomad destination: no DNV, Schengen 90/180 limits, brutal housing for short-stays, and a service economy that rewards long-term residency over rotation. For self-employed Anglos specifically, the Talent Passport Entrepreneur/Freelance routes unlock 4-year stays but require genuine French business substance. Standard budget lands EUR 2,500-3,800/month -- comparable to Amsterdam but with worse housing friction.',
+      families: 'Families who survive the housing search do very well: ASP (American School), ISP (International School), EIB, and Jeannine Manuel offer world-class bilingual and international paths. Public healthcare via Ameli is excellent once residency is secured, and Paris is one of the most genuinely child-friendly European capitals on public-space terms. Expect 3BR+ in central arrondissements to run EUR 3,500-6,500/month.',
+      founders: 'The Talent Passport Entrepreneur route is mature and Station F anchors the largest European startup ecosystem outside London. French social-charge burden on founders is the single biggest operational friction -- an SASU or SAS structure with proper counsel is mandatory. For B2B SaaS targeting EU markets, the ecosystem + connectivity + talent combination is world-class; expect 24 months before the admin rhythm feels routine.'
+    },
+    closingStatement: 'Paris in 2026 is the most demanding major European relocation and arguably the most rewarding. BUY for salaried Talent Passport holders, founders on the Entrepreneur route, and families who can solve housing; CAUTION for short-stay nomads, budget-first relocators, and anyone unwilling to commit to French.',
+    qolScores: {
+      climate:     { score: 6.0, note: 'Oceanic: mild winters (3-8C), warm summers (20-27C), regular rain. Spring + early autumn are excellent; Nov-Feb light is genuinely poor.' },
+      walkability: { score: 9.5, note: 'Central arrondissements are world-class walkable; Metro covers the rest with excellent density. Cycling infrastructure has improved sharply post-2020.' },
+      healthcare:  { score: 9.0, note: 'Public PUMA/Ameli system is excellent and genuinely affordable; mutuelle top-up insurance covers co-pays. Wait times for specialists can frustrate US-pattern expats.' },
+      safety:      { score: 7.0, note: 'Violent crime is low; pickpocketing and scooter theft in tourist zones are endemic. Paris-proper safety varies meaningfully by arrondissement and time of day.' },
+      culture:     { score: 10.0, note: 'Uncontested cultural capital: Louvre, Orsay, Pompidou, Philharmonie de Paris, Opera Garnier, Sainte-Chapelle. Unmatched density of depth.' },
+      air_quality: { score: 6.5, note: 'Traffic-corridor NOx and periodic winter inversions push AQI 80-140; summer heatwaves (Jul-Aug) amplify. Better than London, worse than Amsterdam.' },
+      green_space: { score: 6.5, note: 'Luxembourg, Buttes-Chaumont, Tuileries, Bois de Boulogne/Vincennes. Per-capita green is below Berlin or Amsterdam but quality is exceptional.' }
     }
   },
 
@@ -555,7 +793,9 @@ export const CITY_INTEL = {
       { vector: 'Czech-Only Administration', level: 'MODERATE', assessment: 'Tax, immigration, and most official paperwork defaults to Czech. Budget for translator support or a relocation specialist for the first 6-12 months.' },
       { vector: 'Winter Climate', level: 'MODERATE', assessment: 'Dec-Feb is cold and often grey; air quality sometimes elevates during inversion-heating days. Not extreme, but a real factor for new arrivals.' },
       { vector: 'Housing Tightening', level: 'MODERATE', assessment: 'Vinohrady and Karlin rents have risen materially since 2021; expect 2-6 weeks active search for a quality long-term flat.' },
-      { vector: 'Over-Tourism in Centre', level: 'LOW', assessment: 'Mala Strana and Old Town are tourist-saturated; residential quality of life is unaffected outside those zones.' }
+      { vector: 'Over-Tourism in Centre', level: 'LOW', assessment: 'Mala Strana and Old Town are tourist-saturated; residential quality of life is unaffected outside those zones.' },
+      { vector: 'Pickpocketing + Currency Scams', level: 'MODERATE', assessment: 'Old Town tram routes (22/23), Wenceslas Square, and Vaclavske namesti have active pickpocketing; currency-exchange shops in tourist zones routinely swindle. Use Revolut, Wise, or bank ATMs.' },
+      { vector: 'DPH/VAT Reporting (Zivno)', level: 'LOW', assessment: 'Zivnostensky holders above CZK 2M/year annual turnover must VAT-register and file monthly/quarterly returns; Czech accountant essential.' }
     ],
     whoShouldMove: {
       remoteWorker:  { verdict: 'RECOMMENDED', detail: 'Excellent cost-to-infrastructure ratio inside the EU. Zivno route offers a self-employment entry that few EU peers match.' },
@@ -570,14 +810,36 @@ export const CITY_INTEL = {
         ['Zivnostensky Route', 'Cheap and well-understood self-employment entry for non-EU citizens.'],
         ['Engineering Talent + Tech Cluster', 'Real R&D and startup ecosystem in Karlin/Holesovice.'],
         ['Daily Costs', 'Rent, groceries, and dining 30-50% below Western European capitals.'],
-        ['Architectural Quality', 'Historic core intact; daily walks are materially pleasant.']
+        ['Architectural Quality', 'Historic core intact; daily walks are materially pleasant.'],
+        ['Beer + Pub Culture', 'World-best pilsner at CZK 45-65/500ml; the pub is a genuine social institution, not a tourist trap.'],
+        ['Public Transit (+Trams)', 'Metro + tram + bus network is dense, reliable, and inexpensive (CZK 550/month unlimited).'],
+        ['Central European Connectivity', 'Prague is a rail hub: Vienna (4h), Berlin (4h), Munich (5h), Warsaw (7h) all single-seat.']
       ],
       cons: [
         ['Czech-Only Paperwork', 'Administrative Czech is the single biggest integration friction.'],
         ['Cold + Grey Winters', 'Dec-Feb is a real wellness factor for sun-dependent newcomers.'],
         ['Smaller International-School Pool', 'Fewer options than Vienna, Berlin, or Warsaw for families.'],
-        ['Tourist Saturation in Centre', 'Historic zones are tourist-dense; residential zones are fine.']
+        ['Tourist Saturation in Centre', 'Historic zones are tourist-dense; residential zones are fine.'],
+        ['Service-Class English Gaps', 'Under-35 professionals speak English well; older service staff often do not.'],
+        ['Winter Air Quality', 'Inversion-season (Dec-Feb) pushes PM2.5 into 70-120 range during cold heating days.'],
+        ['Fine-Dining Depth', 'Improving but still behind Vienna, Warsaw, or Budapest at the high end.'],
+        ['Slower Tech-Ecosystem Capital', 'Karlin cluster is real but VC funding rounds lag Berlin and Warsaw peers.']
       ]
+    },
+    verdictParagraphs: {
+      nomads: 'Prague in 2026 is one of the best-value EU nomad bases for self-employed non-EU citizens via the Zivnostensky List route. Standard budget lands EUR 1,500-2,300/month including a Vinohrady or Zizkov 1BR -- roughly 35-45% below Berlin or Amsterdam for equivalent central-city quality. The constraint is Czech-only paperwork; hiring a relocation specialist or bilingual accountant in month one is close to mandatory and worth every koruna.',
+      families: 'Families get a functional but narrower experience than in Berlin or Vienna: fewer international schools (ISP, Riverside, Park Lane Prague are the main options), smaller native-English expat community, but a genuinely safe, walkable, transit-rich city. Healthcare via VZP and private (Canadian Medical, Unicare) is strong. Czech immersion for under-10s is a viable alternative to international schooling and produces bilingual outcomes within 18-24 months.',
+      founders: 'The Zivnostensky + s.r.o. combination is one of the most founder-friendly EU setups: low corporate tax (19%, drops to 5% under certain R&D regimes), strong engineering talent (JetBrains, Avast legacy, Socialbakers origin), and genuinely reasonable operating costs. Czech administrative friction is the main headwind; a good Czech accountant ranks near a good co-founder on impact in year one.'
+    },
+    closingStatement: 'Prague in 2026 is arguably the strongest cost-to-infrastructure ratio inside the EU for self-employed professionals willing to handle Czech bureaucracy. STRONG BUY for Zivno-route founders and mid-career remote workers; CONDITIONAL BUY for families (international-school pool); RECOMMENDED for longer-stay EU-residency seekers who value architectural quality and Central-European pace.',
+    qolScores: {
+      climate:     { score: 5.5, note: 'Continental: cold winters (-3 to 3C), pleasant summers (20-26C). Spring and autumn excellent. Winter grey + short daylight is the main hit.' },
+      walkability: { score: 9.0, note: 'Central Prague is exceptionally walkable; tram network extends coverage. Metro is small but efficient. Car genuinely unnecessary.' },
+      healthcare:  { score: 8.0, note: 'Public VZP system is strong and cheap; private (Canadian Medical, Unicare, Hôpital Sevastopol) covers English-speaking access. Specialist wait times are shorter than Western Europe.' },
+      safety:      { score: 8.5, note: 'Low violent crime; pickpocketing in tourist zones and tram 22/23 routes. Night walking is generally safe across most of Prague 2/3/7.' },
+      culture:     { score: 9.0, note: 'Intact baroque core, Dvorak Hall, National Theatre, DOX contemporary, Karlin music scene, and a deep Czech film/literature tradition.' },
+      air_quality: { score: 6.5, note: 'Summer good; winter inversion + coal-heating elevated pollution periodically (AQI 70-130). Meaningfully better than 2010s but not Stockholm-clean.' },
+      green_space: { score: 8.0, note: 'Petrin, Letna, Stromovka, Riegrovy sady, and the Vltava riverside give genuine urban-nature access. Surrounding forest + countryside 20 min by tram.' }
     }
   },
 
@@ -606,7 +868,9 @@ export const CITY_INTEL = {
       { vector: 'Earthquake + Seismic', level: 'HIGH', assessment: 'Tokyo is on multiple seismic faults; a major earthquake is a real statistical event. Building codes are world-class but factor seismic readiness into housing choice.' },
       { vector: 'Language Barrier (Non-Tourist)', level: 'HIGH', assessment: 'Banking, leasing, healthcare, and most official paperwork default to Japanese. English layers exist in specific zones but are narrow.' },
       { vector: 'Housing Access for Foreigners', level: 'MODERATE', assessment: 'Many landlords still avoid foreign tenants; guarantor companies (Nihon SafetyDF, Epos) and "gaijin-friendly" listings are the workaround.' },
-      { vector: 'Typhoon Season (Aug-Oct)', level: 'LOW', assessment: 'Periodic typhoons disrupt transit and flights; city infrastructure absorbs them well but planning around the window matters.' }
+      { vector: 'Typhoon Season (Aug-Oct)', level: 'LOW', assessment: 'Periodic typhoons disrupt transit and flights; city infrastructure absorbs them well but planning around the window matters.' },
+      { vector: 'Summer Heat + Humidity', level: 'MODERATE', assessment: 'Jul-Aug regularly hits 33-37C with 70-85% humidity; climate shift has pushed summers notably worse vs 2010. Heat-island effect in central wards is substantial.' },
+      { vector: 'DNV Income Floor', level: 'MODERATE', assessment: 'JPY 10M (~USD 65k) annual income requirement excludes most independent nomads. Plan employer-sponsored or Business Manager visa for serious residency.' }
     ],
     whoShouldMove: {
       remoteWorker:  { verdict: 'CONDITIONAL', detail: 'Infrastructure is world-class; visa options are narrow. Salaried employer-sponsored is the cleanest path; DNV works for high earners on short stays.' },
@@ -621,14 +885,36 @@ export const CITY_INTEL = {
         ['Food Depth + Value', 'Globally unmatched mid-range dining, amplified by weak yen.'],
         ['Infrastructure Quality', 'Fibre, healthcare, services all tier-1 without exception.'],
         ['Weak-Yen USD Leverage', 'Tokyo is measurably cheaper in USD/EUR terms than 2019.'],
-        ['Cultural Depth', 'Food, design, craft, music -- Tokyo is inexhaustible.']
+        ['Cultural Depth', 'Food, design, craft, music -- Tokyo is inexhaustible.'],
+        ['Conbini Economy', '7-Eleven, FamilyMart, Lawson genuinely solve breakfast + lunch + banking + parcel-delivery at EUR 4-6 per meal.'],
+        ['Healthcare System', 'National Health Insurance covers 70% of costs; high-quality care at a fraction of US pricing. Access is excellent once enrolled.'],
+        ['Cherry-Blossom + Seasonal Culture', 'Hanami, Obon, momiji, snow festivals -- Tokyo\'s seasonal rhythm is a quality-of-life asset, not just aesthetic.']
       ],
       cons: [
         ['Language-Gated Daily Life', 'Japanese is effectively required beyond specific expat zones.'],
         ['Housing Friction for Foreigners', 'Guarantor company and "foreigner-friendly" filter still shape the search.'],
         ['DNV Income Floor', 'JPY 10M annual income requirement excludes most nomads.'],
-        ['Seismic Baseline Risk', 'Real long-run earthquake exposure; buildings are excellent, but the event risk is non-zero.']
+        ['Seismic Baseline Risk', 'Real long-run earthquake exposure; buildings are excellent, but the event risk is non-zero.'],
+        ['Reikin + Shikikin Upfront', 'Leasing typically requires 3-6 months\' rent upfront (key money, deposit, broker, first month) -- non-recoverable key money is standard.'],
+        ['Apartment Size Reality', 'Central Tokyo 1LDK (45-55m2) is generous; 1R/1K stock (20-30m2) dominates the cheap tier. Expat-friendly sizes cost real money.'],
+        ['Work-Culture Pressure', 'Traditional Japanese companies still run long hours and strong insider/outsider dynamics; international/tech layer is more flexible but not universal.'],
+        ['Summer Climate Decline', 'Jul-Aug heat+humidity has notably worsened post-2018; outdoor summer life is shrinking.']
       ]
+    },
+    verdictParagraphs: {
+      nomads: 'Tokyo in 2026 is a high-end option, not a budget nomad city. The DNV is capped at 6 months with a JPY 10M (~USD 65k) income floor, effectively selecting for high earners on short stays. Standard budget lands USD 2,400-4,200/month including a Shibuya/Nakameguro 1LDK -- the yen\'s weakness has made this meaningfully cheaper in USD terms than 2019. For salaried expats on employer-sponsored Engineer/Specialist visas, Tokyo is unmatched on infrastructure and safety.',
+      families: 'Tokyo is arguably the best major-city family relocation globally on safety and transit. ASIJ (American School), Nishimachi, St. Mary\'s International, and Tokyo International School cover international pathways at JPY 3-4M/child/year. National Health Insurance covers most care. Housing for 3BR+ in central wards (Minato, Shibuya, Meguro) runs JPY 500k-1.2M/month; Kichijoji and Setagaya offer strong value at a 20-30 minute commute.',
+      founders: 'Japan\'s Business Manager Visa is viable but paperwork-heavy (JPY 5M capital, physical office lease, 2 employees or equivalent substance). The J-Startup program and Tokyo\'s English-friendly accelerators (Plug and Play, 500 Global Japan) have lowered founder friction sharply post-2020. Best for deep-tech, hardware, robotics, and consumer-lifestyle plays targeting Japanese/East-Asian markets; less ideal for pure SaaS targeting US/EU.'
+    },
+    closingStatement: 'Tokyo in 2026 is the world\'s highest-infrastructure mega-city with one of its narrowest visa regimes for independent remote workers. BUY for high-earning employer-sponsored expats, families prioritising safety and infrastructure, and deep-tech founders; CONDITIONAL BUY for DNV-qualified short-stay high earners; CAUTION for budget nomads and anyone unwilling to invest in Japanese.',
+    qolScores: {
+      climate:     { score: 6.5, note: 'Four distinct seasons: spring (Mar-May) and autumn (Oct-Nov) are excellent, summer (Jul-Aug) hot/humid, winter (Dec-Feb) cold/dry. Climate shift is making summers notably worse.' },
+      walkability: { score: 9.5, note: 'Tokyo is the world\'s densest, most reliable public-transit city: JR, Metro, Toei, private lines cover everything. Walking + train covers 99% of urban needs.' },
+      healthcare:  { score: 9.0, note: 'National Health Insurance covers 70% at tier-1 hospitals (St. Luke\'s International, Toranomon, Tokyo University Hospital). Access is excellent; language is the main friction for non-Japanese speakers.' },
+      safety:      { score: 9.8, note: 'Among the safest mega-cities in the world. Violent crime is genuinely rare; lost wallets frequently returned; women-solo late-night safety is excellent by global standards.' },
+      culture:     { score: 9.5, note: 'Food, craft, design, music (jazz, classical, J-pop), cinema, fashion, architecture -- depth across every cultural vector. Museums (Mori, teamLab, Nezu, Tokyo National) are world-class.' },
+      air_quality: { score: 7.5, note: 'Generally good; occasional PM2.5 transport from mainland Asia. Summer ozone and heat-island effect elevate discomfort more than official AQI.' },
+      green_space: { score: 7.0, note: 'Yoyogi, Shinjuku Gyoen, Hibiya, Inokashira, Meguro River give excellent pockets. Overall tree canopy is thinner than Berlin or Paris; density of green-per-person is moderate.' }
     }
   }
 };
