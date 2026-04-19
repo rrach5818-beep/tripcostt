@@ -1,4 +1,4 @@
-import{M as R}from"./MainLayout-BVTdBj1H.js";import{b as Z,a as ee}from"./cityService-qV0spH9F.js";import{s as ie,i as $}from"./setPageMeta-BmQKFz2d.js";import{B as te,a as oe}from"./Breadcrumb-C87PeGFq.js";function g(t,o="$"){return`${o}${t.toLocaleString()}`}function f(t,o=""){return t!=null&&t!==""?t:o}function ae(t){const o=f(t.country,"the country"),e=f(t.continent,null);return e?`${o}, ${e}`:o}function se(t){const o=f(t.name,"This city"),e=ae(t);return`
+import{M as R}from"./MainLayout-yopsxLtK.js";import{b as Z,a as ee}from"./cityService-qV0spH9F.js";import{s as ie,i as $}from"./setPageMeta-BmQKFz2d.js";import{B as te,a as oe}from"./Breadcrumb-C87PeGFq.js";function g(t,o="$"){return`${o}${t.toLocaleString()}`}function f(t,o=""){return t!=null&&t!==""?t:o}function ae(t){const o=f(t.country,"the country"),e=f(t.continent,null);return e?`${o}, ${e}`:o}function se(t){const o=f(t.name,"This city"),e=ae(t);return`
 ${o} is a popular destination located in ${e}.
 It attracts digital nomads, expatriates, and travelers who are looking to balance lifestyle, comfort, and cost of living.
 

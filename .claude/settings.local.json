@@ -5,7 +5,15 @@
       "Bash(npm run *)",
       "Bash(curl -s -X POST https://api.web3forms.com/submit -H \"Content-Type: application/json\" -H \"Accept: application/json\" -d \"{\\\\\"access_key\\\\\":\\\\\"1a716176-7bc9-4080-884a-cf88a6394cb6\\\\\",\\\\\"email\\\\\":\\\\\"test@example.com\\\\\",\\\\\"subject\\\\\":\\\\\"Test LCA\\\\\",\\\\\"from_name\\\\\":\\\\\"LCA Test\\\\\",\\\\\"message\\\\\":\\\\\"Test submission\\\\\"}\")",
       "Bash(node -e ' *)",
-      "mcp__Claude_Preview__preview_start"
+      "mcp__Claude_Preview__preview_start",
+      "Bash(del logo-preview.html)",
+      "Bash(cmd /c \"del logo-preview.html & npm run build\")",
+      "Bash(powershell -Command \"cd 'C:\\\\Users\\\\DELL\\\\tripcostt\\\\.claude\\\\worktrees\\\\pedantic-rosalind'; Remove-Item logo-preview.html -ErrorAction SilentlyContinue; npm run build 2>&1 | Select-Object -Last 5\")",
+      "Bash(\"/c/Program Files/nodejs/npm.cmd\" run build)",
+      "Bash(NODE_OPTIONS=\"--max-old-space-size=4096\" \"/c/Program Files/nodejs/npm.cmd\" run build)",
+      "Bash(Select-String -Pattern \"built|error\")",
+      "Bash(tasklist //FI \"IMAGENAME eq node.exe\")",
+      "Bash(NODE_OPTIONS=\"--max-old-space-size=8192\" \"/c/Program Files/nodejs/npm.cmd\" run build)"
     ]
   }
 }
