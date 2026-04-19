@@ -13,7 +13,8 @@
       "Bash(NODE_OPTIONS=\"--max-old-space-size=4096\" \"/c/Program Files/nodejs/npm.cmd\" run build)",
       "Bash(Select-String -Pattern \"built|error\")",
       "Bash(tasklist //FI \"IMAGENAME eq node.exe\")",
-      "Bash(NODE_OPTIONS=\"--max-old-space-size=8192\" \"/c/Program Files/nodejs/npm.cmd\" run build)"
+      "Bash(NODE_OPTIONS=\"--max-old-space-size=8192\" \"/c/Program Files/nodejs/npm.cmd\" run build)",
+      "Bash('/c/Program Files/nodejs/node.exe' -e ' *)"
     ]
   }
 }
