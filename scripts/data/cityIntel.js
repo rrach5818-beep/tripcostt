@@ -1316,3 +1316,274 @@ export const CITY_SCAMS = {
     ['Fake My Number notification mail', 'Phishing letters claiming My Number correction + EUR-prepaid-card payment. Real Kojin Bango Center never SMS or email; only municipal office.']
   ]
 };
+
+// --------------------------------------------------------------------------
+// CITY_VISAS -- 2-page Visa Deep-Dive per city. ASCII-only.
+// Rendered as Appendix C. Each entry: { primary, secondary[], costs, pitfalls }
+// --------------------------------------------------------------------------
+export const CITY_VISAS = {
+  bangkok: {
+    primary: {
+      name: 'DTV -- Destination Thailand Visa',
+      intro: 'Launched July 2024, the DTV is Thailand\'s flagship remote-worker visa: 5-year multi-entry, 180-day stays per entry, indefinitely renewable. The most generous long-stay status in Southeast Asia in 2026.',
+      eligibility: 'Remote employee, freelancer, or "soft power" applicant (Thai boxing training, Thai cooking course, medical treatment). Under 50 THB 500k (USD 14k) proof-of-funds OR employment contract with non-Thai employer.',
+      processing: '4-8 weeks at a Thai embassy abroad (Vientiane, Savannakhet, Ho Chi Minh, and London are fastest). E-visa system live 2025.',
+      cost: 'Government fee: THB 10,000 (USD 280). Via a reputable agent: USD 500-900 all-in.',
+      stay: 'Each entry grants 180 days. Extend in-country once per entry for another 180 (THB 1,900). After 365 days you must exit and re-enter.',
+      perks: 'Multi-entry status means no visa runs; brings dependents (spouse + children under 20); work permitted only for non-Thai employers.'
+    },
+    secondary: [
+      ['LTR -- Long-Term Resident', '10-year visa for high-earners (USD 80k income or USD 1M assets). 17% flat tax cap for skilled professionals. Higher bar but superior status.'],
+      ['Non-ED (Education)', 'Thai language or Muay Thai school visa, 1-year with in-country extensions. Tighter oversight post-2024 crackdowns on fake schools; only MOE-accredited programmes are safe.'],
+      ['Retirement O-A / O-X', 'Age 50+, THB 800k bank deposit OR monthly pension THB 65k. 1-year renewable (O-A) or 10-year (O-X with THB 3M deposit).']
+    ],
+    pitfalls: [
+      'Tax residency triggers at 180+ days/year in Thailand (2024 Royal Decree taxes foreign-sourced income remitted to Thailand). DTV holders staying full 180 each entry may become tax-resident.',
+      'DTV does NOT permit employment with a Thai entity -- you need a Thai work permit (non-B visa).',
+      'Opening a Thai bank account with DTV alone is inconsistent; some branches refuse without work permit. Plan 2-3 attempts across KBank / Bangkok Bank branches.',
+      'Border runs on tourist exempt returns are being tracked; 3+ tourist entries in 12 months triggers refusal. DTV eliminates this but cannot be stacked with tourist entries mid-cycle.'
+    ]
+  },
+  'mexico-city': {
+    primary: {
+      name: 'Temporary Resident Visa (Visa de Residente Temporal)',
+      intro: 'Mexico\'s default long-stay pathway for remote workers. Issued first at a Mexican consulate abroad, then converted to a plastic residence card (tarjeta) at INM in Mexico within 30 days of entry.',
+      eligibility: 'Income route: USD 4,350/month net for last 6 months (2026 thresholds, roughly 300x minimum wage). Savings route: USD 72,500+ balance for last 12 months. Family-unity and investment paths also available.',
+      processing: '2-6 weeks at consulate abroad; 3-5 weeks for INM card in-country.',
+      cost: 'Consulate fee ~USD 51. INM card issuance ~MXN 6,800 (USD 390). Local immigration lawyer (optional) MXN 15-25k.',
+      stay: '1 year initially, renewable for 1/2/3-year increments up to 4 total years. At year 4, convert to Permanent Resident.',
+      perks: 'Full legal stay + CURP + RFC eligibility. Temporary residents can work in Mexico for any employer once they apply to INM for work permission.'
+    },
+    secondary: [
+      ['Permanent Resident (Residente Permanente)', 'Direct path: USD 7,300/month income for 6 months OR USD 290k savings for 12 months. No time limit, work permitted, path to citizenship after 5 years.'],
+      ['Tourist Visa (FMM)', '180 days on arrival, non-renewable, no work. Still heavily used by nomads doing border-runs but 2023+ enforcement has tightened; 3 consecutive FMMs trigger refusal.'],
+      ['Digital Nomad Visa (pending)', 'Legislation proposed 2024, not yet in force as of 2026. Temporary Resident remains the practical route.']
+    ],
+    pitfalls: [
+      'Cannot start the process inside Mexico -- you MUST apply at a Mexican consulate abroad first (common consulates: San Diego, Laredo, Guatemala, Belize City, Paris).',
+      'The "rentistas" route requires bank statements with consistent balance -- single-month spikes are rejected.',
+      'Tax residency triggers at 183+ days/year. Non-resident withholding on Mexico-source income is up to 35%; plan RFC registration early.',
+      'Do NOT miss the 30-day INM canje window after entering -- the consular stamp expires and you lose the visa. Book the INM appointment before you fly in.'
+    ]
+  },
+  dubai: {
+    primary: {
+      name: 'Dubai Golden Visa (10-year)',
+      intro: 'Long-term residence permit for investors, entrepreneurs, skilled professionals, specialised talent, and high-achieving students. The flagship residency pathway with no sponsor required.',
+      eligibility: 'Professional route: monthly salary AED 30,000+ plus university degree. Investor route: AED 2M real estate OR AED 2M public-fund/investment. Specialised-talent: accredited doctors, scientists, creatives.',
+      processing: '2-8 weeks via ICP (Federal Authority for Identity) or GDRFA Dubai. Can be nominated by employer or self-sponsored.',
+      cost: 'Government fees AED 2,800-3,800 (USD 760-1,035) for 10 years. Medical + Emirates ID additional AED 1,000-1,500. Medical insurance mandatory (AED 3-10k/year).',
+      stay: '10 years, renewable. Unique benefit: unlimited time OUTSIDE UAE without losing residency (standard Dubai residence cards cancel after 180 days outside).',
+      perks: 'Self-sponsored, sponsor dependents without salary threshold, no UAE employer required, eligibility for UAE banking, driving licence, mortgage.'
+    },
+    secondary: [
+      ['Freezone Company Licence + Residence Visa', 'IFZA, Meydan, SHAMS, DMCC: set up 1-person company (AED 12-25k/year) bundled with 2-3 year investor visa. Most common remote-worker path.'],
+      ['Remote Work Visa (Virtual Working Programme)', '1-year visa, USD 3,500/month income from non-UAE employer, proof of 1 year of employment. Tax residency + Emirates ID included.'],
+      ['Employment Visa', 'Sponsor-tied; 2-3 year residence issued by employer. Standard route for corporate relocators.']
+    ],
+    pitfalls: [
+      'The 180-day-outside-UAE rule applies to ALL non-Golden residence visas; missing this cancels your visa automatically.',
+      'Freezone "cheap" companies (AED 5-8k) often exclude visa eligibility -- check the package carefully.',
+      'Emirates ID issuance delays can push bank-account setup 4-6 weeks. Bring 3+ months of runway in Wise/HSBC.',
+      'Tax residency requires 183+ days AND Emirates ID; some banks demand BOTH before opening accounts. CRS reporting applies.'
+    ]
+  },
+  amsterdam: {
+    primary: {
+      name: 'DAFT (Dutch-American Friendship Treaty) -- US citizens only',
+      intro: 'A bilateral treaty dating to 1956 giving US entrepreneurs an easier path to Dutch residency than any other non-EU nationality. Requires setting up a Dutch ZZP (sole proprietorship) or BV (limited company).',
+      eligibility: 'US citizenship + EUR 4,500 invested into a Dutch business bank account + business plan. No minimum income.',
+      processing: '6-10 weeks at IND (Immigration + Naturalisation Service). Fast-track appointments available in Amsterdam and Rotterdam.',
+      cost: 'IND fees EUR 1,540 (2026). KvK (Chamber of Commerce) registration EUR 80. Accountant setup EUR 500-1,500. Total first-year: EUR 2,000-4,000.',
+      stay: '2 years initially, renewable for 5 years, then path to permanent residence after 5 years of legal stay.',
+      perks: 'Full access to Dutch healthcare, banking, BSN, DigiD. Dependents can apply. Dutch citizenship after 5 years if fluent in Dutch (A2/B1).'
+    },
+    secondary: [
+      ['Highly Skilled Migrant (Kennismigrant)', 'Employer-sponsored; salary thresholds 2026: EUR 5,688/month (30+), EUR 4,171/month (under 30), EUR 2,989/month (post-grad route). 30% ruling often available.'],
+      ['Orientation Year (Zoekjaar)', '1-year job-search post-Dutch-masters; converts easily to Highly Skilled Migrant once hired. Only works if you graduated from a Dutch or top-100 global university.'],
+      ['Startup Visa', '1-year entrepreneur visa, requires accreditation from a recognised Dutch facilitator (Rockstart, YES!Delft) + self-funding.']
+    ],
+    pitfalls: [
+      'DAFT is US-only; no other nationality qualifies. Dual-nationals with US passport can use it.',
+      'BSN appointments in Amsterdam are backlogged 4-8 weeks 2026. Some new arrivals register in satellite cities (Almere, Haarlem) first to jump the queue.',
+      'Dutch taxes are steep: income tax up to 49.5% on >EUR 75k; plan the 30% ruling (EUR 0 tax on first 30% of salary for skilled migrants) as employee.',
+      'The 30% ruling is being phased down 2024-2027: from 30% → 20% → 10% over 5 years. DAFT self-employed do NOT qualify for 30% ruling.'
+    ]
+  },
+  bali: {
+    primary: {
+      name: 'E33G -- Indonesia Remote Worker Visa',
+      intro: 'Launched 2024 as Indonesia\'s first real long-stay visa for remote professionals. Official successor to the patchwork B211A system.',
+      eligibility: 'Employment with a non-Indonesian company + USD 60,000/year minimum income + USD 2,000 proof of funds + passport >18 months validity.',
+      processing: '2-4 weeks via Indonesian e-visa portal (evisa.imigrasi.go.id). Can apply from abroad OR convert from B211A in-country.',
+      cost: 'Government fee IDR 12M (USD 770). Agent-assisted IDR 18-25M (USD 1,150-1,600) with health-cert + bank-proof documentation included.',
+      stay: '1 year initially, renewable for 1 more year (2 years max without tax residency triggers). Multiple-entry allowed.',
+      perks: 'Legal remote work, spouse + children dependents, Indonesian tax residency exemption for the first 2 years on foreign income.'
+    },
+    secondary: [
+      ['B211A Visit Visa (Socio-Cultural)', 'Legacy 60-day + 2x60-day extensions (180 days total). Still widely used; requires Indonesian sponsor. Agent cost USD 150-250.'],
+      ['KITAS (Investor / Employment)', 'Limited-stay permit tied to Indonesian PT PMA company (USD 700k+ capital) OR employment. 1-2 year status.'],
+      ['Second Home Visa', 'Launched 2022 but rarely used; IDR 2B (USD 130k) deposit in an Indonesian bank. Premium path with 5-10 year status.']
+    ],
+    pitfalls: [
+      'E33G does NOT grant a KITAS -- cannot open local bank accounts or sign long leases in your name easily. Wise + passport copy stays the practical stack.',
+      'E33G tax exemption only applies if you remain tax non-resident; staying 183+ days/year triggers Indonesian tax on worldwide income after the grace period.',
+      'Immigration raids on "digital nomad" coworking spaces in 2023-2024 targeted B211A holders doing onshore work; E33G clarifies the status but enforcement still evolves.',
+      'Do not confuse E33G with KITAS-based visas sold by agents as "Digital Nomad KITAS" -- many are repackaged B211A at inflated prices.'
+    ]
+  },
+  barcelona: {
+    primary: {
+      name: 'DNV -- Spain Digital Nomad Visa',
+      intro: 'Launched January 2023 under the Spanish Startup Law. A dedicated 1-year visa for non-EU remote workers employed by non-Spanish companies, extendable to 5 years total.',
+      eligibility: 'Employment with non-Spanish company (max 20% Spain-source revenue); EUR 2,760/month income (200% of Spanish minimum wage, 2026); university degree OR 3 years experience; health insurance; clean criminal record.',
+      processing: '20-45 days at a Spanish consulate abroad OR UGE-CE (central-unit) if already legally in Spain. Silencio positivo: no response in 20 working days = approved.',
+      cost: 'Consulate fees EUR 75. TIE card issuance EUR 16. Local tax lawyer EUR 500-1,500 for the Beckham-Law tax ruling application.',
+      stay: '1 year initially from consulate; then 3-year renewals. Permanent residency after 5 years.',
+      perks: 'Beckham-Law special tax regime: 24% flat rate on first EUR 600k income for 6 years (vs 47% standard top rate). Dependents allowed.'
+    },
+    secondary: [
+      ['Non-Lucrative Visa (Visado No Lucrativo)', 'For passive-income earners or retirees; EUR 2,400/month passive income required (~400% of Spanish min wage); NO working allowed, even remote. Not suitable for active workers.'],
+      ['Entrepreneur Visa', 'Business plan + ENISA approval. Viable for founders, EUR 100k+ recommended capital.'],
+      ['Student Visa + Work Authorisation', 'Study at a Spanish master\'s + 30h/week work permit. Popular route for grad-student nomads.']
+    ],
+    pitfalls: [
+      'Beckham-Law tax regime must be claimed within 6 months of becoming Spanish tax-resident -- miss the window and you default to the 47% top rate.',
+      'The 20% cap on Spain-source income is strict; Spanish clients must stay under 20% of revenue.',
+      'Catalan regional surcharges (IRPF) apply; Barcelona residents face top marginal 50% outside Beckham-Law. Plan the regime from day 1.',
+      'Consulate processing varies wildly: London 25 days, LA 45, Sydney 30+. Miami used to be fastest but backlog 2025.'
+    ]
+  },
+  berlin: {
+    primary: {
+      name: 'Freiberufler / Selbstandig Visa (Freelance)',
+      intro: 'Berlin\'s signature pathway: Section 21 of the German Residence Act lets freelancers in "liberal professions" (tech, design, journalism, translation, coaching, arts) self-sponsor a 3-year residence permit.',
+      eligibility: 'Profession on the Katalogberufe liberal-professions list + 2-3 letters of intent from German clients + proof of funds (EUR 9,500+) + Berlin address + Anmeldung.',
+      processing: '8-14 weeks at Auslanderbehorde Berlin (biggest bottleneck in Germany). Must apply BEFORE current visa expires.',
+      cost: 'Residence permit EUR 100. Tax lawyer/consultant EUR 500-1,500 for initial Finanzamt registration.',
+      stay: '3 years initially, renewable for 3 more, then permanent residence (Niederlassung) after 5 years of contributions.',
+      perks: 'Self-sponsored, no employer needed, freedom to invoice any client globally, path to Blue Card -> PR -> citizenship in 6-8 years.'
+    },
+    secondary: [
+      ['EU Blue Card', 'Employer-sponsored; 2026 threshold EUR 48,300/year (EUR 43,760 for shortage occupations). 4-year status, permanent residence after 33 months (21 with B1 German).'],
+      ['Chancenkarte (Opportunity Card)', 'Launched June 2024. Points-based 1-year job-search visa for skilled workers from outside EU. Replaces the old Job Seeker Visa.'],
+      ['Freelance -> Self-Employment (Section 21.1)', 'For "commercial" freelancers (e-commerce, shop owners); requires business plan + IHK chamber review + investment proof.']
+    ],
+    pitfalls: [
+      'Anmeldung is the prerequisite for EVERYTHING else -- bank, tax ID, visa appointment. Berlin Burgeramt slots are released at random; use service.berlin.de refreshers or satellite districts (Spandau, Marzahn) as workarounds.',
+      'Freiberufler renewal at year 3 requires 1-2 years of German tax filings and income proof -- plan to actually make money through the German invoicing structure, not just hold the visa.',
+      'Public health insurance (GKV) is mandatory if freelance income <EUR 69k; premiums are 14-15% of income (minimum base ~EUR 270/mo). Private (PKV) is cheaper initially but harder to switch back.',
+      'Berlin Auslanderbehorde is understaffed: book the appointment the day you get your Anmeldung.'
+    ]
+  },
+  'chiang-mai': {
+    primary: {
+      name: 'DTV -- Destination Thailand Visa (same as Bangkok)',
+      intro: 'Chiang Mai is inside Thailand -- same DTV applies (5-year multi-entry, 180-day stays). Most Chiang Mai nomads apply at the Vientiane (Laos) or Savannakhet consulates.',
+      eligibility: 'Remote employee/freelancer + THB 500k proof-of-funds OR employment contract; OR soft-power applicant (Muay Thai, Thai cooking, medical treatment -- Chiang Mai has a major Muay Thai + medical scene).',
+      processing: '4-8 weeks via Thai embassy abroad. CNX immigration (Promenada office) handles extensions and TM30.',
+      cost: 'THB 10,000 government fee. Agent-assisted USD 500-900.',
+      stay: '180 days per entry, in-country extension for another 180 (THB 1,900). After 365 days, exit and re-enter.',
+      perks: 'Multi-entry; dependents allowed; work permitted for non-Thai employers only.'
+    },
+    secondary: [
+      ['Non-ED (Language School)', 'Chiang Mai has several MOE-accredited schools (AUA, Payap extension, NES) offering Thai-language ED visas. 1-year with in-country renewals. Safer than Bangkok ED schools post-crackdown.'],
+      ['LTR (Long-Term Resident)', 'Same as Bangkok: 10-year, USD 80k income OR USD 1M assets, 17% flat tax.'],
+      ['Retirement O-A', 'Chiang Mai is the top Thai retirement destination. THB 800k deposit OR monthly pension THB 65k, age 50+.']
+    ],
+    pitfalls: [
+      'Chiang Mai immigration (Promenada Mall) is generally faster + friendlier than Bangkok -- prefer CNX for renewals.',
+      'Burning season (Feb-Apr) AQI 250-400 can force premature visa-runs or early exits; budget 2-3 months elsewhere annually.',
+      'TM30 + 90-day reporting are strictly enforced in CNX -- miss and you face THB 2,000+ fines.',
+      'Thai-language schools vary wildly in legitimacy; 2024 crackdowns revoked several. Stick to AUA, Payap, or government-listed providers.'
+    ]
+  },
+  medellin: {
+    primary: {
+      name: 'Visa Nomada Digital (Visa V Type)',
+      intro: 'Colombia\'s Digital Nomad Visa was launched October 2022 and is among the lowest-income-threshold nomad visas globally. Ideal pathway for Medellin.',
+      eligibility: 'Remote employment or freelance income USD 684/month (3x Colombian minimum wage, 2026); non-Colombian employer; clean record; health insurance.',
+      processing: '15-30 days via cancilleria.gov.co online portal. Can apply from Colombia or abroad.',
+      cost: 'USD 52 study fee + USD 177 visa issuance = USD 229 total. Cheapest premium nomad visa in LATAM.',
+      stay: '2 years maximum (not renewable). Must leave and reapply or convert to another visa type.',
+      perks: 'Full remote-work legal stay, Cedula de Extranjeria eligibility, bank account access, drivers licence, path to Migrant Visa (M-Type) after 2 years of legal residence.'
+    },
+    secondary: [
+      ['Migrant Visa (M-Type) -- Rentista', 'Passive-income USD 907/month (10x minimum wage), 3-year residence, path to permanent.'],
+      ['M-Type Investor', 'USD 45,000+ real-estate investment (150x Colombian min wage); 3 years, path to PR.'],
+      ['Tourist Stamp', '90 days + 90 extension (180 max/year). No work permitted; still used informally by many nomads but enforcement tightening.']
+    ],
+    pitfalls: [
+      'Visa Nomada Digital is NOT renewable -- you must plan the transition to M-Type at month 18 or leave.',
+      'Cedula de Extranjeria issuance requires in-country biometrics at Migracion Colombia -- build in 2-3 weeks of extra time post-arrival.',
+      'Tax residency triggers at 183+ days/year; Colombian worldwide-income taxation applies after the second year.',
+      'Security: Medellin has improved dramatically but certain scenarios (unvetted taxis, Parque Lleras late-night) remain higher-risk than Bangkok or Lisbon. DNV does not change this.'
+    ]
+  },
+  paris: {
+    primary: {
+      name: 'Passeport Talent -- Profession Liberale / Salarie Qualifie',
+      intro: 'France\'s multi-category skilled-worker visa launched 2016, modernised 2024 (now "Passeport Talent - Chercheur d\'Emploi" for job seekers). Most common pathway for Paris remote workers.',
+      eligibility: 'Highly skilled role: contract with French employer + salary EUR 43,243+/year (2026) OR master\'s degree + EUR 34,594+. Self-employed liberal professions also qualify with sustainability proof.',
+      processing: '3-8 weeks at consulate abroad. OFII validation required within 3 months of arrival.',
+      cost: 'Consulate fee EUR 99. OFII tax EUR 225. Titre de Sejour card EUR 225 (renewal). Total EUR 549 first year.',
+      stay: '4 years initially, renewable. Path to Carte de Resident (10 years) at year 5.',
+      perks: 'Family brought as "passeport talent famille" without labour-market test, spouse can work, children enrolled in free public school.'
+    },
+    secondary: [
+      ['Visa VLS-TS Salarie', 'Standard employee visa; 1 year, renewable. For roles below Passeport Talent salary threshold.'],
+      ['Profession Liberale (Freelance)', 'Long-stay visa for self-employed liberal professions -- consultants, designers, writers. Requires business plan + sustainability proof.'],
+      ['Visa Etudiant + APS', 'Post-study "APS" (Authorisation Provisoire de Sejour) gives 2 years for jobhunt or first employment. Common nomad route via French masters.']
+    ],
+    pitfalls: [
+      'OFII validation within 3 months is NON-negotiable -- miss and your visa is void. Book online at administration-etrangers-en-france.interieur.gouv.fr.',
+      'French tax residency triggers at 183+ days/year. Worldwide income + wealth tax (IFI) above EUR 1.3M real estate.',
+      '"Impatriate" tax regime (first 5 years): 30% tax break on salary and 50% on foreign-source income. Must be claimed year 1.',
+      'Paris apartment rent demands 3-5x rent in monthly income proof; without French payslips, block 12 months rent upfront is standard demand.'
+    ]
+  },
+  prague: {
+    primary: {
+      name: 'Zivnostensky List (Freelance / Trade Licence)',
+      intro: 'Czech Republic\'s "Zivno" is the de-facto nomad route: a trade licence + long-stay visa + residence permit combined. Popular because of flat 15% income tax (effectively 6-9% after expenses) and reciprocal treaties.',
+      eligibility: 'Non-EU: trade-licence-eligible profession (IT, design, consulting, translation); bank balance CZK 124,500+ (USD 5,500); clean record; health insurance; accommodation proof.',
+      processing: '90-120 days at Czech embassy abroad. Schengen consulates in Manila, Bangkok, Ho Chi Minh, LA are commonly used.',
+      cost: 'Visa fee EUR 100. Zivnostensky List issuance CZK 1,000. Residence card CZK 2,500. Accountant CZK 8,000-20,000/year.',
+      stay: '1 year initially, then 2-year renewals. Permanent residence after 5 years.',
+      perks: 'Flat 15% tax (23% over CZK 1.6M), 60% lump-sum expenses allowed (effective 6% tax rate), EU Schengen mobility, cheap healthcare.'
+    },
+    secondary: [
+      ['EU Blue Card', 'Employment-based, salary threshold CZK 57,081/month (2026). 2-year status.'],
+      ['Employee Card (zamestnanecka karta)', 'Standard employer-sponsored visa; 2 years.'],
+      ['Student Visa + Post-study Work', '9-month post-graduation job-hunt; converts to work visa on hire.']
+    ],
+    pitfalls: [
+      'Zivno visa cannot be applied for INSIDE Czech Republic -- must apply at an embassy abroad, 90-120 days.',
+      'The 60% lump-sum expense deduction is per-trade and capped at CZK 2M of income; plan tax structure with a Czech accountant BEFORE year 1.',
+      'Foreign Police registration within 3 days of arrival is non-negotiable; OAMP office in Prague is backlogged.',
+      'Public health insurance (VZP) is NOT automatic for Zivno holders -- you must register + pay voluntarily, or use commercial (Slavia, PVZP) at CZK 2,200+/month.'
+    ]
+  },
+  tokyo: {
+    primary: {
+      name: 'HSP -- Highly Skilled Professional Visa (Points-Based)',
+      intro: 'Japan\'s top-tier skilled-worker visa. Points-based system rewarding salary, education, age, Japanese-language ability. 70+ points unlocks 5-year status and fast-track permanent residence in 1-3 years.',
+      eligibility: '70+ points from: salary (JPY 10M+ = 40pts), masters degree (20pts), PhD (30pts), Japanese N1 (15pts), age <30 (15pts), recognised research. Many tech professionals hit 70+ naturally.',
+      processing: '1-3 months via Japanese embassy abroad OR in-country conversion from existing work visa. Certificate of Eligibility (CoE) is the bottleneck.',
+      cost: 'CoE issuance free. Visa issuance JPY 6,000 (USD 40). Ward office registration free.',
+      stay: '5 years initially; PR eligibility at 1 year (80+ points) or 3 years (70-79 points) -- vs 10 years for standard work visas.',
+      perks: 'Spouse can work unrestricted, parents sponsorship, fast-track PR, multi-entry with unlimited exits, hire domestic help.'
+    },
+    secondary: [
+      ['Engineer / Specialist in Humanities Visa', 'Standard 1/3/5-year work visa for degree holders + related employer role. Most corporate hires.'],
+      ['Business Manager Visa', 'For founders: JPY 5M+ capital, office lease, 2+ employees OR 1 employee + business plan. 1-year renewable.'],
+      ['Digital Nomad Visa', 'Launched March 2024. 6 months max, non-renewable, JPY 10M annual income. Too short for real settlement but useful for trial stays.']
+    ],
+    pitfalls: [
+      'Tokyo apartment gatekeeping: many buildings refuse foreigners. HSP status helps, but guarantor-company fees (0.5-1 month) are near-universal.',
+      'Tax residency at 183+ days/year -- Japan taxes worldwide income at up to 45% + 10% local resident tax. HSP + spouse status does not change this.',
+      'Points recalculation: if salary drops below threshold, HSP status can be downgraded at renewal.',
+      'My Number + Residence Card + Health Insurance are three separate bureaucratic steps at the ward office -- plan 1-2 ward office trips in week 2.'
+    ]
+  }
+};

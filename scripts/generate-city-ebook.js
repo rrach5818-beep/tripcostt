@@ -34,6 +34,8 @@ const SETUP_GUIDES = intelMod.SETUP_GUIDES || {};
 const setup = SETUP_GUIDES[slug] || null;
 const CITY_SCAMS = intelMod.CITY_SCAMS || {};
 const scams = CITY_SCAMS[slug] || null;
+const CITY_VISAS = intelMod.CITY_VISAS || {};
+const visa = CITY_VISAS[slug] || null;
 
 const city = getCityBySlug(slug);
 if (!city) {
@@ -254,7 +256,8 @@ function tocPage() {
     ['11','Risk Factors','20'],['12','LCA Index Methodology','21'],
     ['13','Final Verdict','22'],
     ['A','Appendix A -- First 30 Days','24'],
-    ['B','Appendix B -- Scams & Gotchas','26']
+    ['B','Appendix B -- Scams & Gotchas','26'],
+    ['C','Appendix C -- Visa Deep-Dive','27']
   ];
   let rows = items.map(([n,t,p]) => `
     <tr>
@@ -788,6 +791,40 @@ function scamsAppendix() {
   ${pageBreak()}`;
 }
 
+function visaAppendix() {
+  if (!visa) return '';
+  const p = visa.primary;
+  const primaryRows = [
+    ['Eligibility', p.eligibility],
+    ['Processing Time', p.processing],
+    ['Cost', p.cost],
+    ['Stay Duration', p.stay],
+    ['Perks & Benefits', p.perks]
+  ];
+  const secRows = (visa.secondary || []).map(([name, detail]) => [name, detail]);
+  const pitfalls = (visa.pitfalls || []).map(x => `<li style="margin-bottom:6px">${x}</li>`).join('');
+  return `
+  ${sectionTitle('C','Appendix: Visa Deep-Dive')}
+  <p style="font-size:11px;color:#374151;line-height:1.7;margin-bottom:14px">The full operational read on ${cityName}\'s long-stay pathways -- primary visa route, secondary fallbacks, and the non-obvious pitfalls that derail applicants. Cross-reference with your citizenship and tax residency before filing.</p>
+
+  <div style="background:${LGRAY};padding:14px 16px;border-left:4px solid ${GOLD};margin-bottom:14px">
+    <div style="font-size:9px;font-weight:800;color:${GOLD};letter-spacing:1.2px;margin-bottom:4px">PRIMARY PATHWAY</div>
+    <h3 style="font-size:15px;font-weight:800;color:${NAVY};margin:0 0 6px">${p.name}</h3>
+    <p style="font-size:10.5px;color:#374151;line-height:1.6;margin:0">${p.intro}</p>
+  </div>
+
+  ${tbl(['Field','Detail'], primaryRows)}
+
+  <h3 style="font-size:13px;font-weight:700;color:${NAVY};margin:22px 0 8px;border-bottom:2px solid ${GOLD};padding-bottom:4px">Secondary Pathways</h3>
+  ${tbl(['Route','Summary'], secRows)}
+
+  <h3 style="font-size:13px;font-weight:700;color:${NAVY};margin:22px 0 8px;border-bottom:2px solid ${GOLD};padding-bottom:4px">Non-Obvious Pitfalls</h3>
+  <ul style="font-size:10.5px;color:#374151;line-height:1.6;margin:0 0 10px 18px">${pitfalls}</ul>
+
+  <p style="font-size:9.5px;color:${GRAY};font-style:italic;margin-top:10px">Immigration rules change; verify current fees and thresholds on the official government portal before filing. This guide reflects 2026 Q1 status.</p>
+  ${pageBreak()}`;
+}
+
 function buildFullHTML() {
   return `<!DOCTYPE html>
 <html>
@@ -833,6 +870,7 @@ function buildFullHTML() {
     ${finalVerdict()}
     ${setupGuideAppendix()}
     ${scamsAppendix()}
+    ${visaAppendix()}
   </div>
 </body>
 </html>`;
