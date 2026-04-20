@@ -40,7 +40,14 @@
       "Bash(rm \"LivingCostAtlas_Medell_n_2026.pdf\" \"LivingCostAtlas_Medell_n_2026.html\")",
       "Bash(cp LivingCostAtlas_*_2026.pdf ../../dist/ebooks/)",
       "Bash(mv -f \"LivingCostAtlas_Medell_n_2026.pdf\" \"LivingCostAtlas_Medellin_2026.pdf\")",
-      "Bash(mv -f \"LivingCostAtlas_Medell_n_2026.html\" \"LivingCostAtlas_Medellin_2026.html\")"
+      "Bash(mv -f \"LivingCostAtlas_Medell_n_2026.html\" \"LivingCostAtlas_Medellin_2026.html\")",
+      "Bash(curl -sL -o /tmp/test1.jpg \"https://commons.wikimedia.org/wiki/Special:FilePath/Sukhumvit_Road_Bangkok.jpg?width=600\" -w \"size=%{size_download} code=%{http_code} url=%{url_effective}\\\\n\")",
+      "Bash(curl -sL -o /tmp/test2.jpg \"https://source.unsplash.com/600x400/?bangkok,sukhumvit\" -w \"size=%{size_download} code=%{http_code}\\\\n\")",
+      "Bash(curl -sL -o /tmp/test3.jpg \"https://source.unsplash.com/featured/600x400/?bangkok\" -w \"size=%{size_download} code=%{http_code}\\\\n\")",
+      "Bash(curl -sL \"https://en.wikipedia.org/api/rest_v1/page/summary/Sukhumvit_Road\")",
+      "Bash(rm -f LivingCostAtlas_Medell_n_2026.pdf LivingCostAtlas_Medell_n_2026.html)",
+      "Bash(ls LivingCostAtlas_Medellin*)",
+      "Bash(curl -sL -o /dev/null -w '%{http_code}' https://en.wikipedia.org/api/rest_v1/page/summary/__TRACKED_VAR__)"
     ]
   }
 }

@@ -1587,3 +1587,95 @@ export const CITY_VISAS = {
     ]
   }
 };
+
+// --------------------------------------------------------------------------
+// NEIGHBORHOOD_PHOTOS -- Wikipedia article names resolved at build time
+// to thumbnail URLs via en.wikipedia.org/api/rest_v1/page/summary.
+// Order matches neighborhoods[] per city. Caption is the display label.
+// --------------------------------------------------------------------------
+export const NEIGHBORHOOD_PHOTOS = {
+  bangkok: [
+    { article: 'Sukhumvit_Road',                 caption: 'Sukhumvit corridor, Bangkok' },
+    { article: 'Silom',                           caption: 'Silom business district' },
+    { article: 'Thong_Lo',                        caption: 'Thonglor / Thong Lo' },
+    { article: 'Ari,_Bangkok',                    caption: 'Ari neighbourhood' },
+    { article: 'Phrom_Phong_BTS_station',         caption: 'Phrom Phong' }
+  ],
+  'mexico-city': [
+    { article: 'Roma,_Mexico_City',               caption: 'Colonia Roma' },
+    { article: 'Condesa',                         caption: 'Condesa' },
+    { article: 'Polanco,_Mexico_City',            caption: 'Polanco' },
+    { article: 'Coyoac%C3%A1n',                   caption: 'Coyoacan' },
+    { article: 'Santa_Fe,_Mexico_City',           caption: 'Santa Fe business district' }
+  ],
+  dubai: [
+    { article: 'Dubai_Marina',                    caption: 'Dubai Marina' },
+    { article: 'Downtown_Dubai',                  caption: 'Downtown Dubai' },
+    { article: 'Jumeirah_Lake_Towers',            caption: 'Jumeirah Lake Towers (JLT)' },
+    { article: 'Business_Bay',                    caption: 'Business Bay' },
+    { article: 'Deira',                           caption: 'Deira (Old Dubai)' }
+  ],
+  amsterdam: [
+    { article: 'Jordaan',                         caption: 'Jordaan' },
+    { article: 'De_Pijp',                         caption: 'De Pijp' },
+    { article: 'Oud-West,_Amsterdam',             caption: 'Oud-West' },
+    { article: 'Amsterdam-Noord',                 caption: 'Amsterdam-Noord' },
+    { article: 'Amsterdam-Oost',                  caption: 'Amsterdam-Oost' }
+  ],
+  bali: [
+    { article: 'Canggu',                          caption: 'Canggu' },
+    { article: 'Ubud',                            caption: 'Ubud' },
+    { article: 'Seminyak',                        caption: 'Seminyak' },
+    { article: 'Uluwatu',                         caption: 'Uluwatu / Bukit Peninsula' },
+    { article: 'Sanur',                           caption: 'Sanur' }
+  ],
+  barcelona: [
+    { article: 'Eixample',                        caption: 'Eixample' },
+    { article: 'Gr%C3%A0cia',                     caption: 'Gracia' },
+    { article: 'Barrio_G%C3%B3tico',              caption: 'Gothic Quarter' },
+    { article: 'Poblenou',                        caption: 'Poblenou (22@ tech district)' },
+    { article: 'Sarri%C3%A0-Sant_Gervasi',        caption: 'Sarria-Sant Gervasi' }
+  ],
+  berlin: [
+    { article: 'Mitte',                           caption: 'Mitte' },
+    { article: 'Kreuzberg',                       caption: 'Kreuzberg' },
+    { article: 'Prenzlauer_Berg',                 caption: 'Prenzlauer Berg' },
+    { article: 'Friedrichshain',                  caption: 'Friedrichshain' },
+    { article: 'Neuk%C3%B6lln',                   caption: 'Neukolln' }
+  ],
+  'chiang-mai': [
+    { article: 'Chiang_Mai_University',           caption: 'Nimman / Chiang Mai University area' },
+    { article: 'Tha_Phae_Gate',                   caption: 'Old City / Tha Phae Gate' },
+    { article: 'Wat_Phra_Singh',                  caption: 'Santitham / Wat Phra Singh' },
+    { article: 'Chang_Khlan',                     caption: 'Chang Khlan / Night Bazaar' },
+    { article: 'Hang_Dong_district',              caption: 'Hang Dong (suburban)' }
+  ],
+  medellin: [
+    { article: 'El_Poblado,_Medell%C3%ADn',       caption: 'El Poblado' },
+    { article: 'Laureles-Estadio',                caption: 'Laureles-Estadio' },
+    { article: 'Envigado',                        caption: 'Envigado' },
+    { article: 'Sabaneta,_Antioquia',             caption: 'Sabaneta' },
+    { article: 'Itag%C3%BCi',                     caption: 'Itagui (greater Medellin metro)' }
+  ],
+  paris: [
+    { article: 'Le_Marais',                       caption: 'Le Marais' },
+    { article: '11th_arrondissement_of_Paris',    caption: '11e arrondissement' },
+    { article: 'Canal_Saint-Martin',              caption: 'Canal Saint-Martin / 10e' },
+    { article: 'Batignolles',                     caption: 'Batignolles / 17e' },
+    { article: 'Belleville,_Paris',               caption: 'Belleville / 20e' }
+  ],
+  prague: [
+    { article: 'Karl%C3%ADn_(Prague)',            caption: 'Karlin' },
+    { article: 'Vinohrady',                       caption: 'Vinohrady' },
+    { article: 'Hole%C5%A1ovice',                 caption: 'Holesovice' },
+    { article: 'Sm%C3%ADchov',                    caption: 'Smichov' },
+    { article: 'Old_Town,_Prague',                caption: 'Old Town (Stare Mesto)' }
+  ],
+  tokyo: [
+    { article: 'Shibuya',                         caption: 'Shibuya' },
+    { article: 'Shinjuku',                        caption: 'Shinjuku' },
+    { article: 'Minato,_Tokyo',                   caption: 'Minato (Roppongi / Azabu)' },
+    { article: 'Setagaya',                        caption: 'Setagaya' },
+    { article: 'Meguro',                          caption: 'Meguro / Naka-Meguro' }
+  ]
+};

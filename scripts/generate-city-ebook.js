@@ -36,6 +36,41 @@ const CITY_SCAMS = intelMod.CITY_SCAMS || {};
 const scams = CITY_SCAMS[slug] || null;
 const CITY_VISAS = intelMod.CITY_VISAS || {};
 const visa = CITY_VISAS[slug] || null;
+const NEIGHBORHOOD_PHOTOS = intelMod.NEIGHBORHOOD_PHOTOS || {};
+const photoSpec = NEIGHBORHOOD_PHOTOS[slug] || [];
+
+// Resolve Wikipedia thumbnails at build time.
+async function fetchWithRetry(url, tries = 3) {
+  for (let i = 0; i < tries; i++) {
+    const res = await fetch(url, { headers: { 'User-Agent': 'LivingCostAtlas/1.0 (livingcostatlas.com)' } });
+    if (res.ok) return res;
+    if (res.status === 429 && i < tries - 1) { await new Promise(r => setTimeout(r, 1500 * (i + 1))); continue; }
+    return res;
+  }
+}
+async function resolvePhotos(specs) {
+  const out = [];
+  for (const spec of specs) {
+    try {
+      const res = await fetchWithRetry(`https://en.wikipedia.org/api/rest_v1/page/summary/${spec.article}`);
+      if (!res || !res.ok) { out.push(null); continue; }
+      const j = await res.json();
+      const thumb = (j.thumbnail && j.thumbnail.source) || (j.originalimage && j.originalimage.source) || null;
+      if (thumb) {
+        // Force a 640px variant -- keeps PDF under 2 MB while staying sharp.
+        let url = thumb.replace(/\/\d+px-/, '/640px-');
+        // If no /thumb/ segment (non-standard images), leave as-is.
+        out.push({ url, caption: spec.caption, source: j.content_urls && j.content_urls.desktop && j.content_urls.desktop.page });
+      } else {
+        out.push(null);
+      }
+    } catch (e) {
+      out.push(null);
+    }
+  }
+  return out;
+}
+const photos = await resolvePhotos(photoSpec);
 
 const city = getCityBySlug(slug);
 if (!city) {
@@ -463,9 +498,16 @@ function neighborhoodAnalysis() {
   <p style="font-size:11px;color:#374151;line-height:1.6;margin-bottom:16px">Five neighborhood profiles for ${cityName} evaluating rental economics, lifestyle character, and demographic fit.</p>`;
 
   neighborhoods.forEach((n, i) => {
+    const ph = photos[i];
+    const imgBlock = ph ? `
+    <div style="margin:6px 0 8px;page-break-inside:avoid">
+      <img src="${ph.url}" alt="${ph.caption}" style="width:100%;max-height:180px;object-fit:cover;border-radius:3px;border:1px solid #e2e8f0" />
+      <p style="font-size:8.5px;color:${GRAY};font-style:italic;margin:4px 0 0">${ph.caption} -- photo via Wikimedia Commons (CC licence)</p>
+    </div>` : '';
     html += `
     <h3 style="font-size:15px;font-weight:700;color:${NAVY};margin:${i > 0 ? '20' : '8'}px 0 4px">${n.name}</h3>
     <p style="font-size:10px;color:${GRAY};font-style:italic;margin-bottom:6px">District Type: ${n.type} | Est. 1BR Rent: ${n.rent}/month</p>
+    ${imgBlock}
     <p style="font-size:10px;color:#374151;line-height:1.5;margin-bottom:4px">${n.desc}</p>
     <p style="font-size:10px;margin-bottom:12px"><strong>Best For --</strong> ${n.bestFor}</p>`;
   });
@@ -893,7 +935,7 @@ async function main() {
   });
 
   const page = await browser.newPage();
-  await page.setContent(html, { waitUntil: 'domcontentloaded', timeout: 60000 });
+  await page.setContent(html, { waitUntil: 'networkidle2', timeout: 120000 });
 
   await page.pdf({
     path: OUT,
