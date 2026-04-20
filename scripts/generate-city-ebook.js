@@ -32,6 +32,8 @@ const CITY_INTEL = intelMod.CITY_INTEL || {};
 const intel = CITY_INTEL[slug] || null;
 const SETUP_GUIDES = intelMod.SETUP_GUIDES || {};
 const setup = SETUP_GUIDES[slug] || null;
+const CITY_SCAMS = intelMod.CITY_SCAMS || {};
+const scams = CITY_SCAMS[slug] || null;
 
 const city = getCityBySlug(slug);
 if (!city) {
@@ -251,7 +253,8 @@ function tocPage() {
     ['09','Pros & Cons Summary','18'],['10','Who Should Move?','19'],
     ['11','Risk Factors','20'],['12','LCA Index Methodology','21'],
     ['13','Final Verdict','22'],
-    ['A','Appendix -- First 30 Days','24']
+    ['A','Appendix A -- First 30 Days','24'],
+    ['B','Appendix B -- Scams & Gotchas','26']
   ];
   let rows = items.map(([n,t,p]) => `
     <tr>
@@ -774,6 +777,17 @@ function setupGuideAppendix() {
   ${pageBreak()}`;
 }
 
+function scamsAppendix() {
+  if (!scams || !scams.length) return '';
+  const rows = scams.map(([title, detail]) => [title, detail]);
+  return `
+  ${sectionTitle('B','Appendix: Common Scams & Gotchas')}
+  <p style="font-size:11px;color:#374151;line-height:1.7;margin-bottom:14px">The defensive manual. These are the recurring scams, rent-hustles, and bureaucratic traps that cost new arrivals real money in ${cityName}. Each entry is a known-pattern with the counter-move in one line.</p>
+  ${tbl(['Scam / Gotcha','How to defuse'], rows, { headerBg: NAVY, headerColor: GOLD })}
+  <p style="font-size:10px;color:${GRAY};margin-top:12px;font-style:italic">Patterns rotate; treat this as a baseline, not an exhaustive list. When in doubt, walk away.</p>
+  ${pageBreak()}`;
+}
+
 function buildFullHTML() {
   return `<!DOCTYPE html>
 <html>
@@ -818,6 +832,7 @@ function buildFullHTML() {
     ${methodologyPage()}
     ${finalVerdict()}
     ${setupGuideAppendix()}
+    ${scamsAppendix()}
   </div>
 </body>
 </html>`;

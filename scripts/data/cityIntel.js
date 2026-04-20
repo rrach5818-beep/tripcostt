@@ -1213,3 +1213,106 @@ export const SETUP_GUIDES = {
     ]
   }
 };
+
+// --------------------------------------------------------------------------
+// CITY_SCAMS -- "Common Scams & Gotchas" per city. ASCII-only.
+// Rendered as Appendix B.
+// --------------------------------------------------------------------------
+export const CITY_SCAMS = {
+  bangkok: [
+    ['Tuk-tuk "Grand Palace closed" scam', 'Driver claims the temple is shut and offers a gem/tailor detour where he earns commission. Walk away, use Grab/Bolt.'],
+    ['Jet-ski "damage" extortion in Pattaya/Phuket day-trips', 'Operator demands THB 30,000+ for pre-existing scratches. Film the craft before renting; refuse to leave passports as collateral.'],
+    ['Taxi meter refusal at Suvarnabhumi arrivals', 'Drivers offer flat THB 1,500-2,500 fares. Walk past touts to the official metered-taxi queue (level 1); genuine fare central BKK is THB 400-500 incl. tolls.'],
+    ['Fake DTV visa consultants', 'WhatsApp/Telegram "agents" charging USD 2-5k for a visa you can self-file for USD 330. Check MFA official list; never pay without a government receipt.'],
+    ['Farang pricing at non-fixed-price vendors', 'Tuk-tuks, beach vendors, and small Thai food stalls in tourist zones quote 2-5x locals. Learn numbers in Thai; ignore hand-written "tourist menus".'],
+    ['Fake Thai driving licences / condo title deeds', 'Low-end agents produce forged Chanote deeds or driving IDs. Only transact via BOI-licensed legal firms; verify title at Land Department.']
+  ],
+  'mexico-city': [
+    ['Unauthorized (pirate) taxis at airport', 'Always use Sitio (yellow authorised) taxis or Didi/Uber at the terminal. Pirate cabs routinely quadruple fares or route to ATMs under duress.'],
+    ['Fake Mexico City metro police "fines"', 'Uniformed men stop foreigners claiming a "visa infraction" demanding cash. Real cops do not take on-site cash; request badge + precinct; call 911.'],
+    ['Express kidnapping (secuestro express) in unvetted taxis', 'Only app-based rides. Never hail on the street after dark in Roma/Condesa/Centro.'],
+    ['Fake ATM skimmers at Oxxo / independent ATMs', 'Use ATMs inside Citibanamex, BBVA, Santander branches only. Cover the PIN; avoid standalone machines in nightlife zones.'],
+    ['Rental deposit theft', 'Owner disappears with fianza + deposit at move-out citing fabricated damages. Require itemised move-in inventory with photos; use reputable realtors (Homie, La Haus) over Facebook Marketplace.'],
+    ['"Altitude tea" / free sample hustles at Zocalo', 'Vendor forces an item into your hand, demands MXN 200. Walk past; never accept any "free sample".']
+  ],
+  dubai: [
+    ['Rental cheque fraud', 'Landlord cashes post-dated cheque before tenancy is registered; vanishes. Always sign Ejari first; use trusted brokers (Betterhomes, Allsopp & Allsopp); never pay cash.'],
+    ['Gold souk fake merchandise', 'Deira gold souk has occasional fakes despite regulation. Buy only from DMCC/DGCX-certified retailers with hallmarks + receipts.'],
+    ['Fake freezone agents', 'WhatsApp "licence agents" charging AED 25-40k for a licence that costs AED 9-15k direct. Go direct to IFZA, Meydan, DMCC, or SHAMS portals.'],
+    ['Unlicensed driving services', 'Non-RTA black cabs quote double fares and drop you short. Use Careem/Uber/RTA Hala.'],
+    ['"Friendly" nightlife card-swap scams', 'Strangers at Marina/JBR pitch a "good bar", lead to inflated tabs and force payment. Stick to Timeout-verified venues.'],
+    ['Fake traffic-fine SMS', 'SMS claiming overdue RTA fines with a link to "pay". RTA never sends payment links; verify only on official app.']
+  ],
+  amsterdam: [
+    ['Bike-rental "damage" scams', 'Operator claims pre-existing damage at return. Use MacBike or Yellow Bike with itemised rental contracts; photograph the bike at pickup.'],
+    ['Fake "universal" metro ticket touts', 'Street sellers offer "valid all-network" passes near Centraal. Only buy GVB/OV-chipkaart at machines or in app.'],
+    ['Red Light District pickpockets', 'Professional crews operate around Warmoesstraat + Damrak. Front pockets only; no wallets in back.'],
+    ['Rogue mortgage / BSN scam ads', 'Facebook offers to "fast-track BSN registration" for EUR 500-1000. Only the gemeente issues a BSN; never pay a third party.'],
+    ['Deposit-return sabotage in private sublets', 'Airbnb-style sublets sometimes withhold 1-month deposit citing fabricated damage. Use licensed agencies (Pararius, Funda); photograph inventory at check-in.'],
+    ['Cafe "coffeeshop" drug-dealer hustlers', 'Unlicensed dealers near Leidseplein sell cut/adulterated product. Only licensed coffeeshops with the green-and-white symbol.']
+  ],
+  bali: [
+    ['Scooter rental "scratch" scam', 'Renter demands IDR 2-5M for pre-existing damage. Film 360-degree video at pickup, never leave the passport -- leave a copy.'],
+    ['ATM card skimming in Kuta/Legian', 'Indonesian ATM skimmers are still active 2026. Use bank-branch ATMs only (BCA, Mandiri) during business hours.'],
+    ['Bali visa agent overcharging', 'B211A "6-month" visa via street agents charging USD 600-900 when official is USD 150-250. Use established agencies with public reviews (ChannelOne, Bali Solve).'],
+    ['"Free" driving tour / taxi commission loops', 'Driver insists on "quick stop" at silver, batik, coffee plantation -- earns commission on your forced purchases. Agree itinerary in writing; refuse detours.'],
+    ['Customs kickbacks at DPS arrival', 'Occasionally an "import fee" is demanded on laptop or drone. Real fees are published; ask for a formal receipt or request supervisor.'],
+    ['Land-lease fraud via Nominee', 'Foreigners "buying" land via Indonesian nominee is illegal and unenforceable. Use leasehold (Hak Sewa) via a proper notaris (PPAT) only.']
+  ],
+  barcelona: [
+    ['Ramblas pickpocket crews', 'Coordinated teams operate Ramblas, Plaza Catalunya, metro L3. Keep nothing in back pockets; use zipped crossbody.'],
+    ['"Bird poop" distraction scam', 'Stranger points out fake droppings on your shirt while an accomplice lifts your bag. Walk away from anyone offering to "help clean".'],
+    ['Fake police demanding ID check', 'Unmarked "officers" ask to inspect your wallet for counterfeit bills. Real Mossos d\'Esquadra never inspect cash; demand to walk together to a station.'],
+    ['Squatters (okupas) moving into empty rentals', 'Unoccupied apartments held by foreign landlords can be occupied by organised squatter groups, taking 12-18 months to evict legally. Always use occupied-landlord agencies.'],
+    ['Agency "NIE services" overcharging', 'Third-party agents charge EUR 300-500 for a NIE you can book yourself free at Cita Previa. Use foro expatriados or DNV-focused lawyers only when genuinely stuck.'],
+    ['Rental "phantom listing" fraud', 'Too-good-to-be-true Idealista listings from owners "abroad" requesting wire transfer without viewing. Never transfer before physical viewing + signed lease.']
+  ],
+  berlin: [
+    ['Burgeramt "Express" scams', 'Third-party sites claim to offer paid Anmeldung appointments. Official bookings are free at service.berlin.de; never pay.'],
+    ['Roommate deposit-runaway', 'Zwischenmiete (sublet) via Facebook or eBay Kleinanzeigen where "sub-landlord" isn\'t the registered tenant. Only sign with proof of Hauptmieter consent + direct bank transfer, no cash.'],
+    ['Fake Deutsche Bahn ticket inspectors', 'Uniformed impostors on U-Bahn demand EUR 60 cash "fine". Real BVG inspectors take bank or mailed invoice -- never cash on the spot.'],
+    ['Gorlitzer / Kottbusser Tor drug-dealer hustles', 'Street dealers sell cut product to tourists; police are proactive on buyer prosecution. Avoid transactions outright.'],
+    ['WG-Gesucht "pay deposit to see flat"', 'Scammers list phantom flats and demand EUR 500 "before viewing". Never pay before a physical visit with IDed landlord.'],
+    ['Fake Schufa credit check', 'Third-parties charge EUR 50 for a Schufa report that\'s free direct from schufa.de/selbstauskunft. Always use the .de source.']
+  ],
+  'chiang-mai': [
+    ['Scooter passport deposit', 'Rental shops demand your original passport. Refuse -- offer a photocopy or THB 3-5k cash deposit instead. Lost/damaged passports without ID halt every subsequent step.'],
+    ['Songthaew flat-rate overcharge', 'Red songthaew drivers quote THB 150+ for a THB 40 shared ride. Agree fare upfront or use Grab.'],
+    ['Fake ED-visa schools', 'Unaccredited "Thai language schools" sell ED visas without real classes -- crackdowns cancel visa mid-stay. Use only MOE-accredited schools (AUA, Payap).'],
+    ['Doi Suthep "closed" taxi scam', 'Driver claims the temple closes early, offers alternative commission-earning route. Temple is open 6am-6pm; verify on Google.'],
+    ['Fake tour-agency ticket fraud', 'Night Bazaar booths selling cheap day-trips that don\'t exist. Book via guesthouse or verified OTA (Klook, GetYourGuide).'],
+    ['Pollution season Airbnb bait-and-switch', 'Listings hide burning-season photos. Always check AQI archives (aqicn.org) Jan-Apr before prepaying a multi-month stay.']
+  ],
+  medellin: [
+    ['"Escopolamina" (devil\'s breath) drugging', 'Dates, bar acquaintances, or unlicensed taxi drivers using burundanga to rob. Never leave drinks unattended; app-rides only; avoid strangers\' drinks/food.'],
+    ['Unlicensed taxis at JMC airport', 'Approach only the authorised white taxi queue or Uber/Didi pickup zone. Unmarked cars routinely overcharge 4-6x or route to ATMs.'],
+    ['Parque Lleras pickpocketing + phone snatching', 'Motorbike-based snatchers operate at 2am peak. Use Uber/Didi for the 200m from club to hotel; no phone in hand on the street.'],
+    ['Fake Nomada-Digital-Visa agents', 'WhatsApp "agents" charging USD 500+ for a visa filed free at cancilleria.gov.co. Use only accredited lawyers.'],
+    ['Rental deposit withholding', 'Owners cite fabricated damages to keep 2-month deposit. Use reputable brokers (La Haus, Finca Raiz) + itemised inventory photos.'],
+    ['"Free" tourist tour detours', 'Free walking tour guides sometimes steer to commission shops. Tip normal (COP 30-50k); no obligation to buy.']
+  ],
+  paris: [
+    ['Gold ring / petition scams near Sacre Coeur', 'Woman "finds" a gold ring and insists you take it, then demands payment. Walk away without engaging.'],
+    ['Metro pickpocket crews on Line 1 and RER B', 'Gare du Nord to Chatelet is the highest-theft corridor. Keep bags in front, never back pockets.'],
+    ['Fake taxi-tout at CDG Roissypole', 'Unlicensed drivers quote EUR 80+ flat. Real taxi-parisien fares are zone-regulated (EUR 55 to Left Bank, EUR 50 to Right Bank).'],
+    ['Airbnb "phantom" listings', 'Scam listings demand wire transfer outside platform. Always pay via Airbnb/Booking platform until you have physical keys.'],
+    ['"Caution" deposit overcharges in long-term rentals', 'Private landlords demand 2-3 month deposit (legal is 1 month for empty, 2 for furnished). Know your rights: loi ALUR.'],
+    ['Fake CAF / Pole Emploi SMS', 'SMS claiming missing housing-aid payments with a link. Official platforms never SMS payment links; log in via caf.fr directly.']
+  ],
+  prague: [
+    ['Exchange-booth rip-offs', 'Old Town "0% commission" booths display tourist rates 20-30% below market. Use ATMs or the major banks (Komercni, CSOB) exclusively.'],
+    ['Fake taxi flat-fares', 'Unlicensed drivers at airport or Old Town Square quote CZK 1000-1500 for CZK 400-600 trips. Use AAA Taxi or Liftago app only.'],
+    ['Nightclub bill inflation', 'Some Old Town bars add phantom items to bills targeting tourists. Count drinks; refuse "service fee" not on menu.'],
+    ['"Drink for a drink" hustle in Nove Mesto', 'Women approach male tourists asking for "just one drink" at a scam bar with EUR 200+ tabs. Avoid invitations from strangers.'],
+    ['Foreign Police queue-skipping agents', 'Middlemen at OAMP office sell fake "priority slots". Free appointments at frs.gov.cz only.'],
+    ['Fake "period" house rentals', 'Old Town Airbnbs sometimes illegal (no hotel licence). Check the apartment has a zivnost certificate or use registered operators (Booking verified).']
+  ],
+  tokyo: [
+    ['Roppongi and Kabukicho izakaya touts', 'Men in suits pull foreigners into "discount" bars with JPY 50,000+ bills enforced by staff. Never follow a street tout; use verified Google Maps listings.'],
+    ['Unlicensed "Shinjuku girls bar" touts', 'Lead to hidden table charges and forced drinks with police escorts. Walk around anyone offering "best bar, very cheap".'],
+    ['Fake real-estate guarantor (hoshonin) services', 'Tokyo rentals require guarantor company; some "cheap" providers default, losing your key-money. Use Plaza Homes, Ken Corp, Leopalace only.'],
+    ['Ghost gyoza / okonomiyaki flyer mills', 'Menu at door differs from billed total; "otoshi" mandatory side dish hidden on English menu. Ask "otoshi wa?" before sitting.'],
+    ['JPY scams via non-official ATMs', 'Independent kiosk ATMs charge JPY 1,000+ per withdrawal and occasionally skim. Use Seven Bank, Japan Post, or AEON ATMs only.'],
+    ['Fake My Number notification mail', 'Phishing letters claiming My Number correction + EUR-prepaid-card payment. Real Kojin Bango Center never SMS or email; only municipal office.']
+  ]
+};

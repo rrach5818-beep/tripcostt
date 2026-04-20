@@ -38,7 +38,9 @@
       "Bash(cp \"LivingCostAtlas_Medell_n_2026.pdf\" \"LivingCostAtlas_Medellin_2026.pdf\")",
       "Bash(cp \"LivingCostAtlas_Medell_n_2026.html\" \"LivingCostAtlas_Medellin_2026.html\")",
       "Bash(rm \"LivingCostAtlas_Medell_n_2026.pdf\" \"LivingCostAtlas_Medell_n_2026.html\")",
-      "Bash(cp LivingCostAtlas_*_2026.pdf ../../dist/ebooks/)"
+      "Bash(cp LivingCostAtlas_*_2026.pdf ../../dist/ebooks/)",
+      "Bash(mv -f \"LivingCostAtlas_Medell_n_2026.pdf\" \"LivingCostAtlas_Medellin_2026.pdf\")",
+      "Bash(mv -f \"LivingCostAtlas_Medell_n_2026.html\" \"LivingCostAtlas_Medellin_2026.html\")"
     ]
   }
 }
