@@ -918,3 +918,298 @@ export const CITY_INTEL = {
     }
   }
 };
+
+// --------------------------------------------------------------------------
+// SETUP_GUIDES -- "Getting Set Up: Your First 30 Days" per city.
+// Rendered as Appendix A in the PDF. Keep ASCII-only.
+// --------------------------------------------------------------------------
+export const SETUP_GUIDES = {
+  bangkok: {
+    banking: [
+      ['Kasikorn Bank (KBank)', 'Most DTV-friendly branches in Sukhumvit and Silom. Bring passport, DTV visa, 90-day address proof (TM30), and initial THB 500 deposit. Debit card typically issued same day; SCB Easy and K PLUS apps support English UI.'],
+      ['Bangkok Bank', 'Strongest for inbound SWIFT transfers and FX accounts. Wise/Revolut routes arrive cleanly via Bangkok Bank New York intermediary. Book an appointment at the Phrom Phong or Asoke branch.'],
+      ['Wise Multi-Currency (fallback)', 'If local account fails, Wise USD/EUR/THB balances + a Thai debit top-up card cover 90% of day-to-day needs until a Thai account comes through.']
+    ],
+    sim: [
+      ['AIS 5G', 'Best nationwide coverage. Tourist eSIM at Suvarnabhumi Gate 8: 30-day 50GB for THB 699. Postpaid (requires ID + bank) runs THB 600-900/mo for unlimited data.'],
+      ['TrueMove H', 'Strongest in-building coverage in Bangkok condos. dtac-like plans with unlimited 5G THB 799/mo.'],
+      ['Airalo / Holafly eSIM', 'Useful for week 1 before you commit to a Thai ID-linked plan.']
+    ],
+    coworking: [
+      ['The Hive Thonglor', 'Thonglor', 'THB 6,500/mo hot desk, THB 11,000 dedicated. Rooftop, reliable fibre, social scene.'],
+      ['Justco One City Centre', 'Ploenchit', 'THB 9,500-14,000/mo. Newest premium floor in Bangkok, 100 Mbps+, strong A/C.'],
+      ['The Work Loft Ekkamai', 'Ekkamai', 'THB 4,500/mo hot desk. Quieter, local-creative crowd, fewer tourists.']
+    ],
+    apps: ['Grab (ride + food)', 'LINE (de facto messaging + payments)', 'Bolt (cheaper rides)', 'Foodpanda (delivery)', 'BTS SkyTrain (official route planner)', 'ViaBus (bus real-time)'],
+    timeline: [
+      'Week 1 -- Airport AIS eSIM, 4-7 days in a Sukhumvit serviced apartment, TM30 address registration within 24h of checking in, scout 2-3 condo buildings via Hipflat/DDProperty.',
+      'Week 2 -- Sign a 12-month condo lease (2-month deposit + 1-month rent); new TM30 with landlord signature. Apply for Thai tax ID (TIN) if DTV-tax-resident path is planned.',
+      'Week 3 -- Open Kasikorn or Bangkok Bank account (Sukhumvit branch, 2-3 branch visits may be needed). Port to postpaid AIS/TrueMove with Thai ID or passport + Thai address.',
+      'Week 4 -- Private health insurance (Pacific Cross, Cigna, AXA Thailand), coworking membership, long-stay extension appointment booked at Chaeng Wattana immigration, add local GrabPay/LINE Pay top-up.'
+    ]
+  },
+  'mexico-city': {
+    banking: [
+      ['Santander Select / BBVA Mexico', 'Both accept temporary-resident cards. BBVA has the fastest digital onboarding if you have CURP + RFC. Santander Select tier requires MXN 50k balance and unlocks FX and international wires.'],
+      ['Nu Mexico', 'Fully digital bank; accepts non-residents with just passport + address proof. Debit card arrives in 7-10 days. Great fallback while waiting for RFC.'],
+      ['Wise MXN + Cash', 'Wise MXN balance + ATM withdrawals at Santander or Banorte (fee-reimbursed with Charles Schwab US account) covers setup month.']
+    ],
+    sim: [
+      ['Telcel Amigo', 'Best coverage in CDMX + inter-city. Paquete Amigo Sin Limite Plus MXN 200 for 30 days unlimited social + 10GB data.'],
+      ['AT&T Mexico', 'Strong 5G in Roma/Condesa/Polanco. Prepaid Armalo plan MXN 250/mo 6GB + unlimited WhatsApp.'],
+      ['Bait (Walmart)', 'Cheapest MVNO: MXN 50/month for 7GB. ID not required for SIM purchase.']
+    ],
+    coworking: [
+      ['WeWork Reforma Latino', 'Cuauhtemoc', 'MXN 5,800/mo hot desk. Iconic Torre Latinoamericana views, strong A/C, mixed local-expat crowd.'],
+      ['Impact Hub Condesa', 'Condesa', 'MXN 4,200/mo. Social-impact leaning, good cafe, 100 Mbps.'],
+      ['Selina CoWork Roma Norte', 'Roma Norte', 'MXN 3,500/mo hot desk. Day passes MXN 350. Backpacker-ish but good community.']
+    ],
+    apps: ['Didi (cheapest rides)', 'Uber (backup, English support)', 'Rappi (food + groceries + cash)', 'Metro CDMX (official)', 'WhatsApp (essential for everything)', 'Mercado Libre (Amazon-equivalent)'],
+    timeline: [
+      'Week 1 -- Arrive with FMM tourist permit OR pre-approved Temporary Resident stamp. Airport Telcel SIM, hotel in Roma Norte or Condesa while scouting.',
+      'Week 2 -- Apartment hunting via Airbnb monthly, Vivanuncios, Inmuebles24, or local broker (common: 1-month deposit, 1-month fianza, 1-month rent). Sign 6-12 month lease.',
+      'Week 3 -- If Temporary Resident: attend INM appointment in CDMX for plastic card (15-30 days). Apply for CURP + RFC (tax ID) at SAT -- required to open any serious bank account.',
+      'Week 4 -- Open Nu Mexico or BBVA account, port Telcel to postpaid plan, get Seguros Monterrey or AXA private health insurance, join coworking.'
+    ]
+  },
+  dubai: {
+    banking: [
+      ['Emirates NBD', 'Gold-standard expat bank. Requires Emirates ID (issued after residence visa). Current account needs AED 3,000 minimum balance; debit card in 5 working days.'],
+      ['Mashreq NEO Pro', 'Fully digital business account for freelancers/founders with Dubai freezone licence. No branch visits; onboarding in 2-3 days.'],
+      ['HSBC UAE Premier', 'Only viable if you are already HSBC Premier globally -- allows account opening before residence visa arrives.']
+    ],
+    sim: [
+      ['Etisalat (by e&)', 'Best 5G citywide. Tourist SIM AED 125 for 14 days 6GB + unlimited calls. Post-Emirates-ID, postpaid 100GB plans AED 250/mo.'],
+      ['du', 'Slightly cheaper postpaid; bundles with du TV. Prepaid tourist SIM AED 100.'],
+      ['Virgin Mobile UAE', 'App-first MVNO on du network. AED 125/mo 30GB; instant eSIM via app once residence visa active.']
+    ],
+    coworking: [
+      ['AstroLabs Dubai', 'JLT / One JLT', 'AED 1,500/mo hot desk. Tech/startup crowd, free freezone licence guidance sessions.'],
+      ['A4 Space / Alserkal Avenue', 'Al Quoz', 'AED 1,200/mo. Art-district setting, quieter, good for creatives.'],
+      ['Nook Coworking DIFC', 'DIFC', 'AED 2,100/mo. Premium, DIFC access for finance-track professionals.']
+    ],
+    apps: ['Careem (ride + food + payments + bills)', 'Talabat (food delivery)', 'RTA Dubai (metro + bus)', 'Noon (Amazon-equivalent)', 'UAE PASS (government digital ID -- essential)', 'DEWA (utilities)'],
+    timeline: [
+      'Week 1 -- Arrive on entry permit tied to Golden Visa / Employment / Freezone sponsorship. Hotel in Business Bay or Marina. Etisalat tourist eSIM on arrival.',
+      'Week 2 -- Medical exam + biometrics for Emirates ID (1-2 visits). Apartment viewings (Bayut, Property Finder, Dubizzle) -- annual payment in 1-4 cheques is still standard.',
+      'Week 3 -- Emirates ID issued. Open Emirates NBD or Mashreq account same week. Sign Ejari (tenancy contract registration) -- required for DEWA + internet.',
+      'Week 4 -- DEWA electricity+water in name, du/Etisalat home fibre (500 Mbps AED 389/mo), Daman or AXA health insurance (legally required), coworking or co-living membership.'
+    ]
+  },
+  amsterdam: {
+    banking: [
+      ['ING Netherlands', 'Most foreigner-friendly. Needs BSN (citizen service number) and proof-of-address. Current account free; iDEAL integration is essential for Dutch online payments.'],
+      ['ABN AMRO', 'Premium alternative with stronger English service and private-banking tiers; EUR 2.95/mo for basic account.'],
+      ['bunq (digital)', 'Green bank licensed in NL; opens in 5 minutes with passport, no BSN required initially. Useful bridge while waiting for BSN appointment (2-6 week queue in 2026).']
+    ],
+    sim: [
+      ['KPN', 'Best national coverage + home fibre. SIM-only EUR 20-30/mo 20GB + EU roaming.'],
+      ['Odido (T-Mobile NL)', 'Best 5G in Amsterdam core. Postpaid Max plan EUR 25/mo 30GB.'],
+      ['Lebara / Simyo', 'Cheap prepaid MVNOs on KPN/Odido. EUR 10/mo 5GB for bridge month.']
+    ],
+    coworking: [
+      ['B. Amsterdam', 'Sloterdijk', 'EUR 350/mo hot desk. Huge complex, 3 buildings, strong startup ecosystem, shuttle to centre.'],
+      ['TSH Collab', 'multiple sites', 'EUR 250-400/mo. Attached to The Student Hotel (now TSH); cafe + gym + pool included at some locations.'],
+      ['WeWork Weteringschans', 'Centrum', 'EUR 450-600/mo. Premium central location, strong for client meetings.']
+    ],
+    apps: ['9292 (multi-modal transit)', 'NS (train)', 'GVB (Amsterdam metro/tram)', 'Thuisbezorgd (food delivery)', 'Uber Eats / Deliveroo', 'Tikkie (P2P payments)', 'DigiD (government digital ID)'],
+    timeline: [
+      'Week 1 -- Arrive on Dutch residence permit (DAFT for Americans, HSM, Orientation Year, or EU free movement). Airbnb or TSH short-stay. Odido/KPN SIM.',
+      'Week 2 -- Register at municipality (gemeente) for BSN -- book appointment online, bring birth certificate apostilled + translated, signed lease or landlord statement.',
+      'Week 3 -- BSN arrives by post in 5-10 days. Open ING account same week. Apply for DigiD (government login -- required for health insurance, tax, utilities).',
+      'Week 4 -- Dutch basic health insurance (legally required within 4 months): Zilveren Kruis, CZ, or VGZ -- EUR 140-170/mo. Home fibre (KPN/Ziggo). Transit pass (OV-chipkaart).'
+    ]
+  },
+  bali: {
+    banking: [
+      ['BNI or Permata (KITAS-only)', 'Local Indonesian accounts require a KITAS (limited-stay permit). BNI Taplus at Sanur or Ubud branches is the most tourist-friendly; minimum IDR 500k deposit.'],
+      ['Wise IDR + ATM', 'Tourist-visa and B211A holders generally stick with Wise IDR balance + Charles Schwab / Revolut ATM cards. Mandiri and BCA ATMs accept major cards; Bank Central Asia is the most reliable.'],
+      ['Jenius (digital, KITAS-only)', 'BTPN subsidiary, fully-digital neobank, great app, but still requires KITAS to onboard.']
+    ],
+    sim: [
+      ['Telkomsel', 'Best coverage islandwide including Ubud/Uluwatu. Tourist kartuHalo 30-day 25GB IDR 150k at airport or any counter.'],
+      ['XL Axiata / Smartfren', 'Cheaper backups: IDR 100k 20GB 30 days. Smartfren strongest in Canggu/Berawa.'],
+      ['Airalo Indonesia eSIM', 'Best for 48-hour bridge upon landing before you reach a kiosk.']
+    ],
+    coworking: [
+      ['Dojo Bali', 'Canggu (Echo Beach)', 'IDR 3.8M/mo (~USD 240). The original Bali coworking space; pool, strong community events.'],
+      ['Tropical Nomad', 'Canggu', 'IDR 3.2M/mo. Quieter alternative to Dojo; better A/C, serious focus culture.'],
+      ['Outpost Ubud', 'Ubud (Penestanan)', 'IDR 3.5M/mo. Jungle setting, yoga-adjacent scene, slower vibe than Canggu.']
+    ],
+    apps: ['Gojek (ride + food + almost everything)', 'Grab (backup)', 'WhatsApp (essential)', 'Tokopedia / Shopee (e-commerce)', 'Pluang / Flip (IDR transfers)', 'Visit Indonesia (e-visa)'],
+    timeline: [
+      'Week 1 -- Arrive with B211A Visit Visa or new Remote Worker Visa (E33G, launched 2024). Telkomsel SIM at DPS airport. Base in Canggu or Ubud guesthouse.',
+      'Week 2 -- Villa hunting via agents (Kibarer, Bali Home Immo) or FB groups. 6- or 12-month payment upfront is still standard; negotiate 3-month trial if possible.',
+      'Week 3 -- If E33G holder: obtain KITAS via local agent (IDR 8-15M, 2-3 weeks processing). Register at kelurahan (local government) for residence report.',
+      'Week 4 -- Open BNI/Permata if KITAS in hand, join Dojo/Tropical Nomad/Outpost, sort scooter rental (IDR 1.5-2M/mo) with international driving permit + helmet + insurance.'
+    ]
+  },
+  barcelona: {
+    banking: [
+      ['CaixaBank imagin', 'Digital-only subsidiary; opens with just passport + Spanish phone. Zero-fee current account for under-30s; solid choice while waiting for NIE.'],
+      ['BBVA', 'Traditional branch network, English service at central offices, strong for mortgage-adjacent products if you plan to buy.'],
+      ['N26 Spain', 'Spanish-regulated account number, IBAN works for all domestic direct debits; opens fully online with passport.']
+    ],
+    sim: [
+      ['Movistar', 'Telefonica subsidiary, best nationwide coverage. Fusion plan EUR 55/mo (fibre 1Gb + mobile 50GB + movistar plus+).'],
+      ['Orange Spain', 'Competitive on 5G; Go plans EUR 25-35/mo with unlimited data.'],
+      ['Pepephone / Lowi', 'Budget MVNOs on Movistar/Vodafone networks. EUR 15/mo 30GB for bridge month.']
+    ],
+    coworking: [
+      ['OneCoWork Catedral', 'Gothic Quarter', 'EUR 280/mo hot desk. Rooftop with Cathedral views, strong community.'],
+      ['Aticco Bailen', 'Eixample', 'EUR 350/mo. Premium building, design-led, startup crowd.'],
+      ['Betahaus Barcelona', 'Poblenou (22@)', 'EUR 240/mo. Classic tech-corridor location, quieter, focus culture.']
+    ],
+    apps: ['TMB (metro + bus)', 'Bicing (bike share)', 'Glovo (food + delivery -- HQ is Barcelona)', 'Bizum (P2P payments, needs Spanish bank)', 'Cabify / FreeNow (rides)', 'Cl@ve (government digital ID)'],
+    timeline: [
+      'Week 1 -- Arrive on DNV (Spain Digital Nomad Visa) or EU free movement. Cita Previa for NIE (Foreigner ID number) booked online -- slots often 3-6 weeks out in 2026.',
+      'Week 2 -- Apartment hunting via Idealista, Fotocasa, Habitaclia. 2-month deposit + 1-2 month rent + agency fee (typically 1 month + VAT) standard. Sign lease for empadronamiento.',
+      'Week 3 -- Empadronamiento at city hall (census registration). NIE appointment attended -- TIE card (physical ID) follows 30-45 days later.',
+      'Week 4 -- Open CaixaBank/BBVA with NIE + empadronamiento. Sign up for Sanitas or Adeslas private health insurance (required for DNV), plus public SS if freelance.'
+    ]
+  },
+  berlin: {
+    banking: [
+      ['N26 (Berlin-native)', 'Headquartered in Berlin, fully English UI, IBAN in minutes. Default first account for expats.'],
+      ['Deutsche Bank / Commerzbank', 'Traditional banks needed if landlord insists on "old-school" SEPA direct debit. English service at central Kudamm and Alexanderplatz branches.'],
+      ['DKB / ING DiBa', 'Free online accounts with good FX + international cards; German-language onboarding but doable.']
+    ],
+    sim: [
+      ['Telekom (Deutsche Telekom)', 'Best 5G coverage. MagentaMobil M EUR 45/mo unlimited LTE + 40GB 5G.'],
+      ['o2 / Telefonica DE', 'Cheapest postpaid. Grow Flex EUR 30/mo, scales with usage.'],
+      ['Aldi Talk / congstar', 'Budget MVNOs, prepaid EUR 10-15/mo for 15GB.']
+    ],
+    coworking: [
+      ['Mindspace Krausenstrasse', 'Mitte', 'EUR 450/mo hot desk. Design-heavy, strong for agency/client work.'],
+      ['Factory Berlin Gorlitzer Park', 'Kreuzberg', 'EUR 250-400/mo. Startup hub, Google-backed, events-heavy.'],
+      ['Betahaus Kreuzberg', 'Kreuzberg', 'EUR 280/mo. Berlin coworking classic, creative-freelance crowd.']
+    ],
+    apps: ['BVG (transit)', 'DB Navigator (train)', 'Lieferando (food delivery)', 'Gorillas / Flink (10-min grocery)', 'PayPal (still dominant P2P in DE)', 'ELSTER (tax filing)'],
+    timeline: [
+      'Week 1 -- Arrive on Freiberufler/Selbstandig visa, Blue Card, Job Seeker, or EU free movement. Temporary Airbnb. Telekom/o2 SIM.',
+      'Week 2 -- Anmeldung appointment at Burgeramt -- this is the single hardest step in Berlin 2026; book within 24h of landing, slots go in seconds.',
+      'Week 3 -- Apartment hunt on ImmoScout24, WG-Gesucht, eBay Kleinanzeigen (Schufa credit check + 3 pay slips or proof of funds required). Sign Mietvertrag. Fresh Anmeldung with new address.',
+      'Week 4 -- Open N26, get Steuer-ID (arrives by post after Anmeldung), sign up for TK or AOK public health insurance (required) or private (if >EUR 69k/yr), apply for freelance tax number at Finanzamt.'
+    ]
+  },
+  'chiang-mai': {
+    banking: [
+      ['Bangkok Bank Chiang Mai', 'Most consistent for DTV holders. Chang Klan or Nimmanhaemin branches have bilingual staff and faster onboarding than Bangkok branches.'],
+      ['Kasikorn (KBank) Nimman', 'K PLUS app is the best digital UI. Branch manager discretion matters -- long-stay visa + TM30 required.'],
+      ['Wise THB + Charles Schwab ATM', 'Default fallback while bank account is pending; TTB and Bangkok Bank ATMs rebate best.']
+    ],
+    sim: [
+      ['AIS 5G', 'Best coverage in Nimman, Old City, Mae Jo university area. Tourist eSIM THB 699 30-day 50GB.'],
+      ['TrueMove H', 'Second-best citywide; good bundling with True Online fibre.'],
+      ['dtac', '3rd option, cheapest prepaid (THB 200 for 15GB monthly).']
+    ],
+    coworking: [
+      ['Punspace Nimman', 'Nimmanhaemin', 'THB 3,800/mo hot desk. The original Chiang Mai nomad space, reliable internet, quiet study culture.'],
+      ['Yellow Coworking', 'Santitham', 'THB 3,200/mo. Slightly out of Nimman, cheaper, good focus atmosphere.'],
+      ['Alt_ChiangMai', 'Nimman North', 'THB 4,200/mo. Premium new build, 200 Mbps fibre, strongest for calls.']
+    ],
+    apps: ['Grab (ride + food)', 'Bolt (cheaper rides)', 'LINE (messaging + payments)', 'Foodpanda', 'LINE MAN (local food delivery, wider than Grab in CM)', 'Google Maps (transit coverage is thin -- apps matter)'],
+    timeline: [
+      'Week 1 -- Fly into CNX (direct from BKK/HKT/KUL/SIN). DTV/ED/O visa already stamped. AIS eSIM, guesthouse in Nimman or Santitham.',
+      'Week 2 -- Scout condos in Nimman, Santitham, or Chang Khlan via Baan Ying, Nimmana, or DDProperty. 6-month lease common; 1-2 month deposit.',
+      'Week 3 -- TM30 within 24h of moving in. Open Bangkok Bank account -- Chiang Mai branches approve DTV holders more consistently than Bangkok.',
+      'Week 4 -- Scooter rental (THB 3,000/mo, international permit + helmet), join Punspace/Alt, sign up for Pacific Cross or Cigna insurance, register TIN if planning Thai tax residency.'
+    ]
+  },
+  medellin: {
+    banking: [
+      ['Bancolombia', 'Largest Colombian bank; Nequi digital subsidiary is the default for foreigners. Physical Bancolombia accounts require Cedula de Extranjeria (foreigner ID) which needs Migracion Colombia appointment.'],
+      ['Nu Colombia', 'Fully-digital neobank, accepts Cedula de Extranjeria + passport. Fast onboarding, strong app, no fees.'],
+      ['Wise COP + Davivienda ATM', 'Default bridge while waiting for Cedula; Wise COP is reliable, Davivienda ATMs have lowest foreign-card fees.']
+    ],
+    sim: [
+      ['Claro Colombia', 'Best coverage including Envigado + Sabaneta. Plan Pospago COP 60k 30GB.'],
+      ['Movistar Colombia', 'Competitive 5G in Poblado/Laureles. Prepago Sin Limites COP 50k 20GB.'],
+      ['Tigo', 'Cheaper MVNO-feel; prepaid COP 30k 10GB 30 days.']
+    ],
+    coworking: [
+      ['Selina CoWork Medellin', 'El Poblado', 'COP 650k/mo hot desk. Social, rooftop pool, day passes COP 45k.'],
+      ['Atomhouse Laureles', 'Laureles', 'COP 550k/mo. Quieter, local-professional crowd, strong focus vibe.'],
+      ['Tinkko Poblado', 'El Poblado (Parque Lleras)', 'COP 780k/mo. Premium space, great coffee, stronger fibre.']
+    ],
+    apps: ['Rappi (food + almost everything)', 'Uber (works; InDrive as cheaper backup)', 'Cabify', 'Metro de Medellin (official)', 'WhatsApp (essential)', 'Nequi (mobile payments -- Colombian equivalent of Bizum)'],
+    timeline: [
+      'Week 1 -- Arrive on Visa Nomada Digital (V Type) or Tourist Visa (90+90 days). Claro SIM at MDE airport. Hotel in El Poblado while scouting.',
+      'Week 2 -- Apartment hunting via La Haus, Finca Raiz, or local broker. 2-month deposit, codeudor (guarantor) often waived for foreigners paying 3-6 months upfront.',
+      'Week 3 -- If Visa Nomada Digital holder: register with Migracion Colombia, apply for Cedula de Extranjeria (3-4 weeks).',
+      'Week 4 -- Open Nu Colombia or Bancolombia, get SURA or Colmedica private health insurance, join coworking, register Colombian tax ID (NIT) if planning residency beyond 183 days.'
+    ]
+  },
+  paris: {
+    banking: [
+      ['BNP Paribas', 'Largest French bank with dedicated "Nouveaux Arrivants" expat service. Requires attestation d\'hebergement or signed lease + passport + EU or long-stay visa. Account open in 3-7 days.'],
+      ['Societe Generale', 'Traditional alternative, SG Wing app is English-friendly. Similar paperwork to BNP.'],
+      ['Revolut France / N26', 'Default bridge for first 6 weeks. French IBAN on Revolut (since 2022) accepts CAF, Pole Emploi, and most direct debits.']
+    ],
+    sim: [
+      ['Orange France', 'Best coverage + 5G density. Open Forfait EUR 29/mo 100GB + EU roaming.'],
+      ['Free Mobile', 'Cheapest good carrier. Forfait Free EUR 19.99/mo 210GB (best value in France 2026).'],
+      ['Sosh / RED by SFR', 'MVNO subsidiaries, EUR 9-15/mo 50-100GB, short commitments.']
+    ],
+    coworking: [
+      ['Wojo La Madeleine', 'Opera / Madeleine', 'EUR 450/mo hot desk. Central, phone booths, strong business vibe.'],
+      ['Station F', '13th (Austerlitz)', 'Startup campus; individual access via Fighters Program or Founders Program only. Larger ecosystem = worth the filter.'],
+      ['WeWork Coeur Marais', 'Marais', 'EUR 500-650/mo. Premium Marais location, great for client meetings.']
+    ],
+    apps: ['RATP (Paris transit)', 'SNCF Connect (trains)', 'Bonjour RATP (multi-modal)', 'Uber Eats / Deliveroo', 'Lydia / Paylib (P2P payments)', 'Doctolib (medical appointments)', 'FranceConnect (government digital ID)'],
+    timeline: [
+      'Week 1 -- Arrive on long-stay visa (passport talent, salarie, profession liberale) or EU free movement. Airbnb in 11e/Marais. Free/Orange SIM.',
+      'Week 2 -- Apartment hunt: SeLoger, LeBonCoin, PAP. Expect Guarant visale + 3-month dossier (pay slips, tax notices, employer letter). Sign bail; get attestation.',
+      'Week 3 -- Validate long-stay visa online (OFII) within 3 months of arrival. Open BNP/SG account with lease + passport. Order Carte Vitale (social security card) if employed.',
+      'Week 4 -- Internet Livebox/Freebox (1 Gb EUR 30/mo), sign up for mutuelle (private top-up health insurance, EUR 40-80/mo), Navigo transit pass (EUR 86/mo Paris).'
+    ]
+  },
+  prague: {
+    banking: [
+      ['Ceska Sporitelna (Erste)', 'Biggest retail bank. George online banking is English, account opens with passport + temporary residence address. CZK 89/mo or free on tier.'],
+      ['CSOB', 'Second-largest; similar requirements. Often faster same-day card issuance.'],
+      ['Revolut CZ / Wise CZK', 'Bridge for first 2-3 weeks; both support CZK IBANs for local direct debits.']
+    ],
+    sim: [
+      ['T-Mobile CZ', 'Best coverage. Magenta 1 postpaid CZK 749/mo (unlimited).'],
+      ['O2 Czech Republic', 'Competitive; Datamania CZK 649/mo 30GB.'],
+      ['Vodafone CZ / MVNOs', 'Mobil.cz (O2 MVNO) CZK 249/mo 10GB for budget.']
+    ],
+    coworking: [
+      ['Impact Hub Prague', 'Holesovice', 'CZK 5,500/mo hot desk. Community-heavy, good events, reliable fibre.'],
+      ['K10 Coworking', 'Karlin', 'CZK 4,800/mo. Tech-corridor location, newer building, focus-friendly.'],
+      ['Node5', 'Smichov', 'CZK 4,500/mo. Startup heritage, cheaper, good focus culture.']
+    ],
+    apps: ['PID Litacka (Prague transit)', 'Bolt (rides)', 'Liftago (local Czech rides)', 'Wolt / Foodora (delivery)', 'Rohlik (groceries)', 'Bank iD (national digital ID)'],
+    timeline: [
+      'Week 1 -- Arrive on zivno (freelance) visa, EU Blue Card, or EU free movement. AirBnb in Vinohrady/Karlin. T-Mobile SIM.',
+      'Week 2 -- Apartment hunt on Sreality, Bezrealitky, FB groups. 2-3 month deposit + realitni agent fee (1 month rent + VAT) is standard. Sign najemni smlouva.',
+      'Week 3 -- Register address at Foreign Police within 3 days of arrival (if non-EU). Apply for zivnostensky list (trade licence) if self-employed -- required before issuing Czech invoices.',
+      'Week 4 -- Open Ceska Sporitelna, register with VZP (public health insurance) or commercial provider, file for residence permit card (non-EU) or register stay (EU).'
+    ]
+  },
+  tokyo: {
+    banking: [
+      ['Japan Post Bank (Yucho)', 'Easiest for new arrivals with fresh Residence Card + My Number Notification. Branches everywhere; English forms; debit card in 1-2 weeks.'],
+      ['SMBC Prestia', 'Former Citibank Japan; best English-service retail bank. Free international wires up to JPY 200k; requires JPY 500k initial balance.'],
+      ['Shinsei Bank', 'Second-best English service, strong FX, free ATM withdrawals at Seven Bank.']
+    ],
+    sim: [
+      ['NTT Docomo', 'Best coverage nationwide. ahamo postpaid JPY 2,970/mo 20GB + 5min free calls.'],
+      ['Rakuten Mobile', 'Cheapest unlimited: JPY 3,278/mo unlimited on own network, capped JPY 2,178 under 20GB.'],
+      ['Povo 2.0 (KDDI)', 'App-only; base JPY 0/mo + pay-as-you-go data topups (300MB JPY 390).']
+    ],
+    coworking: [
+      ['WeWork Roppongi', 'Roppongi / Minato', 'JPY 70,000/mo hot desk. Central, strong foreign-executive crowd.'],
+      ['Impact Hub Tokyo', 'Meguro', 'JPY 45,000/mo. Quieter, social-impact leaning, good focus.'],
+      ['NewWork (Mitsubishi)', 'multiple sites', 'JPY 18,000/mo for flexible access to 50+ locations citywide -- best value if you travel around Tokyo.']
+    ],
+    apps: ['Suica / PASMO (IC card in Apple Wallet)', 'Google Maps or Navitime (transit)', 'Line (messaging + Line Pay)', 'Uber Eats / Demae-can', 'PayPay (dominant QR payments)', 'Mynaportal (government My Number portal)'],
+    timeline: [
+      'Week 1 -- Arrive on work visa, HSP, business manager, or spouse visa. Residence Card issued at NRT/HND on arrival. NTT/Rakuten SIM same day.',
+      'Week 2 -- Ward office (kuyakusho) registration within 14 days -- this generates your My Number notification (needed for bank + phone postpaid).',
+      'Week 3 -- Apartment hunting is the hardest Tokyo step: reikin (key money 1-2 months), shikikin (deposit 1-2 months), agent fee (1 month), guarantor company fee (0.5 month). Foreigner-friendly agents: Plaza Homes, Ken Corporation, GaijinPot Housing.',
+      'Week 4 -- Open Japan Post Bank or Shinsei, enroll in National Health Insurance at ward office (mandatory), set up home fibre (NURO or So-net 2Gb JPY 5,200/mo), enroll pension.'
+    ]
+  }
+};

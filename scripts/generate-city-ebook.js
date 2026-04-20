@@ -30,6 +30,8 @@ const intelMod = await import(
 );
 const CITY_INTEL = intelMod.CITY_INTEL || {};
 const intel = CITY_INTEL[slug] || null;
+const SETUP_GUIDES = intelMod.SETUP_GUIDES || {};
+const setup = SETUP_GUIDES[slug] || null;
 
 const city = getCityBySlug(slug);
 if (!city) {
@@ -248,7 +250,8 @@ function tocPage() {
     ['07','Safety & Quality of Life','15'],['08','City Comparison','16'],
     ['09','Pros & Cons Summary','18'],['10','Who Should Move?','19'],
     ['11','Risk Factors','20'],['12','LCA Index Methodology','21'],
-    ['13','Final Verdict','22']
+    ['13','Final Verdict','22'],
+    ['A','Appendix -- First 30 Days','24']
   ];
   let rows = items.map(([n,t,p]) => `
     <tr>
@@ -738,6 +741,39 @@ function finalVerdict() {
 
 // -- Assemble full HTML --------------------------------------------------
 
+function setupGuideAppendix() {
+  if (!setup) return '';
+  const bankRows = (setup.banking || []).map(([name, detail]) => [name, detail]);
+  const simRows  = (setup.sim || []).map(([name, detail]) => [name, detail]);
+  const coRows   = (setup.coworking || []).map(([name, area, detail]) => [name, area, detail]);
+  const appsHtml = (setup.apps || []).map(a => `<li style="margin-bottom:4px">${a}</li>`).join('');
+  const tlHtml   = (setup.timeline || []).map((t,i) => `
+    <div style="display:flex;align-items:flex-start;margin-bottom:10px">
+      <div style="flex:0 0 56px;background:${GOLD};color:${NAVY};font-weight:800;font-size:10px;padding:6px 8px;border-radius:3px;text-align:center">W${i+1}</div>
+      <p style="flex:1;font-size:10.5px;color:#374151;line-height:1.55;margin:0 0 0 10px">${t}</p>
+    </div>`).join('');
+  return `
+  ${sectionTitle('A','Appendix: Getting Set Up -- Your First 30 Days')}
+  <p style="font-size:11px;color:#374151;line-height:1.7;margin-bottom:16px">A practical field handbook for the first month in ${cityName}. Banking, mobile, coworking, essential apps, and a week-by-week bureaucracy timeline -- the real operational sequence that determines whether your relocation stalls or stabilises.</p>
+
+  <h3 style="font-size:13px;font-weight:700;color:${NAVY};margin:20px 0 8px;border-bottom:2px solid ${GOLD};padding-bottom:4px">Banking</h3>
+  ${tbl(['Provider','Notes'], bankRows)}
+
+  <h3 style="font-size:13px;font-weight:700;color:${NAVY};margin:22px 0 8px;border-bottom:2px solid ${GOLD};padding-bottom:4px">Mobile / SIM</h3>
+  ${tbl(['Operator','Plan & Price'], simRows)}
+
+  <h3 style="font-size:13px;font-weight:700;color:${NAVY};margin:22px 0 8px;border-bottom:2px solid ${GOLD};padding-bottom:4px">Coworking -- Named Recommendations</h3>
+  ${tbl(['Space','Area','Price & Vibe'], coRows)}
+
+  <h3 style="font-size:13px;font-weight:700;color:${NAVY};margin:22px 0 8px;border-bottom:2px solid ${GOLD};padding-bottom:4px">Essential Apps</h3>
+  <ul style="font-size:10.5px;color:#374151;line-height:1.55;margin:0 0 14px 18px">${appsHtml}</ul>
+
+  <h3 style="font-size:13px;font-weight:700;color:${NAVY};margin:22px 0 10px;border-bottom:2px solid ${GOLD};padding-bottom:4px">Week-by-Week Timeline</h3>
+  ${tlHtml}
+
+  ${pageBreak()}`;
+}
+
 function buildFullHTML() {
   return `<!DOCTYPE html>
 <html>
@@ -781,6 +817,7 @@ function buildFullHTML() {
     ${riskFactors()}
     ${methodologyPage()}
     ${finalVerdict()}
+    ${setupGuideAppendix()}
   </div>
 </body>
 </html>`;

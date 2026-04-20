@@ -14,7 +14,31 @@
       "Bash(Select-String -Pattern \"built|error\")",
       "Bash(tasklist //FI \"IMAGENAME eq node.exe\")",
       "Bash(NODE_OPTIONS=\"--max-old-space-size=8192\" \"/c/Program Files/nodejs/npm.cmd\" run build)",
-      "Bash('/c/Program Files/nodejs/node.exe' -e ' *)"
+      "Bash('/c/Program Files/nodejs/node.exe' -e ' *)",
+      "Bash(\"/c/Program Files/nodejs/node.exe\" -e \"import\\('./src/data/cityService.js'\\).then\\(m=>{const cs=m.getAllCities\\(\\); console.log\\(cs.map\\(c=>c.slug\\).join\\(','\\)\\); const b=m.getCityBySlug\\('bangkok'\\); console.log\\(JSON.stringify\\(b,null,2\\).slice\\(0,2000\\)\\);}\\)\")",
+      "Bash(\"/c/Program Files/nodejs/node.exe\" -e \"import\\('./src/data/cityService.js'\\).then\\(m=>{['lisbon','bangkok','tokyo','dubai','mexico-city','amsterdam','bali','barcelona','berlin','chiang-mai','medellin','paris','prague'].forEach\\(s=>{const c=m.getCityBySlug\\(s\\); console.log\\(s, c.currencySymbol+'|', 'center='+c.costs.accommodation.center, 'suburb='+c.costs.accommodation.suburb, 'food b/s/p='+c.costs.food.budget+'/'+c.costs.food.standard+'/'+c.costs.food.premium, 'cur='+c.currency, 'tags='+c.tags.join\\(','\\)\\);}\\);}\\)\")",
+      "Bash(\"/c/Program Files/nodejs/node.exe\" -e \"console.log\\(require\\('fs'\\).statSync\\('scripts/generate-lisbon-ebook.js'\\).size\\)\")",
+      "Bash(\"/c/Program Files/nodejs/node.exe\" --input-type=module -e \"import fs from 'fs';console.log\\(fs.statSync\\('scripts/generate-lisbon-ebook.js'\\).size\\)\")",
+      "Bash(node scripts/generate-city-ebook.js bangkok)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Read(//c/Users/DELL/.claude/skills/**)",
+      "Bash(mkdir -p /tmp/tripcost-report-skill)",
+      "Read(//tmp/**)",
+      "Bash(unzip -o \"C:/Users/DELL/Desktop/linving cost-report.skill\")",
+      "Bash(cygpath -w /tmp/tripcost-report-skill/tripcost-report/SKILL.md)",
+      "Bash(node -e \"require\\('./scripts/data/cityIntel.js'\\)\")",
+      "Bash(node --input-type=module -e \"import\\('./scripts/data/cityIntel.js'\\).then\\(m => console.log\\('OK', Object.keys\\(m.CITY_INTEL\\).length, 'cities'\\)\\)\")",
+      "Bash(node --input-type=module -e \"import\\('./scripts/data/cityIntel.js'\\).then\\(m => console.log\\('cities:', Object.keys\\(m.CITY_INTEL\\).join\\(','\\)\\)\\)\")",
+      "Bash(awk '{print $5, $NF}')",
+      "Bash(cp public/ebooks/LivingCostAtlas_*_2026.pdf dist/ebooks/)",
+      "Bash(cp public/ebooks/LivingCostAtlas_*_2026.html dist/ebooks/)",
+      "Bash(ls Medell*)",
+      "Bash(cp \"LivingCostAtlas_Medell_n_2026.pdf\" \"LivingCostAtlas_Medellin_2026.pdf\")",
+      "Bash(cp \"LivingCostAtlas_Medell_n_2026.html\" \"LivingCostAtlas_Medellin_2026.html\")",
+      "Bash(rm \"LivingCostAtlas_Medell_n_2026.pdf\" \"LivingCostAtlas_Medell_n_2026.html\")",
+      "Bash(cp LivingCostAtlas_*_2026.pdf ../../dist/ebooks/)"
     ]
   }
 }
