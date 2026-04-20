@@ -28,6 +28,7 @@ const EBOOKS = {
   lisbon: {
     city: 'Lisbon', country: 'Portugal', price: 9.99, currency: 'EUR', pages: 28,
     pdfPath: '/ebooks/LivingCostAtlas_Lisbon_2026.pdf',
+    previewPath: '/ebooks/preview/LivingCostAtlas_Lisbon_Preview.pdf',
     coverImage: '/images/ebooks/lisbon-cover.png',
     stripeLink: 'https://buy.stripe.com/4gM4gAe7R12xacHbfd3gk00',
     highlights: defaultHighlights('Lisbon'),
@@ -36,6 +37,7 @@ const EBOOKS = {
   barcelona: {
     city: 'Barcelona', country: 'Spain', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Barcelona_2026.pdf',
+    previewPath: '/ebooks/preview/LivingCostAtlas_Barcelona_Preview.pdf',
     coverImage: '/images/ebooks/barcelona-cover.png',
     stripeLink: 'https://buy.stripe.com/cNieVe4xhbHbbgLcjh3gk01',
     highlights: defaultHighlights('Barcelona'),
@@ -44,6 +46,7 @@ const EBOOKS = {
   bangkok: {
     city: 'Bangkok', country: 'Thailand', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Bangkok_2026.pdf',
+    previewPath: '/ebooks/preview/LivingCostAtlas_Bangkok_Preview.pdf',
     coverImage: '/images/ebooks/bangkok-cover.png',
     stripeLink: 'https://buy.stripe.com/14A7sMgfZ6mRgB55UT3gk02',
     highlights: defaultHighlights('Bangkok'),
@@ -52,6 +55,7 @@ const EBOOKS = {
   tokyo: {
     city: 'Tokyo', country: 'Japan', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Tokyo_2026.pdf',
+    previewPath: '/ebooks/preview/LivingCostAtlas_Tokyo_Preview.pdf',
     coverImage: '/images/ebooks/tokyo-cover.png',
     stripeLink: 'https://buy.stripe.com/6oU3cw7Jt9z31Gb4QP3gk03',
     highlights: defaultHighlights('Tokyo'),
@@ -60,6 +64,7 @@ const EBOOKS = {
   bali: {
     city: 'Bali', country: 'Indonesia', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Bali_2026.pdf',
+    previewPath: '/ebooks/preview/LivingCostAtlas_Bali_Preview.pdf',
     coverImage: '/images/ebooks/bali-cover.png',
     stripeLink: 'https://buy.stripe.com/00wfZiaVF6mR70v2IH3gk04',
     highlights: defaultHighlights('Bali'),
@@ -68,6 +73,7 @@ const EBOOKS = {
   berlin: {
     city: 'Berlin', country: 'Germany', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Berlin_2026.pdf',
+    previewPath: '/ebooks/preview/LivingCostAtlas_Berlin_Preview.pdf',
     coverImage: '/images/ebooks/berlin-cover.png',
     stripeLink: 'https://buy.stripe.com/fZu8wQ2p912xesXfvt3gk05',
     highlights: defaultHighlights('Berlin'),
@@ -76,6 +82,7 @@ const EBOOKS = {
   dubai: {
     city: 'Dubai', country: 'UAE', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Dubai_2026.pdf',
+    previewPath: '/ebooks/preview/LivingCostAtlas_Dubai_Preview.pdf',
     coverImage: '/images/ebooks/dubai-cover.png',
     stripeLink: 'https://buy.stripe.com/6oUcN62p9cLf84z3ML3gk06',
     highlights: defaultHighlights('Dubai'),
@@ -84,6 +91,7 @@ const EBOOKS = {
   paris: {
     city: 'Paris', country: 'France', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Paris_2026.pdf',
+    previewPath: '/ebooks/preview/LivingCostAtlas_Paris_Preview.pdf',
     coverImage: '/images/ebooks/paris-cover.png',
     stripeLink: 'https://buy.stripe.com/6oU5kE0h1bHbbgL8313gk07',
     highlights: defaultHighlights('Paris'),
@@ -92,6 +100,7 @@ const EBOOKS = {
   'mexico-city': {
     city: 'Mexico City', country: 'Mexico', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Mexico_City_2026.pdf',
+    previewPath: '/ebooks/preview/LivingCostAtlas_Mexico_City_Preview.pdf',
     coverImage: '/images/ebooks/mexico-city-cover.png',
     stripeLink: 'https://buy.stripe.com/dRm00k4xh9z31Gb8313gk08',
     highlights: defaultHighlights('Mexico City'),
@@ -100,6 +109,7 @@ const EBOOKS = {
   medellin: {
     city: 'Medellin', country: 'Colombia', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Medellin_2026.pdf',
+    previewPath: '/ebooks/preview/LivingCostAtlas_Medellin_Preview.pdf',
     coverImage: '/images/ebooks/medellin-cover.png',
     stripeLink: 'https://buy.stripe.com/28E9AU1l5h1vckP2IH3gk09',
     highlights: defaultHighlights('Medellin'),
@@ -108,6 +118,7 @@ const EBOOKS = {
   'chiang-mai': {
     city: 'Chiang Mai', country: 'Thailand', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Chiang_Mai_2026.pdf',
+    previewPath: '/ebooks/preview/LivingCostAtlas_Chiang_Mai_Preview.pdf',
     coverImage: '/images/ebooks/chiang-mai-cover.png',
     stripeLink: 'https://buy.stripe.com/dRmdRafbVeTn84zbfd3gk0a',
     highlights: defaultHighlights('Chiang Mai'),
@@ -116,6 +127,7 @@ const EBOOKS = {
   amsterdam: {
     city: 'Amsterdam', country: 'Netherlands', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Amsterdam_2026.pdf',
+    previewPath: '/ebooks/preview/LivingCostAtlas_Amsterdam_Preview.pdf',
     coverImage: '/images/ebooks/amsterdam-cover.png',
     stripeLink: 'https://buy.stripe.com/eVq6oIe7R26B98Dbfd3gk0b',
     highlights: defaultHighlights('Amsterdam'),
@@ -124,6 +136,7 @@ const EBOOKS = {
   prague: {
     city: 'Prague', country: 'Czech Republic', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Prague_2026.pdf',
+    previewPath: '/ebooks/preview/LivingCostAtlas_Prague_Preview.pdf',
     coverImage: '/images/ebooks/prague-cover.png',
     stripeLink: 'https://buy.stripe.com/4gM6oI7JtfXr70v3ML3gk0c',
     highlights: defaultHighlights('Prague'),
@@ -417,6 +430,11 @@ export function EbookPage(params) {
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
               Get the eBook
             </button>
+            ${ebook.previewPath ? `
+            <a href="${ebook.previewPath}" id="ebook-preview-link" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;margin-left:12px;padding:10px 16px;background:transparent;border:1.5px solid rgba(212,168,67,0.5);color:#d4a843;border-radius:6px;font-size:13px;font-weight:600;text-decoration:none;transition:all .15s">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Free 5-page preview
+            </a>` : ''}
           </div>
 
           <div class="eb-hero__trust">
@@ -538,4 +556,13 @@ export function setupEbookPageInteractivity() {
   const btn2 = document.getElementById('ebook-buy-btn-bottom');
   if (btn1) btn1.addEventListener('click', handleBuy);
   if (btn2) btn2.addEventListener('click', handleBuy);
+
+  const previewLink = document.getElementById('ebook-preview-link');
+  if (previewLink) {
+    previewLink.addEventListener('click', () => {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'ebook_preview_download', { ebook_slug: slug, ebook_city: ebook.city });
+      }
+    });
+  }
 }

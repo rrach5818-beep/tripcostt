@@ -13,8 +13,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const slug = process.argv[2];
+const isPreview = process.argv.includes('--preview');
 if (!slug) {
-  console.error('Usage: node scripts/generate-city-ebook.js <city-slug>');
+  console.error('Usage: node scripts/generate-city-ebook.js <city-slug> [--preview]');
   process.exit(1);
 }
 
@@ -82,10 +83,15 @@ if (!city) {
 const cityName = city.name;
 const countryName = city.country;
 const cur = city.currencySymbol || '$';
-const OUT = path.resolve(
-  __dirname, '..', 'public', 'ebooks',
-  `LivingCostAtlas_${cityName.replace(/\s+/g, '_')}_2026.pdf`
-);
+const OUT = isPreview
+  ? path.resolve(__dirname, '..', 'public', 'ebooks', 'preview',
+      `LivingCostAtlas_${cityName.replace(/\s+/g, '_')}_Preview.pdf`)
+  : path.resolve(__dirname, '..', 'public', 'ebooks',
+      `LivingCostAtlas_${cityName.replace(/\s+/g, '_')}_2026.pdf`);
+if (isPreview) {
+  const previewDir = path.dirname(OUT);
+  if (!fs.existsSync(previewDir)) fs.mkdirSync(previewDir, { recursive: true });
+}
 
 // -- Brand tokens --------------------------------------------------------
 const NAVY    = '#1e1b4b';
@@ -867,6 +873,56 @@ function visaAppendix() {
   ${pageBreak()}`;
 }
 
+function previewUpsellPage() {
+  return `
+  <div style="padding:60px 40px 40px;text-align:center">
+    <div style="display:inline-block;background:${GOLD};color:${NAVY};font-size:10px;font-weight:800;letter-spacing:2px;padding:6px 14px;border-radius:3px;margin-bottom:20px">END OF FREE PREVIEW</div>
+    <h1 style="font-size:34px;font-weight:800;color:${NAVY};margin:10px 0 16px;line-height:1.15">You&apos;ve seen 5 of ${cityName === 'Lisbon' ? '26' : '28'} pages.</h1>
+    <p style="font-size:14px;color:#374151;line-height:1.7;max-width:520px;margin:0 auto 24px">The complete <strong>Living Cost Atlas ${cityName} 2026</strong> guide includes:</p>
+    <ul style="list-style:none;padding:0;max-width:460px;margin:0 auto 28px;text-align:left;font-size:12px;line-height:1.8;color:#111827">
+      <li style="padding:4px 0"><span style="color:${GOLD};font-weight:800">+</span>&nbsp; Detailed cost breakdown across 6 categories</li>
+      <li style="padding:4px 0"><span style="color:${GOLD};font-weight:800">+</span>&nbsp; 3 monthly budget scenarios (Nomad / Standard / Premium)</li>
+      <li style="padding:4px 0"><span style="color:${GOLD};font-weight:800">+</span>&nbsp; 5 real neighborhood profiles with rent + photos</li>
+      <li style="padding:4px 0"><span style="color:${GOLD};font-weight:800">+</span>&nbsp; Peer-city benchmark vs 4 regional alternatives</li>
+      <li style="padding:4px 0"><span style="color:${GOLD};font-weight:800">+</span>&nbsp; Full 7-dimension Quality-of-Life scorecard</li>
+      <li style="padding:4px 0"><span style="color:${GOLD};font-weight:800">+</span>&nbsp; "Who Should Move?" verdicts by 5 profiles</li>
+      <li style="padding:4px 0"><span style="color:${GOLD};font-weight:800">+</span>&nbsp; 6 named risk factors with mitigation</li>
+      <li style="padding:4px 0"><span style="color:${GOLD};font-weight:800">+</span>&nbsp; Appendix A: First 30 Days operational handbook</li>
+      <li style="padding:4px 0"><span style="color:${GOLD};font-weight:800">+</span>&nbsp; Appendix B: 6 city-specific scams &amp; defences</li>
+      <li style="padding:4px 0"><span style="color:${GOLD};font-weight:800">+</span>&nbsp; Appendix C: Visa deep-dive + pitfalls</li>
+    </ul>
+    <div style="background:${NAVY};color:${WHITE};padding:22px 24px;border-radius:4px;max-width:420px;margin:0 auto 16px">
+      <div style="font-size:10px;color:${GOLD};letter-spacing:1.5px;margin-bottom:6px">COMPLETE GUIDE</div>
+      <div style="font-size:32px;font-weight:800;color:${WHITE};margin-bottom:2px">&euro;9.99</div>
+      <div style="font-size:10.5px;color:#cbd5e1;margin-bottom:12px">One-time, instant download, lifetime updates to 2026 edition.</div>
+      <div style="display:inline-block;background:${GOLD};color:${NAVY};font-size:13px;font-weight:800;letter-spacing:1.2px;padding:11px 26px;border-radius:3px">livingcostatlas.com/ebook/${slug}</div>
+    </div>
+    <p style="font-size:9px;color:${GRAY};font-style:italic;margin-top:14px">Thank you for reading the preview. -- Living Cost Atlas research team</p>
+  </div>`;
+}
+
+function buildPreviewHTML() {
+  return `<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
+@page { size: A4; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 11px; color: #111827; background: #fff; }
+.page-content { padding: 20px 40px 40px; }
+h2 { page-break-after: avoid; }
+table { page-break-inside: auto; }
+tr { page-break-inside: avoid; }
+</style></head>
+<body>
+  ${coverPage()}
+  <div class="page-content">
+    ${headerBar()}
+    ${execSummary()}
+    ${quickFactSheet()}
+    ${previewUpsellPage()}
+  </div>
+</body></html>`;
+}
+
 function buildFullHTML() {
   return `<!DOCTYPE html>
 <html>
@@ -923,7 +979,7 @@ function buildFullHTML() {
 async function main() {
   console.log(`Generating Living Cost Atlas ${cityName} 2026 eBook...`);
 
-  const html = buildFullHTML();
+  const html = isPreview ? buildPreviewHTML() : buildFullHTML();
 
   const htmlPath = OUT.replace('.pdf', '.html');
   fs.writeFileSync(htmlPath, html, 'utf-8');
