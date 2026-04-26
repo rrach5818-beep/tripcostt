@@ -49,7 +49,20 @@
       "Bash(ls LivingCostAtlas_Medellin*)",
       "Bash(curl -sL -o /dev/null -w '%{http_code}' https://en.wikipedia.org/api/rest_v1/page/summary/__TRACKED_VAR__)",
       "Bash(node scripts/generate-city-ebook.js bangkok --preview)",
-      "Bash(awk '{print $5, $9}')"
+      "Bash(awk '{print $5, $9}')",
+      "Bash(git log *)",
+      "Bash(/c/Users/DELL/AppData/Local/Programs/Python/Python312/python.exe --version)",
+      "Bash(/c/Users/DELL/AppData/Local/Programs/Python/Python312/python.exe -c \"import reportlab; print\\(reportlab.Version\\)\")",
+      "Bash(mkdir -p /tmp/lca-skill)",
+      "Bash(/c/Users/DELL/AppData/Local/Programs/Python/Python312/python.exe -c \"import zipfile; zipfile.ZipFile\\(r'C:\\\\\\\\Users\\\\\\\\DELL\\\\\\\\Desktop\\\\\\\\tripcost-report.skill'\\).extractall\\('.'\\)\")",
+      "Bash(/c/Users/DELL/AppData/Local/Programs/Python/Python312/python.exe -c ' *)",
+      "Bash(node scripts/generate-lca-report.js lisbon)",
+      "Bash(node scripts/generate-lca-report.cjs lisbon)",
+      "Bash(node scripts/generate-lca-report.cjs medellin)",
+      "Bash(/c/Users/DELL/AppData/Local/Programs/Python/Python312/python.exe -m pip install pypdfium2 --quiet)",
+      "Bash(rm -f public/ebooks/_review_*.png)",
+      "Bash(rm -f public/ebooks/*.html)",
+      "Bash(git rm *)"
     ]
   }
 }

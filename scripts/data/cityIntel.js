@@ -916,6 +916,81 @@ export const CITY_INTEL = {
       air_quality: { score: 7.5, note: 'Generally good; occasional PM2.5 transport from mainland Asia. Summer ozone and heat-island effect elevate discomfort more than official AQI.' },
       green_space: { score: 7.0, note: 'Yoyogi, Shinjuku Gyoen, Hibiya, Inokashira, Meguro River give excellent pockets. Overall tree canopy is thinner than Berlin or Paris; density of green-per-person is moderate.' }
     }
+  },
+
+  lisbon: {
+    neighborhoods: [
+      { name: 'Principe Real / Chiado', rentRatio: 1.30, character: 'Premium Historic Core', oneLineDesc: 'Lisbon\'s most refined historic district: Belle Epoque mansions converted to boutique hotels, third-wave coffee, and the densest concentration of design studios and creative agencies in Portugal.', bestFor: 'High-earning remote professionals and creatives who prioritise atmosphere, walkability, and food culture over price.' },
+      { name: 'Cais do Sodre / Santos', rentRatio: 1.10, character: 'Riverside Lifestyle', oneLineDesc: 'The Tagus-front spine: Pink Street nightlife, Time Out Market, design hotels, and a cluster of coworking spaces in renovated warehouses; ferries to Cacilhas in 10 minutes.', bestFor: 'Lifestyle-driven nomads who want river views, nightlife optionality, and direct metro / suburban-rail access.' },
+      { name: 'Alvalade / Roma-Areeiro', rentRatio: 0.85, character: 'Local Family Residential', oneLineDesc: 'A wide grid of 1950s-60s apartments around tree-lined avenues, with Lisbon\'s best mid-tier supermarkets and the strongest neighbourhood school cluster outside the international circuit.', bestFor: 'Long-term residents and families who want price stability, parks, and a slower local rhythm.' },
+      { name: 'Alcantara / LX Factory', rentRatio: 1.05, character: 'Creative-Industrial', oneLineDesc: 'A re-zoned industrial belt under the 25 de Abril bridge: LX Factory creative complex, Village Underground, and a growing tech-office cluster anchored by Mercedes.io and Volkswagen Digital Solutions.', bestFor: 'Tech employees and creative founders who want loft-style apartments, industrial chic, and proximity to the river.' },
+      { name: 'Parque das Nacoes', rentRatio: 1.15, character: 'Modern Riverfront', oneLineDesc: 'Lisbon\'s 1998-Expo-era purpose-built waterfront: glass condos, Vasco da Gama mall, the Oceanarium, and the eastern terminus of the Red metro line; cleanest, most modern building stock in the city.', bestFor: 'Families and corporate relocatees who want new construction, family-friendly walkable streets, and direct airport access.' }
+    ],
+    peerCities: [
+      { slug: 'barcelona', rationale: 'Closest Mediterranean peer with comparable visa regime (Spain DNV); Barcelona is denser, pricier, more touristed.' },
+      { slug: 'berlin', rationale: 'Northern EU benchmark — Lisbon is warmer, sunnier, cheaper for food and rent, but with a thinner startup ecosystem.' },
+      { slug: 'amsterdam', rationale: 'Western EU premium tier; useful comparison for the cost of moving north for stronger banking and visa pathways.' },
+      { slug: 'mexico-city', rationale: 'Latin-flavoured peer with similar climate and food culture but at 40-60% lower total cost; useful for nomads weighing EU access vs. price.' }
+    ],
+    execSummary: [
+      'Lisbon in 2026 is Western Europe\'s most lifestyle-rich digital nomad base under EUR 3,000 per month, but the easy era is over. The closure of the Non-Habitual Resident (NHR) tax regime to new entrants in 2024 -- replaced by the narrower IFICI incentive -- has reset the fiscal arithmetic, while a 60-80% rent surge from 2020 to 2024 has compressed the gap to Madrid and Barcelona. The D8 Digital Nomad Visa (launched 2022) and Portugal\'s exceptional EU access remain the structural advantages.',
+      'What still distinguishes Lisbon from peer EU capitals is a unique combination: 2,800+ hours of annual sunshine, ocean and surf 30 minutes from the centre, world-class public transit (Navegante metropolitano EUR 40 unlimited), one of Europe\'s top-10 fibre networks, and a food + wine culture that rewards every euro spent. The trade-offs are real -- housing supply is structurally tight, the bureaucracy of NIF / Social Security registration adds 2-4 weeks of setup friction, and the eastern Atlantic location means longer flights to Asia or the US East Coast than Madrid or Barcelona.',
+      'For a 2026 relocation, Lisbon reads as a STRONG BUY for D8-eligible USD/EUR-earning nomads earning above EUR 4,000/month, a STRONG BUY for families on corporate packages, and a CONDITIONAL BUY for budget nomads under EUR 2,500/month who will face material rent search friction.'
+    ],
+    cuisineNotes: 'Lisbon\'s food economics reward eaters: a tasca lunch (prato do dia + wine + coffee) costs EUR 8-12, premium pasteis de bacalhau and bifana are under EUR 5, and the Time Out Market gathers 20+ chef-led counters under one roof for EUR 12-18 mains. Portuguese wine is genuinely world-class and routinely 30-50% cheaper than Spanish or French peers; supermarket bottles at EUR 4-8 hold up in international tasting. Imported groceries (Asian, US specialties) carry premium pricing -- locals default to Continente or Pingo Doce; expats add Mercado da Ribeira and Comida Independente for specialty.',
+    cultureNotes: 'Lisbon operates on a slower clock than Northern EU capitals: lunch runs 13:00-15:00, dinner from 20:00, and shops still close mid-afternoon in the historic neighbourhoods. The city is genuinely friendly to foreigners -- English fluency rate is among Europe\'s highest -- but month-six integration meaningfully shifts when basic Portuguese (greetings, café orders, taxi directions) becomes routine. Fado, surf culture, and a deep diaspora connection to Brazil, Angola, and Mozambique shape the music, food, and language landscape uniquely.',
+    risks: [
+      { vector: 'Rent Supply / Housing Tightness', level: 'HIGH', assessment: 'Lisbon long-term rental supply has been structurally tight since 2020. Centro 1BR listings turn over in 24-72 hours; standard search lead time is 60-90 days. Budget for a EUR 1,500-2,500 setup cost (deposit + first/last month) on top of rent.' },
+      { vector: 'NHR Closure / IFICI Narrowing', level: 'MODERATE', assessment: 'NHR closed to new entrants January 2024. IFICI replacement is narrower (scientific research, qualifying tech roles only). Standard Portuguese personal income tax is progressive to 48%. Engage a Portuguese accountant before establishing fiscal residency.' },
+      { vector: 'Tourist Footprint', level: 'MODERATE', assessment: 'Alfama, Chiado, and Bairro Alto are dense with tourists year-round; Sept-Oct and May-June are peak. Short-let pressure has reduced long-term inventory and pushed centre rents materially upward 2021-2024.' },
+      { vector: 'Atlantic Climate Variance', level: 'LOW', assessment: 'Lisbon is sunnier than most EU capitals but November-February see steady rain and 8-14C lows. Most apartments have weak heating (no central heat in older stock); budget EUR 60-100/month winter electricity for portable heaters.' },
+      { vector: 'Banking Setup Friction', level: 'LOW', assessment: 'NIF (tax number) is the gateway to almost every system -- bank account, rental contract, utility setup. Engage a fiscal representative or visit Financas before D8 visa interview. Budget 1-2 weeks for the full setup cycle.' },
+      { vector: 'Wildfire Smoke (Aug-Sep)', level: 'LOW', assessment: 'Inland Portuguese wildfires occasionally push smoke into Lisbon during peak summer; impact on AQI is generally short-duration (24-72h). Coastal location moderates exposure compared to interior cities.' }
+    ],
+    whoShouldMove: {
+      remoteWorker: { verdict: 'RECOMMENDED', detail: 'Excellent fibre, mature coworking ecosystem, and Lisbon\'s quality-of-life premium make it one of the strongest remote-work bases in Western Europe for USD/EUR-earning professionals.' },
+      digitalNomad: { verdict: 'RECOMMENDED', detail: 'D8 Digital Nomad Visa with 12-month initial stay, renewable to 5 years and a path to citizenship at year 5+. Among the most generous EU nomad pathways.' },
+      family: { verdict: 'RECOMMENDED', detail: 'World-class international schools (St. Julian\'s, Carlucci, TASIS, Park IS), excellent SNS/private healthcare, exceptional safety, and a child-friendly walkable historic core.' },
+      retiree: { verdict: 'RECOMMENDED', detail: 'D7 Visa for passive-income holders remains generous (EUR 870/month minimum). Mediterranean climate, low crime, world-class healthcare, and a strong English-speaking expat retiree community in Cascais and Estoril.' },
+      entrepreneur: { verdict: 'CONDITIONAL', detail: 'Web Summit, Startup Lisboa, and EU corporate frameworks support founders, but tax post-NHR is no longer a Portugal-specific advantage. Best for EU-market consumer/SaaS plays; less ideal for fiscally-arbitraged founders.' }
+    },
+    prosCons: {
+      pros: [
+        ['D8 Digital Nomad Visa', 'Portugal\'s D8 (launched 2022) accepts remote workers earning EUR 3,280+/month with a 12-month initial stay, renewable to 5 years and citizenship at year 5+ subject to A2 Portuguese.'],
+        ['Western EU Access at Mid-Tier Pricing', 'Schengen-area free movement, EU healthcare reciprocity, and full single-market access at rent levels 30-40% below Amsterdam, Paris, or London.'],
+        ['Mediterranean + Atlantic Climate', '2,800+ hours of annual sunshine, mild winters (8-16C lows), and Atlantic-cooled summers; surf, beaches, and the Sintra mountains all under 40 minutes by train.'],
+        ['World-Class Fibre', 'MEO and NOS deliver 1 Gbps symmetric fibre for EUR 35-55/month with excellent reliability; remote-work uptime is among Europe\'s best.'],
+        ['Public Transit', 'Navegante Metropolitano monthly pass (EUR 40) covers metro, bus, train, and ferry across the Lisbon metro region -- among Europe\'s best transit-cost ratios.'],
+        ['Food + Wine Culture', 'EUR 8-12 lunches, Michelin-starred Belcanto, Mercado da Ribeira, and supermarket Portuguese wine that holds its own at EUR 4-8/bottle.'],
+        ['English Proficiency', 'Among Western Europe\'s highest English EF EPI scores; medical, legal, and banking are fully English-fluent in central Lisbon.'],
+        ['Safe + Walkable Historic Core', 'Numbeo top-30 globally; Alfama, Chiado, and Principe Real offer some of Europe\'s most pleasurable walking environments.']
+      ],
+      cons: [
+        ['Rent Surge 2021-2024', '60-80% inflation in centre 1BR rents over 4 years has pushed Lisbon to mid-tier Western European pricing; the Lisbon-as-bargain era is structurally over.'],
+        ['NHR Closure', 'The decade-long NHR tax break closed to new entrants January 2024. Replacement IFICI is narrower (qualifying tech/research roles only); standard Portuguese rates apply otherwise.'],
+        ['Housing Search Friction', '60-90 day standard lead time for centre 1BR; listings turn over in 24-72 hours; 2-3 month deposit + 1 month rent + EUR 200-400 agency fee setup cost.'],
+        ['Bureaucracy at Setup', 'NIF, Social Security number, bank account, rental contract, and utility setup form a 2-4 week sequential chain; fiscal representative or relocation specialist materially helps.'],
+        ['Eastern Atlantic Geography', 'Longer flights to Asia (12-15h) and US West Coast (12+h) than Madrid or Frankfurt; primary EU hub access via Madrid or London.'],
+        ['Apartment Heating Gap', 'Older Lisbon buildings lack central heating; winter electricity bills (Dec-Feb) for portable heaters can run EUR 80-150/month above summer baseline.'],
+        ['Tourist Saturation', 'Centro and Alfama are heavily touristed year-round, with Sept-Oct and May-June peak intensity affecting evening atmospherics and short-let inventory.'],
+        ['Public Service Pace', 'Financas, IRN, AIMA (immigration) and SEF (legacy) processing times have been a chronic friction point; expect 4-12 weeks for residency card issuance.']
+      ]
+    },
+    verdictParagraphs: {
+      nomads: 'For the D8-eligible USD/EUR-earning remote worker, Lisbon in 2026 remains Western Europe\'s most lifestyle-rich base under EUR 3,000/month all-in. A 1BR centre apartment at EUR 1,400-1,800, EUR 600 monthly food/dining, EUR 40 transit, and EUR 200-300 coworking gets you the Mediterranean climate, EU access, and world-class fibre at total monthly costs that beat Amsterdam, Paris, and Madrid materially. The binding constraints are the housing search itself (start 60-90 days early) and the post-NHR tax math (engage a Portuguese accountant before residency).',
+      families: 'Families relocating to Lisbon get the strongest Western-EU lifestyle-to-cost ratio for school-age children: St. Julian\'s, Carlucci, Park IS, and TASIS Portugal cover the major international curricula at EUR 8,000-22,000/year (vs EUR 18,000-32,000 in Amsterdam or Paris). Healthcare is world-class via SNS + private; safety is exceptional; and the historic core is genuinely walkable for kids. Parque das Nacoes and Cascais offer modern family infrastructure; Principe Real and Alvalade work for those wanting the historic core.',
+      founders: 'Entrepreneurs face a more nuanced 2026 calculus. The post-NHR fiscal advantage no longer carries the founder thesis; Portuguese personal tax (progressive to 48%) is no better than peer EU jurisdictions. What remains: Web Summit (annual), excellent EU-grade IP frameworks, Portuguese talent at 40-60% below DACH/Benelux pricing, and a respectable but not top-tier startup ecosystem. Best for consumer-tech, SaaS, and Lusophone-market plays; less ideal for capital-intensive or regulated industries.'
+    },
+    closingStatement: 'Lisbon in 2026 is the highest-leverage Western European base for D8-eligible USD/EUR earners willing to invest in a 60-90 day housing search and to engage a Portuguese accountant on day one of fiscal residency. STRONG BUY for nomads above EUR 4,000/month, STRONG BUY for families on corporate or self-funded packages, CONDITIONAL BUY for budget nomads under EUR 2,500/month or fiscally-optimised founders.',
+    qolScores: {
+      climate:     { score: 8.5, note: 'Mediterranean with Atlantic moderation: 2,800+ sunshine hours/year, mild winters (8-16C), warm but cooled summers (18-28C). Among the best urban climates in Western Europe.' },
+      walkability: { score: 8.5, note: 'Historic core (Chiado, Principe Real, Alfama, Bairro Alto) is genuinely walkable; cobblestoned hills are real but the metro + 28 tram fill in the gaps. Newer districts (Parque das Nacoes) are flat and stroller-friendly.' },
+      healthcare:  { score: 8.5, note: 'SNS public system universal and low-cost (EUR 5-20 copays); private network (Lusiadas, CUF, Luz, Hospital da Luz) world-class with English-speaking staff. Expat insurance EUR 60-150 basic, EUR 120-280 international.' },
+      safety:      { score: 8.5, note: 'Numbeo top-30 globally; petty theft in tourist zones (tram 28, Alfama, Time Out Market) is the dominant risk; violent crime is rare even in central districts.' },
+      culture:     { score: 8.5, note: 'Fado, surf, world-class wine, design / architecture, Lusophone music and literature; LX Factory and the Berardo, Gulbenkian, MAAT museums anchor the contemporary scene.' },
+      air_quality: { score: 8.0, note: 'Generally good; Atlantic location moderates pollution. Occasional summer wildfire smoke (24-72h episodes) is the main exception. Annual PM2.5 averages well below WHO guidelines.' },
+      green_space: { score: 7.5, note: 'Eduardo VII, Monsanto Forest Park, Parque das Nacoes, Jardim da Estrela, plus the Sintra-Cascais Natural Park 30 minutes by train. Strong overall, denser in newer districts than the historic core.' }
+    }
   }
 };
 

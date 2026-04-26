@@ -1,25 +1,23 @@
 #!/usr/bin/env python3
 """
-Living Cost Atlas City Relocation Report — PDF Generator
-================================================
-Replace the CITY dict below with your target city data,
-then run:  python pdf_generator.py
+Living Cost Atlas — City Relocation Intelligence Report — PDF Engine
+====================================================================
+Reads CITY payload from JSON file pointed to by LCA_CITY_PAYLOAD env var.
+Output path controlled by LCA_OUTPUT_PATH (defaults to ./LivingCostAtlas_{slug}_{year}.pdf).
 
 All monetary values must use the same currency as CITY["currency_sym"].
 Column widths always sum to USABLE_W (481.9 pt for A4 with 18mm margins).
 """
 
-# ── INJECT YOUR CITY DATA BELOW ──────────────────────────────────────────────
-CITY = {
-    # REPLACE THIS ENTIRE DICT WITH YOUR CITY DATA
-    # See references/city-data-template.md for the full schema
-    "name":             "CITY_NAME",
-    "country":          "COUNTRY",
-    "year":             "2026",
-    "currency_sym":     "$",
-    "currency_code":    "USD",
-}
-# ─────────────────────────────────────────────────────────────────────────────
+import sys, os, json
+
+# Load CITY payload from JSON file (Node bridge writes it before invoking us)
+_payload_path = os.environ.get('LCA_CITY_PAYLOAD')
+if not _payload_path or not os.path.exists(_payload_path):
+    print('FATAL: set LCA_CITY_PAYLOAD env var to a JSON file path containing the CITY dict')
+    sys.exit(1)
+with open(_payload_path, 'r', encoding='utf-8') as _f:
+    CITY = json.load(_f)
 
 from reportlab.lib.pagesizes import A4
 from reportlab.lib import colors
@@ -29,7 +27,7 @@ from reportlab.lib.enums import TA_CENTER, TA_LEFT, TA_JUSTIFY
 from reportlab.platypus import (SimpleDocTemplate, Paragraph, Spacer, Table,
                                  TableStyle, PageBreak, HRFlowable, KeepTogether)
 from reportlab.lib.colors import HexColor
-import os, math
+import math
 
 # ── PAGE GEOMETRY ─────────────────────────────────────────────────────────────
 PAGE_W, PAGE_H = A4
@@ -38,10 +36,10 @@ USABLE_W  = PAGE_W - 2 * MARGIN   # 481.9 pt
 U         = USABLE_W
 
 # ── BRAND COLORS ─────────────────────────────────────────────────────────────
-NAVY      = HexColor('#0D1B2A')
-TEAL      = HexColor('#1B4F72')
-GOLD      = HexColor('#C9A84C')
-LT_TEAL   = HexColor('#AED6F1')
+NAVY      = HexColor('#1e1b4b')
+TEAL      = HexColor('#4f46e5')
+GOLD      = HexColor('#d4a843')
+LT_TEAL   = HexColor('#c7d2fe')
 LT_GREY   = HexColor('#F4F6F9')
 MID_GREY  = HexColor('#7F8C8D')
 DARK_GREY = HexColor('#2C3E50')
@@ -147,13 +145,13 @@ def level_badge(text, bg):
 def cover_canvas(c, doc):
     c.saveState()
     c.setFillColor(NAVY);  c.rect(0, 0, PAGE_W, PAGE_H, fill=1, stroke=0)
-    c.setFillColor(HexColor('#0A1520')); c.rect(0, 0, PAGE_W, PAGE_H*0.42, fill=1, stroke=0)
+    c.setFillColor(HexColor('#14123a')); c.rect(0, 0, PAGE_W, PAGE_H*0.42, fill=1, stroke=0)
     c.setFillColor(GOLD);  c.rect(0, PAGE_H-6*mm, PAGE_W, 6*mm, fill=1, stroke=0)
     c.setFillColor(GOLD);  c.rect(0, 0, PAGE_W, 5*mm, fill=1, stroke=0)
     c.setFillColor(TEAL);  c.rect(0, 0, 10*mm, PAGE_H, fill=1, stroke=0)
-    c.setFillColor(HexColor('#11263A')); c.rect(10*mm, PAGE_H*0.40, PAGE_W, PAGE_H*0.20, fill=1, stroke=0)
-    c.setFillColor(HexColor('#0F2030')); c.setFont('Helvetica-Bold', 180)
-    c.drawString(PAGE_W*0.28, 12*mm, "TC")
+    c.setFillColor(HexColor('#2a2570')); c.rect(10*mm, PAGE_H*0.40, PAGE_W, PAGE_H*0.20, fill=1, stroke=0)
+    c.setFillColor(HexColor('#2a2570')); c.setFont('Helvetica-Bold', 180)
+    c.drawString(PAGE_W*0.24, 12*mm, "LCA")
     c.restoreState()
 
 def body_canvas(c, doc):
@@ -161,14 +159,14 @@ def body_canvas(c, doc):
     c.setFillColor(NAVY);  c.rect(0, PAGE_H-13*mm, PAGE_W, 13*mm, fill=1, stroke=0)
     c.setFillColor(GOLD);  c.rect(0, PAGE_H-14.5*mm, PAGE_W, 1.5*mm, fill=1, stroke=0)
     c.setFont('Helvetica-Bold', 7.5); c.setFillColor(WHITE)
-    c.drawString(MARGIN, PAGE_H-8.5*mm, "TRIPCOST RELOCATION INTELLIGENCE  |  CONFIDENTIAL")
+    c.drawString(MARGIN, PAGE_H-8.5*mm, "LIVING COST ATLAS  |  RELOCATION INTELLIGENCE")
     c.setFont('Helvetica', 7.5); c.setFillColor(GOLD)
     city_hdr = f"{CITY['name'].upper()}  {CITY['year']}  —  COST OF LIVING REPORT"
     c.drawRightString(PAGE_W-MARGIN, PAGE_H-8.5*mm, city_hdr)
     c.setFillColor(LT_GREY); c.rect(0, 0, PAGE_W, 9.5*mm, fill=1, stroke=0)
     c.setFillColor(GOLD);    c.rect(0, 9.5*mm, PAGE_W, 1*mm, fill=1, stroke=0)
     c.setFont('Helvetica', 7); c.setFillColor(MID_GREY)
-    c.drawString(MARGIN, 3*mm, f"© {CITY['year']} Living Cost Atlas Research.  All data reflects {CITY['year']} market estimates.")
+    c.drawString(MARGIN, 3*mm, f"© {CITY['year']} Living Cost Atlas.  All data reflects {CITY['year']} market estimates.")
     c.setFont('Helvetica-Bold', 8); c.setFillColor(NAVY)
     c.drawRightString(PAGE_W-MARGIN, 3*mm, f"— {doc.page} —")
     c.restoreState()
@@ -181,7 +179,7 @@ def page_router(c, doc):
 story = []
 
 def add_cover():
-    story.append(P("TRIPCOST", PS('brand', fontSize=16, fontName='Helvetica-Bold',
+    story.append(P("LIVING COST ATLAS", PS('brand', fontSize=14, fontName='Helvetica-Bold',
                                    textColor=GOLD, leading=20, spaceBefore=215)))
     story.append(P("RELOCATION INTELLIGENCE SERIES  ·  " + CITY["year"],
                    PS('ri', fontSize=9, textColor=LT_TEAL, leading=13)))
@@ -200,7 +198,7 @@ def add_cover():
     story.append(P("Data-Driven Insights for Remote Workers, Expats &amp; Global Professionals",
                    PS('sub', fontSize=12, fontName='Helvetica-Oblique', textColor=LT_TEAL, leading=18)))
     story.append(SP(55))
-    story.append(P(f"Prepared by  <b>Living Cost Atlas Research</b>   |   Relocation Intelligence Report   |   {CITY['year']}",
+    story.append(P(f"Prepared by  <b>Living Cost Atlas</b>   |   Relocation Intelligence Report   |   {CITY['year']}",
                    PS('prep', fontSize=8.5, textColor=MID_GREY, leading=13)))
     story.append(PageBreak())
 
@@ -254,7 +252,7 @@ def add_exec():
     story.append(P(
         f"{CITY['name']} has emerged as a compelling relocation destination for remote workers, "
         f"digital nomads, and international professionals. As of {CITY['year']}, this report by "
-        f"Living Cost Atlas Research provides a rigorous, data-driven assessment of the city's cost "
+        f"Living Cost Atlas provides a rigorous, data-driven assessment of the city's cost "
         f"landscape, livability metrics, and relocation risk profile."))
     story.append(SP(8))
     story.extend(sub("Estimated Monthly Living Costs"))
@@ -710,7 +708,7 @@ def add_comparison():
     W3 = [115, 100, 70, 80, U-115-100-70-80]
     r3 = [["City","Monthly Total","vs. Subject","LCA Score","Visa Ease"]]
     for p in CITY.get("peers",[]):
-        r3.append([p["city"], p["total_std"], p["vs_total"], p["tripcost"], p["visa"]])
+        r3.append([p["city"], p["total_std"], p["vs_total"], p["lca_score"], p["visa"]])
     story.append(tbl(r3, W3))
     story.append(PageBreak())
 
@@ -825,7 +823,7 @@ def add_risks():
 
 def add_methodology():
     story.extend(section_hdr("LCA Index Methodology", "12"))
-    story.append(P("The LCA Index is a proprietary composite scoring framework providing "
+    story.append(P("The Living Cost Atlas Index is a proprietary composite scoring framework providing "
                    "standardized, comparable relocation intelligence across global cities."))
     story.append(SP(8))
 
@@ -891,7 +889,7 @@ def add_methodology():
 
 def add_verdict():
     story.extend(section_hdr("Final Verdict", "13"))
-    story.append(P(f"Living Cost Atlas's assessment of {CITY['name']} as a {CITY['year']} relocation destination."))
+    story.append(P(f"Living Cost Atlas' assessment of {CITY['name']} as a {CITY['year']} relocation destination."))
     story.append(SP(10))
 
     idx = CITY.get("index_scores", {})
@@ -955,11 +953,11 @@ def add_verdict():
     story.append(SP(8))
 
     disc_data = [[Paragraph(
-        f"<b>Disclaimer:</b>  This report has been prepared by Living Cost Atlas Research for informational "
+        f"<b>Disclaimer:</b>  This report has been prepared by Living Cost Atlas for informational "
         f"purposes only. All cost estimates are based on Q4 {int(CITY['year'])-1}–Q1 {CITY['year']} market data and are subject to "
         "change without notice. This document does not constitute legal, tax, or financial advice. Readers "
         "are advised to conduct independent verification and consult qualified professionals before making "
-        "any relocation decisions. Living Cost Atlas Research accepts no liability for decisions made in reliance "
+        "any relocation decisions. Living Cost Atlas accepts no liability for decisions made in reliance "
         "on this report. Unauthorized reproduction is prohibited.",
         PS('disc', fontSize=7.5, fontName='Helvetica-Oblique', textColor=MID_GREY, leading=12))]]
     disc_t = Table(disc_data, colWidths=[U])
@@ -973,7 +971,7 @@ def add_verdict():
     ]))
     story.append(disc_t)
     story.append(SP(8))
-    story.append(P(f"© {CITY['year']} Living Cost Atlas Research.  All rights reserved.",
+    story.append(P(f"© {CITY['year']} Living Cost Atlas.  All rights reserved.",
                    PS('copy', fontSize=8, textColor=MID_GREY, alignment=TA_CENTER)))
 
 # ── RUN ───────────────────────────────────────────────────────────────────────
@@ -994,17 +992,19 @@ add_methodology()
 add_verdict()
 
 city_slug = CITY["name"].replace(" ","_").replace(",","")
-OUTPUT = f"/mnt/user-data/outputs/LivingCostAtlas_{city_slug}_{CITY['year']}_2026.pdf"
-os.makedirs(os.path.dirname(OUTPUT), exist_ok=True)
+OUTPUT = os.environ.get('LCA_OUTPUT_PATH') or f"LivingCostAtlas_{city_slug}_{CITY['year']}.pdf"
+_outdir = os.path.dirname(OUTPUT)
+if _outdir:
+    os.makedirs(_outdir, exist_ok=True)
 
 doc = SimpleDocTemplate(
     OUTPUT, pagesize=A4,
     leftMargin=MARGIN, rightMargin=MARGIN,
     topMargin=20*mm, bottomMargin=17*mm,
     title=f"Living Cost Atlas — {CITY['name']} {CITY['year']} Cost of Living & Relocation Report",
-    author="Living Cost Atlas Research",
+    author="Living Cost Atlas",
     subject=f"Relocation Intelligence — {CITY['name']}, {CITY['country']} — {CITY['year']}",
-    creator="Living Cost Atlas Research",
+    creator="Living Cost Atlas",
 )
 doc.build(story, onFirstPage=page_router, onLaterPages=page_router)
 sz = os.path.getsize(OUTPUT)

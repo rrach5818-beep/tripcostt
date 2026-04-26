@@ -21,3 +21,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# LCA generator temp payloads + review artifacts
+/scripts/.tmp/
+/public/ebooks/_review_*.png
