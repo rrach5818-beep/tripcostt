@@ -726,4 +726,27 @@ for (const slug in CITIES) {
   if (!CITIES[slug].defaultNeighborhoodCons) CITIES[slug].defaultNeighborhoodCons = genericCons;
 }
 
+// City-specific accent colour — used as a secondary band on the cover.
+// Each colour evokes the city (azulejo, sakura, coral, etc.) while remaining
+// readable on the navy cover background.
+const ACCENTS = {
+  lisbon:        '#d4845a', // azulejo terracotta
+  bangkok:       '#c9374b', // temple red
+  'mexico-city': '#d4734a', // mexican orange
+  dubai:         '#caa15a', // desert gold
+  amsterdam:     '#5fb088', // canal green (brighter for visibility on navy)
+  bali:          '#e16b5e', // sunset coral
+  barcelona:     '#d8523e', // catalan red
+  berlin:        '#c9b070', // industrial bronze (brighter)
+  'chiang-mai':  '#d99860', // lanna ochre
+  medellin:      '#5fc7b3', // eternal spring teal
+  paris:         '#d4ad5c', // limestone gold (brighter)
+  prague:        '#c96642', // red roof tile
+  tokyo:         '#d8425a', // japanese lacquer red
+};
+
+for (const slug in CITIES) {
+  if (ACCENTS[slug] && !CITIES[slug].accentColor) CITIES[slug].accentColor = ACCENTS[slug];
+}
+
 module.exports = CITIES;

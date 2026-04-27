@@ -27,6 +27,7 @@ from reportlab.lib.enums import TA_CENTER, TA_LEFT, TA_JUSTIFY
 from reportlab.platypus import (SimpleDocTemplate, Paragraph, Spacer, Table,
                                  TableStyle, PageBreak, HRFlowable, KeepTogether)
 from reportlab.lib.colors import HexColor
+from reportlab.graphics.shapes import Drawing, Circle, String, Wedge, Rect
 import math
 
 # ── PAGE GEOMETRY ─────────────────────────────────────────────────────────────
@@ -129,6 +130,55 @@ def tbl(data, widths, hdr_bg=TEAL, alt=LT_GREY, rpad=6, fs=8.5):
 def score_color(s):
     return GRN if s >= 8 else (AMBER if s >= 6 else RED)
 
+def gauge(score_val, label, size=58):
+    """Circular score gauge: radial-arc for score/10, with score in centre and label below."""
+    d = Drawing(size, size + 18)
+    cx, cy, r = size/2, (size/2) + 8, (size/2) - 4
+    # Track ring (light)
+    d.add(Circle(cx, cy, r, strokeColor=LT_GREY, strokeWidth=4, fillColor=None))
+    # Score arc — wedge from top, clockwise, span = score/10 * 360
+    s = max(0, min(10, float(score_val)))
+    if s > 0:
+        # Wedge in ReportLab uses startangledegrees and endangledegrees CCW from +x axis
+        # For top-start clockwise: start = 90, end = 90 - (s/10 * 360)
+        end_angle = 90
+        start_angle = 90 - (s / 10.0) * 360
+        col = score_color(s)
+        w = Wedge(cx, cy, r + 2, start_angle, end_angle, radius2=r - 2,
+                  strokeColor=col, fillColor=col, strokeWidth=0)
+        d.add(w)
+    # Hollow centre to keep ring look
+    d.add(Circle(cx, cy, r - 4, strokeColor=None, fillColor=WHITE))
+    # Score number
+    d.add(String(cx, cy - 4, f"{s:.1f}",
+                 fontName='Helvetica-Bold', fontSize=14, fillColor=NAVY, textAnchor='middle'))
+    # Label below
+    d.add(String(cx, 2, label,
+                 fontName='Helvetica-Bold', fontSize=6.5, fillColor=DARK_GREY, textAnchor='middle'))
+    return d
+
+def gauge_row(score_dict, labels=None):
+    """Build a Table row of 5 gauges from a dict of {dimension: score}."""
+    items = list(score_dict.items())[:5]
+    cells = []
+    for k, v in items:
+        short = (labels or {}).get(k, k.split()[0] if ' ' in k else k)
+        if len(short) > 14:
+            short = short[:13] + '.'
+        cells.append(gauge(v, short.upper(), size=70))
+    n = len(cells)
+    if n == 0:
+        return Spacer(1, 0)
+    col_w = U / n
+    t = Table([cells], colWidths=[col_w]*n)
+    t.setStyle(TableStyle([
+        ('ALIGN',  (0,0), (-1,-1), 'CENTER'),
+        ('VALIGN', (0,0), (-1,-1), 'MIDDLE'),
+        ('TOPPADDING',    (0,0), (-1,-1), 6),
+        ('BOTTOMPADDING', (0,0), (-1,-1), 6),
+    ]))
+    return t
+
 def verdict_badge(text, bg):
     return Paragraph(f"<b>{text}</b>",
                      PS(f'vb{text[:3]}', fontSize=8, fontName='Helvetica-Bold',
@@ -143,12 +193,16 @@ def level_badge(text, bg):
 
 # ── PAGE CANVASES ─────────────────────────────────────────────────────────────
 def cover_canvas(c, doc):
+    accent = HexColor(CITY.get('accent_color', '#d4a843'))
     c.saveState()
     c.setFillColor(NAVY);  c.rect(0, 0, PAGE_W, PAGE_H, fill=1, stroke=0)
     c.setFillColor(HexColor('#14123a')); c.rect(0, 0, PAGE_W, PAGE_H*0.42, fill=1, stroke=0)
     c.setFillColor(GOLD);  c.rect(0, PAGE_H-6*mm, PAGE_W, 6*mm, fill=1, stroke=0)
     c.setFillColor(GOLD);  c.rect(0, 0, PAGE_W, 5*mm, fill=1, stroke=0)
-    c.setFillColor(TEAL);  c.rect(0, 0, 10*mm, PAGE_H, fill=1, stroke=0)
+    # City-specific accent stripe just above the bottom gold border (signature mark)
+    c.setFillColor(accent); c.rect(0, 5*mm, PAGE_W, 2.2*mm, fill=1, stroke=0)
+    # Left side bar — switch to accent for a city-specific mark
+    c.setFillColor(accent);  c.rect(0, 0, 10*mm, PAGE_H, fill=1, stroke=0)
     c.setFillColor(HexColor('#2a2570')); c.rect(10*mm, PAGE_H*0.40, PAGE_W, PAGE_H*0.20, fill=1, stroke=0)
     c.setFillColor(HexColor('#2a2570')); c.setFont('Helvetica-Bold', 180)
     c.drawString(PAGE_W*0.24, 12*mm, "LCA")
@@ -255,6 +309,26 @@ def add_exec():
         f"Living Cost Atlas provides a rigorous, data-driven assessment of the city's cost "
         f"landscape, livability metrics, and relocation risk profile."))
     story.append(SP(8))
+    # Pull quote — sets the tone for the city in one striking line
+    pq = CITY.get('pull_quote')
+    if pq:
+        accent = HexColor(CITY.get('accent_color', '#d4a843'))
+        quote_style = PS('PullQuote', fontSize=13, leading=19, fontName='Helvetica-Oblique',
+                         textColor=NAVY, alignment=TA_LEFT, leftIndent=16, rightIndent=12,
+                         spaceBefore=6, spaceAfter=6)
+        accent_hex = '#' + accent.hexval()[2:]
+        pq_para = Paragraph(f'<font color="{accent_hex}" size="18"><b>&ldquo;</b></font>  {pq}  <font color="{accent_hex}" size="18"><b>&rdquo;</b></font>', quote_style)
+        pq_tbl = Table([[pq_para]], colWidths=[U])
+        pq_tbl.setStyle(TableStyle([
+            ('LINEBEFORE',    (0,0), (0,-1), 3, accent),
+            ('BACKGROUND',    (0,0), (-1,-1), HexColor('#fbf8f3')),
+            ('TOPPADDING',    (0,0), (-1,-1), 12),
+            ('BOTTOMPADDING', (0,0), (-1,-1), 12),
+            ('LEFTPADDING',   (0,0), (-1,-1), 14),
+            ('RIGHTPADDING',  (0,0), (-1,-1), 14),
+        ]))
+        story.append(pq_tbl)
+        story.append(SP(10))
     story.extend(sub("Estimated Monthly Living Costs"))
     d = [
         ["Resident Profile", f"Monthly Estimate ({CITY['currency_code']})", "Lifestyle Descriptor"],
@@ -291,6 +365,17 @@ def add_exec():
     story.extend(sub(f"LCA Index Score — {CITY['name']} {CITY['year']}"))
     idx = CITY.get("index_scores", {})
     rat = CITY.get("index_rationale", {})
+    # Visual gauge row (5 circles) — gives instant visual read on the city's profile
+    short_labels = {
+        "Affordability": "AFFORD.",
+        "Infrastructure": "INFRA",
+        "Safety": "SAFETY",
+        "Quality of Life": "QoL",
+        "Economic Stability": "ECON.",
+    }
+    story.append(SP(4))
+    story.append(gauge_row(idx, short_labels))
+    story.append(SP(8))
     weights = {"Affordability":0.30,"Infrastructure":0.20,"Safety":0.15,"Quality of Life":0.20,"Economic Stability":0.15}
     total = sum(idx.get(k,0)*w for k,w in weights.items())
     sd = [["Dimension","Weight","Score","Contribution","Rationale"]]

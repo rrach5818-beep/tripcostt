@@ -81,8 +81,11 @@ function buildPayload(slug) {
 
   const sym = city.currencySymbol && city.currencySymbol.trim() ? city.currencySymbol.trim() : (city.currency === 'THB' ? '฿' : city.currency || '$');
   const code = city.currency || 'USD';
-  const rentCenter = Math.round(city.costs.accommodation.center * 30);
-  const rentSuburb = Math.round(city.costs.accommodation.suburb * 30);
+  // cityDB stores nightly-rate equivalents; calibrate to long-term monthly lease.
+  // Per-city override possible via meta.rentCalibration (default 0.55).
+  const RENT_CAL = meta.rentCalibration ?? 0.55;
+  const rentCenter = Math.round(city.costs.accommodation.center * 30 * RENT_CAL);
+  const rentSuburb = Math.round(city.costs.accommodation.suburb * 30 * RENT_CAL);
   const foodB = city.costs.food.budget;
   const foodS = city.costs.food.standard;
   const foodP = city.costs.food.premium;
@@ -239,6 +242,8 @@ function buildPayload(slug) {
     year: YEAR,
     currency_sym: sym,
     currency_code: code,
+    accent_color: meta.accentColor || '#d4a843',
+    pull_quote: meta.pullQuote || (intel.execSummary && intel.execSummary[0] ? intel.execSummary[0].split('. ')[0] + '.' : null),
 
     population_city:  meta.facts?.population_city   || 'N/A',
     population_metro: meta.facts?.population_metro  || 'N/A',
