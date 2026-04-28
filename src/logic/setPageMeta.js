@@ -7,9 +7,16 @@ const BASE_URL = 'https://www.livingcostatlas.com';
 
 export function setPageMeta({ title, description, canonical, jsonLd, image }) {
   // -- Title ----------------------------------------------
-  const fullTitle = title
-    ? `${title} | Living Cost Atlas`
-    : 'Living Cost Atlas -- Free Cost of Living Calculator';
+  // Avoid duplicating the brand suffix when a caller already includes it.
+  const BRAND = 'Living Cost Atlas';
+  let fullTitle;
+  if (!title) {
+    fullTitle = `${BRAND} -- Free Cost of Living Calculator`;
+  } else if (title.includes(BRAND)) {
+    fullTitle = title;
+  } else {
+    fullTitle = `${title} | ${BRAND}`;
+  }
   document.title = fullTitle;
 
   // -- Meta description -----------------------------------
