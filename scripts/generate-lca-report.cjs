@@ -290,8 +290,6 @@ function buildPayload(slug) {
     dining_finedining:    `${sym}${fmt(Math.round(foodP*1.2))} – ${sym}${fmt(Math.round(foodP*2.5))}+`,
     dining_fastfood:      `${sym}${fmt(Math.round(foodB*0.6))} – ${sym}${fmt(Math.round(foodB*1.0))}`,
     dining_coffee:        meta.food?.coffee || `${sym}${fmt(Math.max(1,Math.round(foodB*0.15)))} – ${sym}${fmt(Math.max(2,Math.round(foodB*0.25)))}`,
-    dining_beer:          meta.food?.beer   || `${sym}${fmt(Math.max(1,Math.round(foodB*0.25)))} – ${sym}${fmt(Math.max(3,Math.round(foodB*0.50)))}`,
-    dining_wine_bottle:   meta.food?.wine   || `${sym}${fmt(Math.round(foodB*0.7))} – ${sym}${fmt(Math.round(foodB*2.0))}`,
 
     transport_pass:           `${sym}${fmt(Math.round(transport*0.85))} – ${sym}${fmt(Math.round(transport*1.15))}`,
     transport_pass_name:      meta.transport?.pass_name || 'Monthly metro/transit pass',

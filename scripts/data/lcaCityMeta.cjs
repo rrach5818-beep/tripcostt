@@ -13,7 +13,7 @@
  *                        avg_local_salary }
  *   internet         : { providers, cost }
  *   mobile           : { providers, gb20, unlimited }
- *   food             : { shops, coffee, beer, wine }
+ *   food             : { shops, coffee }
  *   transport        : { pass_name, ride_trip, ride_month, petrol, insurance,
  *                        parking, car_total, bike, airport, intercity }
  *   utilities        : { electricity, gas, water, condo_fee, total }
@@ -133,7 +133,7 @@ const CITIES = {
       'Affordability':      'Mid-tier Western EU pricing — premium vs. SE Europe, discount vs. Northern EU.',
       'Infrastructure':     'Excellent fibre, mature coworking, EU banking, and English-fluent business services.',
       'Safety':             'Among Europe\'s safest capitals (Numbeo 75+); petty theft in tourist zones is the only material risk.',
-      'Quality of Life':    'Mediterranean climate, world-class food/wine, walkable historic core, ocean-adjacent lifestyle.',
+      'Quality of Life':    'Mediterranean climate, world-class food culture, walkable historic core, ocean-adjacent lifestyle.',
       'Economic Stability': 'Eurozone macro stability + Portuguese fiscal balance offset by NHR closure and rental tightness.',
     },
     verdicts: {
@@ -656,10 +656,10 @@ const CITIES = {
     },
     indexScores: { affordability: 7.5, economic: 7.0 },
     indexRationale: {
-      'Affordability':      '40–60% below Western EU peers; food, beer, and transit are exceptional value.',
+      'Affordability':      '40–60% below Western EU peers; food, dining out, and transit are exceptional value.',
       'Infrastructure':     'Excellent transit, fibre, healthcare; banking and admin moderate friction.',
       'Safety':             'Numbeo top-25 globally; petty theft in tourist zones (Old Town, Wenceslas Square) is the main risk.',
-      'Quality of Life':    'Compact walkable city, world-class architecture, beer culture; climate cold/grey 6 months/year.',
+      'Quality of Life':    'Compact walkable city, world-class architecture, vibrant cafe and pub culture; climate cold/grey 6 months/year.',
       'Economic Stability': 'EU + NATO macro + CZK has been stable; inflation 2–4%.',
     },
     verdicts: {

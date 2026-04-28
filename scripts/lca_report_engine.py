@@ -509,8 +509,6 @@ def add_costs():
         ["Dining","International / fine dining, 2 persons",      CITY.get("dining_finedining","N/A")],
         ["Dining","Fast food (local / international chain)",      CITY.get("dining_fastfood","N/A")],
         ["Dining","Coffee (espresso / local equivalent)",         CITY.get("dining_coffee","N/A")],
-        ["Dining","Beer (local, restaurant, 0.33L)",              CITY.get("dining_beer","N/A")],
-        ["Dining","Wine / spirits (bottle, supermarket)",         CITY.get("dining_wine_bottle","N/A")],
     ]
     story.append(tbl(f4, [90, 225, U-90-225]))
     story.append(SP(12))
