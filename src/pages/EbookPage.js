@@ -29,7 +29,7 @@ const EBOOKS = {
     city: 'Lisbon', country: 'Portugal', price: 9.99, currency: 'EUR', pages: 28,
     pdfPath: '/ebooks/LivingCostAtlas_Lisbon_2026.pdf',
     previewPath: '/ebooks/preview/LivingCostAtlas_Lisbon_Preview.pdf',
-    coverImage: '/images/ebooks/lisbon-cover.png',
+    coverImage: '/images/ebooks/lisbon-cover-v2.png',
     stripeLink: 'https://buy.stripe.com/4gM4gAe7R12xacHbfd3gk00',
     highlights: defaultHighlights('Lisbon'),
     stats: { nomadScore: 81, avgRent: 1800, safety: 85, wifi: 120 }
@@ -38,7 +38,7 @@ const EBOOKS = {
     city: 'Barcelona', country: 'Spain', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Barcelona_2026.pdf',
     previewPath: '/ebooks/preview/LivingCostAtlas_Barcelona_Preview.pdf',
-    coverImage: '/images/ebooks/barcelona-cover.png',
+    coverImage: '/images/ebooks/barcelona-cover-v2.png',
     stripeLink: 'https://buy.stripe.com/cNieVe4xhbHbbgLcjh3gk01',
     highlights: defaultHighlights('Barcelona'),
     stats: { nomadScore: 82, avgRent: 1500, safety: 75, wifi: 140 }
@@ -47,7 +47,7 @@ const EBOOKS = {
     city: 'Bangkok', country: 'Thailand', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Bangkok_2026.pdf',
     previewPath: '/ebooks/preview/LivingCostAtlas_Bangkok_Preview.pdf',
-    coverImage: '/images/ebooks/bangkok-cover.png',
+    coverImage: '/images/ebooks/bangkok-cover-v2.png',
     stripeLink: 'https://buy.stripe.com/14A7sMgfZ6mRgB55UT3gk02',
     highlights: defaultHighlights('Bangkok'),
     stats: { nomadScore: 88, avgRent: 750, safety: 65, wifi: 80 }
@@ -56,7 +56,7 @@ const EBOOKS = {
     city: 'Tokyo', country: 'Japan', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Tokyo_2026.pdf',
     previewPath: '/ebooks/preview/LivingCostAtlas_Tokyo_Preview.pdf',
-    coverImage: '/images/ebooks/tokyo-cover.png',
+    coverImage: '/images/ebooks/tokyo-cover-v2.png',
     stripeLink: 'https://buy.stripe.com/6oU3cw7Jt9z31Gb4QP3gk03',
     highlights: defaultHighlights('Tokyo'),
     stats: { nomadScore: 80, avgRent: 2100, safety: 95, wifi: 150 }
@@ -65,7 +65,7 @@ const EBOOKS = {
     city: 'Bali', country: 'Indonesia', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Bali_2026.pdf',
     previewPath: '/ebooks/preview/LivingCostAtlas_Bali_Preview.pdf',
-    coverImage: '/images/ebooks/bali-cover.png',
+    coverImage: '/images/ebooks/bali-cover-v2.png',
     stripeLink: 'https://buy.stripe.com/00wfZiaVF6mR70v2IH3gk04',
     highlights: defaultHighlights('Bali'),
     stats: { nomadScore: 92, avgRent: 600, safety: 70, wifi: 40 }
@@ -74,7 +74,7 @@ const EBOOKS = {
     city: 'Berlin', country: 'Germany', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Berlin_2026.pdf',
     previewPath: '/ebooks/preview/LivingCostAtlas_Berlin_Preview.pdf',
-    coverImage: '/images/ebooks/berlin-cover.png',
+    coverImage: '/images/ebooks/berlin-cover-v2.png',
     stripeLink: 'https://buy.stripe.com/fZu8wQ2p912xesXfvt3gk05',
     highlights: defaultHighlights('Berlin'),
     stats: { nomadScore: 83, avgRent: 1650, safety: 80, wifi: 100 }
@@ -83,7 +83,7 @@ const EBOOKS = {
     city: 'Dubai', country: 'UAE', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Dubai_2026.pdf',
     previewPath: '/ebooks/preview/LivingCostAtlas_Dubai_Preview.pdf',
-    coverImage: '/images/ebooks/dubai-cover.png',
+    coverImage: '/images/ebooks/dubai-cover-v2.png',
     stripeLink: 'https://buy.stripe.com/6oUcN62p9cLf84z3ML3gk06',
     highlights: defaultHighlights('Dubai'),
     stats: { nomadScore: 79, avgRent: 2400, safety: 95, wifi: 120 }
@@ -92,7 +92,7 @@ const EBOOKS = {
     city: 'Paris', country: 'France', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Paris_2026.pdf',
     previewPath: '/ebooks/preview/LivingCostAtlas_Paris_Preview.pdf',
-    coverImage: '/images/ebooks/paris-cover.png',
+    coverImage: '/images/ebooks/paris-cover-v2.png',
     stripeLink: 'https://buy.stripe.com/6oU5kE0h1bHbbgL8313gk07',
     highlights: defaultHighlights('Paris'),
     stats: { nomadScore: 78, avgRent: 2100, safety: 70, wifi: 200 }
@@ -101,7 +101,7 @@ const EBOOKS = {
     city: 'Mexico City', country: 'Mexico', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Mexico_City_2026.pdf',
     previewPath: '/ebooks/preview/LivingCostAtlas_Mexico_City_Preview.pdf',
-    coverImage: '/images/ebooks/mexico-city-cover.png',
+    coverImage: '/images/ebooks/mexico-city-cover-v2.png',
     stripeLink: 'https://buy.stripe.com/dRm00k4xh9z31Gb8313gk08',
     highlights: defaultHighlights('Mexico City'),
     stats: { nomadScore: 66, avgRent: 1200, safety: 55, wifi: 100 }
@@ -110,7 +110,7 @@ const EBOOKS = {
     city: 'Medellin', country: 'Colombia', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Medellin_2026.pdf',
     previewPath: '/ebooks/preview/LivingCostAtlas_Medellin_Preview.pdf',
-    coverImage: '/images/ebooks/medellin-cover.png',
+    coverImage: '/images/ebooks/medellin-cover-v2.png',
     stripeLink: 'https://buy.stripe.com/28E9AU1l5h1vckP2IH3gk09',
     highlights: defaultHighlights('Medellin'),
     stats: { nomadScore: 64, avgRent: 900, safety: 60, wifi: 100 }
@@ -119,7 +119,7 @@ const EBOOKS = {
     city: 'Chiang Mai', country: 'Thailand', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Chiang_Mai_2026.pdf',
     previewPath: '/ebooks/preview/LivingCostAtlas_Chiang_Mai_Preview.pdf',
-    coverImage: '/images/ebooks/chiang-mai-cover.png',
+    coverImage: '/images/ebooks/chiang-mai-cover-v2.png',
     stripeLink: 'https://buy.stripe.com/dRmdRafbVeTn84zbfd3gk0a',
     highlights: defaultHighlights('Chiang Mai'),
     stats: { nomadScore: 67, avgRent: 500, safety: 85, wifi: 90 }
@@ -128,7 +128,7 @@ const EBOOKS = {
     city: 'Amsterdam', country: 'Netherlands', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Amsterdam_2026.pdf',
     previewPath: '/ebooks/preview/LivingCostAtlas_Amsterdam_Preview.pdf',
-    coverImage: '/images/ebooks/amsterdam-cover.png',
+    coverImage: '/images/ebooks/amsterdam-cover-v2.png',
     stripeLink: 'https://buy.stripe.com/eVq6oIe7R26B98Dbfd3gk0b',
     highlights: defaultHighlights('Amsterdam'),
     stats: { nomadScore: 85, avgRent: 2200, safety: 80, wifi: 200 }
@@ -137,7 +137,7 @@ const EBOOKS = {
     city: 'Prague', country: 'Czech Republic', price: 9.99, currency: 'EUR', pages: 22,
     pdfPath: '/ebooks/LivingCostAtlas_Prague_2026.pdf',
     previewPath: '/ebooks/preview/LivingCostAtlas_Prague_Preview.pdf',
-    coverImage: '/images/ebooks/prague-cover.png',
+    coverImage: '/images/ebooks/prague-cover-v2.png',
     stripeLink: 'https://buy.stripe.com/4gM6oI7JtfXr70v3ML3gk0c',
     highlights: defaultHighlights('Prague'),
     stats: { nomadScore: 81, avgRent: 1400, safety: 85, wifi: 180 }
