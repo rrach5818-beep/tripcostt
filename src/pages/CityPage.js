@@ -19,7 +19,7 @@ export function CityPage(params) {
   if (!city) {
     return MainLayout(`
       <div style="text-align:center;padding:120px 24px">
-        <div style="font-size:48px;margin-bottom:16px">🌍</div>
+        <div style="font-size:48px;margin-bottom:16px">&#x1F30D;</div>
         <h1 style="font-size:28px;font-weight:800;color:#111827;margin-bottom:12px">City not found</h1>
         <p style="color:#6b7280;margin-bottom:32px">We couldn't find a city with that name.</p>
         <a href="/destinations" data-link class="btn btn--primary btn--lg">Browse all destinations</a>
@@ -479,25 +479,25 @@ export function CityPage(params) {
 
         <div class="cp-kpis">
           <div class="cp-kpi">
-            <div class="cp-kpi__icon">🏠</div>
+            <div class="cp-kpi__icon">&#x1F3E0;</div>
             <div class="cp-kpi__label">City Center rent</div>
             <div class="cp-kpi__val">${formatCurrency(acc.center * 30, city.currencySymbol)}</div>
             <div class="cp-kpi__sub">per month</div>
           </div>
           <div class="cp-kpi">
-            <div class="cp-kpi__icon">🍽️</div>
+            <div class="cp-kpi__icon">&#x1F37D;&#xFE0F;</div>
             <div class="cp-kpi__label">Food (standard)</div>
             <div class="cp-kpi__val">${formatCurrency(food.standard * 30, city.currencySymbol)}</div>
             <div class="cp-kpi__sub">per month</div>
           </div>
           <div class="cp-kpi">
-            <div class="cp-kpi__icon">🚇</div>
+            <div class="cp-kpi__icon">&#x1F687;</div>
             <div class="cp-kpi__label">Transport</div>
             <div class="cp-kpi__val">${formatCurrency(costs.transport, city.currencySymbol)}</div>
             <div class="cp-kpi__sub">per month</div>
           </div>
           <div class="cp-kpi">
-            <div class="cp-kpi__icon">💻</div>
+            <div class="cp-kpi__icon">&#x1F4BB;</div>
             <div class="cp-kpi__label">Coworking</div>
             <div class="cp-kpi__val">${formatCurrency(costs.coworking, city.currencySymbol)}</div>
             <div class="cp-kpi__sub">per month</div>
@@ -517,14 +517,14 @@ export function CityPage(params) {
         <div class="cp-costs">
 
           <div class="cp-cost-card">
-            <div class="cp-cost-card__title">🏠 Accommodation</div>
+            <div class="cp-cost-card__title">&#x1F3E0; Accommodation</div>
             <div class="cp-cost-card__desc">${getCostSectionText(city, 'accommodation')}</div>
             ${costRow('City center', acc.center * 30, '#6366f1')}
             ${costRow('Suburb', acc.suburb * 30, '#8b5cf6')}
           </div>
 
           <div class="cp-cost-card">
-            <div class="cp-cost-card__title">🍽️ Food & Dining</div>
+            <div class="cp-cost-card__title">&#x1F37D;&#xFE0F; Food & Dining</div>
             <div class="cp-cost-card__desc">${getCostSectionText(city, 'food')}</div>
             ${costRow('Budget', food.budget * 30, '#10b981')}
             ${costRow('Standard', food.standard * 30, '#059669')}
@@ -532,7 +532,7 @@ export function CityPage(params) {
           </div>
 
           <div class="cp-cost-card">
-            <div class="cp-cost-card__title">🚇 Transport & Work</div>
+            <div class="cp-cost-card__title">&#x1F687; Transport & Work</div>
             <div class="cp-cost-card__desc">${getCostSectionText(city, 'transport')}</div>
             ${costRow('Transport', costs.transport, '#f59e0b')}
             ${costRow('Coworking', costs.coworking, '#d97706')}
@@ -595,7 +595,7 @@ export function CityPage(params) {
           <div class="cp-visa__head">
             <span class="cp-visa__head-title">${visa.type ?? 'Standard Visa'}</span>
             <span class="cp-visa__tag" style="background:${visa.remoteFriendly ? '#d1fae5' : '#f1f5f9'};color:${visa.remoteFriendly ? '#065f46' : '#6b7280'}">
-              ${visa.remoteFriendly ? '✅ Nomad Friendly' : '  Standard'}
+              ${visa.remoteFriendly ? '&#x2705; Nomad Friendly' : '  Standard'}
             </span>
           </div>
           <div class="cp-visa__body">
