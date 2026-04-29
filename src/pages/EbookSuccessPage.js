@@ -6,26 +6,11 @@
 import { setPageMeta } from '../logic/setPageMeta.js';
 import { MainLayout } from '../layouts/MainLayout.js';
 import { trackEbookPurchase } from '../logic/analytics.js';
-
-const EBOOKS = {
-  lisbon:        { city: 'Lisbon',      country: 'Portugal',      price: 9.99, currency: 'EUR', file: 'LivingCostAtlas_Lisbon_2026.pdf' },
-  barcelona:     { city: 'Barcelona',   country: 'Spain',         price: 9.99, currency: 'EUR', file: 'LivingCostAtlas_Barcelona_2026.pdf' },
-  bangkok:       { city: 'Bangkok',     country: 'Thailand',      price: 9.99, currency: 'EUR', file: 'LivingCostAtlas_Bangkok_2026.pdf' },
-  tokyo:         { city: 'Tokyo',       country: 'Japan',         price: 9.99, currency: 'EUR', file: 'LivingCostAtlas_Tokyo_2026.pdf' },
-  bali:          { city: 'Bali',        country: 'Indonesia',     price: 9.99, currency: 'EUR', file: 'LivingCostAtlas_Bali_2026.pdf' },
-  berlin:        { city: 'Berlin',      country: 'Germany',       price: 9.99, currency: 'EUR', file: 'LivingCostAtlas_Berlin_2026.pdf' },
-  dubai:         { city: 'Dubai',       country: 'UAE',           price: 9.99, currency: 'EUR', file: 'LivingCostAtlas_Dubai_2026.pdf' },
-  paris:         { city: 'Paris',       country: 'France',        price: 9.99, currency: 'EUR', file: 'LivingCostAtlas_Paris_2026.pdf' },
-  'mexico-city': { city: 'Mexico City', country: 'Mexico',        price: 9.99, currency: 'EUR', file: 'LivingCostAtlas_Mexico_City_2026.pdf' },
-  medellin:      { city: 'Medellin',    country: 'Colombia',      price: 9.99, currency: 'EUR', file: 'LivingCostAtlas_Medellin_2026.pdf' },
-  'chiang-mai':  { city: 'Chiang Mai',  country: 'Thailand',      price: 9.99, currency: 'EUR', file: 'LivingCostAtlas_Chiang_Mai_2026.pdf' },
-  amsterdam:     { city: 'Amsterdam',   country: 'Netherlands',   price: 9.99, currency: 'EUR', file: 'LivingCostAtlas_Amsterdam_2026.pdf' },
-  prague:        { city: 'Prague',      country: 'Czech Republic', price: 9.99, currency: 'EUR', file: 'LivingCostAtlas_Prague_2026.pdf' },
-};
+import { getEbook } from '../data/ebookCatalog.js';
 
 export function EbookSuccessPage(params) {
   const slug = params.slug;
-  const ebook = EBOOKS[slug];
+  const ebook = getEbook(slug);
 
   if (!ebook) {
     return MainLayout(`
@@ -114,7 +99,7 @@ export function EbookSuccessPage(params) {
         <p class="success-sub">
           Thank you for your purchase. Your <strong>${ebook.city} Relocation Guide</strong> is ready.
         </p>
-        <a href="/ebooks/${ebook.file}" class="success-download" download>
+        <a href="${ebook.pdfPath}" class="success-download" download>
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Download PDF
         </a>

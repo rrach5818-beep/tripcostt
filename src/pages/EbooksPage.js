@@ -6,23 +6,9 @@
 import { setPageMeta } from '../logic/setPageMeta.js';
 import { MainLayout } from '../layouts/MainLayout.js';
 import { trackEbookCatalogView } from '../logic/analytics.js';
+import { EBOOK_LIST } from '../data/ebookCatalog.js';
 
-// eBook catalog -- keep in sync with EbookPage.js
-const CATALOG = [
-  { slug: 'lisbon', city: 'Lisbon', country: 'Portugal', price: 9.99, pages: 28, nomadScore: 81, safety: 85 },
-  { slug: 'barcelona', city: 'Barcelona', country: 'Spain', price: 9.99, pages: 22, nomadScore: 82, safety: 75 },
-  { slug: 'bangkok', city: 'Bangkok', country: 'Thailand', price: 9.99, pages: 22, nomadScore: 88, safety: 65 },
-  { slug: 'tokyo', city: 'Tokyo', country: 'Japan', price: 9.99, pages: 22, nomadScore: 80, safety: 95 },
-  { slug: 'bali', city: 'Bali', country: 'Indonesia', price: 9.99, pages: 22, nomadScore: 92, safety: 70 },
-  { slug: 'berlin', city: 'Berlin', country: 'Germany', price: 9.99, pages: 22, nomadScore: 83, safety: 80 },
-  { slug: 'dubai', city: 'Dubai', country: 'UAE', price: 9.99, pages: 22, nomadScore: 79, safety: 95 },
-  { slug: 'paris', city: 'Paris', country: 'France', price: 9.99, pages: 22, nomadScore: 78, safety: 70 },
-  { slug: 'mexico-city', city: 'Mexico City', country: 'Mexico', price: 9.99, pages: 22, nomadScore: 66, safety: 55 },
-  { slug: 'medellin', city: 'Medellin', country: 'Colombia', price: 9.99, pages: 22, nomadScore: 64, safety: 60 },
-  { slug: 'chiang-mai', city: 'Chiang Mai', country: 'Thailand', price: 9.99, pages: 22, nomadScore: 67, safety: 85 },
-  { slug: 'amsterdam', city: 'Amsterdam', country: 'Netherlands', price: 9.99, pages: 22, nomadScore: 85, safety: 80 },
-  { slug: 'prague', city: 'Prague', country: 'Czech Republic', price: 9.99, pages: 22, nomadScore: 81, safety: 85 },
-];
+const CATALOG = EBOOK_LIST;
 
 export function EbooksPage() {
   setPageMeta({
@@ -36,7 +22,7 @@ export function EbooksPage() {
   const cards = CATALOG.map(b => `
     <a href="/ebook/${b.slug}" data-link class="eb-card">
       <div class="eb-card__cover">
-        <img src="/images/ebooks/${b.slug}-cover-v2.png" alt="${b.city} eBook Cover" width="200" height="283" loading="lazy">
+        <img src="${b.coverImage}" alt="${b.city} eBook Cover" width="200" height="283" loading="lazy">
       </div>
       <div class="eb-card__body">
         <div class="eb-card__tags">
