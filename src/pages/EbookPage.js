@@ -394,7 +394,7 @@ export function EbookPage(params) {
     <section class="eb-hero">
       <div class="eb-hero__inner">
         <div class="eb-hero__cover">
-          <img src="${ebook.coverImage}" alt="${ebook.city} eBook Cover" width="340" height="483">
+          <img src="${ebook.coverImage}?v=2" alt="${ebook.city} eBook Cover" width="340" height="483">
         </div>
 
         <div class="eb-hero__text">

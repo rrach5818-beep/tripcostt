@@ -36,7 +36,7 @@ export function EbooksPage() {
   const cards = CATALOG.map(b => `
     <a href="/ebook/${b.slug}" data-link class="eb-card">
       <div class="eb-card__cover">
-        <img src="/images/ebooks/${b.slug}-cover.png" alt="${b.city} eBook Cover" width="200" height="283" loading="lazy">
+        <img src="/images/ebooks/${b.slug}-cover.png?v=2" alt="${b.city} eBook Cover" width="200" height="283" loading="lazy">
       </div>
       <div class="eb-card__body">
         <div class="eb-card__tags">

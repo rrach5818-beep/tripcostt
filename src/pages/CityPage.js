@@ -682,7 +682,7 @@ export function CityPage(params) {
           <div style="flex-shrink:0;position:relative;z-index:1">
             <div id="ebook-cover" style="width:220px;height:310px;border-radius:12px;overflow:hidden;box-shadow:0 25px 50px rgba(0,0,0,0.4),0 0 0 1px rgba(255,255,255,0.1);transform:perspective(800px) rotateY(-6deg);background:linear-gradient(135deg,#312e81,#6366f1);display:flex;align-items:center;justify-content:center">
               <img
-                src="/images/ebooks/${city.slug}-cover.png"
+                src="/images/ebooks/${city.slug}-cover.png?v=2"
                 alt="${city.name} Complete Digital Nomad Guide - eBook"
                 style="width:100%;height:100%;object-fit:cover;display:block"
                 loading="lazy"
