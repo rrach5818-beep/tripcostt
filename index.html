@@ -63,11 +63,22 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
-  <!-- Google Analytics GA4 -->
+  <!-- Google Analytics GA4 with Consent Mode v2 (GDPR) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-JSP7GPV5Q8"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+
+    // Default consent state: deny everything until user accepts via the
+    // cookie banner. This is the GDPR-compliant default.
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
+
     gtag('js', new Date());
     gtag('config', 'G-JSP7GPV5Q8', {
       send_page_view: false

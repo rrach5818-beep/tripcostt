@@ -6,6 +6,7 @@ import './styles/pages.css';
 import { initRouter, navigate } from './router/index.js';
 import { routes }    from './router/routes.js';
 import { initNewsletterPopup } from './components/NewsletterPopup.js';
+import { mountCookieConsent } from './components/CookieConsent.js';
 import 'leaflet/dist/leaflet.css';
 
 /* ===========================================================
@@ -139,6 +140,7 @@ function initApp() {
   initMobileMenu();
   initRouter(appRoot, routes);
   initNewsletterPopup();
+  mountCookieConsent();
 
   document.addEventListener('click', (e) => {
     // Ignore modified clicks (new tab / new window / download)

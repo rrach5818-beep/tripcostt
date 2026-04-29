@@ -149,6 +149,7 @@ export function MainLayout(content) {
             <a href="/privacy"      data-link>Privacy Policy</a>
             <a href="/terms"        data-link>Terms of Service</a>
             <a href="/legal"        data-link>Legal Notice</a>
+            <a href="#"             data-cookie-prefs>Cookie preferences</a>
           </div>
 
         </div>
