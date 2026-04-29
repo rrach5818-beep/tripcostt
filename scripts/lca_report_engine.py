@@ -195,17 +195,22 @@ def level_badge(text, bg):
 def cover_canvas(c, doc):
     accent = HexColor(CITY.get('accent_color', '#d4a843'))
     c.saveState()
+    # Background fills
     c.setFillColor(NAVY);  c.rect(0, 0, PAGE_W, PAGE_H, fill=1, stroke=0)
     c.setFillColor(HexColor('#14123a')); c.rect(0, 0, PAGE_W, PAGE_H*0.42, fill=1, stroke=0)
+    # Top + bottom gold bands (brand)
     c.setFillColor(GOLD);  c.rect(0, PAGE_H-6*mm, PAGE_W, 6*mm, fill=1, stroke=0)
     c.setFillColor(GOLD);  c.rect(0, 0, PAGE_W, 5*mm, fill=1, stroke=0)
-    # City-specific accent stripe just above the bottom gold border (signature mark)
-    c.setFillColor(accent); c.rect(0, 5*mm, PAGE_W, 2.2*mm, fill=1, stroke=0)
-    # Left side bar — switch to accent for a city-specific mark
-    c.setFillColor(accent);  c.rect(0, 0, 10*mm, PAGE_H, fill=1, stroke=0)
-    c.setFillColor(HexColor('#2a2570')); c.rect(10*mm, PAGE_H*0.40, PAGE_W, PAGE_H*0.20, fill=1, stroke=0)
+    # City accent — top horizontal stripe just below the top gold band
+    c.setFillColor(accent); c.rect(0, PAGE_H-9.5*mm, PAGE_W, 3.5*mm, fill=1, stroke=0)
+    # City accent — bottom horizontal stripe just above the bottom gold band
+    c.setFillColor(accent); c.rect(0, 5*mm, PAGE_W, 4*mm, fill=1, stroke=0)
+    # City accent — left side bar (wider for visibility on small thumbnails)
+    c.setFillColor(accent);  c.rect(0, 0, 14*mm, PAGE_H, fill=1, stroke=0)
+    # Mid-page tonal block + watermark
+    c.setFillColor(HexColor('#2a2570')); c.rect(14*mm, PAGE_H*0.40, PAGE_W, PAGE_H*0.20, fill=1, stroke=0)
     c.setFillColor(HexColor('#2a2570')); c.setFont('Helvetica-Bold', 180)
-    c.drawString(PAGE_W*0.24, 12*mm, "LCA")
+    c.drawString(PAGE_W*0.26, 12*mm, "LCA")
     c.restoreState()
 
 def body_canvas(c, doc):
