@@ -1062,22 +1062,112 @@ def add_verdict():
     story.append(P(f"© {CITY['year']} Living Cost Atlas.  All rights reserved.",
                    PS('copy', fontSize=8, textColor=MID_GREY, alignment=TA_CENTER)))
 
+# ── PREVIEW TEASER ────────────────────────────────────────────────────────────
+def add_preview_cta():
+    """Last page of a 5-page preview: 'Get the full report' call-to-action."""
+    accent = HexColor(CITY.get('accent_color', '#d4a843'))
+    # Section header without numbering for the teaser page
+    story.append(SP(2))
+    story.append(HRFlowable(width='100%', thickness=3, color=GOLD, spaceAfter=0, spaceBefore=0))
+    story.append(SP(3))
+    story.append(P("Inside the Full Report", H1))
+    story.append(HRFlowable(width='100%', thickness=0.6, color=LT_TEAL, spaceAfter=6, spaceBefore=0))
+    story.append(P(
+        f"This 5-page preview shows the cover, executive summary, monthly budget "
+        f"scenarios, and key strengths for {CITY['name']}. The complete 25-page "
+        f"relocation guide adds:"))
+    story.append(SP(6))
+
+    # 2-column feature list
+    feats = [
+        ("Quick Fact Sheet",        "Population, language, climate, sunshine, healthcare, salaries"),
+        ("Detailed Cost Breakdown", "Rent (studio to 3BR), utilities, internet, groceries, dining, transport"),
+        ("5 Neighborhood Analyses", "Rent ranges, character, strengths and limitations per district"),
+        ("Work Infrastructure",     "8-point scorecard: internet, coworking, banking, visa, English, tax"),
+        ("Quality of Life",         "7 dimensions: safety, healthcare, walkability, climate, culture, air"),
+        ("City Comparison",         "vs 4 peer cities with side-by-side rent, food, totals"),
+        ("Risk Factors",            "Top-6 risk vectors (HIGH / MODERATE / LOW) with mitigations"),
+        ("LCA Index Score",         "5-dimension composite with rationale, gauges, methodology"),
+        ("Final Verdict",           "Recommendations for nomads, families, founders, retirees"),
+    ]
+    rows = [[Paragraph(f'<b><font color="#1e1b4b">{t}</font></b><br/><font color="#2C3E50" size="8">{d}</font>',
+                       PS(f'f{i}', fontSize=9.5, leading=13))] for i,(t,d) in enumerate(feats)]
+    # 2-column layout
+    pairs = []
+    for i in range(0, len(rows), 2):
+        left  = rows[i][0]
+        right = rows[i+1][0] if i+1 < len(rows) else Paragraph('', BODY)
+        pairs.append([left, right])
+    feat_t = Table(pairs, colWidths=[U/2 - 6, U/2 - 6])
+    feat_t.setStyle(TableStyle([
+        ('VALIGN',        (0,0),(-1,-1), 'TOP'),
+        ('TOPPADDING',    (0,0),(-1,-1), 6),
+        ('BOTTOMPADDING', (0,0),(-1,-1), 6),
+        ('LEFTPADDING',   (0,0),(-1,-1), 0),
+        ('RIGHTPADDING',  (0,0),(-1,-1), 0),
+    ]))
+    story.append(feat_t)
+    story.append(SP(14))
+
+    # Compact CTA box
+    cta_text = Paragraph(
+        f'<para alignment="center"><font size="14" color="#ffffff"><b>'
+        f'Get the complete {CITY["name"]} guide  &middot;  '
+        f'<font color="#d4a843">{CITY["currency_sym"]}9.99</font></b></font><br/>'
+        f'<font color="#c7d2fe" size="10">25 pages &middot; instant PDF download &middot; lifetime access</font></para>',
+        PS('cta', fontSize=14, leading=22, alignment=TA_CENTER))
+    cta_box = Table([[cta_text]], colWidths=[U])
+    cta_box.setStyle(TableStyle([
+        ('BACKGROUND',    (0,0),(-1,-1), NAVY),
+        ('LINEABOVE',     (0,0),(-1,0),  3, accent),
+        ('LINEBELOW',     (0,-1),(-1,-1), 3, accent),
+        ('TOPPADDING',    (0,0),(-1,-1), 14),
+        ('BOTTOMPADDING', (0,0),(-1,-1), 14),
+        ('LEFTPADDING',   (0,0),(-1,-1), 16),
+        ('RIGHTPADDING',  (0,0),(-1,-1), 16),
+        ('VALIGN',        (0,0),(-1,-1), 'MIDDLE'),
+    ]))
+    story.append(cta_box)
+    story.append(SP(10))
+
+    slug = CITY["name"].lower().replace(" ","-")
+    story.append(P(
+        f'<para alignment="center"><font color="#1e1b4b" size="11"><b>'
+        f'livingcostatlas.com/ebook/{slug}</b></font></para>',
+        PS('url', fontSize=11, leading=14)))
+    story.append(SP(6))
+    story.append(P(
+        f'<para alignment="center"><font color="#7F8C8D" size="9">'
+        f'Secure payment via Stripe &middot; 30-day money-back guarantee'
+        f'</font></para>',
+        PS('trust', fontSize=9, leading=13)))
+
+
 # ── RUN ───────────────────────────────────────────────────────────────────────
-add_cover()
-add_toc()
-add_exec()
-add_facts()
-add_costs()
-add_budgets()
-add_neighborhoods()
-add_infra()
-add_qol()
-add_comparison()
-add_pros_cons()
-add_who()
-add_risks()
-add_methodology()
-add_verdict()
+PREVIEW = os.environ.get('LCA_PREVIEW_MODE') == '1'
+
+if PREVIEW:
+    # 5-page preview: Cover + Exec Summary (with pull-quote + budget + strengths) +
+    # CTA page. Engine flow naturally fits into ~5 pages.
+    add_cover()
+    add_exec()
+    add_preview_cta()
+else:
+    add_cover()
+    add_toc()
+    add_exec()
+    add_facts()
+    add_costs()
+    add_budgets()
+    add_neighborhoods()
+    add_infra()
+    add_qol()
+    add_comparison()
+    add_pros_cons()
+    add_who()
+    add_risks()
+    add_methodology()
+    add_verdict()
 
 city_slug = CITY["name"].replace(" ","_").replace(",","")
 OUTPUT = os.environ.get('LCA_OUTPUT_PATH') or f"LivingCostAtlas_{city_slug}_{CITY['year']}.pdf"

@@ -353,30 +353,38 @@ function buildPayload(slug) {
 
 // ── Main ─────────────────────────────────────────────────────────────────
 function main() {
-  const slug = process.argv[2];
+  const args = process.argv.slice(2);
+  const slug = args.find(a => !a.startsWith('--'));
+  const isPreview = args.includes('--preview');
   if (!slug) {
-    console.error('Usage: node scripts/generate-lca-report.js <slug>');
+    console.error('Usage: node scripts/generate-lca-report.cjs <slug> [--preview]');
     process.exit(1);
   }
-  console.log(`[LCA] Building payload for: ${slug}`);
+  const mode = isPreview ? 'PREVIEW (5-page teaser)' : 'FULL (25 pages)';
+  console.log(`[LCA] Building ${mode} payload for: ${slug}`);
   const payload = buildPayload(slug);
 
   const tmpDir = path.join(ROOT, 'scripts', '.tmp');
   if (!fs.existsSync(tmpDir)) fs.mkdirSync(tmpDir, { recursive: true });
   const payloadPath = path.join(tmpDir, `lca-${slug}.json`);
   fs.writeFileSync(payloadPath, JSON.stringify(payload, null, 2), 'utf-8');
-  console.log(`[LCA] Payload written: ${payloadPath}`);
 
-  const outDir = path.join(ROOT, 'public', 'ebooks');
-  if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
   const cityFile = payload.name.replace(/\s+/g, '_').replace(/,/g, '');
-  const outputPath = path.join(outDir, `LivingCostAtlas_${cityFile}_${YEAR}.pdf`);
+  let outputPath;
+  if (isPreview) {
+    const previewDir = path.join(ROOT, 'public', 'ebooks', 'preview');
+    if (!fs.existsSync(previewDir)) fs.mkdirSync(previewDir, { recursive: true });
+    outputPath = path.join(previewDir, `LivingCostAtlas_${cityFile}_Preview.pdf`);
+  } else {
+    const outDir = path.join(ROOT, 'public', 'ebooks');
+    if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
+    outputPath = path.join(outDir, `LivingCostAtlas_${cityFile}_${YEAR}.pdf`);
+  }
 
   console.log(`[LCA] Spawning Python engine...`);
-  const result = spawnSync(PYTHON, [ENGINE], {
-    env: { ...process.env, LCA_CITY_PAYLOAD: payloadPath, LCA_OUTPUT_PATH: outputPath },
-    stdio: 'inherit',
-  });
+  const env = { ...process.env, LCA_CITY_PAYLOAD: payloadPath, LCA_OUTPUT_PATH: outputPath };
+  if (isPreview) env.LCA_PREVIEW_MODE = '1';
+  const result = spawnSync(PYTHON, [ENGINE], { env, stdio: 'inherit' });
   if (result.status !== 0) {
     console.error(`[LCA] Python engine failed with status ${result.status}`);
     process.exit(result.status || 1);
