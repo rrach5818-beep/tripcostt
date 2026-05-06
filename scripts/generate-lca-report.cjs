@@ -243,6 +243,7 @@ function buildPayload(slug) {
     currency_sym: sym,
     currency_code: code,
     accent_color: meta.accentColor || '#d4a843',
+    price: meta.price || 4.99,
     pull_quote: meta.pullQuote || (intel.execSummary && intel.execSummary[0] ? intel.execSummary[0].split('. ')[0] + '.' : null),
 
     population_city:  meta.facts?.population_city   || 'N/A',

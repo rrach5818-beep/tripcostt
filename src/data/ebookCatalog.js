@@ -11,7 +11,7 @@
  * ASCII-only (Vite/Vercel constraint).
  */
 
-const PRICE = 9.99;
+const PRICE = 4.99;
 const CURRENCY = 'EUR';
 const YEAR = '2026';
 
@@ -37,19 +37,19 @@ function entry(slug, city, country, opts) {
 }
 
 export const EBOOK_CATALOG = {
-  lisbon:        entry('lisbon',       'Lisbon',      'Portugal',       { pages: 28, nomadScore: 81, safety: 85, avgRent: 1800, wifi: 120, stripeLink: 'https://buy.stripe.com/4gM4gAe7R12xacHbfd3gk00' }),
-  barcelona:     entry('barcelona',    'Barcelona',   'Spain',          { pages: 22, nomadScore: 82, safety: 75, avgRent: 1500, wifi: 140, stripeLink: 'https://buy.stripe.com/cNieVe4xhbHbbgLcjh3gk01' }),
-  bangkok:       entry('bangkok',      'Bangkok',     'Thailand',       { pages: 22, nomadScore: 88, safety: 65, avgRent:  750, wifi:  80, stripeLink: 'https://buy.stripe.com/14A7sMgfZ6mRgB55UT3gk02' }),
-  tokyo:         entry('tokyo',        'Tokyo',       'Japan',          { pages: 22, nomadScore: 80, safety: 95, avgRent: 2100, wifi: 150, stripeLink: 'https://buy.stripe.com/6oU3cw7Jt9z31Gb4QP3gk03' }),
-  bali:          entry('bali',         'Bali',        'Indonesia',      { pages: 22, nomadScore: 92, safety: 70, avgRent:  600, wifi:  40, stripeLink: 'https://buy.stripe.com/00wfZiaVF6mR70v2IH3gk04' }),
-  berlin:        entry('berlin',       'Berlin',      'Germany',        { pages: 22, nomadScore: 83, safety: 80, avgRent: 1650, wifi: 100, stripeLink: 'https://buy.stripe.com/fZu8wQ2p912xesXfvt3gk05' }),
-  dubai:         entry('dubai',        'Dubai',       'UAE',            { pages: 22, nomadScore: 79, safety: 95, avgRent: 2400, wifi: 120, stripeLink: 'https://buy.stripe.com/6oUcN62p9cLf84z3ML3gk06' }),
-  paris:         entry('paris',        'Paris',       'France',         { pages: 22, nomadScore: 78, safety: 70, avgRent: 2100, wifi: 200, stripeLink: 'https://buy.stripe.com/6oU5kE0h1bHbbgL8313gk07' }),
-  'mexico-city': entry('mexico-city',  'Mexico City', 'Mexico',         { pages: 22, nomadScore: 66, safety: 55, avgRent: 1200, wifi: 100, stripeLink: 'https://buy.stripe.com/dRm00k4xh9z31Gb8313gk08' }),
-  medellin:      entry('medellin',     'Medellin',    'Colombia',       { pages: 22, nomadScore: 64, safety: 60, avgRent:  900, wifi: 100, stripeLink: 'https://buy.stripe.com/28E9AU1l5h1vckP2IH3gk09' }),
-  'chiang-mai':  entry('chiang-mai',   'Chiang Mai',  'Thailand',       { pages: 22, nomadScore: 67, safety: 85, avgRent:  500, wifi:  90, stripeLink: 'https://buy.stripe.com/dRmdRafbVeTn84zbfd3gk0a' }),
-  amsterdam:     entry('amsterdam',    'Amsterdam',   'Netherlands',    { pages: 22, nomadScore: 85, safety: 80, avgRent: 2200, wifi: 200, stripeLink: 'https://buy.stripe.com/eVq6oIe7R26B98Dbfd3gk0b' }),
-  prague:        entry('prague',       'Prague',      'Czech Republic', { pages: 22, nomadScore: 81, safety: 85, avgRent: 1400, wifi: 180, stripeLink: 'https://buy.stripe.com/4gM6oI7JtfXr70v3ML3gk0c' }),
+  lisbon:        entry('lisbon',       'Lisbon',      'Portugal',       { pages: 28, nomadScore: 81, safety: 85, avgRent: 1800, wifi: 120, stripeLink: 'https://buy.stripe.com/eVq6oI89x19ecFBdcVgjC00' }),
+  barcelona:     entry('barcelona',    'Barcelona',   'Spain',          { pages: 22, nomadScore: 82, safety: 75, avgRent: 1500, wifi: 140, stripeLink: 'https://buy.stripe.com/fZu7sM89x2digVR5KtgjC01' }),
+  bangkok:       entry('bangkok',      'Bangkok',     'Thailand',       { pages: 22, nomadScore: 88, safety: 65, avgRent:  750, wifi:  80, stripeLink: 'https://buy.stripe.com/8x27sMexV5pu6hd4GpgjC02' }),
+  tokyo:         entry('tokyo',        'Tokyo',       'Japan',          { pages: 22, nomadScore: 80, safety: 95, avgRent: 2100, wifi: 150, stripeLink: 'https://buy.stripe.com/6oU8wQgG3f04gVR2yhgjC03' }),
+  bali:          entry('bali',         'Bali',        'Indonesia',      { pages: 22, nomadScore: 92, safety: 70, avgRent:  600, wifi:  40, stripeLink: 'https://buy.stripe.com/dRm28s2PdaJO6hdfl3gjC04' }),
+  berlin:        entry('berlin',       'Berlin',      'Germany',        { pages: 22, nomadScore: 83, safety: 80, avgRent: 1650, wifi: 100, stripeLink: 'https://buy.stripe.com/8x2dRa9dB19e0WT7SBgjC05' }),
+  dubai:         entry('dubai',        'Dubai',       'UAE',            { pages: 22, nomadScore: 79, safety: 95, avgRent: 2400, wifi: 120, stripeLink: 'https://buy.stripe.com/3cI14o4Xl4lq0WT3ClgjC06' }),
+  paris:         entry('paris',        'Paris',       'France',         { pages: 22, nomadScore: 78, safety: 70, avgRent: 2100, wifi: 200, stripeLink: 'https://buy.stripe.com/9B69AUcpN9FKbBx2yhgjC07' }),
+  'mexico-city': entry('mexico-city',  'Mexico City', 'Mexico',         { pages: 22, nomadScore: 66, safety: 55, avgRent: 1200, wifi: 100, stripeLink: 'https://buy.stripe.com/7sY5kEdtR8BG8pl5KtgjC08' }),
+  medellin:      entry('medellin',     'Medellin',    'Colombia',       { pages: 22, nomadScore: 64, safety: 60, avgRent:  900, wifi: 100, stripeLink: 'https://buy.stripe.com/9B600k89x8BG5d9a0JgjC09' }),
+  'chiang-mai':  entry('chiang-mai',   'Chiang Mai',  'Thailand',       { pages: 22, nomadScore: 67, safety: 85, avgRent:  500, wifi:  90, stripeLink: 'https://buy.stripe.com/14A28sexV7xC9tpgp7gjC0a' }),
+  amsterdam:     entry('amsterdam',    'Amsterdam',   'Netherlands',    { pages: 22, nomadScore: 85, safety: 80, avgRent: 2200, wifi: 200, stripeLink: 'https://buy.stripe.com/5kQdRa9dBbNS3512yhgjC0b' }),
+  prague:        entry('prague',       'Prague',      'Czech Republic', { pages: 22, nomadScore: 81, safety: 85, avgRent: 1400, wifi: 180, stripeLink: 'https://buy.stripe.com/28E3cwdtRg483511udgjC0c' }),
 };
 
 // Ordered array (used by EbooksPage to render the grid in the catalog).

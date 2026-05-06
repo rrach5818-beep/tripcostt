@@ -1109,11 +1109,13 @@ def add_preview_cta():
     story.append(feat_t)
     story.append(SP(14))
 
-    # Compact CTA box
+    # Compact CTA box (price from CITY payload, fallback 4.99)
+    price = CITY.get('price', 4.99)
+    price_str = f"{price:.2f}".rstrip('0').rstrip('.') if isinstance(price, (int, float)) else str(price)
     cta_text = Paragraph(
         f'<para alignment="center"><font size="14" color="#ffffff"><b>'
         f'Get the complete {CITY["name"]} guide  &middot;  '
-        f'<font color="#d4a843">{CITY["currency_sym"]}9.99</font></b></font><br/>'
+        f'<font color="#d4a843">{CITY["currency_sym"]}{price_str}</font></b></font><br/>'
         f'<font color="#c7d2fe" size="10">25 pages &middot; instant PDF download &middot; lifetime access</font></para>',
         PS('cta', fontSize=14, leading=22, alignment=TA_CENTER))
     cta_box = Table([[cta_text]], colWidths=[U])
