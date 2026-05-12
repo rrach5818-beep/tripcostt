@@ -1,70 +1,161 @@
-# Getting Started with Create React App
+# Living Cost Atlas
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> Cost-of-living calculator + premium relocation guides for digital nomads, remote workers and expats.
 
-## Available Scripts
+**Live site:** https://www.livingcostatlas.com
+**Production branch:** `main`
+**Hosting:** Vercel (auto-deploy on push to `main`)
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## What this is
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+A static SPA serving:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. **Free tools** — cost calculator (50+ cities), city comparison, nomad/country rankings, interactive map
+2. **Paid eBooks** — 13 premium 25-page PDF relocation guides (EUR 4.99 each via Stripe)
 
-### `npm test`
+The site has zero backend. Everything is pre-built at deploy time. PDFs are generated locally by a Python/ReportLab pipeline and committed to the repo as static assets.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## Tech stack
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+| Layer | Choice |
+|---|---|
+| **Frontend** | Vanilla JavaScript (ES modules) — no React, no JSX, no framework |
+| **Build** | Vite 5 |
+| **Styles** | Plain CSS (in `src/styles/`) + inline styles in templates |
+| **Routing** | Custom SPA router (`src/router/`) |
+| **Maps** | Leaflet (only the map component, lazy-loaded) |
+| **PDF engine** | Python 3.12 + ReportLab 4 (`scripts/lca_report_engine.py`) |
+| **Hosting** | Vercel (static) |
+| **Payments** | Stripe Checkout links (no Stripe SDK in code) |
+| **Analytics** | GA4 (gtag) |
+| **Forms** | Web3Forms (newsletter capture) |
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**Important constraint:** all `.js` source files are **ASCII-only**. Vite/Rollup on Vercel's Linux runtime rejects non-ASCII characters (emojis, accented chars) at the import-analysis stage and the build fails in 1-3 seconds with `Failed to parse source for import analysis`. Use HTML entities (`&#x1F30D;`) for emojis in templates.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## Quick start
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+# 1. Install Node deps
+npm install
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# 2. Run dev server (http://localhost:3000)
+npm run dev
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# 3. Production build
+npm run build
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# 4. Preview production build locally
+npm run preview
+```
 
-## Learn More
+For the PDF pipeline, you also need Python 3.12 + ReportLab:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+# Windows
+winget install --id Python.Python.3.12 -e --scope user
+python -m pip install reportlab pypdfium2 Pillow
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## Most common tasks
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash
+# Generate the full 25-page PDF for one city
+node scripts/generate-lca-report.cjs lisbon
 
-### Analyzing the Bundle Size
+# Generate the 5-page preview (the one linked from /ebook/lisbon)
+node scripts/generate-lca-report.cjs lisbon --preview
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+# Regenerate ALL 13 PDFs (full + preview)
+for slug in lisbon bangkok mexico-city dubai amsterdam bali barcelona berlin chiang-mai medellin paris prague tokyo; do
+  node scripts/generate-lca-report.cjs $slug
+  node scripts/generate-lca-report.cjs $slug --preview
+done
+```
 
-### Making a Progressive Web App
+Common modifications:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- **Change a price:** edit `PRICE` in `src/data/ebookCatalog.js`, then regenerate previews
+- **Update a Stripe link:** edit `stripeLink` for the city in `src/data/ebookCatalog.js`
+- **Edit eBook editorial content** (neighborhoods, pros/cons, verdicts...): `scripts/data/cityIntel.js`
+- **Tweak PDF design** (colors, layout, sections): `scripts/lca_report_engine.py`
 
-### Advanced Configuration
+Detailed how-tos are in [`docs/COOKBOOK.md`](docs/COOKBOOK.md).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## Documentation
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+| Doc | What's in it |
+|---|---|
+| [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) | Project structure, data flow, key files, design decisions |
+| [`docs/COOKBOOK.md`](docs/COOKBOOK.md) | Recipes for common changes (add city, change price, fix build, etc.) |
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Brand constants
+
+| Token | Value | Where |
+|---|---|---|
+| Brand navy | `#1e1b4b` | All UI + PDF |
+| Brand gold | `#d4a843` | Accents, CTAs |
+| Brand indigo | `#4f46e5` | Secondary |
+| Light indigo | `#c7d2fe` | Cool light tone |
+| Font family | Helvetica / Arial (system) | Web + PDF |
+| Logo file | `public/favicon.svg` | Browser tab |
+| OG image | `public/og-image.png` (1200x630) | Social shares |
+
+---
+
+## Repository layout
+
+```
+tripcostt/
+├── README.md                      ← you are here
+├── docs/                          ← architecture + cookbook
+├── index.html                     ← Vite entry point
+├── package.json
+├── vercel.json                    ← deploy config
+├── vite.config.js
+├── public/                        ← static assets served as-is
+│   ├── ebooks/                    ← 13 full PDFs + preview/ subfolder
+│   ├── images/ebooks/             ← 13 cover PNGs
+│   ├── og-image.png
+│   ├── robots.txt
+│   └── sitemap.xml
+├── src/                           ← frontend application
+│   ├── data/                      ← cityDB + ebookCatalog + service layers
+│   ├── pages/                     ← route components (one per route)
+│   ├── components/                ← reusable UI components
+│   ├── layouts/                   ← MainLayout (nav + footer wrapper)
+│   ├── router/                    ← custom SPA router
+│   ├── logic/                     ← page meta, analytics, budget calc
+│   └── styles/
+└── scripts/                       ← PDF generation pipeline (Python + Node)
+    ├── lca_report_engine.py       ← the ReportLab PDF engine
+    ├── generate-lca-report.cjs    ← Node bridge: builds payload + invokes Python
+    └── data/
+        ├── cityIntel.js           ← rich editorial content (neighborhoods, pros/cons, ...)
+        └── lcaCityMeta.cjs        ← per-city PDF overrides (accents, infra notes, ...)
+```
+
+---
+
+## Deployment
+
+Vercel auto-deploys on every push to `main`. Build takes ~12 seconds.
+
+If a build errors, see [`docs/COOKBOOK.md`](docs/COOKBOOK.md) section **"Vercel build failed"** for the standard checklist (most common cause: non-ASCII character in a `.js` source file).
+
+---
+
+## License & ownership
+
+Proprietary. Contact the maintainer before reusing code or content.
