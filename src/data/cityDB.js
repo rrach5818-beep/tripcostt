@@ -2327,4 +2327,57 @@ export const cityDB = [
   lastUpdated: "2026-03"
 },
 
+{
+  id: "taipei",
+  lat: 25.033,
+  lng: 121.5654,
+  slug: "taipei",
+  name: "Taipei",
+  country: "Taiwan",
+  countryCode: "TW",
+  continent: "Asia",
+  currency: "TWD",
+  currencySymbol: "NT$",
+  image: "https://images.unsplash.com/photo-1470004914212-05527e49370b?w=1600",
+  description: "Asia's most underrated nomad capital -- blazing internet, safe streets, extraordinary food and a Gold Card visa built for remote workers.",
+  costs: {
+    accommodation: { center: 60, suburb: 38 },
+    food: { budget: 7, standard: 18, premium: 55 },
+    transport: 42,
+    coworking: 170
+  },
+  visa: {
+    type: "Taiwan Gold Card",
+    remoteFriendly: true,
+    stayDurationMonths: 36,
+    processingTimeDays: 30,
+    minIncomeRequirement: 5000
+  },
+  tax: {
+    personalIncomeTaxTopRate: 40,
+    corporateTax: 20,
+    capitalGainsTax: 0
+  },
+  infrastructure: {
+    publicTransportQuality: 94,
+    healthcareQuality: 92,
+    englishProficiency: 74,
+    airportConnectivity: 88
+  },
+  safety: { safetyIndex: 91, crimeLevel: "Very Low" },
+  macro: {
+    inflationRate: 2.2,
+    currencyStability: "High",
+    rentVolatilityIndex: 4.8
+  },
+  digitalNomad: {
+    overallScore: 89,
+    wifiSpeed: 220,
+    coworkingCost: 170,
+    safetyScore: 91
+  },
+  tags: ["tech-hub", "affordable", "food-scene", "safe", "nomad-visa"],
+  lastUpdated: "2026-05"
+},
+
 ];
