@@ -1,9 +1,6 @@
 User-agent: *
 Allow: /
 
-# Sitemaps
-Sitemap: https://www.livingcostatlas.com/sitemap.xml
-
 # Block sensitive paths
 Disallow: /src/
 Disallow: /.git/
@@ -14,3 +11,44 @@ Disallow: /backend/
 Disallow: /scripts/
 Disallow: /tests/
 Disallow: /*.map$
+
+# ── AI crawlers — explicitly allowed ──────────────────────────────────────────
+# GPTBot (OpenAI / ChatGPT)
+User-agent: GPTBot
+Allow: /
+
+# ClaudeBot (Anthropic / Claude)
+User-agent: ClaudeBot
+Allow: /
+
+# Google-Extended (Gemini / Bard)
+User-agent: Google-Extended
+Allow: /
+
+# PerplexityBot
+User-agent: PerplexityBot
+Allow: /
+
+# Meta AI (meta-externalagent)
+User-agent: meta-externalagent
+Allow: /
+
+# Applebot-Extended (Apple Intelligence / Siri)
+User-agent: Applebot-Extended
+Allow: /
+
+# Bytespider (ByteDance / TikTok AI)
+User-agent: Bytespider
+Allow: /
+
+# DuckDuckBot (DuckDuckGo AI)
+User-agent: DuckDuckBot
+Allow: /
+
+# CCBot (Common Crawl — training data for many LLMs)
+User-agent: CCBot
+Allow: /
+
+# ── LLM context file ──────────────────────────────────────────────────────────
+# Sitemaps
+Sitemap: https://www.livingcostatlas.com/sitemap.xml

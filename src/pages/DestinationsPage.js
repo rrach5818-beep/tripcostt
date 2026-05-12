@@ -336,10 +336,41 @@ export function DestinationsPage() {
 
   injectSchema('page-jsonld', {
     '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
-    name: 'Destinations -- Cost of Living by City',
-    url: 'https://www.livingcostatlas.com/destinations',
-    description: 'Browse 50+ cities ranked by cost, safety and nomad score.'
+    '@graph': [
+      {
+        '@type': 'CollectionPage',
+        name: 'Destinations -- Cost of Living by City',
+        url: 'https://www.livingcostatlas.com/destinations',
+        description: 'Browse 51 cities ranked by cost, safety, WiFi and nomad score.'
+      },
+      {
+        '@type': 'Dataset',
+        name: 'Living Cost Atlas -- City Cost of Living Dataset',
+        description: 'Structured monthly cost of living data for 51 cities across 6 continents. Includes housing, food, transport, coworking, visa requirements, safety indices, digital nomad scores and tax rates. Updated quarterly.',
+        url: 'https://www.livingcostatlas.com/destinations',
+        publisher: {
+          '@type': 'Organization',
+          name: 'Living Cost Atlas',
+          url: 'https://www.livingcostatlas.com'
+        },
+        license: 'https://www.livingcostatlas.com/terms',
+        temporalCoverage: '2026',
+        spatialCoverage: 'Worldwide',
+        variableMeasured: [
+          { '@type': 'PropertyValue', name: 'Monthly rent (city center)', unitCode: 'USD' },
+          { '@type': 'PropertyValue', name: 'Monthly rent (suburbs)', unitCode: 'USD' },
+          { '@type': 'PropertyValue', name: 'Daily food cost (budget)', unitCode: 'USD' },
+          { '@type': 'PropertyValue', name: 'Daily food cost (standard)', unitCode: 'USD' },
+          { '@type': 'PropertyValue', name: 'Monthly transport', unitCode: 'USD' },
+          { '@type': 'PropertyValue', name: 'Monthly coworking', unitCode: 'USD' },
+          { '@type': 'PropertyValue', name: 'Safety index', minValue: 0, maxValue: 100 },
+          { '@type': 'PropertyValue', name: 'Digital nomad score', minValue: 0, maxValue: 100 },
+          { '@type': 'PropertyValue', name: 'WiFi speed', unitCode: 'Mbps' },
+          { '@type': 'PropertyValue', name: 'Visa type and duration' },
+          { '@type': 'PropertyValue', name: 'Personal income tax top rate', unitCode: 'P1' }
+        ]
+      }
+    ]
   });
 
   return MainLayout(content);

@@ -1,0 +1,63 @@
+# Living Cost Atlas
+
+> Free cost of living calculator and premium relocation guides for digital nomads, remote workers and expats. Data covers 51 cities across 6 continents.
+
+Living Cost Atlas provides structured, regularly-updated cost of living data for 51 cities worldwide. The dataset includes monthly housing costs, food costs at three spending levels, local transport, coworking space pricing, visa requirements, safety indices, digital nomad scores, income tax rates, and infrastructure quality scores. Data is reviewed and updated quarterly.
+
+## What Living Cost Atlas covers
+
+- **Monthly housing** — long-term rent estimates (studio/1BR, city center and suburbs)
+- **Food costs** — per-person daily averages at budget, standard and premium levels
+- **Local transport** — monthly pass cost and typical commute cost
+- **Coworking** — monthly hot-desk pricing at local spaces
+- **Visa** — type (tourist, digital nomad, self-employment), duration, minimum income requirement
+- **Safety** — composite safety index (0-100) and crime level classification
+- **Digital nomad score** — composite index of WiFi speed, coworking access, safety, visa ease and affordability
+- **Infrastructure** — public transport quality, healthcare quality, English proficiency, airport connectivity
+- **Taxes** — personal income tax top rate, corporate tax, capital gains tax
+- **Premium eBooks** — 25-page PDF relocation guides for 13 cities (EUR 4.99 each)
+
+## Key pages
+
+- [Home — cost of living calculator](https://www.livingcostatlas.com/): City search, interactive map, top-city rankings
+- [All destinations](https://www.livingcostatlas.com/destinations): 51 cities filterable by cost, safety, WiFi and nomad score
+- [Budget calculator](https://www.livingcostatlas.com/calculator): Side-by-side monthly budget for any two cities
+- [Digital nomad rankings](https://www.livingcostatlas.com/nomad): Top cities ranked by overall nomad score
+- [Best cities hub](https://www.livingcostatlas.com/best-cities): Best cities by country and lifestyle profile
+- [Premium relocation guides](https://www.livingcostatlas.com/ebooks): 13 PDF guides (Lisbon, Bangkok, Tokyo, Dubai, Barcelona, Berlin, Paris, Amsterdam, Prague, Bali, Chiang Mai, Medellin, Mexico City)
+
+## City pages (51 cities)
+
+Individual cost-of-living pages with full data breakdowns, FAQ and visa information:
+
+Lisbon /city/lisbon -- Bangkok /city/bangkok -- Tokyo /city/tokyo -- Dubai /city/dubai --
+Barcelona /city/barcelona -- Berlin /city/berlin -- Paris /city/paris --
+Amsterdam /city/amsterdam -- Prague /city/prague -- Bali /city/bali --
+Chiang Mai /city/chiang-mai -- Medellin /city/medellin -- Mexico City /city/mexico-city --
+Singapore /city/singapore -- London /city/london -- New York /city/new-york --
+Taipei /city/taipei -- Seoul /city/seoul -- Kuala Lumpur /city/kuala-lumpur --
+Ho Chi Minh City /city/ho-chi-minh -- Hanoi /city/hanoi -- Sydney /city/sydney --
+Melbourne /city/melbourne -- Budapest /city/budapest -- Athens /city/athens --
+Istanbul /city/istanbul -- Vienna /city/vienna -- Madrid /city/madrid --
+Rome /city/rome -- Porto /city/porto -- Tallinn /city/tallinn --
+Tbilisi /city/tbilisi -- Helsinki /city/helsinki -- Stockholm /city/stockholm --
+Oslo /city/oslo -- Warsaw /city/warsaw -- Cape Town /city/cape-town --
+Marrakech /city/marrakech -- Cairo /city/cairo -- Nairobi /city/nairobi --
+Kigali /city/kigali -- Accra /city/accra -- Lagos /city/lagos --
+Buenos Aires /city/buenos-aires -- Bogota /city/bogota -- Sao Paulo /city/sao-paulo --
+Lima /city/lima -- Toronto /city/toronto -- Montreal /city/montreal --
+Miami /city/miami -- Los Angeles /city/los-angeles
+
+## Methodology and data quality
+
+- Accommodation costs represent realistic long-term monthly rent (not nightly hotel rates)
+- Food costs are per-person daily averages verified against local supermarket and restaurant pricing
+- Nomad scores are composite indices — no single metric dominates
+- Safety indices are weighted composites from multiple public sources including Numbeo
+- Data is reviewed quarterly; each city entry is timestamped
+- No sponsored content; rankings and scores are purely data-driven
+
+## About
+
+Living Cost Atlas is an independent research tool. No advertising, no sponsored rankings.
+Contact: via https://www.livingcostatlas.com/about

@@ -7,6 +7,7 @@ import { MainLayout } from '../layouts/MainLayout.js';
 import { getAllCities } from '../data/cityService.js';
 import { convertFromUSD } from '../services/currencyService.js';
 import { Breadcrumb, BREADCRUMB_CSS } from '../components/ui/Breadcrumb.js';
+import { setPageMeta, injectSchema } from '../logic/setPageMeta.js';
 
 export function CalculatorPage() {
 
@@ -795,6 +796,59 @@ export function CalculatorPage() {
       </div>
     </section>
   `;
+
+  setPageMeta({
+    title: 'Cost of Living Calculator -- Compare Any Two Cities',
+    description: 'Compare monthly living costs between any two cities side by side. Housing, food, transport, coworking and total budget -- free tool for expats and digital nomads.',
+    canonical: '/calculator'
+  });
+
+  injectSchema('page-jsonld', {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebApplication',
+        name: 'Living Cost Atlas -- City Budget Calculator',
+        url: 'https://www.livingcostatlas.com/calculator',
+        applicationCategory: 'FinanceApplication',
+        operatingSystem: 'Web browser',
+        description: 'Free tool to compare monthly living costs between any two cities. Covers rent, food, transport and coworking.',
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }
+      },
+      {
+        '@type': 'HowTo',
+        name: 'How to compare cost of living between two cities',
+        description: 'Use the Living Cost Atlas calculator to estimate and compare your monthly budget in any two cities worldwide.',
+        totalTime: 'PT2M',
+        step: [
+          {
+            '@type': 'HowToStep',
+            position: 1,
+            name: 'Select your origin city',
+            text: 'Choose your current city from the left dropdown. The calculator loads monthly costs for housing, food, transport and coworking.'
+          },
+          {
+            '@type': 'HowToStep',
+            position: 2,
+            name: 'Select your destination city',
+            text: 'Pick the city you are considering moving to from the right dropdown.'
+          },
+          {
+            '@type': 'HowToStep',
+            position: 3,
+            name: 'Read the side-by-side comparison',
+            text: 'The tool shows monthly costs for both cities side by side: rent, food, transport, coworking and total estimated budget.'
+          },
+          {
+            '@type': 'HowToStep',
+            position: 4,
+            name: 'Compare nomad score and safety',
+            text: 'Review the digital nomad score, safety index and visa information for each city to make a fully informed decision.'
+          }
+        ]
+      }
+    ]
+  });
 
   return MainLayout(content);
 }
