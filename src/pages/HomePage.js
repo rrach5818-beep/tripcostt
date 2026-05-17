@@ -327,7 +327,39 @@ export function HomePage() {
       .home-cta h2 { font-size:42px;font-weight:800;color:#fff;letter-spacing:-0.025em;margin-bottom:16px;line-height:1.1; }
       .home-cta p { font-size:17px;color:rgba(255,255,255,0.65);margin-bottom:36px;line-height:1.7; }
 
+      /* ── Lead magnet ── */
+      .home-lead { background:#fafbff;border-top:1px solid #e8eaf8;border-bottom:1px solid #e8eaf8;padding:72px 0; }
+      .home-lead__inner { display:grid;grid-template-columns:1fr 380px;gap:64px;align-items:center;max-width:1000px;margin:0 auto; }
+      .home-lead__badge { display:inline-block;background:#d4a843;color:#1e1b4b;font-size:10px;font-weight:800;letter-spacing:2px;padding:4px 12px;border-radius:20px;margin-bottom:18px; }
+      .home-lead__title { font-size:32px;font-weight:900;color:#0f172a;letter-spacing:-0.025em;line-height:1.15;margin:0 0 14px; }
+      .home-lead__desc { font-size:16px;color:#4b5563;line-height:1.7;margin:0 0 20px;max-width:460px; }
+      .home-lead__perks { list-style:none;padding:0;margin:0 0 28px;display:flex;flex-direction:column;gap:9px; }
+      .home-lead__perks li { display:flex;align-items:center;gap:10px;font-size:14px;color:#374151; }
+      .home-lead__perks li::before { content:'';width:18px;height:18px;border-radius:50%;background:#e0e7ff;flex-shrink:0; }
+      .home-lead__form { display:flex;gap:10px;max-width:460px; }
+      .home-lead__input { flex:1;padding:13px 16px;border:1.5px solid #e2e8f0;border-radius:10px;font-size:14px;outline:none;transition:border-color .15s,box-shadow .15s;font-family:inherit;color:#1e1b4b; }
+      .home-lead__input:focus { border-color:#4f46e5;box-shadow:0 0 0 3px rgba(79,70,229,.12); }
+      .home-lead__submit { background:#1e1b4b;color:#fff;border:none;padding:13px 22px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .15s,transform .15s;font-family:inherit; }
+      .home-lead__submit:hover { background:#312e81;transform:translateY(-1px); }
+      .home-lead__submit:disabled { opacity:.6;cursor:not-allowed;transform:none; }
+      .home-lead__success { display:none;align-items:center;gap:14px;flex-wrap:wrap;max-width:460px;padding:14px 18px;background:#f0fdf4;border:1.5px solid #bbf7d0;border-radius:10px; }
+      .home-lead__success span { font-size:14px;font-weight:700;color:#15803d;flex:1; }
+      .home-lead__dl { background:#1e1b4b;color:#fff;text-decoration:none;font-size:13px;font-weight:700;padding:9px 18px;border-radius:8px;transition:background .15s;white-space:nowrap; }
+      .home-lead__dl:hover { background:#4f46e5; }
+      .home-lead__err { font-size:12px;color:#b91c1c;margin-top:6px; }
+      .home-lead__foot { font-size:11.5px;color:#9ca3af;margin-top:12px; }
+      .home-lead__cover { background:linear-gradient(145deg,#1e1b4b 0%,#312e81 60%,#4f46e5 100%);border-radius:16px;padding:36px 28px;color:#fff;position:relative;overflow:hidden;box-shadow:0 20px 60px rgba(30,27,75,.35); }
+      .home-lead__cover-badge { display:inline-block;background:rgba(212,168,67,.2);border:1px solid rgba(212,168,67,.4);color:#d4a843;font-size:10px;font-weight:700;letter-spacing:1.5px;padding:4px 10px;border-radius:20px;margin-bottom:20px; }
+      .home-lead__cover-title { font-size:22px;font-weight:900;line-height:1.2;margin-bottom:8px;letter-spacing:-0.02em; }
+      .home-lead__cover-year { font-size:14px;color:rgba(255,255,255,.5);margin-bottom:24px;font-weight:600; }
+      .home-lead__cover-divider { height:1px;background:rgba(255,255,255,.12);margin-bottom:20px; }
+      .home-lead__cover-cities { font-size:12px;color:rgba(255,255,255,.6);line-height:2;letter-spacing:.3px; }
+      .home-lead__cover-free { margin-top:24px;background:#d4a843;color:#1e1b4b;font-size:11px;font-weight:900;letter-spacing:1.5px;text-align:center;padding:8px;border-radius:8px; }
+
       @media(max-width:900px){
+        .home-lead__inner { grid-template-columns:1fr;gap:40px; }
+        .home-lead__cover { max-width:360px;margin:0 auto; }
+      }
         .home-profiles__grid,.home-steps,.home-cities__grid{grid-template-columns:1fr 1fr;}
         .home-steps::before{display:none;}
         .home-stat{padding:0 20px;}
@@ -506,6 +538,45 @@ export function HomePage() {
       </div>
     </section>
 
+    <!-- Lead magnet — Free report -->
+    <section class="home-lead">
+      <div class="container">
+        <div class="home-lead__inner">
+          <div>
+            <div class="home-lead__badge">FREE REPORT</div>
+            <h2 class="home-lead__title">Digital Nomad Cities Report 2026</h2>
+            <p class="home-lead__desc">Our annual ranking of the 10 best cities for remote workers -- assessed across cost, infrastructure, safety and quality of life. Free, no paywall.</p>
+            <ul class="home-lead__perks">
+              <li>Full monthly budget breakdown for 10 cities</li>
+              <li>WiFi speeds, safety index and nomad score</li>
+              <li>Tier 1 / Tier 2 / Tier 3 ranking with rationale</li>
+            </ul>
+            <form class="home-lead__form" id="home-lead-form" novalidate>
+              <input type="email" id="home-lead-email" class="home-lead__input" placeholder="your@email.com" autocomplete="email" required />
+              <button type="submit" class="home-lead__submit">Get the free report</button>
+            </form>
+            <div class="home-lead__success" id="home-lead-success">
+              <span>&#10003; Check your inbox!</span>
+              <a href="/ebooks/LivingCostAtlas_FreeGuide_Top10_2026.pdf" download target="_blank" rel="noopener" class="home-lead__dl">Download now</a>
+            </div>
+            <p class="home-lead__foot">No spam. Quarterly updates only. Unsubscribe anytime.</p>
+          </div>
+          <div class="home-lead__cover" aria-hidden="true">
+            <div class="home-lead__cover-badge">ANNUAL REPORT</div>
+            <div class="home-lead__cover-title">Digital Nomad<br>Cities Report</div>
+            <div class="home-lead__cover-year">2026 Edition</div>
+            <div class="home-lead__cover-divider"></div>
+            <div class="home-lead__cover-cities">
+              Bali &bull; Chiang Mai &bull; Lisbon<br>
+              Bangkok &bull; Medellin &bull; Prague<br>
+              Tbilisi &bull; Porto &bull; Tokyo &bull; Berlin
+            </div>
+            <div class="home-lead__cover-free">FREE DOWNLOAD</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- CTA -->
     <section class="home-cta">
       <div class="home-cta__inner container">
@@ -519,6 +590,70 @@ export function HomePage() {
   `;
 
   return MainLayout(content);
+}
+
+export function setupHomeLeadMagnetInteractivity() {
+  const form    = document.getElementById('home-lead-form');
+  const success = document.getElementById('home-lead-success');
+  if (!form || !success) return;
+
+  // Already subscribed? show download directly
+  if (localStorage.getItem('lca_newsletter_subscribed')) {
+    form.style.display = 'none';
+    success.style.display = 'flex';
+    return;
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const input  = document.getElementById('home-lead-email');
+    const submit = form.querySelector('.home-lead__submit');
+    const email  = (input ? input.value : '').trim();
+    const errEl  = form.querySelector('.home-lead__err');
+    if (errEl) errEl.remove();
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      const err = document.createElement('p');
+      err.className = 'home-lead__err';
+      err.textContent = 'Please enter a valid email address.';
+      form.appendChild(err);
+      return;
+    }
+
+    submit.disabled = true;
+    submit.textContent = 'Sending...';
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          access_key: '1a716176-7bc9-4080-884a-cf88a6394cb6',
+          email,
+          subject: 'New signup -- homepage lead magnet',
+          from_name: 'Living Cost Atlas',
+          message: 'New signup from homepage lead magnet section. Email: ' + email,
+          source: 'lca-homepage-leadmagnet',
+          botcheck: ''
+        })
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.success !== false) {
+        localStorage.setItem('lca_newsletter_subscribed', email);
+        form.style.display = 'none';
+        success.style.display = 'flex';
+      } else {
+        throw new Error('submit failed');
+      }
+    } catch (_) {
+      submit.disabled = false;
+      submit.textContent = 'Get the free report';
+      const err = document.createElement('p');
+      err.className = 'home-lead__err';
+      err.textContent = 'Could not send -- please try again.';
+      form.appendChild(err);
+    }
+  });
 }
 
 export default HomePage;

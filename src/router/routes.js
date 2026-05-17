@@ -52,7 +52,11 @@ export const routes = [
   {
     path: '/',
     component: async (p) => (await pages.home.load()).HomePage(p),
-    setup:     async ()  => (await pages.home.load()).setupHomeMapInteractivity()
+    setup: async () => {
+      const mod = await pages.home.load();
+      mod.setupHomeMapInteractivity();
+      mod.setupHomeLeadMagnetInteractivity();
+    }
   },
 
   {
