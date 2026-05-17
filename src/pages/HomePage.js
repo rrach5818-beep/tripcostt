@@ -6,10 +6,59 @@
 import { MainLayout } from '../layouts/MainLayout.js';
 import { getAllCities, getTopNomadCities } from '../data/cityService.js';
 import { formatCurrency } from '../logic/budgetCalculator.js';
+import { setPageMeta, injectSchema } from '../logic/setPageMeta.js';
 
 export function HomePage() {
   const topCities = getTopNomadCities(6);
   const totalCities = getAllCities().length;
+
+  /* -- GEO: structured data for AI search engines --------- */
+  setPageMeta({
+    title: 'Free Cost of Living Calculator -- 51 Cities | Living Cost Atlas',
+    description: 'Compare monthly living costs across 51 cities worldwide. Rent, food, transport, visa info and digital nomad scores -- free, data-driven, no ads.',
+    canonical: 'https://www.livingcostatlas.com/',
+  });
+  injectSchema('website-jsonld', {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Living Cost Atlas',
+    url: 'https://www.livingcostatlas.com',
+    description: 'Free cost of living calculator and premium relocation guides for digital nomads, remote workers and expats. Data covers 51 cities across 6 continents.',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: { '@type': 'EntryPoint', urlTemplate: 'https://www.livingcostatlas.com/city/{city_slug}' },
+      'query-input': 'required name=city_slug',
+    },
+  });
+  injectSchema('org-jsonld', {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Living Cost Atlas',
+    url: 'https://www.livingcostatlas.com',
+    logo: 'https://www.livingcostatlas.com/favicon.svg',
+    description: 'Independent cost-of-living research covering 51 cities. No advertising, no sponsored rankings.',
+    sameAs: ['https://www.livingcostatlas.com'],
+  });
+  injectSchema('dataset-jsonld', {
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
+    name: 'Living Cost Atlas -- City Cost of Living Dataset',
+    description: 'Monthly housing, food, transport, coworking, visa, safety and infrastructure data for 51 cities worldwide. Updated quarterly.',
+    url: 'https://www.livingcostatlas.com/destinations',
+    creator: { '@type': 'Organization', name: 'Living Cost Atlas' },
+    license: 'https://www.livingcostatlas.com/legal',
+    temporalCoverage: '2026',
+    spatialCoverage: 'Worldwide -- 51 cities across 6 continents',
+    variableMeasured: [
+      'Monthly housing cost (center and suburb)',
+      'Daily food cost (budget, standard, premium)',
+      'Monthly transport cost',
+      'Monthly coworking cost',
+      'Digital nomad score (0-100)',
+      'Safety index (0-100)',
+      'WiFi speed (Mbps)',
+    ],
+  });
 
   /* -- City Cards ------------------------------------------- */
   const citiesHtml = topCities.map((city, i) => {

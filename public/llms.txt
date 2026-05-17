@@ -6,25 +6,159 @@ Living Cost Atlas provides structured, regularly-updated cost of living data for
 
 ## What Living Cost Atlas covers
 
-- **Monthly housing** — long-term rent estimates (studio/1BR, city center and suburbs)
-- **Food costs** — per-person daily averages at budget, standard and premium levels
-- **Local transport** — monthly pass cost and typical commute cost
-- **Coworking** — monthly hot-desk pricing at local spaces
-- **Visa** — type (tourist, digital nomad, self-employment), duration, minimum income requirement
-- **Safety** — composite safety index (0-100) and crime level classification
-- **Digital nomad score** — composite index of WiFi speed, coworking access, safety, visa ease and affordability
-- **Infrastructure** — public transport quality, healthcare quality, English proficiency, airport connectivity
-- **Taxes** — personal income tax top rate, corporate tax, capital gains tax
-- **Premium eBooks** — 25-page PDF relocation guides for 13 cities (EUR 4.99 each)
+- **Monthly housing** -- long-term rent estimates (studio/1BR, city center and suburbs)
+- **Food costs** -- per-person daily averages at budget, standard and premium levels
+- **Local transport** -- monthly pass cost and typical commute cost
+- **Coworking** -- monthly hot-desk pricing at local spaces
+- **Visa** -- type (tourist, digital nomad, self-employment), duration, minimum income requirement
+- **Safety** -- composite safety index (0-100) and crime level classification
+- **Digital nomad score** -- composite index of WiFi speed, coworking access, safety, visa ease and affordability
+- **Infrastructure** -- public transport quality, healthcare quality, English proficiency, airport connectivity
+- **Taxes** -- personal income tax top rate, corporate tax, capital gains tax
+- **Premium eBooks** -- 25-page PDF relocation guides for 13 cities (USD 4.99 each)
 
 ## Key pages
 
-- [Home — cost of living calculator](https://www.livingcostatlas.com/): City search, interactive map, top-city rankings
+- [Home -- cost of living calculator](https://www.livingcostatlas.com/): City search, interactive map, top-city rankings
 - [All destinations](https://www.livingcostatlas.com/destinations): 51 cities filterable by cost, safety, WiFi and nomad score
 - [Budget calculator](https://www.livingcostatlas.com/calculator): Side-by-side monthly budget for any two cities
 - [Digital nomad rankings](https://www.livingcostatlas.com/nomad): Top cities ranked by overall nomad score
 - [Best cities hub](https://www.livingcostatlas.com/best-cities): Best cities by country and lifestyle profile
 - [Premium relocation guides](https://www.livingcostatlas.com/ebooks): 13 PDF guides (Lisbon, Bangkok, Tokyo, Dubai, Barcelona, Berlin, Paris, Amsterdam, Prague, Bali, Chiang Mai, Medellin, Mexico City)
+
+## Sample cost data -- popular cities (monthly estimates, 2026)
+
+### Bali, Indonesia
+- Rent (center): ~$990/mo | Rent (suburb): ~$630/mo
+- Food budget: ~$7/day | Food standard: ~$18/day
+- Transport: ~$50/mo | Coworking: ~$130/mo
+- Nomad score: 92/100 | Safety: 70/100 | WiFi: 40 Mbps
+- Visa: Bali Digital Nomad Visa, up to 60 days renewable
+- Full guide: https://www.livingcostatlas.com/city/bali
+
+### Bangkok, Thailand
+- Rent (center): ~$1 155/mo | Rent (suburb): ~$825/mo
+- Food budget: ~$6/day | Food standard: ~$15/day
+- Transport: ~$40/mo | Coworking: ~$100/mo
+- Nomad score: 88/100 | Safety: 65/100 | WiFi: 80 Mbps
+- Visa: Thailand LTR Visa (Long-Term Resident), up to 10 years
+- Full guide: https://www.livingcostatlas.com/city/bangkok
+
+### Lisbon, Portugal
+- Rent (center): ~$1 650/mo | Rent (suburb): ~$1 100/mo
+- Food budget: ~$10/day | Food standard: ~$22/day
+- Transport: ~$50/mo | Coworking: ~$200/mo
+- Nomad score: 81/100 | Safety: 85/100 | WiFi: 120 Mbps
+- Visa: Portugal Digital Nomad Visa (D8), up to 2 years
+- Full guide: https://www.livingcostatlas.com/city/lisbon
+
+### Chiang Mai, Thailand
+- Rent (center): ~$660/mo | Rent (suburb): ~$440/mo
+- Food budget: ~$5/day | Food standard: ~$12/day
+- Transport: ~$35/mo | Coworking: ~$80/mo
+- Nomad score: 90/100 | Safety: 75/100 | WiFi: 70 Mbps
+- Visa: Thailand Tourist Visa, up to 60 days (renewable)
+
+### Medellin, Colombia
+- Rent (center): ~$825/mo | Rent (suburb): ~$550/mo
+- Food budget: ~$6/day | Food standard: ~$14/day
+- Transport: ~$30/mo | Coworking: ~$120/mo
+- Nomad score: 80/100 | Safety: 55/100 | WiFi: 50 Mbps
+- Visa: Colombia Digital Nomad Visa, up to 2 years
+
+### Berlin, Germany
+- Rent (center): ~$1 980/mo | Rent (suburb): ~$1 400/mo
+- Food budget: ~$14/day | Food standard: ~$28/day
+- Transport: ~$90/mo | Coworking: ~$250/mo
+- Nomad score: 83/100 | Safety: 80/100 | WiFi: 100 Mbps
+- Visa: Germany Freelancer Visa, up to 3 years
+
+### Dubai, UAE
+- Rent (center): ~$2 475/mo | Rent (suburb): ~$1 650/mo
+- Food budget: ~$15/day | Food standard: ~$35/day
+- Transport: ~$85/mo | Coworking: ~$300/mo
+- Nomad score: 78/100 | Safety: 88/100 | WiFi: 130 Mbps
+- Visa: UAE Remote Work Visa, up to 1 year
+
+### Tokyo, Japan
+- Rent (center): ~$2 100/mo | Rent (suburb): ~$1 400/mo
+- Food budget: ~$12/day | Food standard: ~$25/day
+- Transport: ~$80/mo | Coworking: ~$220/mo
+- Nomad score: 80/100 | Safety: 95/100 | WiFi: 150 Mbps
+- Visa: Japan Highly Skilled Professional Visa
+
+### Taipei, Taiwan
+- Rent (center): ~$990/mo | Rent (suburb): ~$627/mo
+- Food budget: ~$7/day | Food standard: ~$18/day
+- Transport: ~$42/mo | Coworking: ~$170/mo
+- Nomad score: 89/100 | Safety: 91/100 | WiFi: 220 Mbps
+- Visa: Taiwan Gold Card Visa, up to 3 years
+- Full guide: https://www.livingcostatlas.com/city/taipei
+
+### Prague, Czech Republic
+- Rent (center): ~$1 320/mo | Rent (suburb): ~$880/mo
+- Food budget: ~$9/day | Food standard: ~$20/day
+- Transport: ~$35/mo | Coworking: ~$180/mo
+- Nomad score: 85/100 | Safety: 85/100 | WiFi: 100 Mbps
+- Visa: Czech Republic Freelancer Visa
+
+### Amsterdam, Netherlands
+- Rent (center): ~$2 475/mo | Rent (suburb): ~$1 650/mo
+- Food budget: ~$14/day | Food standard: ~$30/day
+- Transport: ~$100/mo | Coworking: ~$300/mo
+- Nomad score: 79/100 | Safety: 80/100 | WiFi: 170 Mbps
+- Visa: Netherlands Self-Employment Visa
+
+### Paris, France
+- Rent (center): ~$2 310/mo | Rent (suburb): ~$1 540/mo
+- Food budget: ~$14/day | Food standard: ~$30/day
+- Transport: ~$85/mo | Coworking: ~$280/mo
+- Nomad score: 77/100 | Safety: 72/100 | WiFi: 150 Mbps
+- Visa: France Talent Passport Visa
+
+### Mexico City, Mexico
+- Rent (center): ~$990/mo | Rent (suburb): ~$660/mo
+- Food budget: ~$6/day | Food standard: ~$14/day
+- Transport: ~$25/mo | Coworking: ~$150/mo
+- Nomad score: 82/100 | Safety: 50/100 | WiFi: 60 Mbps
+- Visa: Mexico Temporary Resident Visa, up to 4 years
+
+## Top cities by category (2026 data)
+
+### Most affordable (center rent under $1 000/mo)
+1. Chiang Mai -- $660/mo
+2. Tbilisi -- ~$600/mo
+3. Medellin -- $825/mo
+4. Ho Chi Minh City -- ~$700/mo
+5. Bali -- $990/mo
+
+### Best digital nomad score
+1. Bali -- 92/100
+2. Chiang Mai -- 90/100
+3. Taipei -- 89/100
+4. Bangkok -- 88/100
+5. Prague -- 85/100
+
+### Safest cities
+1. Tokyo -- 95/100
+2. Singapore -- 92/100
+3. Taipei -- 91/100
+4. Vienna -- 90/100
+5. Dubai -- 88/100
+
+### Best WiFi speeds
+1. Taipei -- 220 Mbps
+2. New York -- 200 Mbps
+3. Seoul -- 200 Mbps
+4. Amsterdam -- 170 Mbps
+5. Tokyo -- 150 Mbps
+
+### Best visa options for remote workers
+1. Portugal -- D8 Digital Nomad Visa (2 years)
+2. Thailand -- LTR Visa (10 years)
+3. Taiwan -- Gold Card (3 years)
+4. Germany -- Freelancer Visa (3 years)
+5. Colombia -- Digital Nomad Visa (2 years)
 
 ## City pages (51 cities)
 
@@ -52,7 +186,7 @@ Miami /city/miami -- Los Angeles /city/los-angeles
 
 - Accommodation costs represent realistic long-term monthly rent (not nightly hotel rates)
 - Food costs are per-person daily averages verified against local supermarket and restaurant pricing
-- Nomad scores are composite indices — no single metric dominates
+- Nomad scores are composite indices -- no single metric dominates
 - Safety indices are weighted composites from multiple public sources including Numbeo
 - Data is reviewed quarterly; each city entry is timestamped
 - No sponsored content; rankings and scores are purely data-driven

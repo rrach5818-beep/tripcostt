@@ -12,7 +12,7 @@
  */
 
 const PRICE = 4.99;
-const CURRENCY = 'EUR';
+const CURRENCY = 'USD';
 const YEAR = '2026';
 
 function entry(slug, city, country, opts) {
