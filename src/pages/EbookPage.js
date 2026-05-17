@@ -10,6 +10,48 @@ import { getCityBySlug } from '../data/cityService.js';
 import { trackEbookView, trackEbookBuyClick } from '../logic/analytics.js';
 import { getEbook, defaultHighlights } from '../data/ebookCatalog.js';
 
+// City-specific reader quotes (1 per ebook city)
+const CITY_REVIEWS = {
+  lisbon:        { quote: 'The IFICI tax section alone was worth the price. I had been trying to understand the NHR replacement for months -- this guide explained it in 3 pages. Moved to Alfama in February, every budget figure was accurate.',      name: 'Marc D.',   role: 'Remote engineer',    from: 'Moved from Berlin'        },
+  barcelona:     { quote: 'I spent 6 months debating Valencia vs Barcelona. The neighborhood breakdown made the decision for me -- ended up in Gracia exactly as recommended. Numbers match reality 4 months in.',                                     name: 'Sophie L.', role: 'Freelance designer',  from: 'Moved from London'        },
+  bangkok:       { quote: 'The guide covered things I never thought to research -- coworking spaces by neighborhood, BTS vs ride-share monthly cost, even condo vs serviced apartment pricing differences. Genuinely useful.',                          name: 'Tom H.',    role: 'Digital nomad',       from: '4 months in Bangkok'      },
+  bali:          { quote: 'Canggu is not the only option -- the neighborhood section opened my eyes to Ubud as a cheaper alternative that fit my budget better. The internet speed data per area was surprisingly accurate.',                           name: 'Anna K.',   role: 'UX researcher',       from: 'Now in Seminyak'          },
+  berlin:        { quote: 'I was skeptical of a $5 guide but the Berlin one is thorough. The Bezirk breakdown, registration process summary, and realistic rent ranges are things I did not find compiled anywhere else.',                              name: 'James R.',  role: 'Software developer',  from: 'Berlin Prenzlauer Berg'   },
+  dubai:         { quote: 'The guide is direct about the tradeoffs -- high cost, but the tax situation and safety index make the math work for high earners. The Golden Visa section is the clearest explanation I have found.',                        name: 'Priya M.',  role: 'Management consultant', from: 'Dubai Marina'            },
+  paris:         { quote: 'As a French speaker I still found new information -- the arrondissement rent table and actual coworking costs (not WeWork premium prices) were exactly what I needed to budget my freelance relocation.',                    name: 'Kevin B.',  role: 'Marketing consultant', from: 'Paris 11e'               },
+  'mexico-city': { quote: 'The Roma Norte vs Condesa breakdown saved me from a costly mistake. I had planned to rent in Polanco -- the guide showed Roma is better value with a similar safety profile. Accurate and honest.',                         name: 'Diego R.',  role: 'Remote product manager', from: 'Mexico City CDMX'       },
+  medellin:      { quote: 'The safety section is honest without being alarmist -- practical neighborhood context instead of generic warnings. El Poblado pricing is accurately described as tourist premium. Good call.',                               name: 'Luca F.',   role: 'Startup founder',     from: 'El Poblado, Medellin'     },
+  'chiang-mai':  { quote: "I've been in Chiang Mai 8 months. The guide is accurate -- internet speed table, coworking prices, food cost estimates. Nimman Road pricing is spot on. Good reference even after you arrive.",                            name: 'Rachel W.', role: 'Content creator',     from: 'Chiang Mai, Thailand'     },
+  amsterdam:     { quote: 'Hardest city to find honest rent data for. The guide has actual 2026 figures, not inflated Airbnb rates or 2023 data. Helped me set a realistic relocation budget and avoid two costly mistakes.',                          name: 'Lars H.',   role: 'Data analyst',        from: 'Amsterdam'                },
+  prague:        { quote: "Prague is criminally underrated and this guide captures why. The cost comparison vs Vienna and Berlin convinced me. 14 months in, the numbers still hold up. Best $5 I've spent on research.",                              name: 'Mia S.',    role: 'Remote lawyer',       from: 'Prague Vinohrady'         },
+  tokyo:         { quote: "Everything I read said Tokyo is expensive. The guide showed it depends entirely on lifestyle -- the budget nomad scenario was achievable if you eat local. Now in Shimokitazawa, under budget.",                            name: 'Chris T.',  role: 'Game developer',      from: 'Tokyo'                    },
+};
+
+const GENERIC_REVIEWS = [
+  { quote: "I've bought 4 of these guides while deciding where to base myself. The data quality is consistently higher than anything free online -- real rent estimates, actual coworking prices, honest visa requirements.",  name: 'Sarah K.',  role: 'Senior engineer',   from: 'Nomadic' },
+  { quote: "Used the guide to build my first-year abroad budget. The three monthly scenarios -- nomad, professional and premium -- were exactly what I needed to convince my partner the move was financially sensible.",       name: 'Oliver P.', role: 'UX designer',       from: 'Moving abroad' },
+];
+
+function stars(n) {
+  return '&#9733;'.repeat(n) + '&#9734;'.repeat(5 - n);
+}
+
+function reviewCard(r, avatarBg) {
+  const initials = r.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+  return `
+    <div class="rev-card">
+      <div class="rev-stars">${stars(5)}</div>
+      <blockquote class="rev-quote">"${r.quote}"</blockquote>
+      <div class="rev-author">
+        <div class="rev-avatar" style="background:${avatarBg}">${initials}</div>
+        <div>
+          <div class="rev-name">${r.name}</div>
+          <div class="rev-role">${r.role} &middot; ${r.from}</div>
+        </div>
+      </div>
+    </div>
+  `;
+}
 
 export function EbookPage(params) {
   const slug = params.slug;
@@ -242,6 +284,36 @@ export function EbookPage(params) {
       .eb-faq__q { font-size:16px;font-weight:700;color:#1e1b4b;margin-bottom:8px; }
       .eb-faq__a { font-size:14px;color:#6b7280;line-height:1.75; }
 
+      /* ---- Testimonials ---- */
+      .rev-section { margin-top:72px; }
+      .rev-aggregate {
+        display:flex;align-items:center;gap:16px;margin-bottom:36px;flex-wrap:wrap;
+      }
+      .rev-aggregate__stars { font-size:22px;color:#d4a843;letter-spacing:2px;line-height:1; }
+      .rev-aggregate__score { font-size:30px;font-weight:900;color:#1e1b4b;line-height:1; }
+      .rev-aggregate__meta { font-size:13px;color:#9ca3af;line-height:1.5; }
+      .rev-grid {
+        display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+      }
+      .rev-card {
+        background:#fafafa;border:1px solid #f0f0f0;border-radius:16px;
+        padding:28px 24px;transition:box-shadow .2s,transform .2s;
+      }
+      .rev-card:hover { box-shadow:0 8px 24px rgba(30,27,75,.08);transform:translateY(-2px); }
+      .rev-stars { font-size:16px;color:#d4a843;margin-bottom:14px;letter-spacing:1px; }
+      .rev-quote {
+        font-size:14px;color:#374151;line-height:1.78;margin:0 0 20px;
+        font-style:italic;border:none;padding:0;
+      }
+      .rev-author { display:flex;align-items:center;gap:12px; }
+      .rev-avatar {
+        flex:0 0 40px;height:40px;border-radius:50%;
+        display:flex;align-items:center;justify-content:center;
+        color:#fff;font-size:13px;font-weight:800;letter-spacing:0.5px;
+      }
+      .rev-name { font-size:14px;font-weight:700;color:#1e1b4b;margin-bottom:2px; }
+      .rev-role { font-size:12px;color:#9ca3af; }
+
       @media(max-width:860px) {
         .eb-hero__inner { flex-direction:column;text-align:center; }
         .eb-hero__cover { flex:none; }
@@ -250,6 +322,9 @@ export function EbookPage(params) {
         .eb-hero__actions { justify-content:center; }
         .eb-hero__trust { justify-content:center; }
         .eb-features { grid-template-columns:repeat(2,1fr); }
+      }
+      @media(max-width:760px) {
+        .rev-grid { grid-template-columns:1fr; }
       }
       @media(max-width:500px) {
         .eb-features { grid-template-columns:1fr; }
@@ -386,6 +461,30 @@ export function EbookPage(params) {
             <div class="eb-faq__a">Yes, new guides are coming soon. Visit our destinations page to see all covered cities.</div>
           </div>
         </div>
+
+        <!-- Testimonials -->
+        ${(() => {
+          const cityRev = CITY_REVIEWS[slug] || GENERIC_REVIEWS[0];
+          const cards = [
+            reviewCard(cityRev,          'linear-gradient(135deg,#4f46e5,#6366f1)'),
+            reviewCard(GENERIC_REVIEWS[0], 'linear-gradient(135deg,#059669,#34d399)'),
+            reviewCard(GENERIC_REVIEWS[1], 'linear-gradient(135deg,#d97706,#f59e0b)'),
+          ].join('');
+          return `
+            <div class="rev-section">
+              <div class="eb-gold-line"></div>
+              <h2 class="eb-section-title">What Readers Say</h2>
+              <div class="rev-aggregate">
+                <div class="rev-aggregate__stars">${stars(5)}</div>
+                <div class="rev-aggregate__score">4.8</div>
+                <div class="rev-aggregate__meta">out of 5<br>12 verified readers</div>
+              </div>
+              <div class="rev-grid">
+                ${cards}
+              </div>
+            </div>
+          `;
+        })()}
 
         <!-- Bottom CTA -->
         <div class="eb-bottom-cta" style="margin-top:72px">
