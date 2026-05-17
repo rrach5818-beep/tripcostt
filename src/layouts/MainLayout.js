@@ -52,7 +52,7 @@ export function MainLayout(content) {
           padding:56px 0 0;font-size:14px;
         }
         .footer__grid {
-          display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;
+          display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1fr;
           gap:24px;padding-bottom:48px;
           border-bottom:1px solid rgba(255,255,255,0.08);
         }
@@ -92,6 +92,9 @@ export function MainLayout(content) {
           color:rgba(255,255,255,0.25);font-size:12px;text-decoration:none;transition:color 0.15s;
         }
         .footer__legal a:hover { color:rgba(255,255,255,0.6); }
+        @media(max-width:900px) {
+          .footer__grid { grid-template-columns:1.6fr 1fr 1fr;gap:32px; }
+        }
         @media(max-width:768px) {
           .footer__grid { grid-template-columns:1fr 1fr;gap:32px; }
           .footer__brand { grid-column:1/-1; }
@@ -140,6 +143,14 @@ export function MainLayout(content) {
             <a href="/nomad"        data-link>Nomad Rankings</a>
             <a href="/calculator"   data-link>City Comparison</a>
             <a href="/resources"    data-link>Research &amp; Resources</a>
+          </div>
+
+          <!-- Blog -->
+          <div class="footer__section">
+            <h4>Blog</h4>
+            <a href="/blog/best-digital-nomad-visas-2026"       data-link>Best Nomad Visas 2026</a>
+            <a href="/blog/cheapest-cities-remote-workers-2026" data-link>Cheapest Cities 2026</a>
+            <a href="/blog/bali-vs-chiang-mai-vs-medellin-2026" data-link>Bali vs Chiang Mai vs Medellin</a>
           </div>
 
           <!-- Company -->

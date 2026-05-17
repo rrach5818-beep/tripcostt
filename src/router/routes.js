@@ -18,6 +18,9 @@ function lazy(loader) {
 // -- Lazy page modules --
 const pages = {
   home:           lazy(() => import('../pages/HomePage.js')),
+  blogBestVisas:      lazy(() => import('../pages/ArticleBestVisas.js')),
+  blogCheapest:       lazy(() => import('../pages/ArticleCheapestCities.js')),
+  blogTrioComparison: lazy(() => import('../pages/ArticleTrioComparison.js')),
   destinations:   lazy(() => import('../pages/DestinationsPage.js')),
   city:           lazy(() => import('../pages/CityPage.js')),
   comparison:     lazy(() => import('../pages/CityComparisonPage.js')),
@@ -94,6 +97,10 @@ export const routes = [
   { path: '/best-countries/:profile', component: async (p) => (await pages.bestCountries.load()).BestCountriesPage(p) },
 
   { path: '/resources', component: async (p) => (await pages.resources.load()).ResourcesPage(p) },
+
+  { path: '/blog/best-digital-nomad-visas-2026',       component: async (p) => (await pages.blogBestVisas.load()).ArticleBestVisas(p) },
+  { path: '/blog/cheapest-cities-remote-workers-2026', component: async (p) => (await pages.blogCheapest.load()).ArticleCheapestCities(p) },
+  { path: '/blog/bali-vs-chiang-mai-vs-medellin-2026', component: async (p) => (await pages.blogTrioComparison.load()).ArticleTrioComparison(p) },
 
   { path: '/ebooks', component: async (p) => (await pages.ebooks.load()).EbooksPage(p) },
 
